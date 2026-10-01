@@ -1,0 +1,30 @@
+# Generated releases, work directories and local caches
+/build/
+/out/
+/dist/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Credentials and local environment configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+secrets*.json
+
+# Local requests, responses and user conversation exports
+request*.json
+response*.json
+response*.headers
+answer*.json
+history*.json
+input.txt
+next-input.txt
+/work/
+/private/
