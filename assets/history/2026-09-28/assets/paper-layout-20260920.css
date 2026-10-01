@@ -1,0 +1,141 @@
+/* Shared paper surface and reading grid, following the live-site review. */
+:root,
+body.bw-paper {
+  --paper-grain: url("/model/history/2026-09-28/assets/paper-grain-v2-20260920.svg");
+  --paper-grain-size: 1024px 1024px;
+  --paper-page-title: clamp(2.15rem, 4.2vw, 3.5rem);
+  --paper-heading-space: clamp(32px, 4.5vw, 56px);
+  --paper-section-space: clamp(36px, 5vw, 64px);
+  --paper-panel: #f6f6f2;
+}
+
+@media screen {
+  body.bw-paper {
+    background-image: var(--paper-grain);
+    background-size: var(--paper-grain-size);
+    background-repeat: repeat;
+  }
+
+  /* One grid for the shared shell; long-form copy keeps its inner measure. */
+  body.bw-paper.bw-shell:not(.reader-home):not(.reader-music) > main {
+    width: min(100%, var(--shell-max, 1240px));
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--shell-gutter);
+    padding-right: var(--shell-gutter);
+  }
+  body.bw-paper.reader-home {
+    --reader-max: var(--shell-max);
+    --reader-gutter: var(--shell-gutter);
+  }
+  body.bw-paper.reader-home .reader-hero,
+  body.bw-paper.reader-home .reader-section {
+    padding-left: var(--shell-gutter);
+    padding-right: var(--shell-gutter);
+  }
+  body.bw-paper[data-page-section="text"] > main > .essay {
+    max-width: 44rem;
+  }
+  body.bw-paper[data-page-section="text"] > main > .stop {
+    margin-left: min(calc(50% - 3.5px), calc(22rem - 3.5px));
+    margin-right: 0;
+  }
+  body.bw-paper.mathematics-page .content {
+    max-width: 52rem;
+  }
+  body.bw-paper.mathematics-page .prose {
+    max-width: 48rem;
+  }
+
+  /* The home statement leads; section names use a calmer common scale. */
+  body.bw-paper.research-index .research-opening h1,
+  body.bw-paper.notes-index .notes-index-hero h1,
+  body.bw-paper.notes-page .note-question h1,
+  body.bw-paper.support-page .support-hero h1,
+  body.bw-paper.reading-check .rc-hero h1 {
+    font-size: var(--paper-page-title);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -.035em;
+    overflow-wrap: anywhere;
+  }
+  body.bw-paper.about-page.bw-about-reader .page-hero.reader-entry h1.about-title {
+    font-size: var(--paper-page-title) !important;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -.035em;
+  }
+  body.bw-paper[data-page-section="research"] main h1:not(.eyebrow) {
+    font-size: var(--paper-page-title);
+    line-height: 1.1;
+    letter-spacing: -.035em;
+    overflow-wrap: anywhere;
+  }
+  body.bw-paper.notes-index .notes-index-hero,
+  body.bw-paper.research-index .research-opening,
+  body.bw-paper.reading-check .rc-hero {
+    padding-top: var(--paper-heading-space);
+    padding-bottom: var(--paper-section-space);
+  }
+  body.bw-paper.research-index > main { padding-top: 0; }
+  body.bw-paper.about-page.bw-about-reader > main,
+  body.bw-paper.support-page > main {
+    padding-top: var(--paper-heading-space);
+  }
+  body.bw-paper.notes-index .notes-index-hero .notes-lead {
+    margin-top: 1.5rem;
+  }
+  body.bw-paper.notes-index .note-card h2 {
+    font-size: clamp(1.65rem, 2.6vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -.025em;
+  }
+  body.bw-paper.support-page .support-hero { max-width: 44rem; }
+  body.bw-paper.support-page .support-hero h1 { margin-bottom: 1.5rem; }
+
+  /* The example reads as a specimen on paper; editable fields retain borders. */
+  body.bw-paper.reader-home .reader-example {
+    border-width: 1px 0;
+    background: transparent;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  body.bw-paper.reader-home .reader-workbench {
+    background: transparent;
+  }
+  body.bw-paper.reader-home .reader-privacy {
+    font-size: .8125rem;
+    max-width: 68ch;
+  }
+
+  /* Opaque paper layers use the same grain without covering text or artwork. */
+  body.bw-paper.bw-shell .bw-mobile-links,
+  body.bw-paper .frame-dialog,
+  body.bw-paper.reader-music .lyrics-dialog,
+  body.bw-paper.reader-music .player,
+  body.bw-paper[data-page-section="ma"] .listen-dialog,
+  body.bw-paper[data-page-section="ma"] .ma-player,
+  body.bw-paper[data-page-section="ma"] #tapHint,
+  body.bw-paper.about-page .example-body,
+  body.bw-paper.written-i-page .wi-message,
+  body.bw-paper.written-i-page .record-text,
+  body.bw-paper[data-page-section="research"] .table-scroll th {
+    background-image: var(--paper-grain);
+    background-size: var(--paper-grain-size);
+    background-repeat: repeat;
+  }
+  body.bw-paper.about-page .example-body {
+    background-color: var(--paper-panel);
+  }
+  body.bw-paper.written-i-page .wi-correspondence .record-text {
+    background-image: none;
+  }
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  body.bw-paper { --paper-grain: none; }
+}
+@media print {
+  body.bw-paper { --paper-grain: none; --paper-panel: #fff; }
+}

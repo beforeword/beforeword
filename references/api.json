@@ -1,0 +1,230 @@
+{
+  "schema_version": "1",
+  "checked_at": "2026-10-01",
+  "scope": "Seven text-only, non-streaming request formats; no live API or credential tests.",
+  "environment_note": "Model and endpoint environment variable names are conventions used by this package, not API fields. Key variable names follow provider examples. All values shown in headers are placeholders.",
+  "providers": {
+    "openai": {
+      "label": "OpenAI Responses",
+      "method": "POST",
+      "endpoint": "https://api.openai.com/v1/responses",
+      "endpoint_env": null,
+      "key_env": "OPENAI_API_KEY",
+      "model_env": "OPENAI_MODEL",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ${OPENAI_API_KEY}"
+      },
+      "optional_headers": {},
+      "instruction_field": "instructions",
+      "history_format": "input: user/assistant text messages",
+      "notes": {
+        "en": [
+          "Choose a model supporting this endpoint and text input/output; the formatter does not check remote model access.",
+          "Resend the instruction and full text history on each request. The scripts do not send requests or read API keys.",
+          "The body uses store=false. This setting is not a general assurance about all provider logging or data handling.",
+          "A previous response/interaction ID does not inherit the request instruction. The supplied formatter uses explicit stateless text history, not IDs."
+        ],
+        "ru": [
+          "Выберите модель, которая поддерживает этот эндпоинт, а также текстовый ввод и вывод; формировщик запросов не проверяет доступ к модели у провайдера.",
+          "Повторно передавайте инструкцию и полную текстовую историю в каждом запросе. Скрипты не отправляют запросы и не читают ключи API.",
+          "В теле запроса используется store=false. Эта настройка сама по себе не даёт гарантий относительно всех способов журналирования и обработки данных у провайдера.",
+          "При использовании идентификатора предыдущего ответа или взаимодействия инструкция запроса не наследуется. Предоставленный формировщик запросов использует явно переданную текстовую историю без сохранения состояния, а не идентификаторы."
+        ]
+      },
+      "sources": [
+        "https://developers.openai.com/api/docs/guides/text",
+        "https://developers.openai.com/api/docs/guides/migrate-to-responses"
+      ]
+    },
+    "anthropic": {
+      "label": "Anthropic Messages",
+      "method": "POST",
+      "endpoint": "https://api.anthropic.com/v1/messages",
+      "endpoint_env": null,
+      "key_env": "ANTHROPIC_API_KEY",
+      "model_env": "ANTHROPIC_MODEL",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-api-key": "${ANTHROPIC_API_KEY}",
+        "anthropic-version": "2023-06-01"
+      },
+      "optional_headers": {
+        "anthropic-workspace-id": "${ANTHROPIC_WORKSPACE_ID}"
+      },
+      "instruction_field": "system",
+      "history_format": "messages: user/assistant text messages",
+      "notes": {
+        "en": [
+          "Choose a model supporting this endpoint and text input/output; the formatter does not check remote model access.",
+          "Resend the instruction and full text history on each request. The scripts do not send requests or read API keys.",
+          "--max-tokens controls only the Anthropic maximum output tokens (default 2048). Select a value supported by the chosen model.",
+          "Add anthropic-workspace-id only for credentials that need an explicit Workspace selection."
+        ],
+        "ru": [
+          "Выберите модель, которая поддерживает этот эндпоинт, а также текстовый ввод и вывод; формировщик запросов не проверяет доступ к модели у провайдера.",
+          "Повторно передавайте инструкцию и полную текстовую историю в каждом запросе. Скрипты не отправляют запросы и не читают ключи API.",
+          "Параметр --max-tokens задаёт максимальное число выходных токенов только для Anthropic (по умолчанию 2048). Выберите значение, поддерживаемое выбранной моделью.",
+          "Добавляйте anthropic-workspace-id только в том случае, если для используемых учётных данных необходимо явно выбрать Workspace."
+        ]
+      },
+      "sources": [
+        "https://platform.claude.com/docs/en/api/messages/create"
+      ]
+    },
+    "gemini": {
+      "label": "Gemini Interactions",
+      "method": "POST",
+      "endpoint": "https://generativelanguage.googleapis.com/v1beta/interactions",
+      "endpoint_env": null,
+      "key_env": "GEMINI_API_KEY",
+      "model_env": "GEMINI_MODEL",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-goog-api-key": "${GEMINI_API_KEY}"
+      },
+      "optional_headers": {},
+      "instruction_field": "system_instruction",
+      "history_format": "input: string for one turn; user_input/model_output Step[] for text history",
+      "notes": {
+        "en": [
+          "Choose a model supporting this endpoint and text input/output; the formatter does not check remote model access.",
+          "Resend the instruction and full text history on each request. The scripts do not send requests or read API keys.",
+          "The body uses store=false. This setting is not a general assurance about all provider logging or data handling.",
+          "A previous response/interaction ID does not inherit the request instruction. The supplied formatter uses explicit stateless text history, not IDs."
+        ],
+        "ru": [
+          "Выберите модель, которая поддерживает этот эндпоинт, а также текстовый ввод и вывод; формировщик запросов не проверяет доступ к модели у провайдера.",
+          "Повторно передавайте инструкцию и полную текстовую историю в каждом запросе. Скрипты не отправляют запросы и не читают ключи API.",
+          "В теле запроса используется store=false. Эта настройка сама по себе не даёт гарантий относительно всех способов журналирования и обработки данных у провайдера.",
+          "При использовании идентификатора предыдущего ответа или взаимодействия инструкция запроса не наследуется. Предоставленный формировщик запросов использует явно переданную текстовую историю без сохранения состояния, а не идентификаторы."
+        ]
+      },
+      "sources": [
+        "https://ai.google.dev/api/interactions-api",
+        "https://ai.google.dev/gemini-api/docs/interactions-overview"
+      ]
+    },
+    "grok": {
+      "label": "Grok Responses",
+      "method": "POST",
+      "endpoint": "https://api.x.ai/v1/responses",
+      "endpoint_env": null,
+      "key_env": "XAI_API_KEY",
+      "model_env": "XAI_MODEL",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ${XAI_API_KEY}"
+      },
+      "optional_headers": {},
+      "instruction_field": "input[0] system message",
+      "history_format": "input: user/assistant text messages after system message",
+      "notes": {
+        "en": [
+          "Choose a model supporting this endpoint and text input/output; the formatter does not check remote model access.",
+          "Resend the instruction and full text history on each request. The scripts do not send requests or read API keys.",
+          "The body uses store=false. This setting is not a general assurance about all provider logging or data handling."
+        ],
+        "ru": [
+          "Выберите модель, которая поддерживает этот эндпоинт, а также текстовый ввод и вывод; формировщик запросов не проверяет доступ к модели у провайдера.",
+          "Повторно передавайте инструкцию и полную текстовую историю в каждом запросе. Скрипты не отправляют запросы и не читают ключи API.",
+          "В теле запроса используется store=false. Эта настройка сама по себе не даёт гарантий относительно всех способов журналирования и обработки данных у провайдера."
+        ]
+      },
+      "sources": [
+        "https://docs.x.ai/developers/rest-api-reference/inference/responses"
+      ]
+    },
+    "deepseek": {
+      "label": "DeepSeek Chat Completions",
+      "method": "POST",
+      "endpoint": "https://api.deepseek.com/chat/completions",
+      "endpoint_env": null,
+      "key_env": "DEEPSEEK_API_KEY",
+      "model_env": "DEEPSEEK_MODEL",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ${DEEPSEEK_API_KEY}"
+      },
+      "optional_headers": {},
+      "instruction_field": "messages[0] system message",
+      "history_format": "messages: user/assistant text messages after system message",
+      "notes": {
+        "en": [
+          "Choose a model supporting this endpoint and text input/output; the formatter does not check remote model access.",
+          "Resend the instruction and full text history on each request. The scripts do not send requests or read API keys."
+        ],
+        "ru": [
+          "Выберите модель, которая поддерживает этот эндпоинт, а также текстовый ввод и вывод; формировщик запросов не проверяет доступ к модели у провайдера.",
+          "Повторно передавайте инструкцию и полную текстовую историю в каждом запросе. Скрипты не отправляют запросы и не читают ключи API."
+        ]
+      },
+      "sources": [
+        "https://api-docs.deepseek.com/",
+        "https://api-docs.deepseek.com/api/create-chat-completion/"
+      ]
+    },
+    "qwen": {
+      "label": "Qwen / Model Studio Chat Completions",
+      "method": "POST",
+      "endpoint": null,
+      "endpoint_env": "QWEN_CHAT_ENDPOINT",
+      "key_env": "DASHSCOPE_API_KEY",
+      "model_env": "QWEN_MODEL",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ${DASHSCOPE_API_KEY}"
+      },
+      "optional_headers": {},
+      "instruction_field": "messages[0] system message",
+      "history_format": "messages: user/assistant text messages after system message",
+      "notes": {
+        "en": [
+          "Choose a model supporting this endpoint and text input/output; the formatter does not check remote model access.",
+          "Resend the instruction and full text history on each request. The scripts do not send requests or read API keys.",
+          "QWEN_CHAT_ENDPOINT is required: set the full HTTPS /chat/completions endpoint shown for your region and workspace. The key and model availability must match that region/workspace.",
+          "This is the OpenAI-compatible endpoint; do not substitute the DashScope native Generation endpoint with the same body."
+        ],
+        "ru": [
+          "Выберите модель, которая поддерживает этот эндпоинт, а также текстовый ввод и вывод; формировщик запросов не проверяет доступ к модели у провайдера.",
+          "Повторно передавайте инструкцию и полную текстовую историю в каждом запросе. Скрипты не отправляют запросы и не читают ключи API.",
+          "Переменная QWEN_CHAT_ENDPOINT обязательна: укажите полный HTTPS-адрес эндпоинта /chat/completions, приведённый для вашего региона и рабочего пространства. Ключ должен соответствовать этому региону и рабочему пространству, а модель должна быть доступна в них.",
+          "Это эндпоинт, совместимый с OpenAI; не заменяйте его собственным эндпоинтом Generation сервиса DashScope, оставляя то же тело запроса."
+        ]
+      },
+      "sources": [
+        "https://www.alibabacloud.com/help/en/model-studio/text-generation"
+      ]
+    },
+    "mistral": {
+      "label": "Mistral Chat Completions",
+      "method": "POST",
+      "endpoint": "https://api.mistral.ai/v1/chat/completions",
+      "endpoint_env": null,
+      "key_env": "MISTRAL_API_KEY",
+      "model_env": "MISTRAL_MODEL",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ${MISTRAL_API_KEY}"
+      },
+      "optional_headers": {},
+      "instruction_field": "messages[0] system message",
+      "history_format": "messages: user/assistant text messages after system message",
+      "notes": {
+        "en": [
+          "Choose a model supporting this endpoint and text input/output; the formatter does not check remote model access.",
+          "Resend the instruction and full text history on each request. The scripts do not send requests or read API keys."
+        ],
+        "ru": [
+          "Выберите модель, которая поддерживает этот эндпоинт, а также текстовый ввод и вывод; формировщик запросов не проверяет доступ к модели у провайдера.",
+          "Повторно передавайте инструкцию и полную текстовую историю в каждом запросе. Скрипты не отправляют запросы и не читают ключи API."
+        ]
+      },
+      "sources": [
+        "https://docs.mistral.ai/api/endpoint/chat",
+        "https://docs.mistral.ai/studio/conversations/reasoning"
+      ]
+    }
+  },
+  "timezone": "Etc/UTC"
+}

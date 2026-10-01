@@ -1,0 +1,334 @@
+{
+  "edition": "1.1.0",
+  "date_utc": "2026-10-01",
+  "basis": "Primary documentation reviewed; no live platform imports or model API tests",
+  "connectors": [
+    {
+      "id": "openai",
+      "name": "ChatGPT / Codex",
+      "recommended": "compact",
+      "native": "openai-plugin",
+      "ru": {
+        "route": "ChatGPT: Settings → Personalization → Custom instructions",
+        "scope": "Сохранённая инструкция задаёт предпочтения для ответов в ChatGPT; плагин Codex подключается отдельно.",
+        "limit": "Сохранение настройки или установка плагина не гарантирует применение beforeword в каждом ответе.",
+        "steps": [
+          "Скопируй показанную ниже инструкцию.",
+          "Открой Settings → Personalization → Custom instructions и вставь текст в поле пользовательских инструкций.",
+          "Сохрани настройку и проверь новый разговор на одном из примеров; для Codex используй отдельный пакет плагина."
+        ]
+      },
+      "en": {
+        "route": "ChatGPT: Settings → Personalization → Custom instructions",
+        "scope": "Saved instructions set response preferences in ChatGPT; the Codex plugin is a separate connection.",
+        "limit": "Saving instructions or installing a plugin does not guarantee that beforeword will be applied to every answer.",
+        "steps": [
+          "Copy the instructions shown below.",
+          "Open Settings → Personalization → Custom instructions and paste the text into the custom instructions field.",
+          "Save and try an example in a new conversation; use the separate plugin package for Codex."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Personalize ChatGPT",
+          "url": "https://learn.chatgpt.com/docs/personalize"
+        },
+        {
+          "title": "Build plugins",
+          "url": "https://developers.openai.com/plugins/build/plugins"
+        }
+      ]
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "recommended": "core",
+      "native": "claude-plugin",
+      "ru": {
+        "route": "Project → Set project instructions; плагин: Customize → Plugins → Add → Upload plugin",
+        "scope": "Инструкция проекта относится к разговорам внутри выбранного проекта; навык плагина вызывается для задачи.",
+        "limit": "Наличие плагина в аккаунте не означает, что его инструкция загружена в каждый разговор.",
+        "steps": [
+          "Создай проект beforeword и открой Set project instructions.",
+          "Вставь показанную ниже инструкцию в поле инструкций и сохрани его.",
+          "Для вызова beforeword как навыка загрузи ZIP плагина через Customize → Plugins → Add → Upload plugin и явно попроси применить beforeword."
+        ]
+      },
+      "en": {
+        "route": "Project → Set project instructions; plugin: Customize → Plugins → Add → Upload plugin",
+        "scope": "Project instructions apply within the selected project; the plugin skill is invoked for a task.",
+        "limit": "Having the plugin in your account does not mean its instructions are loaded in every conversation.",
+        "steps": [
+          "Create a beforeword project and open Set project instructions.",
+          "Paste the instructions shown below into the instructions field and save it.",
+          "To invoke beforeword as a skill, upload the plugin ZIP through Customize → Plugins → Add → Upload plugin and explicitly ask to apply beforeword."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Create and manage projects",
+          "url": "https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects"
+        },
+        {
+          "title": "Plugin structure and testing",
+          "url": "https://claude.com/docs/plugins/build"
+        },
+        {
+          "title": "Plugin feature support across platforms",
+          "url": "https://claude.com/docs/plugins/platform-support"
+        }
+      ]
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini",
+      "recommended": "compact",
+      "native": "skill",
+      "ru": {
+        "route": "Settings & help → Personal Intelligence → Instructions for Gemini",
+        "scope": "Инструкции аккаунта относятся к поддерживаемым разговорам Gemini; Gems и навыки имеют отдельную настройку.",
+        "limit": "Инструкции доступны не во всех аккаунтах и режимах, а раздел Skills появляется постепенно.",
+        "steps": [
+          "В веб-версии открой Settings & help → Personal Intelligence → Instructions for Gemini.",
+          "Нажми Add, вставь показанную ниже инструкцию и отправь её через Submit.",
+          "Если доступен Settings → Skills, можно отдельно загрузить SKILL.md и вызывать beforeword для нужной задачи."
+        ]
+      },
+      "en": {
+        "route": "Settings & help → Personal Intelligence → Instructions for Gemini",
+        "scope": "Account instructions apply to supported Gemini conversations; Gems and skills have separate settings.",
+        "limit": "Instructions are unavailable in some accounts and modes, and Skills is rolling out gradually.",
+        "steps": [
+          "On the web, open Settings & help → Personal Intelligence → Instructions for Gemini.",
+          "Choose Add, paste the instructions shown below, and select Submit.",
+          "If Settings → Skills is available, you can also upload SKILL.md and invoke beforeword for a specific task."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Customize Gemini’s responses with your instructions",
+          "url": "https://support.google.com/gemini/answer/16598625?hl=en"
+        },
+        {
+          "title": "Create and manage skills for Gemini Apps",
+          "url": "https://support.google.com/gemini/answer/17094296?hl=en"
+        }
+      ]
+    },
+    {
+      "id": "grok",
+      "name": "Grok",
+      "recommended": "compact",
+      "native": null,
+      "ru": {
+        "route": "Custom instructions, если поле доступно; иначе первое сообщение нового чата",
+        "scope": "При вставке в чат инструкция относится к доступному контексту этого разговора.",
+        "limit": "Точный путь к полю и его действие в разных режимах не установлены по использованной документации.",
+        "steps": [
+          "Скопируй показанную ниже инструкцию.",
+          "Вставь её в доступное поле Custom instructions или отправь первым сообщением нового чата.",
+          "Следующим сообщением отправь текст для разбора и проверь, сохраняется ли его исходная формулировка."
+        ]
+      },
+      "en": {
+        "route": "Custom instructions, if available; otherwise the first message in a new chat",
+        "scope": "When pasted into a chat, the instructions apply within that conversation’s available context.",
+        "limit": "The documentation used here does not establish an exact settings path or behavior across all modes.",
+        "steps": [
+          "Copy the instructions shown below.",
+          "Paste them into Custom instructions if that field is available, or send them as the first message in a new chat.",
+          "Send a passage to examine next and check whether its original wording is preserved."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Grok — custom instructions",
+          "url": "https://x.ai/grok"
+        }
+      ]
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "recommended": "core",
+      "native": null,
+      "ru": {
+        "route": "Новый чат → первое сообщение",
+        "scope": "Ядро передаётся как сообщение в выбранном разговоре и зависит от доступного контекста.",
+        "limit": "Это переносимый способ передачи инструкции; документация API не устанавливает наличие плагина или постоянной настройки в приложении.",
+        "steps": [
+          "Открой новый чат и отправь показанную ниже инструкцию первым сообщением.",
+          "Следующим сообщением отправь свой запрос или текст для разбора.",
+          "В новом разговоре передай инструкцию заново."
+        ]
+      },
+      "en": {
+        "route": "New chat → first message",
+        "scope": "The core is supplied as a message in the selected conversation and depends on its available context.",
+        "limit": "This is a portable instruction method; API documentation does not establish a plugin or persistent setting in the consumer app.",
+        "steps": [
+          "Open a new chat and send the instructions shown below as the first message.",
+          "Send your request or the passage to examine in the next message.",
+          "Supply the instructions again when starting another conversation."
+        ]
+      },
+      "sources": [
+        {
+          "title": "DeepSeek API documentation — API scope",
+          "url": "https://api-docs.deepseek.com/"
+        }
+      ]
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "recommended": "core",
+      "native": null,
+      "ru": {
+        "route": "Новый чат → первое сообщение",
+        "scope": "Ядро передаётся как сообщение в выбранном разговоре и зависит от доступного контекста.",
+        "limit": "Наличие постоянной настройки или импортируемого плагина в Qwen Chat не установлено по использованной документации.",
+        "steps": [
+          "Открой новый чат Qwen и отправь показанную ниже инструкцию первым сообщением.",
+          "Следующим сообщением отправь свой запрос или текст для разбора.",
+          "В новом разговоре передай инструкцию заново."
+        ]
+      },
+      "en": {
+        "route": "New chat → first message",
+        "scope": "The core is supplied as a message in the selected conversation and depends on its available context.",
+        "limit": "The documentation used here does not establish a persistent setting or an importable plugin in Qwen Chat.",
+        "steps": [
+          "Open a new Qwen chat and send the instructions shown below as the first message.",
+          "Send your request or the passage to examine in the next message.",
+          "Supply the instructions again when starting another conversation."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Qwen Chat",
+          "url": "https://qwen.ai/qwenchat"
+        },
+        {
+          "title": "Model Studio text generation — API scope",
+          "url": "https://www.alibabacloud.com/help/en/model-studio/text-generation"
+        }
+      ]
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral / Vibe Work",
+      "recommended": "compact",
+      "native": "skill",
+      "ru": {
+        "route": "Vibe Work: Context → Instructions; навык: Context → Skills",
+        "scope": "Изменённые инструкции относятся к новым задачам; отдельно подключённый навык вызывается для подходящей задачи.",
+        "limit": "Открытые задачи сохраняют прежний контекст, а активный навык может иметь приоритет над общими инструкциями.",
+        "steps": [
+          "Открой Context → Instructions в Vibe Work.",
+          "Вставь показанную ниже инструкцию, нажми Save и начни новую задачу.",
+          "Для вызова по запросу используй Context → Skills → New Skill и добавь SKILL.md как отдельный навык beforeword."
+        ]
+      },
+      "en": {
+        "route": "Vibe Work: Context → Instructions; skill: Context → Skills",
+        "scope": "Updated instructions apply to new tasks; a separate skill is invoked when relevant to a task.",
+        "limit": "Existing tasks retain their earlier context, and an active skill may take precedence over general instructions.",
+        "steps": [
+          "Open Context → Instructions in Vibe Work.",
+          "Paste the instructions shown below, select Save, and start a new task.",
+          "For on-demand use, choose Context → Skills → New Skill and add SKILL.md as a separate beforeword skill."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Vibe Work custom instructions",
+          "url": "https://docs.mistral.ai/vibe/work/custom-instructions"
+        },
+        {
+          "title": "Vibe Work skills",
+          "url": "https://docs.mistral.ai/vibe/work/skills"
+        }
+      ]
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "recommended": "core",
+      "native": null,
+      "ru": {
+        "route": "Projects → + New project → инструкции проекта",
+        "scope": "Инструкции проекта относятся к запросам внутри выбранного проекта.",
+        "limit": "Лимит поля — 8 000 символов; настройка не распространяется на все разговоры Perplexity.",
+        "steps": [
+          "Открой Projects и создай проект beforeword через + New project.",
+          "Вставь показанную ниже инструкцию в поле инструкций проекта и сохрани его.",
+          "Запускай запросы внутри этого проекта."
+        ]
+      },
+      "en": {
+        "route": "Projects → + New project → project instructions",
+        "scope": "Project instructions apply to queries within the selected project.",
+        "limit": "The field allows 8,000 characters; this setting does not cover all Perplexity conversations.",
+        "steps": [
+          "Open Projects and create a beforeword project using + New project.",
+          "Paste the instructions shown below into the project instructions field and save it.",
+          "Run your queries inside that project."
+        ]
+      },
+      "sources": [
+        {
+          "title": "What are Projects?",
+          "url": "https://www.perplexity.ai/help-center/en/articles/10352961-what-are-projects"
+        }
+      ]
+    },
+    {
+      "id": "copilot",
+      "name": "Microsoft Copilot",
+      "recommended": "core",
+      "native": null,
+      "ru": {
+        "route": "Личный Microsoft Copilot: новый чат → первое сообщение; Microsoft 365 Copilot: отдельная настройка ниже",
+        "scope": "В личном Copilot инструкция передаётся в конкретный разговор. Сохранённые пользовательские инструкции Microsoft 365 Copilot настраиваются отдельно в поддерживаемом аккаунте.",
+        "limit": "Наличие общего раздела документации не устанавливает одинаковый путь настроек для личного Copilot и Microsoft 365. Лимит поля не установлен; перенос в чат доступен как запасной способ без постоянного действия.",
+        "steps": [
+          "Скопируй показанную ниже инструкцию.",
+          "В личном Microsoft Copilot начни новый чат и отправь её первым сообщением; следующим сообщением отправь задачу. Для нового разговора передай инструкцию заново.",
+          "Если в твоём интерфейсе есть Custom instructions, можно сохранить текст там. Наличие этого поля в каждом личном аккаунте здесь не заявляется.",
+          "Для Microsoft 365 Copilot: открой Copilot Chat с аккаунтом Microsoft 365 → Settings and more → Chat settings → Personalization → Custom instructions → Edit instructions; вставь текст и нажми Save instructions. Если текст не помещается, выбери краткую инструкцию или используй отдельный чат.",
+          "Запусти один из примеров пакета. Сохранение настройки и память приложения не устанавливают применение beforeword во всех ответах."
+        ]
+      },
+      "en": {
+        "route": "Personal Microsoft Copilot: new chat → first message; Microsoft 365 Copilot: separate settings route below",
+        "scope": "In personal Copilot, the instructions are supplied to an individual conversation. Saved custom instructions in Microsoft 365 Copilot are configured separately in a supported account.",
+        "limit": "Shared help links do not establish an identical settings path in personal Copilot and Microsoft 365. No field character limit was established; pasting into a chat remains a fallback without persistent scope.",
+        "steps": [
+          "Copy the instructions shown below.",
+          "In personal Microsoft Copilot, start a new chat and send them as the first message; send your task next. Supply the instructions again for each new conversation.",
+          "If your interface has Custom instructions, you can save the text there. This package does not claim that the field is present in every personal account.",
+          "For Microsoft 365 Copilot: open Copilot Chat with a Microsoft 365 account → Settings and more → Chat settings → Personalization → Custom instructions → Edit instructions; paste the text and select Save instructions. If it does not fit, select the compact instructions or use a separate chat.",
+          "Try a package example. Saving a setting or using app memory does not establish that beforeword is applied to every response."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Microsoft Copilot for individuals: your privacy controls and choices",
+          "url": "https://support.microsoft.com/en-us/privacy/microsoft-copilot/privacy-controls"
+        },
+        {
+          "title": "Personalize what Microsoft Copilot remembers",
+          "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/personalize-what-microsoft-365-copilot-remembers"
+        },
+        {
+          "title": "Customize how Microsoft Copilot responds to you",
+          "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/customize-how-microsoft-365-copilot-responds-to-you"
+        }
+      ]
+    }
+  ],
+  "api_registry": "api.json",
+  "native_packages": "../scripts/package_plugins.py",
+  "scope": "Application instructions, task skills and text-only API adapters are distinct routes. The list defines scope, not a market ranking."
+}

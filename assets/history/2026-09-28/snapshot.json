@@ -1,0 +1,227 @@
+{
+  "edition": "2026-09-28",
+  "source": "BW 210.zip supplied by the project owner",
+  "public_base": "/model/history/2026-09-28/",
+  "purpose": "Historical material; not current instructions or a new evaluation.",
+  "changes": [
+    "Internal model and resource URLs point into this snapshot.",
+    "Robots metadata changed to noindex,follow.",
+    "A separate archive notice and its stylesheet were added."
+  ],
+  "source_files": {
+    "model/index.html": {
+      "sha256": "c7a13ee687939be7fe0677ba59ad5f0de8257a6d6d0de0d409aa40e4869d5710",
+      "bytes": 55023
+    },
+    "model/en/index.html": {
+      "sha256": "3c4b003ffd2da364ea5a6818aef2ffda890d1e61801ae13b892aa46692f71974",
+      "bytes": 37547
+    },
+    "assets/beforeword-copy-20260928.js": {
+      "sha256": "ea9550d368d944c157b2ee446b8d0be44d1807b0def4858630db5f9f85a017b4",
+      "bytes": 5093
+    },
+    "assets/book-ui-20260920.css": {
+      "sha256": "39d658deb81f93d1c3d9a3839bcc30c8676d0deac946e93cc943000d0dfbb54e",
+      "bytes": 6946
+    },
+    "assets/beforeword-ink-20260920.woff": {
+      "sha256": "1b3a538a3033481cf8b83d2e3efe1a2690ddbbd1ac176fab262aebcd9df72872",
+      "bytes": 1704
+    },
+    "assets/beforeword-ink-20260920.woff2": {
+      "sha256": "4e2e3938732064f942b88565e52769ba27c060bce8fd65910dcf1e5dec70c1ef",
+      "bytes": 1348
+    },
+    "assets/book-paper-20260920.png": {
+      "sha256": "e43ee7bfd4b06c271bb2a1b835e8317bd703ddfd5281a6f152d65e5c922bba74",
+      "bytes": 181730
+    },
+    "assets/favicon-paper-20260920.svg": {
+      "sha256": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
+      "bytes": 297
+    },
+    "assets/home-reader-20260920.css": {
+      "sha256": "598944a4ada077d7559bff1420ce9d89aa9bb6c1755736aba2ba8d0161003c05",
+      "bytes": 16142
+    },
+    "assets/model-grounds-20260928.css": {
+      "sha256": "e732ce340ccaf44760ec4a3fd02691de7140652872eb9f7d3e13ebd44a9e7cc1",
+      "bytes": 15815
+    },
+    "assets/model-reader-20260928.js": {
+      "sha256": "fb0e9060c9141837e26f815f5fd4da6b076005bbcdcd4a108414c1acda9a29e6",
+      "bytes": 526
+    },
+    "assets/paper-grain-soft-20260928.svg": {
+      "sha256": "eea7351dd135ce66dfb103d7047e3c23e568906aa0bd0762a48cff13c78adf57",
+      "bytes": 472
+    },
+    "assets/paper-layout-20260920.css": {
+      "sha256": "77599c88e2a08394a931e7c5d777f96361139f501777954c7972ff587a21f725",
+      "bytes": 4704
+    },
+    "assets/paper-grain-v2-20260920.svg": {
+      "sha256": "652dbb10f3638b958db7363d1ae0d71e95ed3f337853e42a56206312a9768f4d",
+      "bytes": 470
+    },
+    "assets/paper-theme-20260920.css": {
+      "sha256": "91f37b6d7e71ad794ff0e2b31f1f97e445daf98a0ee5035f0359ff02965c7d3b",
+      "bytes": 9539
+    },
+    "assets/paper-grain-20260920.svg": {
+      "sha256": "83526f47090ff6b222e19e1d33e80b44648608558ee005b58838d417646fab87",
+      "bytes": 428
+    },
+    "assets/site-reader-20260920.css": {
+      "sha256": "3f1e449bb985ac4d289d9889b9037445ddfe816e81965fb925316962ff664785",
+      "bytes": 6563
+    },
+    "assets/site-reader-20260920.js": {
+      "sha256": "5234fb7bd34ef046f1da0b014fa8a48d78ef9d729fc6e52d3e9469d5dc6c6b8e",
+      "bytes": 917
+    },
+    "model/beforeword-ru.txt": {
+      "sha256": "c71283cdf45d23247cd7914ab98b249757517bd63ab537f3be9fa2fa762aba85",
+      "bytes": 6536
+    },
+    "model/beforeword-full-ru.txt": {
+      "sha256": "59fa3524edf24aff52d48f9cbefde3895605695a671cd422c56bb4189fc14741",
+      "bytes": 9222
+    },
+    "model/beforeword-compact-ru.txt": {
+      "sha256": "ae91643d56fe908f9cd1e3ec1c41127024b7c0e7cbafed25b0ed7c31003ae4e2",
+      "bytes": 2554
+    },
+    "model/beforeword-micro-ru.txt": {
+      "sha256": "60ef0c882f142ae8febca8f625f13976581563b4483d654b3a8e934845f8ae03",
+      "bytes": 1980
+    },
+    "model/beforeword-en.txt": {
+      "sha256": "62c399aface2b98f4a84f8eff568f551cd78ef5f0f8db81d5e6d8927bf9effbd",
+      "bytes": 3994
+    },
+    "model/beforeword-full-en.txt": {
+      "sha256": "7117333f897b95fd7d30e417636207d0355820bb27bd1129a59218b396d31ffa",
+      "bytes": 5407
+    },
+    "model/beforeword-compact-en.txt": {
+      "sha256": "c27265184493eedc4b5609762694a3e97b22bbb1146508bd9a788b8dd5d84aa1",
+      "bytes": 1510
+    },
+    "model/beforeword-micro-en.txt": {
+      "sha256": "dfb4e7c588464ec999e314d6bf814c0ee08f3e82dbdf759987811ac53d059b29",
+      "bytes": 1137
+    }
+  },
+  "snapshot_files": {
+    "assets/archive-notice.css": {
+      "sha256": "73dabe7f422c2914c34e5de1f939aa93e1267f80ebdda7ec5713991a12414759",
+      "bytes": 376
+    },
+    "assets/beforeword-copy-20260928.js": {
+      "sha256": "ea9550d368d944c157b2ee446b8d0be44d1807b0def4858630db5f9f85a017b4",
+      "bytes": 5093
+    },
+    "assets/beforeword-ink-20260920.woff": {
+      "sha256": "1b3a538a3033481cf8b83d2e3efe1a2690ddbbd1ac176fab262aebcd9df72872",
+      "bytes": 1704
+    },
+    "assets/beforeword-ink-20260920.woff2": {
+      "sha256": "4e2e3938732064f942b88565e52769ba27c060bce8fd65910dcf1e5dec70c1ef",
+      "bytes": 1348
+    },
+    "assets/book-paper-20260920.png": {
+      "sha256": "e43ee7bfd4b06c271bb2a1b835e8317bd703ddfd5281a6f152d65e5c922bba74",
+      "bytes": 181730
+    },
+    "assets/book-ui-20260920.css": {
+      "sha256": "8b3dc450b730dd929397c36efeb2cc547d48c2ae468c57fe0734318916c56cea",
+      "bytes": 7021
+    },
+    "assets/favicon-paper-20260920.svg": {
+      "sha256": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
+      "bytes": 297
+    },
+    "assets/home-reader-20260920.css": {
+      "sha256": "598944a4ada077d7559bff1420ce9d89aa9bb6c1755736aba2ba8d0161003c05",
+      "bytes": 16142
+    },
+    "assets/model-grounds-20260928.css": {
+      "sha256": "6f6c2cde8a7dc2a8aef09384c73643f6d8c108206c3a7be55a213b85e13b9185",
+      "bytes": 15840
+    },
+    "assets/model-reader-20260928.js": {
+      "sha256": "fb0e9060c9141837e26f815f5fd4da6b076005bbcdcd4a108414c1acda9a29e6",
+      "bytes": 526
+    },
+    "assets/paper-grain-20260920.svg": {
+      "sha256": "83526f47090ff6b222e19e1d33e80b44648608558ee005b58838d417646fab87",
+      "bytes": 428
+    },
+    "assets/paper-grain-soft-20260928.svg": {
+      "sha256": "eea7351dd135ce66dfb103d7047e3c23e568906aa0bd0762a48cff13c78adf57",
+      "bytes": 472
+    },
+    "assets/paper-grain-v2-20260920.svg": {
+      "sha256": "652dbb10f3638b958db7363d1ae0d71e95ed3f337853e42a56206312a9768f4d",
+      "bytes": 470
+    },
+    "assets/paper-layout-20260920.css": {
+      "sha256": "690caf67302642ad4b4828778d4935e99e7d0f2bb6a9be6aa3ba9cff5b072b72",
+      "bytes": 4729
+    },
+    "assets/paper-theme-20260920.css": {
+      "sha256": "7ac67d8358b02d7f84195ebddca1ca3b106fa2d45687e44cdea13e10abe1b97a",
+      "bytes": 9564
+    },
+    "assets/site-reader-20260920.css": {
+      "sha256": "3f1e449bb985ac4d289d9889b9037445ddfe816e81965fb925316962ff664785",
+      "bytes": 6563
+    },
+    "assets/site-reader-20260920.js": {
+      "sha256": "5234fb7bd34ef046f1da0b014fa8a48d78ef9d729fc6e52d3e9469d5dc6c6b8e",
+      "bytes": 917
+    },
+    "beforeword-compact-en.txt": {
+      "sha256": "c27265184493eedc4b5609762694a3e97b22bbb1146508bd9a788b8dd5d84aa1",
+      "bytes": 1510
+    },
+    "beforeword-compact-ru.txt": {
+      "sha256": "ae91643d56fe908f9cd1e3ec1c41127024b7c0e7cbafed25b0ed7c31003ae4e2",
+      "bytes": 2554
+    },
+    "beforeword-en.txt": {
+      "sha256": "62c399aface2b98f4a84f8eff568f551cd78ef5f0f8db81d5e6d8927bf9effbd",
+      "bytes": 3994
+    },
+    "beforeword-full-en.txt": {
+      "sha256": "7117333f897b95fd7d30e417636207d0355820bb27bd1129a59218b396d31ffa",
+      "bytes": 5407
+    },
+    "beforeword-full-ru.txt": {
+      "sha256": "59fa3524edf24aff52d48f9cbefde3895605695a671cd422c56bb4189fc14741",
+      "bytes": 9222
+    },
+    "beforeword-micro-en.txt": {
+      "sha256": "dfb4e7c588464ec999e314d6bf814c0ee08f3e82dbdf759987811ac53d059b29",
+      "bytes": 1137
+    },
+    "beforeword-micro-ru.txt": {
+      "sha256": "60ef0c882f142ae8febca8f625f13976581563b4483d654b3a8e934845f8ae03",
+      "bytes": 1980
+    },
+    "beforeword-ru.txt": {
+      "sha256": "c71283cdf45d23247cd7914ab98b249757517bd63ab537f3be9fa2fa762aba85",
+      "bytes": 6536
+    },
+    "en/index.html": {
+      "sha256": "bd8f5ed653449b60cc568e41104ea8afd19c3acbb3b9f651859499c145db3f50",
+      "bytes": 38574
+    },
+    "index.html": {
+      "sha256": "b2ad7a5d5eb58a91a88fd1ce45d11c35162400f7912fe1ba2d23f87eb98bcd46",
+      "bytes": 56247
+    }
+  }
+}

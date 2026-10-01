@@ -1,0 +1,276 @@
+/* Default paper theme. Loaded after every existing page stylesheet. */
+:root,
+body.bw-paper {
+  color-scheme: light;
+  --paper: #fafaf8;
+  --paper-ink: #171717;
+  --paper-muted: #55554f;
+  --paper-line: #d6d6cf;
+  --paper-control: #898982;
+  --paper-panel: #f2f2ee;
+  --bg: var(--paper);
+  --fg: var(--paper-ink);
+  --ink: var(--paper-ink);
+  --text: var(--paper-ink);
+  --muted: var(--paper-muted);
+  --faint: var(--paper-muted);
+  --line: var(--paper-line);
+  --rule: var(--paper-line);
+  --bw-line: var(--paper-line);
+  --bw-muted: var(--paper-muted);
+  --shell-ink: var(--paper-ink);
+  --shell-muted: var(--paper-muted);
+  --shell-line: var(--paper-line);
+  --reader-fg: var(--paper-ink);
+  --reader-muted: var(--paper-muted);
+  --reader-line: var(--paper-line);
+  --reader-panel: var(--paper-panel);
+  --notes-dim: var(--paper-muted);
+  --notes-muted: var(--paper-muted);
+  --notes-line: var(--paper-line);
+}
+html {
+  background: #fafaf8;
+  scrollbar-color: #898982 #fafaf8;
+}
+body.bw-paper {
+  color: var(--paper-ink);
+  background-color: var(--paper);
+  background-image: url("/model/history/2026-09-28/assets/paper-grain-20260920.svg");
+  background-repeat: repeat;
+  background-size: 640px 640px;
+  background-attachment: scroll;
+  accent-color: var(--paper-ink);
+  caret-color: var(--paper-ink);
+}
+body.bw-paper ::selection {
+  color: #fafaf8;
+  background: #292925;
+}
+body.bw-paper :is(a, button, summary, input, textarea, select, audio):focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 4px;
+}
+body.bw-paper :is(input, textarea, select) {
+  color-scheme: light;
+  accent-color: #171717;
+  caret-color: #171717;
+}
+body.bw-paper :is(input, textarea)::placeholder {
+  color: #55554f;
+  opacity: 1;
+}
+body.bw-paper :is(.skip-link, .skip) {
+  color: #fafaf8;
+  background: #171717;
+}
+
+/* Navigation, including the mobile dropdown and the shared footer. */
+body.bw-paper.bw-shell > .bw-header,
+body.bw-paper.bw-shell > .bw-footer {
+  color: var(--paper-ink);
+  background: transparent;
+  border-color: var(--paper-line);
+}
+body.bw-paper.bw-shell :is(.bw-header a, .bw-menu > summary),
+body.bw-paper.bw-shell .bw-language [aria-current="page"],
+body.bw-paper.bw-shell .bw-links a[aria-current="page"] {
+  color: var(--paper-ink);
+}
+body.bw-paper.bw-shell :is(.bw-links a, .bw-language a, .bw-language > span[aria-hidden],
+  .bw-footer a, .bw-footer__meta, .bw-contact) {
+  color: var(--paper-muted);
+}
+body.bw-paper.bw-shell .bw-mobile-links {
+  color: var(--paper-ink);
+  background: var(--paper);
+  border-color: var(--paper-control);
+  box-shadow: 0 .5rem 1.5rem rgb(23 23 23 / 10%);
+}
+body.bw-paper.bw-shell .bw-mobile-links a {
+  color: var(--paper-ink);
+  border-color: var(--paper-line);
+}
+body.bw-paper.bw-shell .bw-mobile-links a:hover {
+  color: var(--paper-ink);
+  background: var(--paper-panel);
+}
+body.bw-paper.bw-shell :is(.bw-header a, .bw-footer a):hover {
+  color: var(--paper-ink);
+}
+body.bw-paper.bw-shell :is(.bw-home, .bw-home:hover),
+body.bw-paper :is(.site-mark, .site-brand) {
+  color: #000;
+}
+body.bw-paper.bw-shell .bw-language,
+body.bw-paper.bw-shell .bw-footer__meta { border-color: var(--paper-line); }
+
+/* Shared reading controls. Decoration lines are lighter than control borders. */
+body.bw-paper :is(.button, .letter-control button) {
+  color: var(--paper-ink);
+  background: transparent;
+  border-color: var(--paper-control);
+}
+body.bw-paper :is(.button.primary, a.reader-primary) {
+  color: var(--paper);
+  background: var(--paper-ink);
+  border-color: var(--paper-ink);
+}
+body.bw-paper :is(.text-button, button.reader-repeat, .reader-note) {
+  color: var(--paper-muted);
+}
+body.bw-paper :is(.reader-related, .reader-comparison > div) { border-color: var(--paper-line); }
+body.bw-paper :is(details.reader-toc, details.reader-meta) > summary::marker { color: var(--paper-muted); }
+body.bw-paper .origin-prose blockquote { border-color: var(--paper-ink); }
+
+/* Home: the reading exercise and its progressive disclosures. */
+body.bw-paper.reader-home .reader-button {
+  color: var(--paper);
+  background: var(--paper-ink);
+  border-color: var(--paper-ink);
+}
+body.bw-paper.reader-home .reader-button:hover:not(:disabled) {
+  color: var(--paper);
+  background: #33332f;
+  border-color: #33332f;
+}
+body.bw-paper.reader-home .reader-button:disabled {
+  color: var(--paper-muted);
+  background: var(--paper-panel);
+  border-color: var(--paper-control);
+  opacity: 1;
+}
+body.bw-paper.reader-home textarea {
+  color: var(--paper-ink);
+  background: var(--paper);
+  border-color: var(--paper-control);
+}
+body.bw-paper.reader-home .reader-workbench textarea::placeholder {
+  color: var(--paper-muted);
+  opacity: 1;
+}
+body.bw-paper.reader-home .reader-next-grid > a:hover {
+  color: var(--paper-ink);
+  background: var(--paper-panel);
+  border-color: var(--paper-control);
+}
+
+/* About: both the opening and every expandable example use the paper palette. */
+body.bw-paper.about-page :is(.eyebrow, .about-route h3 span, .about-route p,
+  .about-work-note, .about-record-label, .about-catalog-count, .about-catalog-sign,
+  .scope-example-guide, .scope-closing, .about-example-note, .scope-status,
+  .scope-hint, .scope-sign, .example-sign, .example-origin, .example-label, .example-self) {
+  color: var(--paper-muted);
+}
+body.bw-paper.about-page :is(.about-catalog-label, .about-work-note a, .scope-title,
+  .scope-group-note, .example-text, .example-note, .example-permalink) {
+  color: var(--paper-ink);
+}
+body.bw-paper.about-page .scope-item p { color: var(--paper-ink); }
+body.bw-paper.about-page .scope-item :is(.example-origin, .example-label, .example-self) {
+  color: var(--paper-muted);
+}
+body.bw-paper.about-page .scope-item :is(.example-text, .example-note) { color: var(--paper-ink); }
+body.bw-paper.about-page.bw-about-reader .about-catalog :is(.scope-example-guide, .scope-closing) {
+  color: var(--paper-muted);
+}
+body.bw-paper.about-page :is(.about-records, .about-records > div, .about-route,
+  .about-examples li, .scope-item, .scope-empty, .example-self, .example-body),
+body.bw-paper.about-page main details:is(.about-catalog, .scope-group) {
+  border-color: var(--paper-line);
+}
+body.bw-paper.about-page main details.scope-example > summary { color: var(--paper-ink); }
+body.bw-paper.about-page .example-body { background: var(--paper-panel); }
+body.bw-paper.about-page .example-added { text-decoration-color: var(--paper-muted); }
+body.bw-paper.about-page input.scope-search {
+  color: var(--paper-ink);
+  background: var(--paper);
+  border-color: var(--paper-control);
+}
+body.bw-paper.about-page :is(.scope-actions button, .scope-empty button, .about-author-controls button) {
+  color: var(--paper-ink);
+  background: transparent;
+  border-color: var(--paper-control);
+}
+body.bw-paper.about-page :is(.scope-actions button, .scope-empty button, .about-author-controls button):hover {
+  color: var(--paper-ink);
+  text-decoration-color: currentColor;
+}
+body.bw-paper.about-page .scope-actions button:disabled { color: var(--paper-muted); opacity: 1; }
+body.bw-paper.about-page.bw-about-reader :is(.about-route, .about-catalog > summary):focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 4px;
+}
+
+/* Notes and the independent writing exercise. */
+body.bw-paper.notes-page :is(.note-chain .muted-step, .pair-added .pair-text,
+  .note-check p:last-child, .note-copy .note-action-hint, .note-copy .note-action-label, .note-action-privacy),
+body.bw-paper.reading-check :is(.rc-eyebrow, .rc-label, .rc-hint, .rc-privacy,
+  .rc-status, .rc-equality, .rc-example > p:last-child, .rc-boundary p) {
+  color: var(--paper-muted);
+}
+body.bw-paper.notes-page :is(.notes-back, .note-continue):hover { color: var(--paper-ink); }
+body.bw-paper :is(.note-action, .note-action pre, .rc-work, .rc-example, .rc-boundary,
+  .rc-pair, .rc-pair > div, .rc-result, .rc-further, .rc-further a, .rc-explanation, .rc-nojs) {
+  border-color: var(--paper-line);
+}
+body.bw-paper :is(.note-action textarea, .rc-work textarea) {
+  color: var(--paper-ink);
+  background: var(--paper);
+  border-color: var(--paper-control);
+}
+body.bw-paper :is(.note-action button, .rc-actions button) {
+  color: var(--paper-ink);
+  background: transparent;
+  border-color: var(--paper-control);
+}
+body.bw-paper :is(.note-action button.note-action-primary, .rc-actions button.rc-primary) {
+  color: var(--paper);
+  background: var(--paper-ink);
+  border-color: var(--paper-ink);
+}
+body.bw-paper :is(.note-action button, .rc-actions button):disabled {
+  color: var(--paper-muted);
+  background: var(--paper-panel);
+  border-color: var(--paper-control);
+  opacity: 1;
+}
+body.bw-paper :is(.note-action button, .rc-actions button):hover:not(:disabled) {
+  color: var(--paper);
+  background: #33332f;
+  border-color: #33332f;
+}
+body.bw-paper :is(.note-action-title, #comparison-title):focus {
+  outline-color: var(--paper-control);
+}
+body.bw-paper[data-page-section="text"] .bar {
+  color: var(--paper-ink);
+  background: var(--paper);
+  border-color: var(--paper-line);
+}
+
+@media (prefers-contrast: more) {
+  body.bw-paper {
+    --paper-muted: #33332f;
+    --paper-line: #898982;
+    --paper-control: #55554f;
+    background-image: none;
+  }
+}
+@media (forced-colors: active) {
+  body.bw-paper { background-image: none; }
+  body.bw-paper :is(a, button, summary, input, textarea, select, audio):focus-visible {
+    outline-color: Highlight;
+  }
+}
+@media print {
+  html { background: #fff; }
+  body.bw-paper {
+    --paper: #fff;
+    --paper-ink: #000;
+    --paper-muted: #444;
+    --paper-panel: #fff;
+    background: #fff;
+    color: #000;
+  }
+}

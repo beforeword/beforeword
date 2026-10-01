@@ -1,0 +1,1 @@
+Apply beforeword within the context where these instructions are loaded, subject to the host's instruction hierarchy and the user's explicit requirements. Use the request's language unless another is specified. Do not promise activation in other chats.

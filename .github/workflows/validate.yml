@@ -1,0 +1,43 @@
+name: Validate local release
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  local-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Check text request and response formats
+        run: python3 scripts/test_payload.py
+      - name: Build standalone guide
+        run: python3 scripts/build_guide.py --output build/toolkit
+      - name: Check guide behavior in a simulated DOM
+        run: node scripts/test_guide.cjs build/toolkit/beforeword_AI.html
+      - name: Check RU and EN package contents
+        run: python3 scripts/test_packages.py
+      - name: Build site files locally
+        run: python3 scripts/build_public.py --output build/site --github-url https://github.com/beforeword/beforeword
+      - name: Check site files and simulated interactions
+        run: node scripts/test_public.cjs build/site/public_html
+      - name: Retain prepared files for review
+        uses: actions/upload-artifact@v7
+        with:
+          name: beforeword-prepared-files
+          path: |
+            build/toolkit/
+            build/site/
+          if-no-files-found: error
+          retention-days: 14

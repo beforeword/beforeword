@@ -1,0 +1,215 @@
+/* Book-paper refinement. Fine fixed pixels; clean controls and distinct sections. */
+@font-face {
+  font-family: "beforeword Ink";
+  src: url("/model/history/2026-09-28/assets/beforeword-ink-20260920.woff2") format("woff2"),
+       url("/model/history/2026-09-28/assets/beforeword-ink-20260920.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0049, U+042F;
+}
+
+:root,
+body.bw-paper {
+  --paper-grain: url("/model/history/2026-09-28/assets/book-paper-20260920.png");
+  --paper-grain-size: 512px 512px;
+  --paper-panel: #f1f1ec;
+  --paper-surface: #fff;
+  --paper-line: #d1d1ca;
+  --paper-control: #85857e;
+}
+
+@media screen {
+  body.bw-paper {
+    background-image: var(--paper-grain);
+    background-size: var(--paper-grain-size);
+    background-repeat: repeat;
+    background-attachment: scroll;
+  }
+
+  /* Interactive layers are opaque. Texture belongs to the page alone. */
+  body.bw-paper.bw-shell .bw-mobile-links,
+  body.bw-paper .frame-dialog,
+  body.bw-paper.reader-music .lyrics-dialog,
+  body.bw-paper.reader-music .player,
+  body.bw-paper[data-page-section="ma"] .listen-dialog,
+  body.bw-paper[data-page-section="ma"] .ma-player,
+  body.bw-paper[data-page-section="ma"] #tapHint {
+    background: var(--paper-surface);
+  }
+  body.bw-paper.about-page .example-body,
+  body.bw-paper.written-i-page .wi-message,
+  body.bw-paper.written-i-page .record-text,
+  body.bw-paper[data-page-section="research"] .table-scroll th {
+    background-image: none;
+  }
+  body.bw-paper.bw-shell .bw-mobile-links {
+    top: calc(100% + 8px);
+    padding: 8px 20px;
+    border: 1px solid #bcbcb5;
+    box-shadow: 0 12px 32px rgb(23 23 23 / 14%);
+    max-height: calc(100vh - 112px);
+    max-height: calc(100dvh - 112px);
+  }
+  body.bw-paper.bw-shell .bw-mobile-links a {
+    min-height: 52px;
+    padding: 12px 2px;
+  }
+  body.bw-paper.bw-shell .bw-mobile-links a + a {
+    border-top: 1px solid var(--paper-line);
+  }
+  body.bw-paper.bw-shell .bw-mobile-links a:hover {
+    background: var(--paper-panel);
+  }
+  body.bw-paper.reader-music .player,
+  body.bw-paper[data-page-section="ma"] .ma-player {
+    border-top-color: #bcbcb5;
+    box-shadow: 0 -4px 20px rgb(23 23 23 / 6%);
+  }
+
+  /* A single specimen, set apart from the statement and the writing exercise. */
+  body.bw-paper.reader-home .reader-example {
+    padding: clamp(22px, 2.8vw, 36px);
+    background: var(--paper-surface);
+    border: 1px solid var(--paper-line);
+  }
+  body.bw-paper.reader-home .reader-glyph {
+    font-family: "beforeword Ink", "Times New Roman", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-synthesis: none;
+    font-size: clamp(88px, 8vw, 110px);
+    line-height: 1.08;
+    letter-spacing: 0;
+    margin-top: 16px;
+  }
+  body.bw-paper.reader-home .reader-reading {
+    font-size: clamp(21px, 2.2vw, 29px);
+    line-height: 1.28;
+  }
+
+  /* Writing areas share one calm surface; actual inputs stay white. */
+  body.bw-paper.reader-home .reader-workbench,
+  body.bw-paper.notes-page .note-action,
+  body.bw-paper.reading-check .rc-work {
+    padding: clamp(20px, 3vw, 32px);
+    background: var(--paper-panel);
+    border: 1px solid var(--paper-line);
+  }
+  body.bw-paper.reader-home .reader-workbench textarea,
+  body.bw-paper.notes-page .note-action textarea,
+  body.bw-paper.reading-check .rc-work textarea,
+  body.bw-paper.about-page input.scope-search,
+  body.bw-paper.support-page .support-address {
+    background: var(--paper-surface);
+    border-color: var(--paper-control);
+  }
+
+  /* Familiar examples form a reading sequence, without nested boxes. */
+  body.bw-paper.reader-home .reader-cases {
+    border: 0;
+    gap: 0 clamp(28px, 4vw, 56px);
+  }
+  body.bw-paper.reader-home .reader-case {
+    padding: 28px 0 32px;
+    border: 0;
+    border-top: 1px solid var(--paper-line);
+    background: transparent;
+  }
+  body.bw-paper.reader-home .reader-case h3 {
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  body.bw-paper.reader-home .reader-case > p {
+    margin-top: 20px;
+    max-width: 58ch;
+  }
+  body.bw-paper.reader-home .reader-boundary {
+    margin-top: 24px;
+    padding-left: 20px;
+    border-left: 2px solid #85857e;
+  }
+  body.bw-paper.reader-home .reader-detail {
+    border-width: 1px 0;
+  }
+  body.bw-paper.reader-home .reader-detail > summary {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  body.bw-paper.reader-home .reader-detail-body {
+    padding: 28px 0;
+  }
+
+  /* Navigation is a compact list, visually separate from illustrative records. */
+  body.bw-paper.reader-home .reader-next-section .reader-section-heading > p:not(.reader-kicker) {
+    max-width: 62ch;
+    margin-top: 20px;
+    color: var(--paper-muted);
+    font-size: 17px;
+  }
+  body.bw-paper.reader-home .reader-about-link {
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 12px;
+    font-size: 16px;
+  }
+  body.bw-paper.reader-home .reader-next-grid {
+    gap: 0 clamp(28px, 4vw, 56px);
+  }
+  body.bw-paper.reader-home .reader-next-grid > a {
+    min-height: 0;
+    padding: 22px 0 24px;
+    gap: 9px;
+    border: 0;
+    border-top: 1px solid var(--paper-line);
+    background: transparent;
+  }
+  body.bw-paper.reader-home .reader-next-title {
+    font-size: clamp(21px, 2vw, 24px);
+  }
+  body.bw-paper.reader-home .reader-next-title > span {
+    flex: 0 0 auto;
+    font-size: 23px;
+    font-weight: 400;
+  }
+  body.bw-paper.reader-home .reader-next-grid > a > span:last-child {
+    max-width: 50ch;
+    padding-right: 32px;
+    line-height: 1.6;
+  }
+  body.bw-paper.reader-home .reader-next-grid > a:hover {
+    background: transparent;
+    border-color: var(--paper-ink);
+  }
+  body.bw-paper.reader-home .reader-next-grid > a:hover .reader-next-title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .2em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body.bw-paper.reader-home .reader-example { padding: 22px 20px; }
+  body.bw-paper.reader-home .reader-example-pair {
+    grid-template-columns: minmax(64px, .52fr) minmax(0, 1.48fr);
+    gap: 16px;
+  }
+  body.bw-paper.reader-home .reader-glyph { font-size: 88px; }
+  body.bw-paper.reader-home .reader-reading { font-size: 22px; }
+  body.bw-paper.reader-home .reader-case { padding-block: 26px 30px; }
+  body.bw-paper.reader-home .reader-section-heading { margin-bottom: 28px; }
+  body.bw-paper.reader-home .reader-next-section .reader-section-heading > p:not(.reader-kicker) { font-size: 16px; }
+  body.bw-paper.reader-home .reader-about-link { font-size: 15px; }
+  body.bw-paper.reader-home .reader-next-grid > a { padding-block: 22px; }
+  body.bw-paper.reader-home .reader-next-grid > a:last-child { border-bottom: 1px solid var(--paper-line); }
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  body.bw-paper { --paper-grain: none; }
+}
+@media (forced-colors: active) {
+  body.bw-paper { --paper-surface: Canvas; --paper-panel: Canvas; }
+}
+@media print {
+  body.bw-paper { --paper-grain: none; --paper-surface: #fff; --paper-panel: #fff; }
+}
