@@ -40,6 +40,15 @@ function checkArtifacts() {
     for (const extension of ['css', 'js']) {
       const digest = hash(fs.readFileSync(path.join(ROOT, `assets/public.${extension}`))).slice(0,12);
       assert.ok(html.includes(`/model/assets/public-${manifest.version}-${digest}.${extension}`), 'Changed assets receive a new cache key');
+      if (extension === 'css') {
+        const publishedCSS = read(path.join(MODEL, `assets/public-${manifest.version}-${digest}.css`));
+        const mobileHeader = publishedCSS.match(/@media\s+screen\s+and\s*\(max-width:\s*620px\)\s*\{\s*body\.bw-paper\.model-page\.bw-shell\s*>\s*\.bw-header\s*\{([^}]+)\}/);
+        assert.ok(mobileHeader, 'Mobile header overrides the shared shell at the homepage breakpoint');
+        const dimensions = Object.fromEntries(mobileHeader[1].split(';').filter(value => value.trim()).map(value => value.split(':').map(part => part.trim())));
+        assert.equal(dimensions['min-height'], '60px', 'Mobile header keeps the homepage height');
+        assert.equal(dimensions['padding-top'], '8px', 'Mobile header keeps the homepage top spacing');
+        assert.equal(dimensions['padding-bottom'], '8px', 'Mobile header keeps the homepage bottom spacing');
+      }
     }
     assert.ok(html.includes('id="where"'), 'Existing homepage fragment preserved');
     assert.ok(!/__\w+__/.test(html), 'No unexpanded placeholders');

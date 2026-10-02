@@ -45,7 +45,7 @@
     "assets/history/2026-09-28/index.html": "b2ad7a5d5eb58a91a88fd1ce45d11c35162400f7912fe1ba2d23f87eb98bcd46",
     "assets/history/2026-09-28/snapshot.json": "6edf6754aedb55614532de9868e3fbc8f5ee0e3259701fa8ac627deb22de7542",
     "assets/icon.svg": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee",
-    "assets/public.css": "ff8799b96182b601c2195da75ed50741c7b7048031739b50c15dcd6c954d22c4",
+    "assets/public.css": "a6b5f3e0718b15b358398968e617a297b9276eb7baacd37ad026e50294890f54",
     "assets/public.js": "ff42b5d86cd34986ee926246d135e4c17588546376a2ca4c6eca9b2685fae612",
     "assets/public.template.html": "347424a5e6bfeff4c2bd068db8fcbc17483ae23677e3850393749a6815a73961",
     "assets/scope.en.txt": "14625b590f200403d93e64c202de4563613d1bea765e7745114a7e9f14b35cf3",
@@ -80,7 +80,7 @@
     "scripts/test_guide.cjs": "ec827d7f809298770d0a27e31c631b437a69c0205850b6b43c722bbff55d37f5",
     "scripts/test_packages.py": "433585bf6f61fe6fdb2d035010861ed9a682ab3389a7316199a07b497850d8fa",
     "scripts/test_payload.py": "e1c39c5db95135b92542c31b294f54e483fc89fbb5876d0a6bb35ded738561d4",
-    "scripts/test_public.cjs": "42bb20cda57661e04a118d7a5180c12afc1b07d9005b083260dece4c8b9ea278"
+    "scripts/test_public.cjs": "80bf6023035fe72b220394afe592997a64c76bebf8b56a16c63aa7125d4c97d1"
   },
   "files": {
     "beforeword-SKILL-en.md": {
@@ -92,8 +92,8 @@
       "bytes": 13783
     },
     "beforeword_AI_1.2.0.html": {
-      "sha256": "0df773af9045c9c03340d3a19f474da6ab3675fc70bd57795e9d50b178fd09ea",
-      "bytes": 850806
+      "sha256": "0649cd9b703e077e2f4a2596815a7fdcdbc48542f9800aa4006570f95cb535b8",
+      "bytes": 851246
     },
     "beforeword_claude_plugin_EN_1.2.0.zip": {
       "sha256": "630277b1a5e40692387343068d9fe6e3c98affd5806ccbced0db0a36ea0b19dc",
@@ -136,8 +136,8 @@
       "bytes": 6693
     },
     "beforeword_toolkit_1.2.0.zip": {
-      "sha256": "1c0be0a937f0c02370764f99253bc5f0140590ee125ca81ca5ef1c6214322714",
-      "bytes": 437244
+      "sha256": "3027f04b47dbe79bf4d796b386ac56dacf575a4bfc2b53e32d4ae30b7501e34e",
+      "bytes": 437574
     }
   }
 }

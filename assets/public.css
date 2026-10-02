@@ -7,3 +7,4 @@
 main textarea[readonly]{display:block;width:100%;resize:vertical;min-height:220px;border:1px solid var(--line);border-radius:0;background:var(--field);color:var(--ink);padding:20px;font:14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;margin:16px 0}main textarea:focus-visible{outline:3px solid var(--focus);outline-offset:4px}@media(max-width:620px){main textarea[readonly]{padding:14px;font-size:16px}}
 
 @media(forced-colors:active){.button.primary{color:ButtonText;background:ButtonFace;border-color:ButtonText}.copy-status{color:CanvasText;background:Canvas;border:1px solid CanvasText}}
+@media screen and (max-width:620px){body.bw-paper.model-page.bw-shell>.bw-header{min-height:60px;padding-top:8px;padding-bottom:8px}}
