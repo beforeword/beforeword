@@ -16,6 +16,16 @@
 - Разделены установка, сохранённое предпочтение, текст инструкции и поведение будущих ответов.
 - Дополнены задания для проверки этих случаев с сохранением требований точного формата.
 
+### Website and public testing / Сайт и публичный тест
+
+- Add a public-testing panel to the RU/EN home and instruction pages: current version, changes, update options, GitHub, and issue reporting.
+- Mark public-testing status in both READMEs and add English and Russian issue forms, with email as an alternative to a public GitHub report.
+- These website and repository changes do not change instruction version 1.2.1.
+
+- На главную и страницу инструкции RU/EN добавлена панель публичного теста: текущая версия, изменения, способы отслеживания, GitHub и сообщения о сбоях.
+- В обеих версиях README обозначен публичный тест; добавлены формы сообщений на русском и английском, а также почта для отправки без публичного размещения на GitHub.
+- Эти изменения сайта и репозитория не меняют версию инструкции 1.2.1.
+
 ## 1.2.0
 
 ### English

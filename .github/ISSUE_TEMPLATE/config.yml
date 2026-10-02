@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Email / Написать по почте
+    url: mailto:mail@beforeword.xyz
+    about: Send a report without a public GitHub issue / Отправить пример без публичного размещения на GitHub.
+  - name: Updates / Обновления · English
+    url: https://beforeword.xyz/model/en/#bw-updates
+    about: Current version, changes, and ways to follow updates.
+  - name: Обновления / Updates · Русский
+    url: https://beforeword.xyz/model/#bw-updates
+    about: Текущая версия, изменения и способы отслеживания.

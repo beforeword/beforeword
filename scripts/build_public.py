@@ -19,6 +19,7 @@ from urllib.parse import urlparse
 import build_guide
 from package_plugins import build_bundles, skill_text
 from render_report import parse_report
+import public_updates
 
 ROOT = Path(__file__).resolve().parents[1]
 SHELL_STYLES = ('site-reader-20260920.css', 'paper-theme-20260920.css', 'paper-layout-20260920.css')
@@ -216,6 +217,8 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
     links=['<li><a href="'+path+'"'+(' download' if index else '')+'>'+escape(label)+'</a></li>' for index,(path,label) in enumerate(zip(report_paths,t['report_titles']))]
     values['REPORT_LINKS']=links[0]
     values['DATA_LINKS']=''.join(links[1:])
+    values['UPDATES_HEAD'] = '' if evaluation else public_updates.head(language)
+    values['PUBLIC_UPDATES'] = '' if evaluation else public_updates.render(language)
     template = read('assets/public.template.html')
     if evaluation:
         back_url = '/model/'+('en/' if language == 'en' else '')+'#checks'
@@ -279,6 +282,7 @@ def build(output: Path, repo_url: str | None = None) -> Path:
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))
+    public_updates.write_assets(model)
     shutil.copytree(ROOT/'assets'/'site-shell',model/'assets'/'site-shell'/shell_revision(),dirs_exist_ok=True)
     shutil.copytree(ROOT/'assets'/'history',model/'history',dirs_exist_ok=True)
     manifest={'version':build_guide.VERSION,'date_utc':build_guide.DATE,'public_paths':['/model/','/model/en/','/model/evaluation/','/model/evaluation/en/'],

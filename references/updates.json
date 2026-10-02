@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "project": "beforeword",
+  "scope": "ai-instructions",
+  "status": "public-testing",
+  "current_version": "1.2.1",
+  "updated": "2026-10-02T10:26:07Z",
+  "urls": {
+    "ru": "https://beforeword.xyz/model/#bw-updates",
+    "en": "https://beforeword.xyz/model/en/#bw-updates"
+  },
+  "links": {
+    "repository": "https://github.com/beforeword/beforeword",
+    "changelog": "https://github.com/beforeword/beforeword/blob/main/CHANGELOG.md",
+    "report_ru": "https://github.com/beforeword/beforeword/issues/new?template=report_ru.yml",
+    "report_en": "https://github.com/beforeword/beforeword/issues/new?template=report_en.yml",
+    "email": "mailto:mail@beforeword.xyz"
+  },
+  "languages": {
+    "ru": {
+      "title": "beforeword — обновления инструкции для ИИ",
+      "intro": "Инструкция beforeword проходит публичное тестирование. Это не финальная редакция.",
+      "changes": [
+        "Собственные объяснения и выводы ИИ включены в требования к разбору.",
+        "Добавлено уточнение для описаний, названных «свободными от интерпретаций».",
+        "Разделены сохранение предпочтения в памяти и установка полной инструкции."
+      ]
+    },
+    "en": {
+      "title": "beforeword — AI instruction updates",
+      "intro": "The beforeword instructions are in public testing. This is not the final version.",
+      "changes": [
+        "The examination requirements include the AI’s own explanations and conclusions.",
+        "Added clarification for descriptions presented as “free of interpretation”.",
+        "Saving a preference in memory is distinguished from installing the full instructions."
+      ]
+    }
+  }
+}

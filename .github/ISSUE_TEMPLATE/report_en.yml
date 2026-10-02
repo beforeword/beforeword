@@ -1,0 +1,58 @@
+name: Report an issue · English
+description: Report an AI response, installation, copying, download, or website issue.
+title: "[Report] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        beforeword is in public testing. This report will be **public**.
+        Remove private details and keys before posting. To send a report without publishing it, use [mail@beforeword.xyz](mailto:mail@beforeword.xyz).
+        Complete what you can; application or model details may be unknown.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where did the issue occur?
+      options:
+        - AI response / reading boundary
+        - Website / copying / downloads
+        - Installation / saved instructions
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Instruction version
+      placeholder: "For example: 1.2.1, or unknown"
+  - type: input
+    id: environment
+    attributes:
+      label: Application, model, or browser
+      description: Include the model or mode if shown. For a website issue, include the device and browser if known.
+      placeholder: "For example: application + model + mode, or iPhone + Safari"
+  - type: input
+    id: instruction_route
+    attributes:
+      label: Instruction or page used
+      description: Link to the instruction or page, or describe how it was added (full or compact text, chat, settings, skill, or API).
+  - type: textarea
+    id: request_steps
+    attributes:
+      label: Exact request or steps
+      description: For an AI response, paste the request as sent. For a website or installation issue, include the page and steps.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: response_result
+    attributes:
+      label: Exact response or result
+      description: Paste the exact AI response and identify the passage at issue. For a website or installation issue, describe what happened; a screenshot can help.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior (optional)
+      description: Which wording, action, or result should change, and why?

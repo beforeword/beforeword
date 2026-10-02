@@ -145,7 +145,11 @@ class EvaluationDelivery(unittest.TestCase):
                     self.assertIn(kind, link.text())
                     self.assertIn('Скачать' if language == 'ru' else 'Download', link.text())
                 css = lambda tree: [n.attrs['href'] for n in tree.find('link', rel='stylesheet')]
-                self.assertEqual(css(doc), css(landing))
+                landing_css = css(landing)
+                update_css = [url for url in landing_css if re.fullmatch(r'/model/assets/updates-[a-f0-9]{12}\.css', url)]
+                self.assertEqual(len(update_css), 1, 'The landing page includes its optional updates component style')
+                self.assertEqual(css(doc), [url for url in landing_css if url not in update_css],
+                                 'Reader and landing pages retain the same shared shell and public styles')
                 for klass in ('bw-home', 'bw-links', 'bw-menu'):
                     self.assertEqual(doc.find(**{'class': klass})[0].text(), landing.find(**{'class': klass})[0].text())
 

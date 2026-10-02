@@ -2,6 +2,12 @@
 
 [Русский](README.ru.md) · [Website](https://beforeword.xyz/model/en/)
 
+**Public testing · instruction version 1.2.1**
+
+This is not a final version. The instructions and their use across applications are open to testing and revision.
+
+[Changes](CHANGELOG.md) · [Follow updates](https://beforeword.xyz/model/en/#bw-updates) · [Report an issue](#report-an-issue)
+
 beforeword is a set of reading instructions for AI applications. Preserve the supplied wording, distinguish what is added through reading, and apply the same boundary to the answer itself. The instructions, this description, and assessment criteria remain written forms within that scope.
 
 ## Start in a chat
@@ -47,3 +53,11 @@ This creates `request.json` locally. See the [API guide](references/api-use.md) 
 ## Reading and evaluation
 
 [Full core](assets/core.en.txt) · [Scope](assets/scope.en.txt) · [Evaluation method and recorded runs](references/evaluation.md)
+
+## Report an issue
+
+[Open a public GitHub issue](https://github.com/beforeword/beforeword/issues/new?template=report_en.yml) · [Send email](mailto:mail@beforeword.xyz?subject=beforeword%201.2.1%20report)
+
+Reports can cover an AI response, installation, copying, downloads, or the website. For an AI response, include the exact request and response, mark the relevant passage, and note the instruction version and application if known. For the website, include the page and steps to reproduce the issue.
+
+GitHub reports are public and require a GitHub account. Remove private details before posting; email is available without publishing a report.

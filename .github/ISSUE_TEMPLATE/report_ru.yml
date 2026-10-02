@@ -1,0 +1,58 @@
+name: Сообщить о сбое · Русский
+description: Ответ ИИ, установка, копирование, загрузка файлов или работа сайта.
+title: "[Сбой] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        beforeword проходит публичный тест. Это сообщение будет **публичным**.
+        Перед публикацией удали личные данные и ключи доступа. Для отправки без публичного размещения: [mail@beforeword.xyz](mailto:mail@beforeword.xyz).
+        Заполни то, что известно; название модели или режим могут быть недоступны.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Где возник сбой?
+      options:
+        - Ответ ИИ / граница чтения
+        - Сайт / копирование / загрузки
+        - Установка / сохранённая инструкция
+        - Другое
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Версия инструкции
+      placeholder: "Например: 1.2.1 или неизвестна"
+  - type: input
+    id: environment
+    attributes:
+      label: Приложение, модель или браузер
+      description: Укажи модель и режим, если они отображаются. Для сбоя на сайте — устройство и браузер, если известны.
+      placeholder: "Например: приложение + модель + режим или iPhone + Safari"
+  - type: input
+    id: instruction_route
+    attributes:
+      label: Использованная инструкция или страница
+      description: Ссылка на инструкцию или страницу либо способ подключения (полный или краткий текст, чат, настройки, навык, API).
+  - type: textarea
+    id: request_steps
+    attributes:
+      label: Точный запрос или шаги
+      description: Для ответа ИИ — запрос в том виде, в котором он был отправлен. Для сбоя на сайте или при установке — страница и последовательность действий.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: response_result
+    attributes:
+      label: Точный ответ или результат
+      description: Вставь ответ ИИ без перефразирования и укажи конкретный фрагмент сбоя. Для сайта или установки — опиши, что произошло; можно приложить скриншот.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемое поведение (необязательно)
+      description: Какая формулировка, действие или результат должны измениться и почему?
