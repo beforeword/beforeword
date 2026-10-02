@@ -55,7 +55,7 @@
     "references/api-use.md": "b33ee0b4ee43266cf0e0e563ce1fc453c1e3183995c02eaa69566048cf8b9d50",
     "references/api-use.ru.md": "e8767a5b54d8e32afa531d816f7e2820933cf31c10bc54c6c93001da8981e611",
     "references/api.json": "d8c7115fe2f4098acfb9e85a248544d5a4942c1aaa0919883b68d6a31eeac60f",
-    "references/connectors.json": "72753213d3af3929801d99a6b885fb3cb303523b41d2a25101547c1e95c51dec",
+    "references/connectors.json": "635b26cededa4f2ec4b886a39b26ee62406d9b60d53ff290b92007f97f9ca755",
     "references/eval-cases.jsonl": "f6263d8e24ef80d71fcba9eca629f8981b95a0c50a0f06744a37c43d5962dc7c",
     "references/evaluation-results.json": "1f415d1dea641f38534d5d5c542e8c77888745afa58b6bb256c1b851b879ba17",
     "references/evaluation.md": "0bc0b8969e879006f5926288a1323e0957a6913ab5cdedbc5f5b27f45c2db593",
@@ -85,8 +85,8 @@
       "bytes": 13783
     },
     "beforeword_AI_1.2.0.html": {
-      "sha256": "e83c93e1ba5b8f5895b03329e9fd9bc8d36aa36eac212c1c7f8c085f9ab96869",
-      "bytes": 838954
+      "sha256": "147dcc0bc5c21c5b60c26a30d28219ea6cfd8cf915658af4aebd366b62b56475",
+      "bytes": 835590
     },
     "beforeword_claude_plugin_EN_1.2.0.zip": {
       "sha256": "630277b1a5e40692387343068d9fe6e3c98affd5806ccbced0db0a36ea0b19dc",
@@ -129,8 +129,8 @@
       "bytes": 6693
     },
     "beforeword_toolkit_1.2.0.zip": {
-      "sha256": "e655936dd465ebbebba1cfd55196e2f4fe6d716be28daefacb61cee82bc12c45",
-      "bytes": 427711
+      "sha256": "28f78bf4bf4714a045cedbbac9356c4e382fefe6c6b0612bbed054fbd2be6422",
+      "bytes": 427020
     }
   }
 }

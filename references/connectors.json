@@ -7,7 +7,7 @@
     "ru": {
       "route": "ChatGPT: Settings → Personalization → Custom instructions",
       "scope": "Сохранённая инструкция задаёт предпочтения для ответов в ChatGPT; плагин Codex подключается отдельно.",
-      "limit": "Сохранение настройки или установка плагина не гарантирует применение beforeword в каждом ответе.",
+      "limit": "Если поле недоступно, отправь инструкцию первым сообщением нового чата.",
       "steps": [
         "Скопируй показанную ниже инструкцию.",
         "Открой Settings → Personalization → Custom instructions и вставь текст в поле пользовательских инструкций.",
@@ -17,7 +17,7 @@
     "en": {
       "route": "ChatGPT: Settings → Personalization → Custom instructions",
       "scope": "Saved instructions set response preferences in ChatGPT; the Codex plugin is a separate connection.",
-      "limit": "Saving instructions or installing a plugin does not guarantee that beforeword will be applied to every answer.",
+      "limit": "If the field is unavailable, send the instructions as the first message in a new chat.",
       "steps": [
         "Copy the instructions shown below.",
         "Open Settings → Personalization → Custom instructions and paste the text into the custom instructions field.",
@@ -83,21 +83,21 @@
     "ru": {
       "route": "Settings & help → Personal Intelligence → Instructions for Gemini",
       "scope": "Инструкции аккаунта относятся к поддерживаемым разговорам Gemini; Gems и навыки имеют отдельную настройку.",
-      "limit": "Инструкции доступны не во всех аккаунтах и режимах, а раздел Skills появляется постепенно.",
+      "limit": "Если нужного раздела нет, отправь инструкцию первым сообщением нового чата.",
       "steps": [
         "В веб-версии открой Settings & help → Personal Intelligence → Instructions for Gemini.",
         "Нажми Add, вставь показанную ниже инструкцию и отправь её через Submit.",
-        "Начни новый разговор и отправь свой запрос. Если нужного раздела нет, используй первое сообщение нового чата."
+        "Начни новый разговор и отправь свой запрос."
       ]
     },
     "en": {
       "route": "Settings & help → Personal Intelligence → Instructions for Gemini",
       "scope": "Account instructions apply to supported Gemini conversations; Gems and skills have separate settings.",
-      "limit": "Instructions are unavailable in some accounts and modes, and Skills is rolling out gradually.",
+      "limit": "If the settings section is unavailable, send the instructions as the first message in a new chat.",
       "steps": [
         "On the web, open Settings & help → Personal Intelligence → Instructions for Gemini.",
         "Choose Add, paste the instructions shown below, and select Submit.",
-        "Start a new conversation and send your request. If the settings section is unavailable, use the first message of a new chat."
+        "Start a new conversation and send your request."
       ]
     },
     "sources": [
@@ -119,7 +119,7 @@
     "ru": {
       "route": "Custom instructions, если поле доступно; иначе первое сообщение нового чата",
       "scope": "При вставке в чат инструкция относится к доступному контексту этого разговора.",
-      "limit": "Точный путь к полю и его действие в разных режимах не установлены по использованной документации.",
+      "limit": "Если инструкция отправлена сообщением, повтори её в начале каждого нового разговора.",
       "steps": [
         "Скопируй показанную ниже инструкцию.",
         "Вставь её в доступное поле Custom instructions или отправь первым сообщением нового чата.",
@@ -129,7 +129,7 @@
     "en": {
       "route": "Custom instructions, if available; otherwise the first message in a new chat",
       "scope": "When pasted into a chat, the instructions apply within that conversation’s available context.",
-      "limit": "The documentation used here does not establish an exact settings path or behavior across all modes.",
+      "limit": "If you sent the instructions as a message, send them again at the start of each new conversation.",
       "steps": [
         "Copy the instructions shown below.",
         "Paste them into Custom instructions if that field is available, or send them as the first message in a new chat.",
@@ -150,8 +150,8 @@
     "native": null,
     "ru": {
       "route": "Новый чат → первое сообщение",
-      "scope": "Ядро передаётся как сообщение в выбранном разговоре и зависит от доступного контекста.",
-      "limit": "Это переносимый способ передачи инструкции; документация API не устанавливает наличие плагина или постоянной настройки в приложении.",
+      "scope": "Инструкция относится к доступному контексту выбранного разговора.",
+      "limit": "Для этого способа достаточно вставить текст; скачивать или устанавливать пакет не нужно.",
       "steps": [
         "Открой новый чат и отправь показанную ниже инструкцию первым сообщением.",
         "Следующим сообщением отправь свой запрос или текст для разбора.",
@@ -160,8 +160,8 @@
     },
     "en": {
       "route": "New chat → first message",
-      "scope": "The core is supplied as a message in the selected conversation and depends on its available context.",
-      "limit": "This is a portable instruction method; API documentation does not establish a plugin or persistent setting in the consumer app.",
+      "scope": "The instructions apply within the selected conversation’s available context.",
+      "limit": "Just paste the text; this method requires no download or installation.",
       "steps": [
         "Open a new chat and send the instructions shown below as the first message.",
         "Send your request or the passage to examine in the next message.",
@@ -182,8 +182,8 @@
     "native": null,
     "ru": {
       "route": "Новый чат → первое сообщение",
-      "scope": "Ядро передаётся как сообщение в выбранном разговоре и зависит от доступного контекста.",
-      "limit": "Наличие постоянной настройки или импортируемого плагина в Qwen Chat не установлено по использованной документации.",
+      "scope": "Инструкция относится к доступному контексту выбранного разговора.",
+      "limit": "Для этого способа достаточно вставить текст; скачивать или устанавливать пакет не нужно.",
       "steps": [
         "Открой новый чат Qwen и отправь показанную ниже инструкцию первым сообщением.",
         "Следующим сообщением отправь свой запрос или текст для разбора.",
@@ -192,8 +192,8 @@
     },
     "en": {
       "route": "New chat → first message",
-      "scope": "The core is supplied as a message in the selected conversation and depends on its available context.",
-      "limit": "The documentation used here does not establish a persistent setting or an importable plugin in Qwen Chat.",
+      "scope": "The instructions apply within the selected conversation’s available context.",
+      "limit": "Just paste the text; this method requires no download or installation.",
       "steps": [
         "Open a new Qwen chat and send the instructions shown below as the first message.",
         "Send your request or the passage to examine in the next message.",
@@ -255,7 +255,7 @@
     "ru": {
       "route": "Projects → + New project → инструкции проекта",
       "scope": "Инструкции проекта относятся к запросам внутри выбранного проекта.",
-      "limit": "Лимит поля — 8 000 символов; настройка не распространяется на все разговоры Perplexity.",
+      "limit": "Лимит поля — 8 000 символов. Вне проекта отправь инструкцию первым сообщением нового чата.",
       "steps": [
         "Открой Projects и создай проект beforeword через + New project.",
         "Вставь показанную ниже инструкцию в поле инструкций проекта и сохрани его.",
@@ -265,7 +265,7 @@
     "en": {
       "route": "Projects → + New project → project instructions",
       "scope": "Project instructions apply to queries within the selected project.",
-      "limit": "The field allows 8,000 characters; this setting does not cover all Perplexity conversations.",
+      "limit": "The field allows 8,000 characters. Outside the project, send the instructions as the first message in a new chat.",
       "steps": [
         "Open Projects and create a beforeword project using + New project.",
         "Paste the instructions shown below into the project instructions field and save it.",
@@ -287,25 +287,25 @@
     "ru": {
       "route": "Личный Microsoft Copilot: новый чат → первое сообщение; Microsoft 365 Copilot: отдельная настройка ниже",
       "scope": "В личном Copilot инструкция передаётся в конкретный разговор. Сохранённые пользовательские инструкции Microsoft 365 Copilot настраиваются отдельно в поддерживаемом аккаунте.",
-      "limit": "Наличие общего раздела документации не устанавливает одинаковый путь настроек для личного Copilot и Microsoft 365. Лимит поля не установлен; перенос в чат доступен как запасной способ без постоянного действия.",
+      "limit": "Если поле недоступно или текст не помещается, отправь полную инструкцию первым сообщением нового чата.",
       "steps": [
         "Скопируй показанную ниже инструкцию.",
         "В личном Microsoft Copilot начни новый чат и отправь её первым сообщением; следующим сообщением отправь задачу. Для нового разговора передай инструкцию заново.",
-        "Если в твоём интерфейсе есть Custom instructions, можно сохранить текст там. Наличие этого поля в каждом личном аккаунте здесь не заявляется.",
+        "Если в твоём интерфейсе есть Custom instructions, можно сохранить текст там.",
         "Для Microsoft 365 Copilot: открой Copilot Chat с аккаунтом Microsoft 365 → Settings and more → Chat settings → Personalization → Custom instructions → Edit instructions; вставь текст и нажми Save instructions. Если текст не помещается, выбери краткую инструкцию или используй отдельный чат.",
-        "Запусти один из примеров пакета. Сохранение настройки и память приложения не устанавливают применение beforeword во всех ответах."
+        "После сохранения настройки начни новый разговор и отправь свой запрос."
       ]
     },
     "en": {
       "route": "Personal Microsoft Copilot: new chat → first message; Microsoft 365 Copilot: separate settings route below",
       "scope": "In personal Copilot, the instructions are supplied to an individual conversation. Saved custom instructions in Microsoft 365 Copilot are configured separately in a supported account.",
-      "limit": "Shared help links do not establish an identical settings path in personal Copilot and Microsoft 365. No field character limit was established; pasting into a chat remains a fallback without persistent scope.",
+      "limit": "If the field is unavailable or the text does not fit, send the full instructions as the first message in a new chat.",
       "steps": [
         "Copy the instructions shown below.",
         "In personal Microsoft Copilot, start a new chat and send them as the first message; send your task next. Supply the instructions again for each new conversation.",
-        "If your interface has Custom instructions, you can save the text there. This package does not claim that the field is present in every personal account.",
+        "If your interface has Custom instructions, you can save the text there.",
         "For Microsoft 365 Copilot: open Copilot Chat with a Microsoft 365 account → Settings and more → Chat settings → Personalization → Custom instructions → Edit instructions; paste the text and select Save instructions. If it does not fit, select the compact instructions or use a separate chat.",
-        "Try a package example. Saving a setting or using app memory does not establish that beforeword is applied to every response."
+        "After saving the settings, start a new conversation and send your request."
       ]
     },
     "sources": [
