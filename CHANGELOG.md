@@ -1,5 +1,21 @@
 # Changes / Изменения
 
+## 1.2.1
+
+### English
+
+- Apply the examination to definitions and explanations throughout the active scope, including the answer's own terms and conclusion.
+- Clarify that naming a frame does not make a description interpretation-free.
+- Distinguish installation, saved preferences, instruction text and future response behavior.
+- Extend the evaluation tasks for these cases and preserve exact-output requirements.
+
+### Русский
+
+- Разбор охватывает определения и объяснения в пределах действия инструкции, включая собственные термины и заключение ответа.
+- Уточнено, что название рамки не делает описание свободным от прочтения.
+- Разделены установка, сохранённое предпочтение, текст инструкции и поведение будущих ответов.
+- Дополнены задания для проверки этих случаев с сохранением требований точного формата.
+
 ## 1.2.0
 
 ### English

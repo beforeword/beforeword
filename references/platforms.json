@@ -11,7 +11,7 @@
       "ru": {
         "route": "ChatGPT: Settings → Personalization → Custom instructions",
         "scope": "Сохранённая инструкция задаёт предпочтения для ответов в ChatGPT; плагин Codex подключается отдельно.",
-        "limit": "Сохранение настройки или установка плагина не гарантирует применение beforeword в каждом ответе.",
+        "limit": "Сохранённое предпочтение в памяти не заменяет текст инструкции. Сообщение чата «установлено» не подтверждает изменение настроек или применение beforeword в будущих ответах.",
         "steps": [
           "Скопируй показанную ниже инструкцию.",
           "Открой Settings → Personalization → Custom instructions и вставь текст в поле пользовательских инструкций.",
@@ -21,7 +21,7 @@
       "en": {
         "route": "ChatGPT: Settings → Personalization → Custom instructions",
         "scope": "Saved instructions set response preferences in ChatGPT; the Codex plugin is a separate connection.",
-        "limit": "Saving instructions or installing a plugin does not guarantee that beforeword will be applied to every answer.",
+        "limit": "A saved memory preference does not replace the instruction text. A chat message saying “installed” does not confirm changed settings or beforeword being applied to future answers.",
         "steps": [
           "Copy the instructions shown below.",
           "Open Settings → Personalization → Custom instructions and paste the text into the custom instructions field.",
@@ -36,6 +36,10 @@
         {
           "title": "Build plugins",
           "url": "https://developers.openai.com/plugins/build/plugins"
+        },
+        {
+          "title": "Memories",
+          "url": "https://learn.chatgpt.com/docs/customization/memories"
         }
       ]
     },

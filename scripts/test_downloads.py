@@ -22,6 +22,9 @@ class DownloadTests(unittest.TestCase):
         for language in ("ru", "en"):
             scope = (ROOT / "assets" / f"scope.{language}.txt").read_bytes().decode("utf-8").rstrip("\n") + "\n\n"
             core = (ROOT / "assets" / f"core.{language}.txt").read_bytes().decode("utf-8")
+            self.assertLessEqual(len(scope + core), 8000, "Full instructions must fit the declared 8,000-character route")
+            self.assertLessEqual(len(self.files[f"beforeword_compact_{language.upper()}.txt"].decode("utf-8")), 1500,
+                                 "Compact instructions must fit the declared settings field")
             self.assertEqual(self.files[f"beforeword_core_{language.upper()}.txt"], (scope + core).encode("utf-8"))
             self.assertEqual(self.files[f"beforeword_compact_{language.upper()}.txt"],
                              (ROOT / "assets" / f"compact.{language}.txt").read_bytes())

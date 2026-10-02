@@ -14,8 +14,8 @@ from package_plugins import build_bundles, skill_text
 from render_report import parse_report
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.2.0'
-DATE = '2026-10-01'
+VERSION = '1.2.1'
+DATE = '2026-10-02'
 
 def read(path):
     return (ROOT / path).read_text(encoding='utf-8')
