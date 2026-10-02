@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f7f6f2">
+<meta name="theme-color" content="#fafaf8">
 <meta name="color-scheme" content="light">
 <title>__TITLE__</title>
 <meta name="description" content="__DESCRIPTION__">
@@ -21,17 +21,19 @@
 <meta name="twitter:title" content="__TITLE__">
 <meta name="twitter:description" content="__DESCRIPTION__">
 <meta name="beforeword-version" content="__VERSION__">
-<link rel="icon" href="/assets/favicon-paper-20260920.svg" type="image/svg+xml">
+<link rel="icon" href="__FAVICON_URL__" type="image/svg+xml">
 <link rel="stylesheet" href="__CSS_URL__">
+__SHELL_STYLES__
+<script src="__SHELL_JS_URL__" defer></script>
 <script src="__JS_URL__" defer></script>
 </head>
-<body id="top">
-<a class="skip" href="#main">__SKIP__</a>
-<header class="site-header">
-<a class="home" href="__HOME_URL__" aria-label="__HOME_LABEL__"><svg viewBox="0 0 373 367" aria-hidden="true" focusable="false"><path d="M119 0 H217 V56 H233 V135 H368 V146 H373 V233 H238 V303 H233 V352 H217 V367 H119 V352 H135 V303 H140 V233 H5 V146 H0 V135 H135 V56 H119 Z" fill="currentColor"/></svg></a>
-<nav class="desktop-nav" aria-label="__NAV_LABEL__">__NAV__</nav>
-<details class="mobile-nav"><summary>__MENU__</summary><nav aria-label="__NAV_LABEL__">__NAV__</nav></details>
-<nav class="languages" aria-label="__LANGUAGE_LABEL__">__LANGUAGES__</nav>
+<body class="bw-shell bw-paper model-page" data-page-section="model" id="top">
+<a class="skip-link" href="#main">__SKIP__</a>
+<header class="bw-header">
+<a class="bw-home" href="__HOME_URL__" aria-label="__HOME_LABEL__"><svg viewBox="0 0 373 367" aria-hidden="true" focusable="false"><path d="M119 0 H217 V56 H233 V135 H368 V146 H373 V233 H238 V303 H233 V352 H217 V367 H119 V352 H135 V303 H140 V233 H5 V146 H0 V135 H135 V56 H119 Z" fill="currentColor"/></svg></a>
+<nav class="bw-links" aria-label="__NAV_LABEL__">__NAV__</nav>
+<details class="bw-menu"><summary>__MENU__</summary><nav class="bw-mobile-links" aria-label="__NAV_LABEL__">__NAV__</nav></details>
+<nav class="bw-language" aria-label="__LANGUAGE_LABEL__">__LANGUAGES__</nav>
 </header>
 <main id="main" tabindex="-1">
 <section class="hero" aria-labelledby="title">
@@ -65,12 +67,12 @@ __SETTINGS_ROUTES__
 <span id="break" aria-hidden="true"></span><details><summary>__STOP_TITLE__</summary><p>__STOP_COPY__</p></details>
 </section>
 <section id="advanced" aria-labelledby="advanced-title"><h2 id="advanced-title">__ADVANCED_TITLE__</h2><p>__ADVANCED_INTRO__</p>
-<details><summary>__ADVANCED_OPEN__</summary><div class="advanced-body"><a class="button" href="/model/toolkit/beforeword_AI.html">__OPEN_TOOLKIT__</a><p class="small">__TOOLKIT_NOTE__</p><div class="download-grid">__DOWNLOADS__</div><p class="small">__NATIVE_NOTE__</p>__GITHUB__</div></details>
+<details><summary>__ADVANCED_OPEN__</summary><div class="advanced-body"><a class="button" href="__TOOLKIT_URL__">__OPEN_TOOLKIT__</a><p class="small">__TOOLKIT_NOTE__</p><div class="download-grid">__DOWNLOADS__</div><p class="small">__NATIVE_NOTE__</p>__GITHUB__</div></details>
 </section>
 <section id="checks" aria-labelledby="checks-title"><h2 id="checks-title">__CHECKS_TITLE__</h2><p>__CHECKS_COPY__</p><p class="small">__VERSION_LINE__</p><ul class="report-links">__REPORT_LINKS__</ul><p class="small">__PRIVACY__</p></section>
 <section id="comparison-20260927" aria-labelledby="history-title"><h2 id="history-title">__HISTORY_TITLE__</h2><p>__HISTORY_COPY__</p><p><a href="__HISTORY_URL__">__HISTORY_LINK__</a></p></section>
 </main>
-<footer><nav aria-label="__NAV_LABEL__">__FOOTER_NAV__</nav><div class="footer-line"><a href="#top">__TOP__</a><a href="mailto:mail@beforeword.xyz">mail@beforeword.xyz</a></div></footer>
+<footer class="bw-footer"><nav aria-label="__NAV_LABEL__">__FOOTER_NAV__</nav><a href="#top">__TOP__</a><a class="bw-contact" href="mailto:mail@beforeword.xyz">mail@beforeword.xyz</a></footer>
 <p class="copy-status" id="copy-status" role="status" aria-live="polite" data-copied="__COPIED__" data-selected="__SELECTED__" data-failed="__COPY_FAILED__"></p>
 </body>
 </html>

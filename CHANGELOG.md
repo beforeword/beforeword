@@ -8,6 +8,7 @@
 - Add a RU/EN installation page with a quick start for chats and separate settings, skills, and API instructions.
 - Add direct RU/EN downloads.
 - Improve keyboard navigation, copy feedback, and mobile touch targets.
+- Match the website navigation and paper theme; preserve the selected language when opening the advanced guide.
 
 ### Русский
 
@@ -15,6 +16,7 @@
 - Добавлена страница подключения RU/EN с быстрым началом через чат и отдельными инструкциями для настроек, навыков и API.
 - Добавлены прямые загрузки RU/EN.
 - Улучшены клавиатурная навигация, уведомления копирования и области нажатия на телефоне.
+- Оформление и навигация согласованы с сайтом; выбранный язык сохраняется при переходе в расширенное руководство.
 
 ## 1.1.0
 

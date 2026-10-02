@@ -7,7 +7,7 @@
   "source_files_sha256": {
     ".github/workflows/validate.yml": "98c1f02118db7ad8ccd8b7f667119d5af8a2ff9bd0294affa2a67c0429c63b5b",
     ".gitignore": "96c739299c21d2f6657630817a9c4efc752c1d3e94166c08703df8b638ae68dd",
-    "CHANGELOG.md": "e5a79052aa77c99a3c663820d34b974ffb852cdba5fe4179d939e27f3df51c0b",
+    "CHANGELOG.md": "c101f6976f2f1f5bef0a4a55d35f0bc9c20db57297fe4615bc4204f33af53643",
     "README.md": "f53ea38949850f30679e82acdf5c393ace1d5f3a72a45499b294fcb18921f45d",
     "README.ru.md": "62421a9fd28229d640ff89094a1d187b91355678aefd001881030b06db9437a1",
     "SKILL.md": "9f4bc921a461f9e10dfdaf2532f0817cb8ede4ca03aaad5a9312f32ecbb338d5",
@@ -15,7 +15,7 @@
     "assets/compact.ru.txt": "1e3002121d8f66976a454db574812b05d88e48dcfcf1278948092365da6bb409",
     "assets/core.en.txt": "c6fdd0b72a2a851a05afef6f56182605210a9a426cdfe38b4cc4d8c55fa36114",
     "assets/core.ru.txt": "a93718cf5c53f70aba9896d86d7c84e5b7e24f892531cab0d3b79f6f3417041b",
-    "assets/guide.template.html": "43a789c9258622ec5c7685e9d2e0daee09bf540bab7c5162d1a47332a9c89378",
+    "assets/guide.template.html": "54d2640d6977df846fb4baeb81897345fb90aec983d0d4e74bbb20b48ce0470e",
     "assets/history/2026-09-28/assets/archive-notice.css": "73dabe7f422c2914c34e5de1f939aa93e1267f80ebdda7ec5713991a12414759",
     "assets/history/2026-09-28/assets/beforeword-copy-20260928.js": "ea9550d368d944c157b2ee446b8d0be44d1807b0def4858630db5f9f85a017b4",
     "assets/history/2026-09-28/assets/beforeword-ink-20260920.woff": "1b3a538a3033481cf8b83d2e3efe1a2690ddbbd1ac176fab262aebcd9df72872",
@@ -45,11 +45,18 @@
     "assets/history/2026-09-28/index.html": "b2ad7a5d5eb58a91a88fd1ce45d11c35162400f7912fe1ba2d23f87eb98bcd46",
     "assets/history/2026-09-28/snapshot.json": "6edf6754aedb55614532de9868e3fbc8f5ee0e3259701fa8ac627deb22de7542",
     "assets/icon.svg": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee",
-    "assets/public.css": "fb215db7cbc77b5f222c602619dd8aa1af188309665fd66fec895bd777c67fed",
+    "assets/public.css": "ff8799b96182b601c2195da75ed50741c7b7048031739b50c15dcd6c954d22c4",
     "assets/public.js": "ff42b5d86cd34986ee926246d135e4c17588546376a2ca4c6eca9b2685fae612",
-    "assets/public.template.html": "f74223bb3f08c068699cf73b7564c6d8e5cd679c2244161c1e9c72be0a625023",
+    "assets/public.template.html": "347424a5e6bfeff4c2bd068db8fcbc17483ae23677e3850393749a6815a73961",
     "assets/scope.en.txt": "14625b590f200403d93e64c202de4563613d1bea765e7745114a7e9f14b35cf3",
     "assets/scope.ru.txt": "3f0d21011856f7faa353310120210bcd570d679c59c54e8b04b685b770577471",
+    "assets/site-shell/favicon-paper-20260920.svg": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
+    "assets/site-shell/paper-grain-20260920.svg": "83526f47090ff6b222e19e1d33e80b44648608558ee005b58838d417646fab87",
+    "assets/site-shell/paper-grain-v2-20260920.svg": "652dbb10f3638b958db7363d1ae0d71e95ed3f337853e42a56206312a9768f4d",
+    "assets/site-shell/paper-layout-20260920.css": "d3533495f9facc363ac1ea646098aa3c50aab7aca7f8568176f390e812b7ccff",
+    "assets/site-shell/paper-theme-20260920.css": "7def1b6862163af776bb2cad279da97b9a32ee024287dc3e04cdc7d6cd057db7",
+    "assets/site-shell/site-reader-20260920.css": "3f1e449bb985ac4d289d9889b9037445ddfe816e81965fb925316962ff664785",
+    "assets/site-shell/site-reader-20260920.js": "5234fb7bd34ef046f1da0b014fa8a48d78ef9d729fc6e52d3e9469d5dc6c6b8e",
     "docs/installation.md": "668827cf9278c52a78285353afca5ade1d8daf57597d8b53fa64353663ce207c",
     "docs/installation.ru.md": "5d71b3c53518f2a762276cb2b8c8abb5af2db11cff90e390b5c83f7baefc3720",
     "references/api-use.md": "b33ee0b4ee43266cf0e0e563ce1fc453c1e3183995c02eaa69566048cf8b9d50",
@@ -64,16 +71,16 @@
     "references/platforms.json": "00d21f2bf4189390c7bd8096755468568d097f7b1ad73418bf429353a777b4a3",
     "references/validation-2026-10-02.json": "c3a943c703b062ac0b1bc034b6c08141a99d8ec0e3c07145a0ad763fed3ab873",
     "scripts/build_downloads.py": "7b8a109526d3f40bc5f0d32b80adf347ef296677906c6be92757a35ed0ba5650",
-    "scripts/build_guide.py": "57c34a7f34abcda3457f094376d4fcffede62342fc7fd09fb4b897e8c62c5fc5",
+    "scripts/build_guide.py": "ee5ff5932f36a5deb5789bf4e27d0d95dbe01171e594f02abab65d671304b9d4",
     "scripts/build_payload.py": "8b78a50eddfa8d3b3483ae069a3fe1e26a2f163dcfe3021e205d2a0294dfe4ff",
-    "scripts/build_public.py": "79e4dafff57632ac34f971dfda475d1a65f22193a8695046188ed207a55ef028",
+    "scripts/build_public.py": "514f5d6c13df0f6c577262a9146522328a0aa37e2bc17a9a8a5177a409e39c55",
     "scripts/extract_response.py": "7bd870a055fbc4502362091649f2e93afaaae920138433d926ea83d1608b4835",
     "scripts/package_plugins.py": "10e1a474e5512540beecf574db7267fff789104edc0fdf304e1c6078fa65336f",
-    "scripts/test_downloads.py": "58911d0e560222039ab4253ab3448bb29b1d7b41e9811508d76438b8bb18a2f2",
-    "scripts/test_guide.cjs": "e25fae4c1955a0c3a91ff55b4e0d429937baf15ccb85277ea40bd5dac90749d4",
+    "scripts/test_downloads.py": "eb1f9e61501352d755f76e1280e8cf3394d0301d6ecd5a926953c59991e5905d",
+    "scripts/test_guide.cjs": "ec827d7f809298770d0a27e31c631b437a69c0205850b6b43c722bbff55d37f5",
     "scripts/test_packages.py": "433585bf6f61fe6fdb2d035010861ed9a682ab3389a7316199a07b497850d8fa",
     "scripts/test_payload.py": "e1c39c5db95135b92542c31b294f54e483fc89fbb5876d0a6bb35ded738561d4",
-    "scripts/test_public.cjs": "43a447d20ad85b83111198897a72d58eabbc6a47dee81f1d639906eb01a67af7"
+    "scripts/test_public.cjs": "42bb20cda57661e04a118d7a5180c12afc1b07d9005b083260dece4c8b9ea278"
   },
   "files": {
     "beforeword-SKILL-en.md": {
@@ -85,8 +92,8 @@
       "bytes": 13783
     },
     "beforeword_AI_1.2.0.html": {
-      "sha256": "147dcc0bc5c21c5b60c26a30d28219ea6cfd8cf915658af4aebd366b62b56475",
-      "bytes": 835590
+      "sha256": "0df773af9045c9c03340d3a19f474da6ab3675fc70bd57795e9d50b178fd09ea",
+      "bytes": 850806
     },
     "beforeword_claude_plugin_EN_1.2.0.zip": {
       "sha256": "630277b1a5e40692387343068d9fe6e3c98affd5806ccbced0db0a36ea0b19dc",
@@ -129,8 +136,8 @@
       "bytes": 6693
     },
     "beforeword_toolkit_1.2.0.zip": {
-      "sha256": "28f78bf4bf4714a045cedbbac9356c4e382fefe6c6b0612bbed054fbd2be6422",
-      "bytes": 427020
+      "sha256": "1c0be0a937f0c02370764f99253bc5f0140590ee125ca81ca5ef1c6214322714",
+      "bytes": 437244
     }
   }
 }

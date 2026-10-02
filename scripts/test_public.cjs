@@ -30,6 +30,17 @@ function checkArtifacts() {
     assert.ok(html.includes('hreflang="ru" href="https://beforeword.xyz/model/"'));
     assert.ok(html.includes('hreflang="en" href="https://beforeword.xyz/model/en/"'));
     assert.ok(html.includes(`name="beforeword-version" content="${manifest.version}"`));
+    assert.ok(html.includes('class="bw-shell bw-paper model-page"'), 'Shared paper shell is used');
+    for (const className of ['bw-header','bw-home','bw-links','bw-menu','bw-mobile-links','bw-language','bw-footer']) {
+      assert.ok(html.includes(`class="${className}"`), 'Shared site navigation: ' + className);
+    }
+    assert.ok(html.includes('<span aria-hidden="true">/</span>'), 'Shared language separator');
+    assert.ok(html.includes('href="' + (lang === 'en' ? '/en/plain/' : '/plain/') + '"'), 'Plain-language footer route');
+    assert.ok(html.includes(`href="/model/toolkit/beforeword_AI.html#${lang}"`), 'Guide preserves the selected language');
+    for (const extension of ['css', 'js']) {
+      const digest = hash(fs.readFileSync(path.join(ROOT, `assets/public.${extension}`))).slice(0,12);
+      assert.ok(html.includes(`/model/assets/public-${manifest.version}-${digest}.${extension}`), 'Changed assets receive a new cache key');
+    }
     assert.ok(html.includes('id="where"'), 'Existing homepage fragment preserved');
     assert.ok(!/__\w+__/.test(html), 'No unexpanded placeholders');
     assert.ok(!/<script[^>]+src="https?:/i.test(html), 'No remote scripts');
@@ -84,7 +95,38 @@ function checkArtifacts() {
   }
   const zipFiles = fs.readdirSync(path.join(MODEL, 'downloads')).filter(f => f.endsWith('.zip'));
   assert.equal(zipFiles.length, 7, 'Six native ZIPs and the source toolkit');
+  assert.equal(read(path.join(MODEL, 'reports/eval-cases.jsonl')),read(path.join(ROOT, 'references/eval-cases.jsonl')), 'Methodology links to the supplied cases');
+  for (const line of checksums) {
+    const name = line.slice(66);
+    if (!name.startsWith('assets/site-shell/') || !name.endsWith('.css')) continue;
+    for (const match of read(path.join(MODEL,name)).matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
+      const local = path.resolve(path.dirname(path.join(MODEL,name)),match[1]);
+      assert.ok(local.startsWith(MODEL+path.sep), 'Shared CSS resources stay within the standalone section');
+      assert.ok(fs.existsSync(local),'Shared CSS resource exists: '+match[1]);
+    }
+  }
   return {pages:fullPaths.length,checksums:checksums.length,zipFiles:zipFiles.length};
+}
+
+function checkNavigation() {
+  const events = {};
+  let focusCount = 0;
+  let resize;
+  const trigger = {focus(){focusCount++;}};
+  const link = {addEventListener(event,listener){this[event]=listener;}};
+  const inside = {};
+  const menu = {open:false,querySelector(){return trigger;},querySelectorAll(){return [link];},contains(target){return target===inside;}};
+  const desktop = {matches:false,addEventListener(event,listener){resize=listener;}};
+  const document = {querySelector(){return menu;},addEventListener(event,listener){events[event]=listener;}};
+  vm.runInNewContext(read(path.join(ROOT,'assets/site-shell/site-reader-20260920.js')),{document,matchMedia(){return desktop;}});
+  menu.open=true;events.keydown({key:'Escape'});
+  assert.equal(menu.open,false);assert.equal(focusCount,1,'Escape restores focus to menu trigger');
+  menu.open=true;events.click({target:inside});
+  assert.equal(menu.open,true,'An internal click keeps the menu usable');
+  events.click({target:{}});assert.equal(menu.open,false,'Outside click closes menu');
+  menu.open=true;link.click();assert.equal(menu.open,false,'Navigation closes menu');
+  menu.open=true;desktop.matches=true;resize();assert.equal(menu.open,false,'Desktop breakpoint closes mobile menu');
+  return 5;
 }
 
 function checkHistory() {
@@ -151,4 +193,4 @@ async function checkCopy() {
   return cases;
 }
 
-(async()=>{const artifacts=checkArtifacts();const historyFiles=checkHistory();const copyCases=await checkCopy();process.stdout.write(JSON.stringify({ok:true,...artifacts,historyFiles,copyCases,scope:'Static files and simulated DOM; no browser rendering'},null,2)+'\n');})().catch(error=>{console.error(error);process.exitCode=1;});
+(async()=>{const artifacts=checkArtifacts();const historyFiles=checkHistory();const copyCases=await checkCopy();const navigationCases=checkNavigation();process.stdout.write(JSON.stringify({ok:true,...artifacts,historyFiles,copyCases,navigationCases,scope:'Static files and simulated DOM; no browser rendering'},null,2)+'\n');})().catch(error=>{console.error(error);process.exitCode=1;});

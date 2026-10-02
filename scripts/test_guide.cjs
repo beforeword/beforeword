@@ -37,8 +37,20 @@ const buttons=[...html.matchAll(/data-copy="([^"]+)"/g)].map(match=>Object.assig
 const blobs=[];const downloads=[];
 class LocalURL extends URL{static createObjectURL(blob){blobs.push(blob);return 'blob:local/'+blobs.length}static revokeObjectURL(){}}
 const document={getElementById:id=>{assert(nodes[id],'Missing DOM ID '+id);return nodes[id]},documentElement:element(),querySelectorAll:()=>buttons,createElement:()=>{const item=element();item.click=()=>downloads.push(item.download);return item},body:element()};
-const context={document,setTimeout:()=>0,clearTimeout(){},Blob,URL:LocalURL,Uint8Array,atob,TextDecoder,console};
-vm.createContext(context);vm.runInContext(code,context,{filename:input});
+function boot(hash,expectedLanguage){
+ const location={_hash:hash,get hash(){return this._hash},set hash(value){this._hash=value.startsWith('#')?value:'#'+value}};
+ const window={location,listeners:{},addEventListener(name,handler){this.listeners[name]=handler}};
+ const context={document,window,setTimeout:()=>0,clearTimeout(){},Blob,URL:LocalURL,Uint8Array,atob,TextDecoder,console};
+ vm.createContext(context);vm.runInContext(code,context,{filename:input});
+ assert.equal(document.documentElement.lang,expectedLanguage,'Guide must honor the entry-link language');
+ assert.equal(nodes[expectedLanguage+'-btn'].attrs['aria-pressed'],'true');
+ assert.equal(nodes.prompt.textContent,data.compact[expectedLanguage],'Entry language must also select the copied instruction');
+ assert.equal(document.title,expectedLanguage==='en'?'beforeword — advanced guide':'beforeword — расширенное руководство');
+ assert.equal(nodes['guide-home'].href,'https://beforeword.xyz/model/'+(expectedLanguage==='en'?'en/':''),'Guide return link must preserve the entry language');
+ return context;
+}
+boot('#en','en');boot('#ru','ru');boot('#unknown','ru');
+const context=boot('','ru');
 const run=source=>vm.runInContext(source,context);
 const parsedPayload=()=>JSON.parse(nodes['api-out'].textContent);
 const setProvider=value=>{nodes['api-provider'].value=value;nodes['api-provider'].listeners.change()};
@@ -46,9 +58,13 @@ function validInput(){nodes['api-model'].value='test-model';nodes['api-input'].v
 async function main(){
  let adapterSelections=0,apiCases=0;
  for(const language of ['ru','en']){
-  run(`setLanguage('${language}')`);
+ run(`setLanguage('${language}')`);
   assert.equal(document.documentElement.lang,language);
+  assert.equal(context.window.location.hash,'#'+language,'Language selection must produce a reusable URL');
   assert.equal(nodes[language+'-btn'].attrs['aria-pressed'],'true');
+  assert(nodes['mode-stop-copy'].textContent,'Stop instruction requires its own explanatory label');
+  assert.equal(nodes['mode-stop-command'].textContent,language==='ru'?'Отключи режим beforeword для следующих ответов.':'Turn off beforeword mode for subsequent replies.');
+  assert(!nodes['mode-command'].textContent.includes(nodes['mode-stop-command'].textContent),'Start example must not include the stop command');
   for(const connector of data.connectors){
    run(`chooseApp('${connector.id}')`);assert.equal(nodes['app-name'].textContent,connector.name);
    for(const mode of ['compact','core']){run(`setMode('${mode}')`);assert.equal(nodes.prompt.textContent,mode==='compact'?data.compact[language]:data.scope[language]+data.core[language]);assert.equal(nodes[mode+'-btn'].attrs['aria-pressed'],'true');adapterSelections++}
@@ -82,6 +98,14 @@ async function main(){
   }
   run('downloadSkill()');assert.equal(await blobs.at(-1).text(),data.skill[language]);
  }
+ context.window.location.hash='#ru';context.window.listeners.hashchange();
+ assert.equal(document.documentElement.lang,'ru','History/hash navigation must restore Russian');
+ assert.equal(nodes['guide-home'].href,'https://beforeword.xyz/model/');
+ assert.equal(nodes.prompt.textContent,data.scope.ru+data.core.ru);
+ context.window.location.hash='#en';context.window.listeners.hashchange();
+ assert.equal(document.documentElement.lang,'en','History/hash navigation must restore English');
+ assert.equal(nodes['guide-home'].href,'https://beforeword.xyz/model/en/');
+ assert.equal(nodes.prompt.textContent,data.scope.en+data.core.en);
  for(const route of ['settings','skill','api']){run(`setRoute('${route}')`);for(const other of ['settings','skill','api']){assert.equal(nodes[other+'-section'].hidden,other!==route);assert.equal(nodes[other+'-route-btn'].attrs['aria-pressed'],String(other===route))}}
  validInput();setProvider('openai');
  for(const field of ['api-model','api-history','api-max-tokens','api-input','api-endpoint']){validInput();assert(run('makePayload()'));nodes[field].listeners.input();assert.equal(nodes['api-out'].hidden,true);assert.equal(nodes['api-out'].textContent,'')}
@@ -97,7 +121,7 @@ async function main(){
  nodes['api-file'].files=[{name:'invalid.txt',arrayBuffer:async()=>new Uint8Array([0xff]).buffer}];await run('loadInputFile()');assert.equal(run('inputText()'),'edited\n');
  for(const button of buttons)assert(button.textContent&&!button.textContent.includes('undefined'));
  assert(data.developer?.data,'Developer source archive is missing');run('downloadDeveloper()');assert.equal(downloads.at(-1),data.developer.name);assert.deepEqual(Buffer.from(await blobs.at(-1).arrayBuffer()),Buffer.from(data.developer.data,'base64'));
- const report={status:'passed',scope:'simulated DOM and local JavaScript; no visual browser or live providers',adapter_selections:adapterSelections,api_cases:apiCases,languages:['ru','en'],routes:3,file_preservation:['BOM','CRLF','Unicode','spacing'],negative_checks:['history','max_tokens','Qwen endpoint','invalid UTF-8'],network_calls:0};
+ const report={status:'passed',scope:'simulated DOM and local JavaScript; no visual browser or live providers',adapter_selections:adapterSelections,api_cases:apiCases,languages:['ru','en'],language_entry_cases:['#en','#ru','unknown','default','hash navigation'],routes:3,file_preservation:['BOM','CRLF','Unicode','spacing'],negative_checks:['history','max_tokens','Qwen endpoint','invalid UTF-8'],network_calls:0};
  console.log(JSON.stringify(report,null,2));
 }
 main().catch(error=>{console.error(error.stack);process.exitCode=1});

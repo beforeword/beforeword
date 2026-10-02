@@ -20,6 +20,7 @@ import build_guide
 from package_plugins import build_bundles, skill_text
 
 ROOT = Path(__file__).resolve().parents[1]
+SHELL_STYLES = ('site-reader-20260920.css', 'paper-theme-20260920.css', 'paper-layout-20260920.css')
 APP_URLS = (
     ('ChatGPT', 'https://chatgpt.com/'), ('Claude', 'https://claude.ai/'),
     ('Gemini', 'https://gemini.google.com/app'), ('Grok', 'https://grok.com/'),
@@ -123,6 +124,18 @@ def read(path: str) -> str:
 def sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
 
+def public_asset_name(extension: str) -> str:
+    digest = sha((ROOT/'assets'/f'public.{extension}').read_bytes())[:12]
+    return f'public-{build_guide.VERSION}-{digest}.{extension}'
+
+def shell_revision() -> str:
+    sources = sorted((ROOT/'assets'/'site-shell').iterdir())
+    content = b''.join(path.name.encode('utf-8')+b'\0'+path.read_bytes()+b'\0' for path in sources if path.is_file())
+    return sha(content)[:12]
+
+def shell_asset_url(name: str) -> str:
+    return f'/model/assets/site-shell/{shell_revision()}/{name}'
+
 def escape(value: object) -> str:
     return html.escape(str(value), quote=True)
 
@@ -132,10 +145,16 @@ def github_url(value: str) -> str:
         raise argparse.ArgumentTypeError('GitHub URL must be https://github.com/owner/repository')
     return value.rstrip('/')
 
-def nav(language: str) -> str:
+def nav(language: str, footer: bool = False) -> str:
     labels = ['Исследования','Текст','Записи','Музыка','О beforeword','Для ИИ'] if language == 'ru' else ['Research','Text','Notes','Music','About','For AI']
     paths = ['research','text','notes','music','about','model']
-    return ''.join('<a'+(' aria-current="page"' if path == 'model' else '')+' href="/'+path+('/en/' if language == 'en' else '/')+'">'+escape(label)+'</a>' for path,label in zip(paths,labels))
+    if footer:
+        labels.insert(-1, 'Поддержать' if language == 'ru' else 'Support')
+        paths.insert(-1, 'support')
+    links = ''.join('<a'+(' aria-current="page"' if path == 'model' else '')+' href="/'+path+('/en/' if language == 'en' else '/')+'">'+escape(label)+'</a>' for path,label in zip(paths,labels))
+    if footer:
+        links = '<a href="'+('/en/plain/' if language == 'en' else '/plain/')+'">'+('In plain English' if language == 'en' else 'Простыми словами')+'</a>'+links
+    return links
 
 def settings(language: str, connectors: list[dict]) -> str:
     t = COPY[language]
@@ -166,15 +185,19 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
     values.update({'LANG':language,'VERSION':escape(build_guide.VERSION),'LOCALE':'ru_RU' if language == 'ru' else 'en_US',
         'CANONICAL':'https://beforeword.xyz/model/'+('en/' if language == 'en' else ''),
         'HOME_URL':'/en/' if language == 'en' else '/',
-        'CSS_URL':f'/model/assets/public-{build_guide.VERSION}.css','JS_URL':f'/model/assets/public-{build_guide.VERSION}.js',
+        'CSS_URL':'/model/assets/'+public_asset_name('css'),'JS_URL':'/model/assets/'+public_asset_name('js'),
+        'SHELL_STYLES':'\n'.join('<link rel="stylesheet" href="'+shell_asset_url(name)+'">' for name in SHELL_STYLES),
+        'SHELL_JS_URL':shell_asset_url('site-reader-20260920.js'),
+        'FAVICON_URL':shell_asset_url('favicon-paper-20260920.svg'),
+        'TOOLKIT_URL':'/model/toolkit/beforeword_AI.html#'+language,
         'FULL_TEXT':escape(full),'COMPACT_TEXT':escape(compact),
         'FULL_COUNT':f'{len(full):,} {t["characters"]}'.replace(',','\u2009'),
         'COMPACT_COUNT':f'{len(compact):,} {t["characters"]}'.replace(',','\u2009'),
         'NAV':nav(language),'SETTINGS_ROUTES':settings(language,connectors),
-        'FOOTER_NAV':nav(language)+'<a href="/support/'+('en/' if language == 'en' else '')+'">'+('Поддержать' if language == 'ru' else 'Support')+'</a>',
+        'FOOTER_NAV':nav(language,footer=True),
         'HISTORY_URL':'/model/history/2026-09-28/'+('en/' if language == 'en' else '')+'#comparison-20260927',
         'APP_LINKS':''.join('<a href="'+escape(url)+'" target="_blank" rel="noopener noreferrer">'+escape(name)+'</a>' for name,url in APP_URLS),
-        'LANGUAGES':('<span lang="ru" aria-current="page">RU</span><a href="/model/en/" hreflang="en" lang="en">EN</a>' if language == 'ru' else '<a href="/model/" hreflang="ru" lang="ru">RU</a><span lang="en" aria-current="page">EN</span>'),
+        'LANGUAGES':('<span lang="ru" aria-current="page">RU</span><span aria-hidden="true">/</span><a href="/model/en/" hreflang="en" lang="en">EN</a>' if language == 'ru' else '<a href="/model/" hreflang="ru" lang="ru">RU</a><span aria-hidden="true">/</span><span lang="en" aria-current="page">EN</span>'),
         'VERSION_LINE':escape(t['version_line'].format(version=build_guide.VERSION,date=build_guide.DATE)),
     })
     cards = []
@@ -226,10 +249,11 @@ def build(output: Path, repo_url: str | None = None) -> Path:
         destination.write_text(render(language,bundles,connectors,repo_url),encoding='utf-8')
         source = 'references/evaluation.ru.md' if language == 'ru' else 'references/evaluation.md'
         shutil.copyfile(ROOT/source,model/'reports'/f'evaluation.{language}.md')
-    for name in ('evaluation-results.json','validation-2026-10-02.json'):
+    for name in ('evaluation-results.json','validation-2026-10-02.json','eval-cases.jsonl'):
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
     for ext in ('css','js'):
-        shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/f'public-{build_guide.VERSION}.{ext}')
+        shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))
+    shutil.copytree(ROOT/'assets'/'site-shell',model/'assets'/'site-shell'/shell_revision(),dirs_exist_ok=True)
     shutil.copytree(ROOT/'assets'/'history',model/'history',dirs_exist_ok=True)
     manifest={'version':build_guide.VERSION,'date_utc':build_guide.DATE,'public_paths':['/model/','/model/en/'],
         'github_url':repo_url,'aliases':aliases,'micro_alias_note':'Legacy micro URLs serve the current compact instruction, not a separate edition.',

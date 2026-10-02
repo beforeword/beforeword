@@ -8,6 +8,7 @@ import html
 import io
 import json
 from pathlib import Path
+import stat
 import zipfile
 from package_plugins import build_bundles, skill_text
 
@@ -37,6 +38,8 @@ def source_bundle():
         for path, content in sorted(files.items()):
             info = zipfile.ZipInfo('beforeword/' + path, (2026, 10, 1, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
+            info.create_system = 3
+            info.external_attr = (stat.S_IFREG | 0o644) << 16
             archive.writestr(info, content)
     raw = out.getvalue()
     return {'name': 'beforeword_toolkit.zip', 'data': base64.b64encode(raw).decode(),
