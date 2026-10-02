@@ -19,6 +19,26 @@ assert(!/\.innerHTML\s*=/.test(code),'HTML insertion is not allowed in the guide
 assert(!html.includes('__STATIC_FALLBACK__'),'Static fallback placeholder is unresolved');
 const noScript=html.match(/<noscript>([\s\S]*?)<\/noscript>/);
 assert(noScript&&noScript[1].includes('beforeword'),'Static fallback is missing');
+assert(!/<pre\b[^>]*\bid="evaluation-text"/.test(html),'Reader methodology must not be raw Markdown in a pre block');
+for(const language of ['ru','en']){
+ const body=data[language==='ru'?'evaluationHtmlRu':'evaluationHtml'];
+ assert.equal(typeof body,'string','Missing rendered methodology for '+language);
+ const article=html.match(new RegExp('<article id="evaluation-'+language+'"[^>]*>([\\s\\S]*?)<\\/article>'));
+ assert(article,'Missing semantic methodology article for '+language);
+ assert.equal(article[1],body,'Guide must include the complete rendered methodology');
+ assert.equal((body.match(/<h4\b/g)||[]).length,4,'Preserve all four methodology sections');
+ assert.equal((body.match(/<li>/g)||[]).length,7,'Preserve every method step');
+ assert.equal((body.match(/<th scope="col">/g)||[]).length,2,'Comparison needs actual table headers');
+ assert.equal((body.match(/<td>/g)||[]).length,6,'Comparison needs all three conditions');
+ assert(body.includes('<code>met</code>'),'Ratings must use semantic inline code');
+ assert(!/\]\([^\n]+\)|<script\b|\bon\w+\s*=/i.test(body),'Methodology must render links without executable HTML');
+ for(const filename of ['eval-cases.jsonl','evaluation-results.json','validation-2026-10-02.json']){
+  assert(body.includes('href="https://beforeword.xyz/model/reports/'+filename+'" download="'+filename+'"'),'Offline guide requires an absolute source-file link');
+ }
+ assert(noScript[1].includes('fallback-evaluation-'+language+'-section-'),'Methodology must be readable without JavaScript');
+}
+const sourceIds=[...html.slice(0,html.indexOf('<script id="bundle-data"')).matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
+assert.equal(new Set(sourceIds).size,sourceIds.length,'Rendered reports must not create duplicate IDs');
 assert.equal(data.connectors.length,9);
 assert(data.api&&Object.keys(data.api).length===7,'Expected seven API registry entries');
 for(const language of ['ru','en']){
@@ -47,6 +67,8 @@ function boot(hash,expectedLanguage){
  assert.equal(nodes.prompt.textContent,data.compact[expectedLanguage],'Entry language must also select the copied instruction');
  assert.equal(document.title,expectedLanguage==='en'?'beforeword — advanced guide':'beforeword — расширенное руководство');
  assert.equal(nodes['guide-home'].href,'https://beforeword.xyz/model/'+(expectedLanguage==='en'?'en/':''),'Guide return link must preserve the entry language');
+ assert.equal(nodes['evaluation-ru'].hidden,expectedLanguage!=='ru');
+ assert.equal(nodes['evaluation-en'].hidden,expectedLanguage!=='en');
  return context;
 }
 boot('#en','en');boot('#ru','ru');boot('#unknown','ru');
@@ -62,6 +84,9 @@ async function main(){
   assert.equal(document.documentElement.lang,language);
   assert.equal(context.window.location.hash,'#'+language,'Language selection must produce a reusable URL');
   assert.equal(nodes[language+'-btn'].attrs['aria-pressed'],'true');
+  assert.equal(nodes['evaluation-ru'].hidden,language!=='ru','Methodology visibility must follow selected language');
+  assert.equal(nodes['evaluation-en'].hidden,language!=='en','Methodology visibility must follow selected language');
+  assert(nodes['evaluation-online-note'].textContent.includes(language==='ru'?'подключение':'internet connection'),'Linked source files need a clear connection note');
   assert(nodes['mode-stop-copy'].textContent,'Stop instruction requires its own explanatory label');
   assert.equal(nodes['mode-stop-command'].textContent,language==='ru'?'Отключи режим beforeword для следующих ответов.':'Turn off beforeword mode for subsequent replies.');
   assert(!nodes['mode-command'].textContent.includes(nodes['mode-stop-command'].textContent),'Start example must not include the stop command');
@@ -121,7 +146,7 @@ async function main(){
  nodes['api-file'].files=[{name:'invalid.txt',arrayBuffer:async()=>new Uint8Array([0xff]).buffer}];await run('loadInputFile()');assert.equal(run('inputText()'),'edited\n');
  for(const button of buttons)assert(button.textContent&&!button.textContent.includes('undefined'));
  assert(data.developer?.data,'Developer source archive is missing');run('downloadDeveloper()');assert.equal(downloads.at(-1),data.developer.name);assert.deepEqual(Buffer.from(await blobs.at(-1).arrayBuffer()),Buffer.from(data.developer.data,'base64'));
- const report={status:'passed',scope:'simulated DOM and local JavaScript; no visual browser or live providers',adapter_selections:adapterSelections,api_cases:apiCases,languages:['ru','en'],language_entry_cases:['#en','#ru','unknown','default','hash navigation'],routes:3,file_preservation:['BOM','CRLF','Unicode','spacing'],negative_checks:['history','max_tokens','Qwen endpoint','invalid UTF-8'],network_calls:0};
+ const report={status:'passed',scope:'simulated DOM and local JavaScript; no visual browser or live providers',adapter_selections:adapterSelections,api_cases:apiCases,languages:['ru','en'],language_entry_cases:['#en','#ru','unknown','default','hash navigation'],methodology:['semantic RU/EN articles','all sections and steps','comparison table','absolute source links','offline and no-JavaScript content','language switching'],routes:3,file_preservation:['BOM','CRLF','Unicode','spacing'],negative_checks:['history','max_tokens','Qwen endpoint','invalid UTF-8'],network_calls:0};
  console.log(JSON.stringify(report,null,2));
 }
 main().catch(error=>{console.error(error.stack);process.exitCode=1});

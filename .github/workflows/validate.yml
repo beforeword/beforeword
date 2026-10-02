@@ -36,6 +36,8 @@ jobs:
         run: python3 scripts/build_public.py --output build/site --github-url https://github.com/beforeword/beforeword
       - name: Check site files and simulated interactions
         run: node scripts/test_public.cjs build/site/public_html
+      - name: Check evaluation reader pages and preserved text
+        run: python3 -B scripts/test_evaluation.py --site build/site/public_html
       - name: Upload build artifacts
         uses: actions/upload-artifact@v7
         with:

@@ -11,6 +11,7 @@ from pathlib import Path
 import stat
 import zipfile
 from package_plugins import build_bundles, skill_text
+from render_report import parse_report
 
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = '1.2.0'
@@ -21,6 +22,13 @@ def read(path):
 
 def sha(text):
     return hashlib.sha256(text.encode('utf-8')).hexdigest()
+
+def evaluation_html(source, language):
+    title, body = parse_report(source)
+    body = body.replace('href="/model/reports/', 'href="https://beforeword.xyz/model/reports/')
+    body = body.replace('report-section-', 'evaluation-'+language+'-section-')
+    body = body.replace('<h2', '<h4').replace('</h2>', '</h4>')
+    return '<h3>'+html.escape(title)+'</h3>\n'+body
 
 def source_bundle():
     files = {}
@@ -56,6 +64,8 @@ def fallback(data):
         for c in data['connectors']:
             v = c[lang]
             sections.append('<details><summary>'+esc(c['name'])+'</summary><p>'+esc(v['route'])+'</p><ol>'+''.join('<li>'+esc(step)+'</li>' for step in v['steps'])+'</ol><p>'+esc(v['scope'])+'</p><p>'+esc(v['limit'])+'</p></details>')
+        report_body = data['evaluationHtmlRu' if lang == 'ru' else 'evaluationHtml'].replace('evaluation-'+lang+'-section-', 'fallback-evaluation-'+lang+'-section-')
+        sections.append('<details><summary>'+('Методика и выполненные проверки' if lang == 'ru' else 'Method and completed checks')+'</summary><article class="evaluation-report">'+report_body+'</article><p class="small">'+('Методика доступна без интернета. Для открытия исходных файлов по ссылкам нужно подключение.' if lang == 'ru' else 'The method is available offline. Opening the linked source files requires an internet connection.')+'</p></details>')
         sections.append('<p>'+('Для загрузки пакетов навыков и работы с API открой этот HTML в браузере с JavaScript. Текст выше можно выделить и скопировать из предварительного просмотра.' if lang == 'ru' else 'For skill package downloads and the API builder, open this HTML in a browser with JavaScript. The text above can be selected and copied from a file preview.')+'</p></section>')
     sections.append('</div>')
     return '\n'.join(sections)
@@ -74,6 +84,8 @@ def build(output):
             'evaluation':read('references/evaluation.md'),
             'evaluationRu':read('references/evaluation.ru.md'),
             'bundles':{}}
+    data['evaluationHtml'] = evaluation_html(data['evaluation'], 'en')
+    data['evaluationHtmlRu'] = evaluation_html(data['evaluationRu'], 'ru')
     for lang in ('ru','en'):
         data['bundles'][lang] = {}
         for key, record in build_bundles(lang, version=VERSION).items():
@@ -87,8 +99,8 @@ def build(output):
     data['sources'] = list(sources.values())
     data['developer'] = source_bundle()
     serialized = json.dumps(data, ensure_ascii=False).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
-    result = read('assets/guide.template.html').replace('__DATA__', serialized).replace('__STATIC_FALLBACK__', fallback(data))
-    if '__DATA__' in result or '__STATIC_FALLBACK__' in result:
+    result = read('assets/guide.template.html').replace('__DATA__', serialized).replace('__STATIC_FALLBACK__', fallback(data)).replace('__EVALUATION_RU__', data['evaluationHtmlRu']).replace('__EVALUATION_EN__', data['evaluationHtml'])
+    if any(token in result for token in ('__DATA__', '__STATIC_FALLBACK__', '__EVALUATION_RU__', '__EVALUATION_EN__')):
         raise ValueError('unresolved template placeholder')
     path = output / 'beforeword_AI.html'
     path.write_text(result, encoding='utf-8')

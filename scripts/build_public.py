@@ -18,6 +18,7 @@ from urllib.parse import urlparse
 
 import build_guide
 from package_plugins import build_bundles, skill_text
+from render_report import parse_report
 
 ROOT = Path(__file__).resolve().parents[1]
 SHELL_STYLES = ('site-reader-20260920.css', 'paper-theme-20260920.css', 'paper-layout-20260920.css')
@@ -71,7 +72,7 @@ COPY = {
   'github':'Исходники на GitHub','github_note':'Версии, история изменений и обсуждение воспроизводимых примеров.',
   'downloads':{'openai':('Codex · ZIP','Локальный пакет для desktop / CLI.'),'claude':('Claude · ZIP','Для поддерживаемого импорта плагинов и Claude Code.'),'skill':('Навык · ZIP','SKILL.md и README для поддерживаемых сред.')},
   'toolkit_download':'Инструменты и исходники · ZIP','toolkit_download_note':'Python CLI, инструкции API, тесты и сборка страницы.',
-  'report_titles':['Методика и выполненные проверки','Исходные результаты сравнений','Манифест этой сборки','Контрольные суммы скачиваний'],
+  'report_titles':['Методика и выполненные проверки','Скачать исходные результаты сравнений · JSON','Скачать манифест этой сборки · JSON','Скачать контрольные суммы · TXT'],
  },
  'en': {
   'title':'beforeword for AI — start in your own chat',
@@ -114,7 +115,7 @@ COPY = {
   'github':'Source on GitHub','github_note':'Versioned downloads, change history, and discussion of reproducible examples.',
   'downloads':{'openai':('Codex · ZIP','A local package for desktop / CLI.'),'claude':('Claude · ZIP','For supported plugin uploads and Claude Code.'),'skill':('Skill · ZIP','SKILL.md and a README for supported environments.')},
   'toolkit_download':'Tools and source files · ZIP','toolkit_download_note':'Python CLI, API instructions, tests, and page build files.',
-  'report_titles':['Method and completed checks','Original comparison results','Build manifest','Download checksums'],
+  'report_titles':['Method and completed checks','Download original comparison results · JSON','Download the build manifest · JSON','Download checksums · TXT'],
  },
 }
 
@@ -145,13 +146,13 @@ def github_url(value: str) -> str:
         raise argparse.ArgumentTypeError('GitHub URL must be https://github.com/owner/repository')
     return value.rstrip('/')
 
-def nav(language: str, footer: bool = False) -> str:
+def nav(language: str, footer: bool = False, current: str = 'page') -> str:
     labels = ['Исследования','Текст','Записи','Музыка','О beforeword','Для ИИ'] if language == 'ru' else ['Research','Text','Notes','Music','About','For AI']
     paths = ['research','text','notes','music','about','model']
     if footer:
         labels.insert(-1, 'Поддержать' if language == 'ru' else 'Support')
         paths.insert(-1, 'support')
-    links = ''.join('<a'+(' aria-current="page"' if path == 'model' else '')+' href="/'+path+('/en/' if language == 'en' else '/')+'">'+escape(label)+'</a>' for path,label in zip(paths,labels))
+    links = ''.join('<a'+(' aria-current="'+current+'"' if path == 'model' else '')+' href="/'+path+('/en/' if language == 'en' else '/')+'">'+escape(label)+'</a>' for path,label in zip(paths,labels))
     if footer:
         links = '<a href="'+('/en/plain/' if language == 'en' else '/plain/')+'">'+('In plain English' if language == 'en' else 'Простыми словами')+'</a>'+links
     return links
@@ -177,13 +178,22 @@ def settings(language: str, connectors: list[dict]) -> str:
         output.append('<details class="app-settings"><summary>'+escape(item['name'])+'</summary>'+copy_action+'<p>'+escape(v['route'])+'</p><ol>'+steps+'</ol><p class="small">'+escape(v['scope'])+'</p><p class="small">'+escape(v['limit'])+'</p><div class="actions">'+sources+'</div></details>')
     return '\n'.join(output)
 
-def render(language: str, bundles: dict, connectors: list[dict], repo_url: str | None) -> str:
-    t = COPY[language]
+def render(language: str, bundles: dict, connectors: list[dict], repo_url: str | None, *, evaluation: bool = False) -> str:
+    t = dict(COPY[language])
+    route = '/model/evaluation/' if evaluation else '/model/'
+    report_content = ''
+    if evaluation:
+        source = 'references/evaluation.ru.md' if language == 'ru' else 'references/evaluation.md'
+        report_title, report_content = parse_report(read(source))
+        t['title'] = report_title
+        t['description'] = ('Методика чтения ответов, сохранённые сравнения и технические проверки beforeword.' if language == 'ru' else 'Reading criteria, recorded comparisons, and technical checks for beforeword.')
     full = read(f'assets/scope.{language}.txt').rstrip('\n')+'\n\n'+read(f'assets/core.{language}.txt')
     compact = read(f'assets/compact.{language}.txt')
     values = {key.upper():escape(value) for key,value in t.items() if isinstance(value,str)}
     values.update({'LANG':language,'VERSION':escape(build_guide.VERSION),'LOCALE':'ru_RU' if language == 'ru' else 'en_US',
-        'CANONICAL':'https://beforeword.xyz/model/'+('en/' if language == 'en' else ''),
+        'CANONICAL':'https://beforeword.xyz'+route+('en/' if language == 'en' else ''),
+        'ALTERNATE_RU_URL':'https://beforeword.xyz'+route,
+        'ALTERNATE_EN_URL':'https://beforeword.xyz'+route+'en/',
         'HOME_URL':'/en/' if language == 'en' else '/',
         'CSS_URL':'/model/assets/'+public_asset_name('css'),'JS_URL':'/model/assets/'+public_asset_name('js'),
         'SHELL_STYLES':'\n'.join('<link rel="stylesheet" href="'+shell_asset_url(name)+'">' for name in SHELL_STYLES),
@@ -193,11 +203,11 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         'FULL_TEXT':escape(full),'COMPACT_TEXT':escape(compact),
         'FULL_COUNT':f'{len(full):,} {t["characters"]}'.replace(',','\u2009'),
         'COMPACT_COUNT':f'{len(compact):,} {t["characters"]}'.replace(',','\u2009'),
-        'NAV':nav(language),'SETTINGS_ROUTES':settings(language,connectors),
-        'FOOTER_NAV':nav(language,footer=True),
+        'NAV':nav(language,current='location' if evaluation else 'page'),'SETTINGS_ROUTES':settings(language,connectors),
+        'FOOTER_NAV':nav(language,footer=True,current='location' if evaluation else 'page'),
         'HISTORY_URL':'/model/history/2026-09-28/'+('en/' if language == 'en' else '')+'#comparison-20260927',
         'APP_LINKS':''.join('<a href="'+escape(url)+'" target="_blank" rel="noopener noreferrer">'+escape(name)+'</a>' for name,url in APP_URLS),
-        'LANGUAGES':('<span lang="ru" aria-current="page">RU</span><span aria-hidden="true">/</span><a href="/model/en/" hreflang="en" lang="en">EN</a>' if language == 'ru' else '<a href="/model/" hreflang="ru" lang="ru">RU</a><span aria-hidden="true">/</span><span lang="en" aria-current="page">EN</span>'),
+        'LANGUAGES':('<span lang="ru" aria-current="page">RU</span><span aria-hidden="true">/</span><a href="'+route+'en/" hreflang="en" lang="en">EN</a>' if language == 'ru' else '<a href="'+route+'" hreflang="ru" lang="ru">RU</a><span aria-hidden="true">/</span><span lang="en" aria-current="page">EN</span>'),
         'VERSION_LINE':escape(t['version_line'].format(version=build_guide.VERSION,date=build_guide.DATE)),
     })
     cards = []
@@ -207,9 +217,25 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
     cards.append('<div class="card"><a href="/model/downloads/beforeword_toolkit.zip" download>'+escape(t['toolkit_download'])+'</a><small>'+escape(t['toolkit_download_note'])+'</small></div>')
     values['DOWNLOADS']=''.join(cards)
     values['GITHUB']=('<p><a class="button" href="'+escape(repo_url)+'" target="_blank" rel="noopener noreferrer">'+escape(t['github'])+'</a></p><p class="small">'+escape(t['github_note'])+'</p>') if repo_url else ''
-    report_paths = [f'/model/reports/evaluation.{language}.md','/model/reports/validation-2026-10-02.json','/model/release.json','/model/SHA256SUMS.txt']
-    values['REPORT_LINKS']=''.join('<li><a href="'+path+'">'+escape(label)+'</a></li>' for path,label in zip(report_paths,t['report_titles']))
+    report_paths = ['/model/evaluation/'+('en/' if language == 'en' else ''),'/model/reports/validation-2026-10-02.json','/model/release.json','/model/SHA256SUMS.txt']
+    values['REPORT_LINKS']=''.join('<li><a href="'+path+'"'+(' download' if index else '')+'>'+escape(label)+'</a></li>' for index,(path,label) in enumerate(zip(report_paths,t['report_titles'])))
     template = read('assets/public.template.html')
+    if evaluation:
+        back_url = '/model/'+('en/' if language == 'en' else '')+'#checks'
+        back_label = 'Вернуться к инструкции для ИИ' if language == 'ru' else 'Back to the AI instructions'
+        download_label = 'Скачать исходный текст · MD · UTF-8' if language == 'ru' else 'Download the source text · MD · UTF-8'
+        main = ('<main id="main" tabindex="-1">\n'
+                '<div class="report-heading"><a class="text-link" href="'+back_url+'">'+back_label+'</a>'
+                '<h1 id="title">'+escape(report_title)+'</h1></div>\n'
+                '<article id="evaluation-content" class="report-prose" aria-labelledby="title">'+report_content+'</article>\n'
+                '<div class="report-download"><a class="text-link" href="/model/reports/evaluation.'+language+'.md" download="evaluation.'+language+'.md">'+download_label+'</a></div>\n'
+                '</main>')
+        template, count = re.subn(r'<main id="main" tabindex="-1">.*?</main>',lambda _:main,template,flags=re.S)
+        if count != 1:
+            raise ValueError('Public template must contain exactly one main element.')
+        template = template.replace('model-page"','model-page model-report"')
+        template = template.replace('<script src="__JS_URL__" defer></script>\n','')
+        template = re.sub(r'<p class="copy-status"[^>]*></p>\n','',template)
     result = re.sub(r'__([A-Z][A-Z0-9_]+)__',lambda m:values[m.group(1)],template)
     if re.search(r'__[A-Z][A-Z0-9_]+__',result):
         raise ValueError('unresolved public template placeholder')
@@ -249,13 +275,16 @@ def build(output: Path, repo_url: str | None = None) -> Path:
         destination.write_text(render(language,bundles,connectors,repo_url),encoding='utf-8')
         source = 'references/evaluation.ru.md' if language == 'ru' else 'references/evaluation.md'
         shutil.copyfile(ROOT/source,model/'reports'/f'evaluation.{language}.md')
+        report_directory = model/'evaluation'/('en' if language == 'en' else '')
+        report_directory.mkdir(parents=True,exist_ok=True)
+        (report_directory/'index.html').write_text(render(language,bundles,connectors,repo_url,evaluation=True),encoding='utf-8')
     for name in ('evaluation-results.json','validation-2026-10-02.json','eval-cases.jsonl'):
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))
     shutil.copytree(ROOT/'assets'/'site-shell',model/'assets'/'site-shell'/shell_revision(),dirs_exist_ok=True)
     shutil.copytree(ROOT/'assets'/'history',model/'history',dirs_exist_ok=True)
-    manifest={'version':build_guide.VERSION,'date_utc':build_guide.DATE,'public_paths':['/model/','/model/en/'],
+    manifest={'version':build_guide.VERSION,'date_utc':build_guide.DATE,'public_paths':['/model/','/model/en/','/model/evaluation/','/model/evaluation/en/'],
         'github_url':repo_url,'aliases':aliases,'micro_alias_note':'Legacy micro URLs serve the current compact instruction, not a separate edition.',
         'historical_pages':['/model/history/2026-09-28/','/model/history/2026-09-28/en/'],
         'history_manifest':'history/2026-09-28/snapshot.json',

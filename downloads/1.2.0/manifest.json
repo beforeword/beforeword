@@ -5,7 +5,7 @@
   "build_command": "python3 -B scripts/build_downloads.py",
   "hash_algorithm": "sha256",
   "source_files_sha256": {
-    ".github/workflows/validate.yml": "98c1f02118db7ad8ccd8b7f667119d5af8a2ff9bd0294affa2a67c0429c63b5b",
+    ".github/workflows/validate.yml": "012140277192a023ec3722e5e21cd4c0890d9d370eec3854439a3d6de8dd7777",
     ".gitignore": "96c739299c21d2f6657630817a9c4efc752c1d3e94166c08703df8b638ae68dd",
     "CHANGELOG.md": "c101f6976f2f1f5bef0a4a55d35f0bc9c20db57297fe4615bc4204f33af53643",
     "README.md": "f53ea38949850f30679e82acdf5c393ace1d5f3a72a45499b294fcb18921f45d",
@@ -15,7 +15,7 @@
     "assets/compact.ru.txt": "1e3002121d8f66976a454db574812b05d88e48dcfcf1278948092365da6bb409",
     "assets/core.en.txt": "c6fdd0b72a2a851a05afef6f56182605210a9a426cdfe38b4cc4d8c55fa36114",
     "assets/core.ru.txt": "a93718cf5c53f70aba9896d86d7c84e5b7e24f892531cab0d3b79f6f3417041b",
-    "assets/guide.template.html": "54d2640d6977df846fb4baeb81897345fb90aec983d0d4e74bbb20b48ce0470e",
+    "assets/guide.template.html": "90d0ae253f0e96c1203d0e8c54f1f5c50d054d267ad6d82bc4e59d90879674d0",
     "assets/history/2026-09-28/assets/archive-notice.css": "73dabe7f422c2914c34e5de1f939aa93e1267f80ebdda7ec5713991a12414759",
     "assets/history/2026-09-28/assets/beforeword-copy-20260928.js": "ea9550d368d944c157b2ee446b8d0be44d1807b0def4858630db5f9f85a017b4",
     "assets/history/2026-09-28/assets/beforeword-ink-20260920.woff": "1b3a538a3033481cf8b83d2e3efe1a2690ddbbd1ac176fab262aebcd9df72872",
@@ -45,9 +45,9 @@
     "assets/history/2026-09-28/index.html": "b2ad7a5d5eb58a91a88fd1ce45d11c35162400f7912fe1ba2d23f87eb98bcd46",
     "assets/history/2026-09-28/snapshot.json": "6edf6754aedb55614532de9868e3fbc8f5ee0e3259701fa8ac627deb22de7542",
     "assets/icon.svg": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee",
-    "assets/public.css": "a6b5f3e0718b15b358398968e617a297b9276eb7baacd37ad026e50294890f54",
+    "assets/public.css": "4889c9182f17c91990683ca61f08be9f29206cea3dca9b8185ca73ba5024ce8f",
     "assets/public.js": "ff42b5d86cd34986ee926246d135e4c17588546376a2ca4c6eca9b2685fae612",
-    "assets/public.template.html": "347424a5e6bfeff4c2bd068db8fcbc17483ae23677e3850393749a6815a73961",
+    "assets/public.template.html": "7b3580a58b77dec7ae4ce17d6520557c6fcc639ed4e49166939fcaa4bc7e62cf",
     "assets/scope.en.txt": "14625b590f200403d93e64c202de4563613d1bea765e7745114a7e9f14b35cf3",
     "assets/scope.ru.txt": "3f0d21011856f7faa353310120210bcd570d679c59c54e8b04b685b770577471",
     "assets/site-shell/favicon-paper-20260920.svg": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
@@ -71,13 +71,15 @@
     "references/platforms.json": "00d21f2bf4189390c7bd8096755468568d097f7b1ad73418bf429353a777b4a3",
     "references/validation-2026-10-02.json": "c3a943c703b062ac0b1bc034b6c08141a99d8ec0e3c07145a0ad763fed3ab873",
     "scripts/build_downloads.py": "7b8a109526d3f40bc5f0d32b80adf347ef296677906c6be92757a35ed0ba5650",
-    "scripts/build_guide.py": "ee5ff5932f36a5deb5789bf4e27d0d95dbe01171e594f02abab65d671304b9d4",
+    "scripts/build_guide.py": "2284ecceac5e35f57ec46f8ace1d33a8a85896fee08b39c98ab78b0c7fe1eed6",
     "scripts/build_payload.py": "8b78a50eddfa8d3b3483ae069a3fe1e26a2f163dcfe3021e205d2a0294dfe4ff",
-    "scripts/build_public.py": "514f5d6c13df0f6c577262a9146522328a0aa37e2bc17a9a8a5177a409e39c55",
+    "scripts/build_public.py": "974f352db5df230baf838c2e378a1e21bb498c2f1405477ae3acacb23932d920",
     "scripts/extract_response.py": "7bd870a055fbc4502362091649f2e93afaaae920138433d926ea83d1608b4835",
     "scripts/package_plugins.py": "10e1a474e5512540beecf574db7267fff789104edc0fdf304e1c6078fa65336f",
+    "scripts/render_report.py": "277689b37b2b7c1712cc8c80d740791df1bbcb433818dcf0d6afa008b0a18f24",
     "scripts/test_downloads.py": "eb1f9e61501352d755f76e1280e8cf3394d0301d6ecd5a926953c59991e5905d",
-    "scripts/test_guide.cjs": "ec827d7f809298770d0a27e31c631b437a69c0205850b6b43c722bbff55d37f5",
+    "scripts/test_evaluation.py": "fc0a79d3cfd792432b2bbd617d08424edda8f25f8baf681a639618f99d154e6d",
+    "scripts/test_guide.cjs": "436eda66801cbbbf2e0d9821c6051789147afdbd70ec84fc16861762502c85cf",
     "scripts/test_packages.py": "433585bf6f61fe6fdb2d035010861ed9a682ab3389a7316199a07b497850d8fa",
     "scripts/test_payload.py": "e1c39c5db95135b92542c31b294f54e483fc89fbb5876d0a6bb35ded738561d4",
     "scripts/test_public.cjs": "80bf6023035fe72b220394afe592997a64c76bebf8b56a16c63aa7125d4c97d1"
@@ -92,8 +94,8 @@
       "bytes": 13783
     },
     "beforeword_AI_1.2.0.html": {
-      "sha256": "0649cd9b703e077e2f4a2596815a7fdcdbc48542f9800aa4006570f95cb535b8",
-      "bytes": 851246
+      "sha256": "e8705654f728f5e4e3d145b3e58b1d2f564849ca8b16ab9eba8940af94009611",
+      "bytes": 920305
     },
     "beforeword_claude_plugin_EN_1.2.0.zip": {
       "sha256": "630277b1a5e40692387343068d9fe6e3c98affd5806ccbced0db0a36ea0b19dc",
@@ -136,8 +138,8 @@
       "bytes": 6693
     },
     "beforeword_toolkit_1.2.0.zip": {
-      "sha256": "3027f04b47dbe79bf4d796b386ac56dacf575a4bfc2b53e32d4ae30b7501e34e",
-      "bytes": 437574
+      "sha256": "44f45db6a6a14946aa0a52bb2814907947559fcf41d15d5d87531a63a04f071c",
+      "bytes": 444993
     }
   }
 }
