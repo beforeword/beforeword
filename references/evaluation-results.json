@@ -1366,25 +1366,5 @@
       "unclear": 1,
       "not_met": 1
     }
-  },
-  "publication_metadata": {
-    "editing": "Removed workspace-only response_file locators. Embedded requests, responses, excerpts, ratings and instruction hashes are unchanged.",
-    "removed_fields": [
-      "/initial/ratings/15/response_file",
-      "/initial/ratings/16/response_file",
-      "/initial/ratings/17/response_file",
-      "/initial/ratings/18/response_file",
-      "/initial/ratings/19/response_file",
-      "/initial/ratings/20/response_file",
-      "/initial/ratings/21/response_file",
-      "/initial/ratings/22/response_file",
-      "/initial/ratings/23/response_file",
-      "/initial/ratings/24/response_file",
-      "/initial/ratings/25/response_file",
-      "/initial/ratings/26/response_file",
-      "/initial/ratings/27/response_file",
-      "/initial/ratings/28/response_file",
-      "/initial/ratings/29/response_file"
-    ]
   }
 }

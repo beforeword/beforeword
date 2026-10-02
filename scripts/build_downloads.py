@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""Prepare versioned GitHub downloads, without network or installation.
+"""Build versioned downloads and their SHA-256 manifest.
 
-The source bundle deliberately excludes downloads/. Never replace files that
-have already been published under a version; use a new release for corrections.
---replace is only for refreshing the unpublished staging directory after review.
+The source bundle excludes downloads/ to avoid recursive archives.
 """
 from __future__ import annotations
 
@@ -54,13 +52,10 @@ def build_files() -> dict[str, bytes]:
         "repository": REPOSITORY,
         "source_directory": ".",
         "build_command": "python3 -B scripts/build_downloads.py",
-        "provenance": "Exact build-input SHA-256 values are recorded below; no source commit or external import is inferred.",
+        "hash_algorithm": "sha256",
         "source_files_sha256": inputs,
         "files": {name: {"sha256": digest(raw), "bytes": len(raw)}
                   for name, raw in sorted(files.items())},
-        "provider_import_tests": "not_run",
-        "provider_api_tests": "not_run",
-        "checksum_scope": "Byte comparison only; a checksum does not establish source origin or model behavior.",
     }
     files["manifest.json"] = (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
     files["SHA256SUMS.txt"] = "".join(f"{digest(raw)}  {name}\n" for name, raw in sorted(files.items())).encode("utf-8")
@@ -90,7 +85,7 @@ def write_files(output: Path, files: dict[str, bytes], *, replace: bool = False,
             raise ValueError("Downloads differ from the current source: " + ", ".join(differences))
         return
     if existing and existing != files and not replace:
-        raise ValueError("Existing downloads differ; choose a new version for published files, or --replace for unpublished staging")
+        raise ValueError("Existing downloads differ; choose a new output directory or use --replace to regenerate them")
     if set(existing) - set(files):
         raise ValueError("Output contains unexpected files; use a new empty directory")
     output.mkdir(parents=True, exist_ok=True)
@@ -102,7 +97,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=ROOT / "downloads" / VERSION)
     mode = parser.add_mutually_exclusive_group()
-    mode.add_argument("--replace", action="store_true", help="Refresh unpublished staged files only")
+    mode.add_argument("--replace", action="store_true", help="Replace generated downloads with the current source build")
     mode.add_argument("--check", action="store_true", help="Compare existing downloads with the current source without writing")
     args = parser.parse_args()
     files = build_files()

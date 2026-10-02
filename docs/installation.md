@@ -4,7 +4,7 @@
 
 ## A single chat
 
-Copy the complete [English core](../assets/core.en.txt) or [Russian core](../assets/core.ru.txt), paste it into a new chat, and send your task next. This route requires no package installation. The complete text exported as `beforeword_core_EN.txt` or `beforeword_core_RU.txt` by the guide build combines that core with an explicit scope instruction. Specify the response language in your request when needed. Compact editions are for saved settings fields that cannot fit the full text.
+Copy the complete [English instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_core_EN.txt) or [Russian instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_core_RU.txt), paste them into a new chat, and send your task next. No package installation is needed. Each file includes the core and its scope. Specify the response language in your request when needed. Compact editions are for saved settings fields that cannot fit the full text.
 
 Try `Apply beforeword to the phrase “I understand.”` A useful check is whether the answer preserves the phrase, separates an attributed reading, and includes a relevant distinction introduced by the explanation itself. Repeating the name beforeword is insufficient. Code-only, JSON-only, and exact-copy tasks should retain their requested format without an added preface.
 
@@ -12,7 +12,7 @@ An instruction pasted into a chat applies within the available context. Repeat i
 
 ## Application settings
 
-Use the generated HTML guide to choose an application and follow its displayed route. Copy one edition into the appropriate instruction field and save. Preserve any existing personal instructions before changing them. If the text does not fit, use the compact edition. If the setting is absent, use the chat route.
+Choose an application in the [HTML guide](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_AI_1.2.0.html) and follow its installation steps. Copy one edition into the appropriate instruction field and save. Preserve any existing personal instructions before changing them. If the text does not fit, use the compact edition. If the setting is absent, use the chat route.
 
 To update, replace the old beforeword text in the same field with the new edition, save, and start a new chat. To remove it, delete only the beforeword text from that field and save. A conversational request to stop does not erase the saved setting.
 
@@ -28,7 +28,7 @@ The guide offers three different archive structures. They are alternatives for d
 
 RU archives use `_RU_` in the corresponding names. Install one language edition at a time: the shared skill/plugin name is not intended for parallel copies. Instruction language does not force the output language; specify the language of your request when needed.
 
-Where an application provides no edit/replace control, use its remove and create/import controls to replace the old skill. Confirm the displayed text after replacement. A ZIP attached to an ordinary chat is not the same operation as importing a skill. Actual import availability, access restrictions, and loading behavior must be checked in the selected account; preparing these archives does not establish that those operations were run.
+Where an application provides no edit/replace control, use its remove and create/import controls to replace the old skill. Confirm the displayed text after replacement. A ZIP attached to an ordinary chat is not the same operation as importing a skill. Available import controls depend on the application and account.
 
 ## API
 

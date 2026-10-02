@@ -1,4 +1,4 @@
-name: Validate local release
+name: Validate beforeword
 
 on:
   push:
@@ -36,10 +36,10 @@ jobs:
         run: python3 scripts/build_public.py --output build/site --github-url https://github.com/beforeword/beforeword
       - name: Check site files and simulated interactions
         run: node scripts/test_public.cjs build/site/public_html
-      - name: Retain prepared files for review
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: beforeword-prepared-files
+          name: beforeword-build
           path: |
             build/toolkit/
             build/site/

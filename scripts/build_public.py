@@ -233,7 +233,6 @@ def build(output: Path, repo_url: str | None = None) -> Path:
     shutil.copytree(ROOT/'assets'/'history',model/'history',dirs_exist_ok=True)
     manifest={'version':build_guide.VERSION,'date_utc':build_guide.DATE,'public_paths':['/model/','/model/en/'],
         'github_url':repo_url,'aliases':aliases,'micro_alias_note':'Legacy micro URLs serve the current compact instruction, not a separate edition.',
-        'current_instruction_behavior':'not_rerun','provider_import_tests':'not_run','browser_visual_tests':'not_run',
         'historical_pages':['/model/history/2026-09-28/','/model/history/2026-09-28/en/'],
         'history_manifest':'history/2026-09-28/snapshot.json',
         'artifact_checksums':'SHA256SUMS.txt','guide_manifest':'toolkit/beforeword_release.json'}

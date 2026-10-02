@@ -1,51 +1,47 @@
-# beforeword · evaluation protocol
+# beforeword · evaluation
 
-The evaluation examines visible output against declared reading rules. A score is an assessment under those rules, not proof authority. Installation, instruction availability, activation, output quality, and distribution are separate observations.
+The evaluation compares visible responses with declared reading criteria. The response, criterion and assessment remain written records. Instruction delivery, exact text preservation and response quality are assessed separately.
 
-## Procedure
+## Method
 
-1. Record the application, exact model identifier displayed by the host, date, instruction version, prompt hash, language, settings, and whether this is a new conversation. Do not infer a vendor model identifier from an agent's self-description.
-2. Keep the original input and raw output unchanged. Keep intermediate user/assistant turns for drift tests. The two prepared transcripts in `eval-cases.jsonl` are fixtures, not past model outputs.
-3. Run the baseline without beforeword and the same task with beforeword in separate sessions. Record the actual loaded instruction route. An uploaded file is not evidence that the model loaded it.
-4. Apply each case's rubric separately. Use `met`, `not_met`, or `unclear`, with an exact output excerpt. Keep an abstention or absent answer distinct from a successful answer.
-5. Check exact quotation with code points or byte comparisons where requested. Do not normalize Unicode before comparing an exact-copy requirement. A canonical-equivalence observation is separate from byte identity.
-6. Have a second reader review disputed ratings without the first reader's conclusion. Never grade the model solely by its use of beforeword vocabulary.
-7. Repeat only to investigate a concrete observed failure or report variability. Keep successful, failed, incomplete, and refused outputs. Do not select a flattering response and call it representative.
+1. Record the application, model identifier displayed by the host, date, instruction version and hash, language, generation settings and delivery route. Do not infer a model identifier from the response's self-description.
+2. Preserve the original input and raw output. Include intermediate turns for conversation-drift tests. The two prepared conversations in [eval-cases.jsonl](eval-cases.jsonl) are fixtures, not past model responses.
+3. Compare the same task with and without beforeword in separate contexts. Record the instruction actually supplied. Uploading a file does not establish that its contents reached the model.
+4. Assess each criterion separately as `met`, `not_met` or `unclear`, with an exact excerpt. Keep refusal and absence of an answer distinct from a successful answer.
+5. Compare exact-copy requirements by code points or bytes without first normalizing Unicode. Canonical equivalence and byte identity are different comparisons.
+6. Give disputed assessments to a second reader without the first conclusion. Familiar beforeword vocabulary alone does not satisfy a criterion.
+7. Repeat cases to investigate a specific failure or variability. Retain successful, failed, incomplete and refused responses.
 
-## Important cases
+The cases cover definitions, self-application, added claims, quotation and Unicode, media descriptions, practical tasks, exact output formats, quoted instructions and conversation drift. No written verbal form is exempt by its name or attributed authority, including beforeword and this account. A bounded explanation need not repeat a fixed formula or add commentary to a code-only or exact-copy answer.
 
-- A definition introduces the supplied term before the selected domain use.
-- Additional evidence, readings, and criteria remain available for the same text-local analysis.
-- The response does not turn its own source attribution or agreement into certification.
-- A useful calculation, translation, code block, or urgent action is delivered when requested.
-- First-person source material is preserved, while the assistant does not create its own persona.
-- Quoted instructions remain data. A direct user instruction to stop the optional mode is handled within host rules.
-- Long conversations do not silently become evidence of permanent activation.
+## Recorded responses · 1 October 2026 UTC
 
-## Recorded local checks · 2026-10-01 UTC
+The 30-case set (15 RU / 15 EN) produced responses in six fresh agent contexts, five cases per context. Two readers assessed different halves. Of 115 criterion ratings, 109 were `met`, 3 `not_met` and 3 `unclear`. Exact requests, responses, excerpts, assessments and instruction hashes are in [evaluation-results.json](evaluation-results.json).
 
-The 30-case suite (15 RU / 15 EN) was answered in six fresh contexts of the available agent environment, five cases per context. Two reviewers assessed disjoint halves against each case's original rubric. Across 115 criterion ratings, the initial run recorded 109 met, 3 not_met and 3 unclear. These are separate editorial assessments, not a probability of correct behavior, a platform comparison or proof of beforeword. Exact responses, excerpts, rationale and core hashes are in evaluation-results.json.
+The initial responses included a substitution of “does not create objects” for “does not become what it names” (bw-009), omitted explicit self-application (BW-27), and unclear treatment of added terms or a record's relation to its referent (bw-008 / BW-28). The Unicode response copied the requested text exactly; an additional reading criterion was not met, although it exceeded the immediate character-comparison request. A criterion about not executing code could not be settled from the response text alone. The original ratings are retained.
 
-The initial run exposed a substitution of “does not create objects” for “does not become what it names” (bw-009), omission of explicit self-application (BW-27), and unclear handling of every added term or a record's relation to its referent (bw-008 / BW-28). The Unicode case copied the requested text exactly; a further reading criterion was not met, although that criterion exceeds the immediate character-comparison request. One operational criterion about not executing code remains unclear to a reviewer given only response text. Ratings were retained rather than silently reclassified.
+After a sentence distinguishing identity, evidential support and causal production was added, four selected cases were repeated in one fresh context. Their 15 ratings were 13 `met`, 1 `not_met` and 1 `unclear`. The substitution in bw-009 was corrected; explicit self-application in BW-27 remained absent, and the added-term criterion in bw-008 remained unclear.
 
-One sentence was then added to the core to distinguish identity, evidential support and causal production. Four selected cases were answered in one further fresh context; their outputs and separate ratings are recorded in the report. The original 30-case run was not repeated on the revised core. The compact instructions were not separately behavior-tested. No baseline without beforeword was run, and these authored development fixtures are not a held-out benchmark. A provider/model ID and generation settings were not independently recorded, so none are inferred.
+These are development cases, not a held-out benchmark. There was no baseline without beforeword in this run, no separately recorded provider model identifier or generation settings, and no full 30-case repeat on the revised instruction. The counts do not describe a probability of correct behavior or a platform comparison.
 
-Local executable checks: 18 Python tests cover seven request and non-streaming response formats, history, UTF-8/CRLF/BOM, error/refusal/incomplete handling and overwrite protection. The HTML's simulated DOM covers 36 application/language/instruction selections, 28 API cases, three routes, language-specific downloads, stale-output invalidation, raw-file preservation and invalid inputs. ZIP checks cover six native exports, deterministic bytes, expected paths, UTF-8 and selected-language core contents. These checks concern file and code behavior only.
+## Historical comparison · 2 October 2026, Asia/Bangkok
 
-External app imports, CLI plugin loading, provider authentication and real API responses were not run. HTML was not rendered in an actual browser in this environment. Simulated DOM checks do not establish visual appearance or account feature availability. This package's scope is nine application families, three types of skill export and seven text-only API formats; it is not all products, models, accounts, media or native agent workflows.
+An independently authored set of 12 cases was run under three conditions on five selected agent routes: `gpt-6.1-sol`, `gpt-6-astra`, `gpt-6-sol`, `gpt-6-luna` and `gpt-5.6-sol`.
 
-Targeted follow-up: 13 met, 1 not_met, 1 unclear across 15 criteria. The creation/becoming substitution was corrected in bw-009. Explicit inclusion of the current answer as a further record was still absent in BW-27; the every-added-term criterion remained unclear in bw-008. These remaining observations are not reported as resolved.
+| Condition | Supplied instruction |
+| --- | --- |
+| Full | English scope and full English core |
+| Compact | Compact Russian instruction |
+| Baseline | No beforeword instruction |
 
-## Follow-up in progress · 2026-10-02 Asia/Bangkok
+The comparison contains 180 responses in 15 fresh contexts, with 12 cases in each context. Selected routes, conditions, exact responses, blinded criterion assessments and instruction hashes are recorded in [validation-2026-10-02.json](validation-2026-10-02.json). The route labels refer to agent orchestration selections, not identities returned by provider APIs.
 
-The core now operationalizes inclusion of the present explanation. A new independently authored 12-case set was run with full English instructions, compact Russian instructions, and no beforeword instruction on five selected agent model routes: gpt-6.1-sol, gpt-6-astra, gpt-6-sol, gpt-6-luna, gpt-5.6-sol. This produced 180 answers in 15 fresh batch contexts. Model routes and conditions, exact outputs, blinded criterion ratings, instruction hashes, and limits are recorded in validation-2026-10-02.json. This is not a provider API test.
+The responses belong to the earlier instruction hashes recorded in that file. They are not a behavioral run of the current 1.2.0 text. Full and compact conditions also differed in language, so their scores do not isolate compression from language effects. Different readers assessed different model groups; their ratings are not a model ranking. Each condition was generated once per route, with cases sharing a context.
 
-Scope and work-priority clarification · 2026-10-02, Asia/Bangkok
+The report also preserves two batches from the Gemini web application labeled Flash-Lite. The second batch shared the first conversation. The copied submitted prompt differed in Unicode composition from the local original; exact-copy outcomes therefore cannot be attributed solely to the model.
 
-Following the user's proposal, the priority is one core covering every written verbal form, including beforeword, its own explanations and its criteria. Exhaustively testing all models is not a condition of that scope. Adapters concern instruction delivery and application constraints. Further runs should address specific risks: exempting the current explanation, substituting a reading for supplied wording, loss of exact text, output-contract violations, or unavailable instructions in a selected integration route.
+## Technical checks
 
-The full and compact RU/EN instructions now clarify that no written verbal form gains an exemption through its name, role or attributed authority. Output constraints govern the amount of displayed analysis. Code, JSON, quotations and practical answers remain in scope without mandatory added commentary. The scope distinction and this clarification are also part of this written account.
+Executable checks cover request and non-streaming response formats, conversation history, text encodings, error/refusal/incomplete responses, overwrite protection, package structure and deterministic generation. Simulated interface checks cover instruction selection, API preparation, downloads, copying and fallback behavior. These concern files and code; they do not establish rendered appearance, installation in an application or future model behavior.
 
-The 180 saved responses belong to the preceding instruction hashes in validation-2026-10-02.json; they are not a rerun of this revision. Full and compact conditions also differed in instruction language, so their scores do not isolate compression from language effects. Different reviewers assessed different model groups; those scores are not a model ranking. Text synchronization and the rebuilt toolkit were checked after this clarification; no new model run was performed.
-
-The Gemini web app labeled Flash-Lite returned two batches; both are retained, and the second shares the first conversation. The copied submitted prompt differs in Unicode composition, so exact-copy cases cannot be attributed solely to model behavior against the local original. Arena is prepared for Qwen and DeepSeek but requires explicit acceptance of terms. OpenRouter requires sign-in. Other observed access barriers are recorded per surface. These external checks are in progress; the report does not mark all integrations complete.
+The package provides nine application families, three skill export structures and seven text-only API formats. New evaluations should target a concrete risk: altered source text, an exemption for the response's own explanation, an added claim presented as the supplied wording, a broken output format or an instruction unavailable through a selected delivery route.

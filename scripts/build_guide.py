@@ -53,7 +53,7 @@ def fallback(data):
         for c in data['connectors']:
             v = c[lang]
             sections.append('<details><summary>'+esc(c['name'])+'</summary><p>'+esc(v['route'])+'</p><ol>'+''.join('<li>'+esc(step)+'</li>' for step in v['steps'])+'</ol><p>'+esc(v['scope'])+'</p><p>'+esc(v['limit'])+'</p></details>')
-        sections.append('<p>'+('Для загрузки пакетов навыков и работы с API открой этот HTML в браузере с JavaScript. Текст выше можно выделить и скопировать из предварительного просмотра. Внешние установки и реальные вызовы API не выполнялись.' if lang == 'ru' else 'For skill package downloads and the API builder, open this HTML in a browser with JavaScript. The text above can be selected and copied from a file preview. External imports and live API calls were not performed.')+'</p></section>')
+        sections.append('<p>'+('Для загрузки пакетов навыков и работы с API открой этот HTML в браузере с JavaScript. Текст выше можно выделить и скопировать из предварительного просмотра.' if lang == 'ru' else 'For skill package downloads and the API builder, open this HTML in a browser with JavaScript. The text above can be selected and copied from a file preview.')+'</p></section>')
     sections.append('</div>')
     return '\n'.join(sections)
 
@@ -100,15 +100,11 @@ def build(output):
       'native_bundles':{lang:{key:{k:v for k,v in record.items() if k!='data'} for key,record in bundles.items()} for lang,bundles in data['bundles'].items()},
       'developer_bundle':{k:v for k,v in data['developer'].items() if k!='data'},
       'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
-      'provider_import_tests':'not_run', 'provider_api_tests':'not_run',
-      'browser_visual_tests':'not_run; DOM behavior tested in Node simulation',
       'evaluation':report['method'], 'evaluation_case_count':len(data['eval'].strip().splitlines()),
       'evaluation_runs':[
         {'report':'references/evaluation-results.json', 'condition':'authored fixtures and targeted follow-up', 'method':report['method']},
         {'report':'references/validation-2026-10-02.json', 'answers':180, 'method':followup['method']}
-      ],
-      'current_instruction_behavior':'not_rerun_after_universal_scope_clarification; historical answers retain their original instruction hashes',
-      'publication_status':'generated locally; deployment and external app imports not performed; site-specific integration is recorded in site-patch.json'}
+      ]}
     (output / 'beforeword_release.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return path
 

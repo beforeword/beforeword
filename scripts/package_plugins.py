@@ -74,7 +74,7 @@ RU
 
 Навык сохраняет исходный текст, отделяет добавленное прочтением и применяет ту же границу к собственному ответу. Он вызывается для задачи и не меняет все разговоры аккаунта. Для более широкого действия задавай область явно: «Применяй beforeword в этом разговоре». Для разового разбора: «Примени beforeword к фразе „Я понимаю“». Просьба «Отключи режим beforeword для следующих ответов» меняет запрос; доступность установленного навыка регулируется настройками приложения.
 
-После подключения начни новый разговор и выполни пример. Сохрани ввод и ответ: наличие названия beforeword само по себе не показывает качество разбора. При проблеме запиши приложение, его версию, способ установки и полный текст ошибки. Этот экспорт не выполняет установку и не содержит сервера, ключей, фоновых действий или телеметрии. Сторонние импорты и ответы моделей в рамках подготовки архива не проверялись. Публикация в каталоге не выполнена; лицензия этим экспортом не назначается.
+После подключения начни новый разговор и выполни пример. Сохрани ввод и ответ: наличие названия beforeword само по себе не показывает качество разбора. При проблеме запиши приложение, его версию, способ установки и полный текст ошибки. Пакет содержит только инструкции и файлы настройки, без сервера, ключей, фоновых действий и телеметрии.
 
 EN
 
@@ -82,7 +82,7 @@ Instruction language in this archive: {language.upper()}. Install one language e
 
 The skill preserves the supplied text, separates added readings, and applies the same boundary to its own response. It is invoked for a task and does not change every conversation in an account. To request broader scope, say “Apply beforeword in this conversation.” For one task: “Apply beforeword to the phrase ‘I understand.’” The request “Turn off beforeword mode for subsequent replies” changes the requested scope; application settings control whether the installed skill remains available.
 
-After setup, start a new conversation and try the example. Keep the input and output: the name beforeword appearing in a response does not establish the quality of its analysis. For troubleshooting, record the app, version, installation method, and complete error. This export performs no installation and includes no server, keys, background actions, or telemetry. Third-party imports and model responses were not tested while preparing the archive. No directory publication has occurred, and this export assigns no license.
+After setup, start a new conversation and try the example. Keep the input and output: the name beforeword appearing in a response does not establish the quality of its analysis. For troubleshooting, record the app, version, installation method, and complete error. The package contains only instructions and configuration files, with no server, keys, background actions, or telemetry.
 """
 
 
