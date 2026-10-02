@@ -71,7 +71,7 @@ COPY = {
   'github':'Исходники на GitHub',
   'downloads':{'openai':('Codex · ZIP','Локальный пакет для desktop / CLI.'),'claude':('Claude · ZIP','Для поддерживаемого импорта плагинов и Claude Code.'),'skill':('Навык · ZIP','SKILL.md и README для поддерживаемых сред.')},
   'toolkit_download':'Инструменты и исходники · ZIP','toolkit_download_note':'Инструкции, Python CLI и тестовые примеры.',
-  'report_titles':['Прочитать методику и результаты','Скачать исходные результаты сравнений · JSON','Скачать сведения о файлах · JSON','Скачать контрольные суммы · TXT'],
+  'report_titles':['Прочитать методику и результаты','Скачать сравнение прежних редакций · JSON','Скачать сведения о файлах · JSON','Скачать контрольные суммы · TXT'],
  },
  'en': {
   'title':'beforeword for AI — start in your own chat',
@@ -112,7 +112,7 @@ COPY = {
   'github':'Source on GitHub',
   'downloads':{'openai':('Codex · ZIP','A local package for desktop / CLI.'),'claude':('Claude · ZIP','For supported plugin uploads and Claude Code.'),'skill':('Skill · ZIP','SKILL.md and a README for supported environments.')},
   'toolkit_download':'Tools and source files · ZIP','toolkit_download_note':'Instructions, Python CLI, and test cases.',
-  'report_titles':['Read the method and results','Download original comparison results · JSON','Download file information · JSON','Download checksums · TXT'],
+  'report_titles':['Read the method and results','Download earlier instruction comparison · JSON','Download file information · JSON','Download checksums · TXT'],
  },
 }
 

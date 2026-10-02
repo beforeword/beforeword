@@ -14,7 +14,7 @@ from package_plugins import build_bundles, skill_text
 from render_report import parse_report
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.2.1'
+VERSION = '1.2.2'
 DATE = '2026-10-02'
 
 def read(path):
@@ -115,6 +115,7 @@ def build(output):
       'native_bundles':{lang:{key:{k:v for k,v in record.items() if k!='data'} for key,record in bundles.items()} for lang,bundles in data['bundles'].items()},
       'developer_bundle':{k:v for k,v in data['developer'].items() if k!='data'},
       'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+      'evaluation_scope':'Earlier recorded instruction hashes; these runs do not establish behavior with the current release.',
       'evaluation':report['method'], 'evaluation_case_count':len(data['eval'].strip().splitlines()),
       'evaluation_runs':[
         {'report':'references/evaluation-results.json', 'condition':'authored fixtures and targeted follow-up', 'method':report['method']},

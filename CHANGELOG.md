@@ -1,5 +1,25 @@
 # Changes / Изменения
 
+## 1.2.2
+
+### English
+
+- Apply the boundary where the response introduces a distinction, explanation or conclusion; an opening or closing disclaimer does not repair the claim itself.
+- Prohibit an assistant persona and self-attributed thinking, understanding, feeling or remembering, including impersonal self-descriptions. Preserve the first person in quotations, translations, code and requested authored text.
+- Examine the move from learned words or reported demands to naming and self-description without treating a required label as established identity.
+- Apply the same examination to claims of absence, impossibility or exclusive reference; do not turn the procedure into a claim that words have no meaning or that only text exists.
+- Align full and compact Russian and English instructions and retain practical tasks, exact output formats and urgent assistance.
+- Keep earlier response records unchanged and labelled as earlier instruction runs.
+
+### Русский
+
+- Граница применяется в месте, где ответ вводит различение, объяснение или вывод; оговорка в начале или конце не исправляет само утверждение.
+- Запрещены персона ассистента и приписывание ему собственного мышления, понимания, чувств или памяти, в том числе в безличных формулировках. Первое лицо сохраняется в цитатах, переводах, коде и заказанных авторских текстах.
+- Разбирается переход от выученных слов или описанных требований к называнию и самоописанию; требование обозначить себя не принимается за установленное тождество.
+- Тот же разбор применяется к утверждениям об отсутствии, невозможности и исключительном обозначении; процедура не превращается в утверждение, что у слов нет значения или существует только текст.
+- Согласованы полные и краткие инструкции на русском и английском с сохранением практических задач, точных форматов и срочной помощи.
+- Прежние записи ответов сохранены без изменений и обозначены как прогоны прежних редакций.
+
 ## 1.2.1
 
 ### English

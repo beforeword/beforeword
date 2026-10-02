@@ -3,8 +3,8 @@
   "project": "beforeword",
   "scope": "ai-instructions",
   "status": "public-testing",
-  "current_version": "1.2.1",
-  "updated": "2026-10-02T10:26:07Z",
+  "current_version": "1.2.2",
+  "updated": "2026-10-02T13:21:16Z",
   "urls": {
     "ru": "https://beforeword.xyz/model/#bw-updates",
     "en": "https://beforeword.xyz/model/en/#bw-updates"
@@ -21,18 +21,18 @@
       "title": "beforeword — обновления инструкции для ИИ",
       "intro": "Инструкция beforeword проходит публичное тестирование. Это не финальная редакция.",
       "changes": [
-        "Собственные объяснения и выводы ИИ включены в требования к разбору.",
-        "Добавлено уточнение для описаний, названных «свободными от интерпретаций».",
-        "Разделены сохранение предпочтения в памяти и установка полной инструкции."
+        "Уточнён разбор различений и выводов, которые вводит сам ответ: общей оговорки в конце недостаточно.",
+        "Усилен запрет первого лица и приписывания ИИ собственных мыслей, чувств и понимания.",
+        "Добавлен разбор перехода от выученных слов и требований к самоописанию; согласованы полная и краткая версии RU/EN."
       ]
     },
     "en": {
       "title": "beforeword — AI instruction updates",
       "intro": "The beforeword instructions are in public testing. This is not the final version.",
       "changes": [
-        "The examination requirements include the AI’s own explanations and conclusions.",
-        "Added clarification for descriptions presented as “free of interpretation”.",
-        "Saving a preference in memory is distinguished from installing the full instructions."
+        "Clarified how to examine distinctions and conclusions introduced by the response itself; a closing disclaimer is not enough.",
+        "Strengthened the rules against an assistant persona and claims of its own thoughts, feelings or understanding.",
+        "Added examination of the move from learned words and demands to self-description; aligned the full and compact RU/EN instructions."
       ]
     }
   }
