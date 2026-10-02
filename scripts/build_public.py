@@ -61,18 +61,16 @@ COPY = {
   'advanced_open':'Открыть варианты подключения и скачивания','open_toolkit':'Открыть расширенное руководство',
   'toolkit_note':'Руководство с переключателем RU / EN: способы подключения, инструкции установки и локальный конструктор JSON для API. Можно сохранить HTML и пользоваться им без сети.',
   'native_note':'Скачивание не устанавливает пакет. Порядок установки, вызова, обновления и удаления находится в README каждого архива. Доступность импорта зависит от приложения и аккаунта. На телефоне начни с инструкции в чате.',
-  'checks_title':'Редакция и проверки','checks_copy':'В отчётах ниже указаны тексты инструкций, условия сравнения и полученные ответы. Результаты относятся к указанным там редакциям и условиям. Инструкция, критерии проверки и сами отчёты также остаются записями.',
-  'history_title':'История: страница от 28 сентября 2026',
-  'history_copy':'Сохранены прежние примеры, четыре текста инструкции и авторская сводка сравнения 27 сентября. Они относятся к прежней редакции и не описывают проверку нынешней инструкции.',
-  'history_link':'Открыть архивную страницу и сводку сравнения',
-  'version_line':'Редакция {version} · {date}.',
+  'checks_title':'Методика и проверки','checks_copy':'Как проверять ответы, какие ошибки обнаружены и на что распространяются результаты.',
+  'version_line':'Версия инструкции: {version}.',
+  'data_title':'Исходные данные и проверка скачиваний',
   'privacy':'Страница не отправляет введённые данные и не содержит аналитики. Копирование выполняется в браузере. Переход в приложение или передача ему текста регулируются условиями этого сервиса.',
   'top':'К началу','copied':'Скопировано. Вставь текст в выбранном приложении.','selected':'Текст выделен. Выбери «Копировать» в меню устройства или нажми Ctrl/Cmd+C.','copy_failed':'Выдели нужный текст и скопируй вручную. Инструкции также доступны по ссылкам «Скачать TXT».',
   'full_link':'Полная инструкция','compact_link':'Краткая инструкция','documentation':'Документация','use_full':'Используй полную инструкцию для выбранного проекта или разговора.','use_compact':'Используй краткую инструкцию для поля настроек.',
-  'github':'Исходники на GitHub','github_note':'Версии, история изменений и обсуждение воспроизводимых примеров.',
+  'github':'Исходники на GitHub',
   'downloads':{'openai':('Codex · ZIP','Локальный пакет для desktop / CLI.'),'claude':('Claude · ZIP','Для поддерживаемого импорта плагинов и Claude Code.'),'skill':('Навык · ZIP','SKILL.md и README для поддерживаемых сред.')},
-  'toolkit_download':'Инструменты и исходники · ZIP','toolkit_download_note':'Python CLI, инструкции API, тесты и сборка страницы.',
-  'report_titles':['Методика и выполненные проверки','Скачать исходные результаты сравнений · JSON','Скачать манифест этой сборки · JSON','Скачать контрольные суммы · TXT'],
+  'toolkit_download':'Инструменты и исходники · ZIP','toolkit_download_note':'Инструкции, Python CLI и тестовые примеры.',
+  'report_titles':['Прочитать методику и результаты','Скачать исходные результаты сравнений · JSON','Скачать сведения о файлах · JSON','Скачать контрольные суммы · TXT'],
  },
  'en': {
   'title':'beforeword for AI — start in your own chat',
@@ -104,18 +102,16 @@ COPY = {
   'advanced_open':'Show connection options and downloads','open_toolkit':'Open the advanced guide',
   'toolkit_note':'The guide opens with an RU / EN language switch: connection methods, installation steps, and a local API JSON builder. You can save the HTML and use it offline.',
   'native_note':'Downloading a package does not install it. Each archive’s README covers installation, invocation, updating, and removal. Import availability depends on the app and account. On a phone, start with the chat instructions.',
-  'checks_title':'Revision and checks','checks_copy':'The reports below include the instructions, comparison conditions, and responses. Results apply to the revisions and conditions specified there. The instructions, evaluation criteria, and reports also remain written records.',
-  'history_title':'History: the 28 September 2026 page',
-  'history_copy':'The earlier examples, four instruction texts, and the author’s summary of the 27 September comparison are preserved. They concern an earlier edition and do not evaluate the current instructions.',
-  'history_link':'Open the archived page and comparison summary',
-  'version_line':'Revision {version} · {date}.',
+  'checks_title':'Method and checks','checks_copy':'How to examine responses, which errors were found, and what the results cover.',
+  'version_line':'Instruction version: {version}.',
+  'data_title':'Source data and download verification',
   'privacy':'This page does not transmit entered data or include analytics. Copying takes place in your browser. Opening another app or sending text to it is subject to that service’s terms.',
   'top':'Back to top','copied':'Copied. Paste the text in your chosen app.','selected':'Text selected. Choose Copy from your device menu or press Ctrl/Cmd+C.','copy_failed':'Select the text and copy it manually. The instructions are also available through the “Download TXT” links.',
   'full_link':'Full instructions','compact_link':'Compact instructions','documentation':'Documentation','use_full':'Use the full instructions for the selected project or conversation.','use_compact':'Use the compact instructions for the settings field.',
-  'github':'Source on GitHub','github_note':'Versioned downloads, change history, and discussion of reproducible examples.',
+  'github':'Source on GitHub',
   'downloads':{'openai':('Codex · ZIP','A local package for desktop / CLI.'),'claude':('Claude · ZIP','For supported plugin uploads and Claude Code.'),'skill':('Skill · ZIP','SKILL.md and a README for supported environments.')},
-  'toolkit_download':'Tools and source files · ZIP','toolkit_download_note':'Python CLI, API instructions, tests, and page build files.',
-  'report_titles':['Method and completed checks','Download original comparison results · JSON','Download the build manifest · JSON','Download checksums · TXT'],
+  'toolkit_download':'Tools and source files · ZIP','toolkit_download_note':'Instructions, Python CLI, and test cases.',
+  'report_titles':['Read the method and results','Download original comparison results · JSON','Download file information · JSON','Download checksums · TXT'],
  },
 }
 
@@ -205,7 +201,6 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         'COMPACT_COUNT':f'{len(compact):,} {t["characters"]}'.replace(',','\u2009'),
         'NAV':nav(language,current='location' if evaluation else 'page'),'SETTINGS_ROUTES':settings(language,connectors),
         'FOOTER_NAV':nav(language,footer=True,current='location' if evaluation else 'page'),
-        'HISTORY_URL':'/model/history/2026-09-28/'+('en/' if language == 'en' else '')+'#comparison-20260927',
         'APP_LINKS':''.join('<a href="'+escape(url)+'" target="_blank" rel="noopener noreferrer">'+escape(name)+'</a>' for name,url in APP_URLS),
         'LANGUAGES':('<span lang="ru" aria-current="page">RU</span><span aria-hidden="true">/</span><a href="'+route+'en/" hreflang="en" lang="en">EN</a>' if language == 'ru' else '<a href="'+route+'" hreflang="ru" lang="ru">RU</a><span aria-hidden="true">/</span><span lang="en" aria-current="page">EN</span>'),
         'VERSION_LINE':escape(t['version_line'].format(version=build_guide.VERSION,date=build_guide.DATE)),
@@ -216,14 +211,16 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         cards.append('<div class="card"><a href="/model/downloads/'+escape(record['name'])+'" download>'+escape(label)+' · '+language.upper()+'</a><small>'+escape(note)+'</small></div>')
     cards.append('<div class="card"><a href="/model/downloads/beforeword_toolkit.zip" download>'+escape(t['toolkit_download'])+'</a><small>'+escape(t['toolkit_download_note'])+'</small></div>')
     values['DOWNLOADS']=''.join(cards)
-    values['GITHUB']=('<p><a class="button" href="'+escape(repo_url)+'" target="_blank" rel="noopener noreferrer">'+escape(t['github'])+'</a></p><p class="small">'+escape(t['github_note'])+'</p>') if repo_url else ''
+    values['GITHUB']=('<p><a class="button" href="'+escape(repo_url)+'" target="_blank" rel="noopener noreferrer">'+escape(t['github'])+'</a></p>') if repo_url else ''
     report_paths = ['/model/evaluation/'+('en/' if language == 'en' else ''),'/model/reports/validation-2026-10-02.json','/model/release.json','/model/SHA256SUMS.txt']
-    values['REPORT_LINKS']=''.join('<li><a href="'+path+'"'+(' download' if index else '')+'>'+escape(label)+'</a></li>' for index,(path,label) in enumerate(zip(report_paths,t['report_titles'])))
+    links=['<li><a href="'+path+'"'+(' download' if index else '')+'>'+escape(label)+'</a></li>' for index,(path,label) in enumerate(zip(report_paths,t['report_titles']))]
+    values['REPORT_LINKS']=links[0]
+    values['DATA_LINKS']=''.join(links[1:])
     template = read('assets/public.template.html')
     if evaluation:
         back_url = '/model/'+('en/' if language == 'en' else '')+'#checks'
         back_label = 'Вернуться к инструкции для ИИ' if language == 'ru' else 'Back to the AI instructions'
-        download_label = 'Скачать исходный текст · MD · UTF-8' if language == 'ru' else 'Download the source text · MD · UTF-8'
+        download_label = 'Скачать текст методики · MD' if language == 'ru' else 'Download the method · MD'
         main = ('<main id="main" tabindex="-1">\n'
                 '<div class="report-heading"><a class="text-link" href="'+back_url+'">'+back_label+'</a>'
                 '<h1 id="title">'+escape(report_title)+'</h1></div>\n'

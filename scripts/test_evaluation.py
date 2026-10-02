@@ -108,17 +108,18 @@ class EvaluationDelivery(unittest.TestCase):
                 self.assertEqual(doc.find('h1')[0].text(), source.read_text(encoding='utf-8').splitlines()[0][2:])
                 actual = [node.text() for node in article.find() if node.tag in {'h2', 'p', 'li', 'th', 'td'}]
                 self.assertEqual([normalize(x) for x in actual], [normalize(x) for x in source_blocks(source.read_text(encoding='utf-8'))])
-                self.assertEqual(len(article.find('h2')), 4)
+                markdown = source.read_text(encoding='utf-8')
+                self.assertEqual(len(article.find('h2')), len(re.findall(r'^## ', markdown, re.M)))
                 self.assertEqual(len(article.find('ol')), 1)
-                self.assertEqual(len(article.find('li')), 7)
-                self.assertEqual(len(article.find('th', scope='col')), 2)
-                self.assertEqual(len(article.find('tbody')[0].find('tr')), 3)
+                self.assertEqual(len(article.find('li')), len(re.findall(r'^\d+\. ', markdown, re.M)))
+                self.assertNotRegex(article.text(), r'Asia/Bangkok|\bUTC\b|\b2026\b|[bB][wW]-\d+|gpt-6|not_met|\.jsonl?\b')
+                self.assertFalse([node for node in article.find('code') if node.text() in {'met', 'not_met', 'unclear'}])
                 self.assertFalse(article.find('pre'))
                 self.assertFalse(article.find('script'))
                 raw_url = '/model/reports/evaluation.'+language+'.md'
                 download = doc.find('a', href=raw_url)[0]
                 self.assertIn('download', download.attrs)
-                self.assertIn('UTF-8', download.text())
+                self.assertIn('MD', download.text())
                 self.assertEqual((SITE / raw_url.lstrip('/')).read_bytes(), source.read_bytes())
                 for node in doc.find():
                     url = node.attrs.get('href', node.attrs.get('src', ''))
@@ -132,9 +133,14 @@ class EvaluationDelivery(unittest.TestCase):
 
                 landing = Document((SITE / 'model' / suffix / 'index.html').read_text(encoding='utf-8')).root
                 links = landing.find('ul', **{'class': 'report-links'})[0].find('a')
+                self.assertEqual(len(links), 1, 'Reader section has one clear destination')
                 self.assertEqual(links[0].attrs['href'], route)
                 self.assertNotIn('download', links[0].attrs)
-                for link, kind in zip(links[1:], ['JSON', 'JSON', 'TXT']):
+                advanced = landing.find('section', id='advanced')[0].find('details')[0]
+                self.assertNotIn('open', advanced.attrs)
+                files = advanced.find('ul', **{'class': 'data-links'})[0].find('a')
+                self.assertEqual(len(files), 3)
+                for link, kind in zip(files, ['JSON', 'JSON', 'TXT']):
                     self.assertIn('download', link.attrs)
                     self.assertIn(kind, link.text())
                     self.assertIn('Скачать' if language == 'ru' else 'Download', link.text())

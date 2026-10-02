@@ -81,7 +81,8 @@ function checkArtifacts() {
       assert.ok(ids.includes(id), 'Existing public anchor retained: ' + id);
     }
     assert.ok(ids.includes('comparison-20260927'), 'Historical comparison anchor retained');
-    assert.ok(html.includes('/model/history/2026-09-28/' + (lang === 'en' ? 'en/' : '') + '#comparison-20260927'), 'Historical comparison points to a dated snapshot');
+    assert.ok(!html.includes('href="/model/history/'), 'Current reader page does not promote internal dated history');
+    assert.ok(!html.includes('id="history-title"'), 'No visible archived-edition section');
     for (const m of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
       const target = decode(m[1]);
       if (target.startsWith('#')) assert.ok(ids.includes(target.slice(1)), 'Local fragment target exists');

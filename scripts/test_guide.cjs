@@ -20,17 +20,24 @@ assert(!html.includes('__STATIC_FALLBACK__'),'Static fallback placeholder is unr
 const noScript=html.match(/<noscript>([\s\S]*?)<\/noscript>/);
 assert(noScript&&noScript[1].includes('beforeword'),'Static fallback is missing');
 assert(!/<pre\b[^>]*\bid="evaluation-text"/.test(html),'Reader methodology must not be raw Markdown in a pre block');
+const plainHtml=value=>value.replace(/<[^>]*>/g,'').replace(/&#x27;/g,"'").replace(/&quot;/g,'"').replace(/&gt;/g,'>').replace(/&lt;/g,'<').replace(/&amp;/g,'&');
+const readerClutter=/\bUTC\b|Asia\/Bangkok|\b20\d{2}-\d{2}-\d{2}\b|\bBW-\d+\b|\bgpt-\d[\w.-]*-(?:sol|astra|luna)\b|\b\d{1,2}\s+(?:September|October|сентября|октября)\s+20\d{2}\b/i;
 for(const language of ['ru','en']){
  const body=data[language==='ru'?'evaluationHtmlRu':'evaluationHtml'];
+ const source=data[language==='ru'?'evaluationRu':'evaluation'];
  assert.equal(typeof body,'string','Missing rendered methodology for '+language);
  const article=html.match(new RegExp('<article id="evaluation-'+language+'"[^>]*>([\\s\\S]*?)<\\/article>'));
  assert(article,'Missing semantic methodology article for '+language);
  assert.equal(article[1],body,'Guide must include the complete rendered methodology');
- assert.equal((body.match(/<h4\b/g)||[]).length,4,'Preserve all four methodology sections');
- assert.equal((body.match(/<li>/g)||[]).length,7,'Preserve every method step');
- assert.equal((body.match(/<th scope="col">/g)||[]).length,2,'Comparison needs actual table headers');
- assert.equal((body.match(/<td>/g)||[]).length,6,'Comparison needs all three conditions');
- assert(body.includes('<code>met</code>'),'Ratings must use semantic inline code');
+ assert.equal((body.match(/<h4\b/g)||[]).length,(source.match(/^## /gm)||[]).length,'Preserve every methodology section');
+ assert.equal((body.match(/<li>/g)||[]).length,(source.match(/^\d+\. /gm)||[]).length,'Preserve every method step');
+ const visible=plainHtml(body);
+ for(const line of source.split('\n')){
+  if(!line.trim()||line.startsWith('|'))continue;
+  const expected=line.replace(/^#{1,2} |^\d+\. /,'').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/`([^`]+)`/g,'$1');
+  assert(visible.includes(expected),'Rendered methodology dropped source wording: '+expected);
+ }
+ assert(!readerClutter.test(visible),'Reader methodology must not expose timestamps or internal run identifiers');
  assert(!/\]\([^\n]+\)|<script\b|\bon\w+\s*=/i.test(body),'Methodology must render links without executable HTML');
  for(const filename of ['eval-cases.jsonl','evaluation-results.json','validation-2026-10-02.json']){
   assert(body.includes('href="https://beforeword.xyz/model/reports/'+filename+'" download="'+filename+'"'),'Offline guide requires an absolute source-file link');
@@ -69,6 +76,9 @@ function boot(hash,expectedLanguage){
  assert.equal(nodes['guide-home'].href,'https://beforeword.xyz/model/'+(expectedLanguage==='en'?'en/':''),'Guide return link must preserve the entry language');
  assert.equal(nodes['evaluation-ru'].hidden,expectedLanguage!=='ru');
  assert.equal(nodes['evaluation-en'].hidden,expectedLanguage!=='en');
+ assert.equal(nodes['release-label'].textContent,expectedLanguage==='ru'?'Расширенное руководство':'Advanced guide','Guide hero needs a readable label without release metadata');
+ assert(!readerClutter.test(nodes['release-label'].textContent));
+ assert.equal(nodes['evaluation-title'].textContent,expectedLanguage==='ru'?'Методика и проверки':'Method and checks');
  return context;
 }
 boot('#en','en');boot('#ru','ru');boot('#unknown','ru');
@@ -86,6 +96,8 @@ async function main(){
   assert.equal(nodes[language+'-btn'].attrs['aria-pressed'],'true');
   assert.equal(nodes['evaluation-ru'].hidden,language!=='ru','Methodology visibility must follow selected language');
   assert.equal(nodes['evaluation-en'].hidden,language!=='en','Methodology visibility must follow selected language');
+  assert.equal(nodes['release-label'].textContent,language==='ru'?'Расширенное руководство':'Advanced guide');
+  assert.equal(nodes['evaluation-title'].textContent,language==='ru'?'Методика и проверки':'Method and checks');
   assert(nodes['evaluation-online-note'].textContent.includes(language==='ru'?'подключение':'internet connection'),'Linked source files need a clear connection note');
   assert(nodes['mode-stop-copy'].textContent,'Stop instruction requires its own explanatory label');
   assert.equal(nodes['mode-stop-command'].textContent,language==='ru'?'Отключи режим beforeword для следующих ответов.':'Turn off beforeword mode for subsequent replies.');
@@ -146,7 +158,7 @@ async function main(){
  nodes['api-file'].files=[{name:'invalid.txt',arrayBuffer:async()=>new Uint8Array([0xff]).buffer}];await run('loadInputFile()');assert.equal(run('inputText()'),'edited\n');
  for(const button of buttons)assert(button.textContent&&!button.textContent.includes('undefined'));
  assert(data.developer?.data,'Developer source archive is missing');run('downloadDeveloper()');assert.equal(downloads.at(-1),data.developer.name);assert.deepEqual(Buffer.from(await blobs.at(-1).arrayBuffer()),Buffer.from(data.developer.data,'base64'));
- const report={status:'passed',scope:'simulated DOM and local JavaScript; no visual browser or live providers',adapter_selections:adapterSelections,api_cases:apiCases,languages:['ru','en'],language_entry_cases:['#en','#ru','unknown','default','hash navigation'],methodology:['semantic RU/EN articles','all sections and steps','comparison table','absolute source links','offline and no-JavaScript content','language switching'],routes:3,file_preservation:['BOM','CRLF','Unicode','spacing'],negative_checks:['history','max_tokens','Qwen endpoint','invalid UTF-8'],network_calls:0};
+ const report={status:'passed',scope:'simulated DOM and local JavaScript; no visual browser or live providers',adapter_selections:adapterSelections,api_cases:apiCases,languages:['ru','en'],language_entry_cases:['#en','#ru','unknown','default','hash navigation'],methodology:['semantic RU/EN articles','all source wording and steps','absolute source links','offline and no-JavaScript content','language switching','no visible timestamps or internal run IDs'],routes:3,file_preservation:['BOM','CRLF','Unicode','spacing'],negative_checks:['history','max_tokens','Qwen endpoint','invalid UTF-8'],network_calls:0};
  console.log(JSON.stringify(report,null,2));
 }
 main().catch(error=>{console.error(error.stack);process.exitCode=1});
