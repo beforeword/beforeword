@@ -1,0 +1,164 @@
+{
+  "version": "1.2.3",
+  "repository": "https://github.com/beforeword/beforeword",
+  "source_directory": ".",
+  "build_command": "python3 -B scripts/build_downloads.py",
+  "hash_algorithm": "sha256",
+  "source_files_sha256": {
+    ".github/ISSUE_TEMPLATE/config.yml": "fe40f94ad9b94c0fa9bdff7238da9c2dbaf1f2a7bf4a755735a4061e1e26c415",
+    ".github/ISSUE_TEMPLATE/report_en.yml": "9e575a9e07be80e2182f742eaab3c5139a4f4a56cec128103c2d6aa3d82ba11c",
+    ".github/ISSUE_TEMPLATE/report_ru.yml": "f5016d9cd3f5bb8972e670b74c95665a67402b84705c2ed756321ba877905d5f",
+    ".github/workflows/validate.yml": "2df0adb7d12e94f4636e0db6b44860598de085dd7600adbba1e4eea858f3e564",
+    ".gitignore": "96c739299c21d2f6657630817a9c4efc752c1d3e94166c08703df8b638ae68dd",
+    "CHANGELOG.md": "976a2463df18a6469720e7e9f076676ea60f708b1d08ee1afab03900ec458032",
+    "README.md": "6e5e3581bce36deede576b671bb5092c66a339d89c21b421df5298c5e50b230a",
+    "README.ru.md": "75c826c49ee177b7211e75df7605ae8e41f9d0f59511619126a9119f8871b230",
+    "SKILL.md": "bd9334800f08006030ce180d360b98fbad208d3cf5a983f0d33df285922eb314",
+    "assets/compact.en.txt": "f82d4b7b9ad1df96c310486b49f08b10829d9dcae15d28d2aa8e5168f61f99b6",
+    "assets/compact.ru.txt": "dedecc77b74026923f959b2a8e9ded0a9e77e9578af4707cc232ce5a0970cad0",
+    "assets/core.en.txt": "207060091226322fb04d09853fd0969d35131a2e8204e8b191612682b5512e97",
+    "assets/core.ru.txt": "1e8ff03897eda2727aa3da99d4f2334ed0393fd7124db8edeb64129dc7aa6e58",
+    "assets/guide.template.html": "67ab1539f1abc6467522a96cb6f6f1b2d8cf28514ee4ff45c13746646f74a205",
+    "assets/history/2026-09-28/assets/archive-notice.css": "73dabe7f422c2914c34e5de1f939aa93e1267f80ebdda7ec5713991a12414759",
+    "assets/history/2026-09-28/assets/beforeword-copy-20260928.js": "ea9550d368d944c157b2ee446b8d0be44d1807b0def4858630db5f9f85a017b4",
+    "assets/history/2026-09-28/assets/beforeword-ink-20260920.woff": "1b3a538a3033481cf8b83d2e3efe1a2690ddbbd1ac176fab262aebcd9df72872",
+    "assets/history/2026-09-28/assets/beforeword-ink-20260920.woff2": "4e2e3938732064f942b88565e52769ba27c060bce8fd65910dcf1e5dec70c1ef",
+    "assets/history/2026-09-28/assets/book-paper-20260920.png": "e43ee7bfd4b06c271bb2a1b835e8317bd703ddfd5281a6f152d65e5c922bba74",
+    "assets/history/2026-09-28/assets/book-ui-20260920.css": "8b3dc450b730dd929397c36efeb2cc547d48c2ae468c57fe0734318916c56cea",
+    "assets/history/2026-09-28/assets/favicon-paper-20260920.svg": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
+    "assets/history/2026-09-28/assets/home-reader-20260920.css": "598944a4ada077d7559bff1420ce9d89aa9bb6c1755736aba2ba8d0161003c05",
+    "assets/history/2026-09-28/assets/model-grounds-20260928.css": "6f6c2cde8a7dc2a8aef09384c73643f6d8c108206c3a7be55a213b85e13b9185",
+    "assets/history/2026-09-28/assets/model-reader-20260928.js": "fb0e9060c9141837e26f815f5fd4da6b076005bbcdcd4a108414c1acda9a29e6",
+    "assets/history/2026-09-28/assets/paper-grain-20260920.svg": "83526f47090ff6b222e19e1d33e80b44648608558ee005b58838d417646fab87",
+    "assets/history/2026-09-28/assets/paper-grain-soft-20260928.svg": "eea7351dd135ce66dfb103d7047e3c23e568906aa0bd0762a48cff13c78adf57",
+    "assets/history/2026-09-28/assets/paper-grain-v2-20260920.svg": "652dbb10f3638b958db7363d1ae0d71e95ed3f337853e42a56206312a9768f4d",
+    "assets/history/2026-09-28/assets/paper-layout-20260920.css": "690caf67302642ad4b4828778d4935e99e7d0f2bb6a9be6aa3ba9cff5b072b72",
+    "assets/history/2026-09-28/assets/paper-theme-20260920.css": "7ac67d8358b02d7f84195ebddca1ca3b106fa2d45687e44cdea13e10abe1b97a",
+    "assets/history/2026-09-28/assets/site-reader-20260920.css": "3f1e449bb985ac4d289d9889b9037445ddfe816e81965fb925316962ff664785",
+    "assets/history/2026-09-28/assets/site-reader-20260920.js": "5234fb7bd34ef046f1da0b014fa8a48d78ef9d729fc6e52d3e9469d5dc6c6b8e",
+    "assets/history/2026-09-28/beforeword-compact-en.txt": "c27265184493eedc4b5609762694a3e97b22bbb1146508bd9a788b8dd5d84aa1",
+    "assets/history/2026-09-28/beforeword-compact-ru.txt": "ae91643d56fe908f9cd1e3ec1c41127024b7c0e7cbafed25b0ed7c31003ae4e2",
+    "assets/history/2026-09-28/beforeword-en.txt": "62c399aface2b98f4a84f8eff568f551cd78ef5f0f8db81d5e6d8927bf9effbd",
+    "assets/history/2026-09-28/beforeword-full-en.txt": "7117333f897b95fd7d30e417636207d0355820bb27bd1129a59218b396d31ffa",
+    "assets/history/2026-09-28/beforeword-full-ru.txt": "59fa3524edf24aff52d48f9cbefde3895605695a671cd422c56bb4189fc14741",
+    "assets/history/2026-09-28/beforeword-micro-en.txt": "dfb4e7c588464ec999e314d6bf814c0ee08f3e82dbdf759987811ac53d059b29",
+    "assets/history/2026-09-28/beforeword-micro-ru.txt": "60ef0c882f142ae8febca8f625f13976581563b4483d654b3a8e934845f8ae03",
+    "assets/history/2026-09-28/beforeword-ru.txt": "c71283cdf45d23247cd7914ab98b249757517bd63ab537f3be9fa2fa762aba85",
+    "assets/history/2026-09-28/en/index.html": "bd8f5ed653449b60cc568e41104ea8afd19c3acbb3b9f651859499c145db3f50",
+    "assets/history/2026-09-28/index.html": "b2ad7a5d5eb58a91a88fd1ce45d11c35162400f7912fe1ba2d23f87eb98bcd46",
+    "assets/history/2026-09-28/snapshot.json": "6edf6754aedb55614532de9868e3fbc8f5ee0e3259701fa8ac627deb22de7542",
+    "assets/icon.svg": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee",
+    "assets/medium.en.txt": "08bcb0d6310a6926a8aaccf25bf05b704d80572513f77b0e3b36a5de03862d51",
+    "assets/medium.ru.txt": "ab9db2d7110959e2c731185191acd97f146b3006217efba2a88e3c77e0e63e3e",
+    "assets/public.css": "b3faa6f9e12e6f6c8335c9f01a26c44bf9020625667053d3991c7171f9126f3f",
+    "assets/public.js": "9b2f0672a95e40e8b23465323e9ce5e9d04c63aa7dc7b1ee553bb71df7a13e32",
+    "assets/public.template.html": "154442c2b43e56903ccc9fec04c2685c913c2b93640ba965e44d4dfdfe6ecf18",
+    "assets/scope.en.txt": "2ee1c1796e980a992ea0592ebd10b4473b95f8b06c1bce5a9c66a36b989b5ebb",
+    "assets/scope.ru.txt": "ab56e6ef9ce29a6df1241160752a768586b653f9e6802b9947bc1e423f1517e7",
+    "assets/site-shell/favicon-paper-20260920.svg": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
+    "assets/site-shell/paper-grain-20260920.svg": "83526f47090ff6b222e19e1d33e80b44648608558ee005b58838d417646fab87",
+    "assets/site-shell/paper-grain-v2-20260920.svg": "652dbb10f3638b958db7363d1ae0d71e95ed3f337853e42a56206312a9768f4d",
+    "assets/site-shell/paper-layout-20260920.css": "d3533495f9facc363ac1ea646098aa3c50aab7aca7f8568176f390e812b7ccff",
+    "assets/site-shell/paper-theme-20260920.css": "7def1b6862163af776bb2cad279da97b9a32ee024287dc3e04cdc7d6cd057db7",
+    "assets/site-shell/site-reader-20260920.css": "3f1e449bb985ac4d289d9889b9037445ddfe816e81965fb925316962ff664785",
+    "assets/site-shell/site-reader-20260920.js": "5234fb7bd34ef046f1da0b014fa8a48d78ef9d729fc6e52d3e9469d5dc6c6b8e",
+    "assets/updates.css": "6e8e19b838f712f5271995b104c3f71a98c2a6206705947a58d82bc6cf9f5b67",
+    "assets/updates.js": "b6f1ef519f7c5c615caaa789f8de97c6896733cd0094695c63023f0bf7393c75",
+    "docs/installation.md": "b1c2ff93cf564e90fc1d700ebe9dcbc9d061fc0e652356a7b6735d3ae5c212ad",
+    "docs/installation.ru.md": "c0f856e84add5e538acfcaf3c932274ab9616a1fea39508e79c389f0501315e1",
+    "references/api-use.md": "b33ee0b4ee43266cf0e0e563ce1fc453c1e3183995c02eaa69566048cf8b9d50",
+    "references/api-use.ru.md": "e8767a5b54d8e32afa531d816f7e2820933cf31c10bc54c6c93001da8981e611",
+    "references/api.json": "d8c7115fe2f4098acfb9e85a248544d5a4942c1aaa0919883b68d6a31eeac60f",
+    "references/connectors.json": "635b26cededa4f2ec4b886a39b26ee62406d9b60d53ff290b92007f97f9ca755",
+    "references/eval-cases.jsonl": "5b5f6b0a9de1bea372887153a123364dfc9f05b4b9bc7b3e89981ae2f2b0fd04",
+    "references/evaluation-results.json": "1f415d1dea641f38534d5d5c542e8c77888745afa58b6bb256c1b851b879ba17",
+    "references/evaluation.md": "24dd65a4db21720c38e5b5e89352461feeff5e7f4dbb177a2a563eb0153a3ffc",
+    "references/evaluation.ru.md": "87c032316a80731f8931146e4dae212688c463e6730e68f1482fac145a5908e1",
+    "references/examples.md": "d4689d3396b921b0bf0df91e041408eb6942b1add70d32091ed0761faf5a24f0",
+    "references/platforms.json": "172fc0615e48c55a9d2e91fbb64cec3100433e56b60807a4332beb85642d1390",
+    "references/updates.json": "60ae594d14ed1f5772247c09f8c17bc62427f44787bc30b76d9243dc7d7c586c",
+    "references/validation-2026-10-02.json": "c3a943c703b062ac0b1bc034b6c08141a99d8ec0e3c07145a0ad763fed3ab873",
+    "scripts/build_downloads.py": "b107eb93f3d1e5bd3f886d0f9ec417e9ae65d310b93013ff5f30b20238c32530",
+    "scripts/build_guide.py": "4dc67b552a10682c7ab5985927e9d2f49d02684f626fbf4b9aeaceaa4e65363e",
+    "scripts/build_payload.py": "8b78a50eddfa8d3b3483ae069a3fe1e26a2f163dcfe3021e205d2a0294dfe4ff",
+    "scripts/build_public.py": "f6d018d7aabae45a637124f9411cb8171a1aea427c5a7584802acc524c77315f",
+    "scripts/extract_response.py": "7bd870a055fbc4502362091649f2e93afaaae920138433d926ea83d1608b4835",
+    "scripts/package_plugins.py": "8cb52f7318a3d3e0443b9c03bea5068bcd1869e089a960933f2167dec233333b",
+    "scripts/public_updates.py": "7696a4fb98cf4e02de628c520b3d2f98d2db8b0b9182fec038541bed43871eac",
+    "scripts/render_report.py": "277689b37b2b7c1712cc8c80d740791df1bbcb433818dcf0d6afa008b0a18f24",
+    "scripts/test_downloads.py": "0d4a801795d458efa0595a8a84e143084344b01a39199f8eda79689d1728af8e",
+    "scripts/test_evaluation.py": "7f9522a8dab574c855da5180b05423434ffea2e2d319197b143f25c2a9d8fb06",
+    "scripts/test_guide.cjs": "5cb4919ae27aeb2ef9d6fcfb514cbb1d2d3179e63c447cfeba53d12d9d1c4d77",
+    "scripts/test_packages.py": "433585bf6f61fe6fdb2d035010861ed9a682ab3389a7316199a07b497850d8fa",
+    "scripts/test_payload.py": "e1c39c5db95135b92542c31b294f54e483fc89fbb5876d0a6bb35ded738561d4",
+    "scripts/test_public.cjs": "1e84ec5b93477bb79c68ca58fe9f22bcba15e7f4185fca22bbebb0a47f25d2c5",
+    "scripts/test_updates.cjs": "1276d95f28ccd5fd7771becce2282b856ad8f6db729c906eaf41f9af9ecb842a",
+    "scripts/test_updates.py": "37dc5a00d155253b4c51fbca109e77c0b8f077aac535b4aa0d2c736f83d8d6cb"
+  },
+  "files": {
+    "beforeword-SKILL-en.md": {
+      "sha256": "4c3a4f5ea50482c7cdecc522acc42de5b73ac546431f50fb0f08f7187a90ffdd",
+      "bytes": 8273
+    },
+    "beforeword-SKILL-ru.md": {
+      "sha256": "d623fe6e826244ace2ce196c372641ce725601ec23555a16659cebc372e16c9d",
+      "bytes": 14942
+    },
+    "beforeword_5000_EN.txt": {
+      "sha256": "08bcb0d6310a6926a8aaccf25bf05b704d80572513f77b0e3b36a5de03862d51",
+      "bytes": 5024
+    },
+    "beforeword_5000_RU.txt": {
+      "sha256": "ab9db2d7110959e2c731185191acd97f146b3006217efba2a88e3c77e0e63e3e",
+      "bytes": 9068
+    },
+    "beforeword_AI_1.2.3.html": {
+      "sha256": "644915c9497f34d548245cddc5cb09c232ab9256bd92dd81639084ab9e3c3d52",
+      "bytes": 984036
+    },
+    "beforeword_claude_plugin_EN_1.2.3.zip": {
+      "sha256": "299f9262afdf9a1b8051802ad545551f84b21d4f989621e373c761048d3bca0f",
+      "bytes": 6271
+    },
+    "beforeword_claude_plugin_RU_1.2.3.zip": {
+      "sha256": "b975e405d66a0035cefd08bf3408767066c9c2b2d59e7fd6fd298b168b451ff0",
+      "bytes": 7350
+    },
+    "beforeword_compact_EN.txt": {
+      "sha256": "f82d4b7b9ad1df96c310486b49f08b10829d9dcae15d28d2aa8e5168f61f99b6",
+      "bytes": 1520
+    },
+    "beforeword_compact_RU.txt": {
+      "sha256": "dedecc77b74026923f959b2a8e9ded0a9e77e9578af4707cc232ce5a0970cad0",
+      "bytes": 2717
+    },
+    "beforeword_core_EN.txt": {
+      "sha256": "19fdffaf0279598c6f5c7d80224d2af7eed9466179ce8faca5f96bf2d8d559ad",
+      "bytes": 8075
+    },
+    "beforeword_core_RU.txt": {
+      "sha256": "0ff4056b8ab84c14abaa0ba2f6dd5bf8b3c8686263d2420c0c35c3e0588290b5",
+      "bytes": 14596
+    },
+    "beforeword_openai_local_marketplace_EN_1.2.3.zip": {
+      "sha256": "02620bec4f3fbb9a7fb092597d789705ce7127b6a9b1947b2cd18e1ca1f25f31",
+      "bytes": 6966
+    },
+    "beforeword_openai_local_marketplace_RU_1.2.3.zip": {
+      "sha256": "1492a8c845f870187d7bb72b200815b816a11da1258321d829347e7fa0290eb2",
+      "bytes": 8053
+    },
+    "beforeword_skill_EN_1.2.3.zip": {
+      "sha256": "91aa6a5852c5db882beea43a6b4929a2abd621a902134c993920499a7fb7dce3",
+      "bytes": 5997
+    },
+    "beforeword_skill_RU_1.2.3.zip": {
+      "sha256": "dcfd3a971ef2df631f941a11b9e988a90ee74dc395d281cd7e0ca7e9fa52c705",
+      "bytes": 6994
+    },
+    "beforeword_toolkit_1.2.3.zip": {
+      "sha256": "ed602e34935fefb4ac94a5234e3097d52f4369e76716a450683276f6b631a638",
+      "bytes": 481074
+    }
+  }
+}

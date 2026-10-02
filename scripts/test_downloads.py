@@ -25,6 +25,9 @@ class DownloadTests(unittest.TestCase):
             self.assertLessEqual(len(scope + core), 8000, "Full instructions must fit the declared 8,000-character route")
             self.assertLessEqual(len(self.files[f"beforeword_compact_{language.upper()}.txt"].decode("utf-8")), 1500,
                                  "Compact instructions must fit the declared settings field")
+            medium = self.files[f"beforeword_5000_{language.upper()}.txt"]
+            self.assertLessEqual(len(medium.decode("utf-8")), 5000, "The complete medium edition fits 5,000 characters")
+            self.assertEqual(medium, (ROOT / "assets" / f"medium.{language}.txt").read_bytes())
             self.assertEqual(self.files[f"beforeword_core_{language.upper()}.txt"], (scope + core).encode("utf-8"))
             self.assertEqual(self.files[f"beforeword_compact_{language.upper()}.txt"],
                              (ROOT / "assets" / f"compact.{language}.txt").read_bytes())

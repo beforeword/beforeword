@@ -48,13 +48,14 @@ __PUBLIC_UPDATES__
 <section id="where" aria-labelledby="start-title">
 <p class="kicker">__QUICK_LABEL__</p><h2 id="start-title">__QUICK_TITLE__</h2>
 <ol class="steps" role="list">
-<li><div><h3>__STEP1__</h3><div class="actions"><button type="button" class="button primary js-only" data-copy-target="instruction-text" data-copy-details="instruction-details">__COPY_FULL__</button><a class="text-link" href="/model/beforeword-__LANG__.txt" download>__DOWNLOAD_TXT__</a></div><p class="small">__FULL_NOTE__</p><noscript><p class="notice">__NO_JS__</p></noscript></div></li>
+<li><div><h3>__STEP1__</h3><div class="actions"><button type="button" class="button primary js-only" data-copy-target="instruction-text" data-copy-details="instruction-details">__COPY_FULL__</button><button type="button" class="button js-only" data-copy-target="medium-text" data-copy-details="medium-details">__COPY_MEDIUM__</button></div><p class="small">__FULL_NOTE__</p><div class="actions"><a class="text-link" href="#instruction-details">__READ_INSTRUCTION__</a><a class="text-link" href="#medium-details">__READ_MEDIUM__</a></div><noscript><p class="notice">__NO_JS__</p></noscript></div></li>
 <li><div><h3>__STEP2__</h3><p>__OPEN_NOTE__</p><nav class="app-links" aria-label="__APPS_LABEL__">__APP_LINKS__</nav></div></li>
 <li><div><h3>__STEP3__</h3><p>__PASTE_NOTE__</p></div></li>
 </ol>
 <p class="notice">__CHAT_SCOPE__</p>
 <span id="instruction" aria-hidden="true"></span><span id="instruction-short" aria-hidden="true"></span><span id="instruction-full" aria-hidden="true"></span>
-<details id="instruction-details"><summary>__READ_INSTRUCTION__ <span class="small">__FULL_COUNT__</span></summary><textarea id="instruction-text" rows="16" readonly spellcheck="false" aria-label="__READ_INSTRUCTION__">__FULL_TEXT__</textarea></details>
+<details id="instruction-details"><summary>__READ_INSTRUCTION__ <span class="small">__FULL_COUNT__</span></summary><div class="actions"><button type="button" class="button js-only" data-copy-target="instruction-text" data-copy-details="instruction-details">__COPY_FULL__</button><a class="text-link" href="/model/beforeword-__LANG__.txt" download>__DOWNLOAD_TXT__</a></div><textarea id="instruction-text" rows="16" readonly spellcheck="false" aria-label="__READ_INSTRUCTION__">__FULL_TEXT__</textarea><div class="actions"><button type="button" class="button js-only" data-copy-target="instruction-text" data-copy-details="instruction-details">__COPY_FULL__</button><a class="text-link" href="/model/beforeword-__LANG__.txt" download>__DOWNLOAD_TXT__</a></div></details>
+<details id="medium-details"><summary>__READ_MEDIUM__ <span class="small">__MEDIUM_COUNT__</span></summary><p class="small">__MEDIUM_NOTE__</p><div class="actions"><button type="button" class="button js-only" data-copy-target="medium-text" data-copy-details="medium-details">__COPY_MEDIUM__</button><a class="text-link" href="/model/beforeword-5000-__LANG__.txt" download>__DOWNLOAD_TXT__</a></div><textarea id="medium-text" rows="16" readonly spellcheck="false" aria-label="__READ_MEDIUM__">__MEDIUM_TEXT__</textarea><div class="actions"><button type="button" class="button js-only" data-copy-target="medium-text" data-copy-details="medium-details">__COPY_MEDIUM__</button><a class="text-link" href="/model/beforeword-5000-__LANG__.txt" download>__DOWNLOAD_TXT__</a></div></details>
 </section>
 <section id="example" aria-labelledby="example-title">
 <span id="compare" aria-hidden="true"></span><span id="test" aria-hidden="true"></span>
@@ -63,6 +64,7 @@ __PUBLIC_UPDATES__
 <span id="grounds" aria-hidden="true"></span><p class="criterion">__CRITERION__</p>
 </section>
 <section id="settings" aria-labelledby="settings-title"><h2 id="settings-title">__SETTINGS_TITLE__</h2><p>__SETTINGS_INTRO__</p>
+<p><a class="text-link" href="#medium-details">__MEDIUM_SETTINGS_LINK__</a></p>
 <span id="instruction-compact" aria-hidden="true"></span><span id="instruction-micro" aria-hidden="true"></span>
 <details id="compact-details"><summary>__COMPACT_LABEL__ <span class="small">__COMPACT_COUNT__</span></summary><div class="actions"><button class="button js-only" type="button" data-copy-target="compact-text" data-copy-details="compact-details">__COPY_COMPACT__</button><a class="text-link" href="/model/beforeword-compact-__LANG__.txt" download>__DOWNLOAD_TXT__</a></div><textarea id="compact-text" rows="12" readonly spellcheck="false" aria-label="__COMPACT_LABEL__">__COMPACT_TEXT__</textarea></details>
 __SETTINGS_ROUTES__

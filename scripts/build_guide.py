@@ -14,7 +14,7 @@ from package_plugins import build_bundles, skill_text
 from render_report import parse_report
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.2.2'
+VERSION = '1.2.3'
 DATE = '2026-10-02'
 
 def read(path):
@@ -60,6 +60,7 @@ def fallback(data):
         sections.append('<section lang="'+lang+'"><h2>'+('Инструкции · RU' if lang == 'ru' else 'Instructions · EN')+'</h2>')
         sections.append('<p>'+('Выбери один способ: настройка ответов, навык или API. Не требуется устанавливать всё. Полная инструкция раскрывает больше различий; краткая предназначена для ограниченного поля.' if lang == 'ru' else 'Choose one route: response settings, a skill, or API. These are alternatives. The full instruction covers more distinctions; the compact text is intended for limited fields.')+'</p>')
         sections.append('<h3>'+('Краткая инструкция' if lang == 'ru' else 'Compact instructions')+'</h3><pre>'+esc(data['compact'][lang])+'</pre>')
+        sections.append('<h3>'+('Инструкция до 5 000 знаков' if lang == 'ru' else 'Instructions up to 5,000 characters')+'</h3><pre>'+esc(data['medium'][lang])+'</pre>')
         sections.append('<details><summary>'+('Полная инструкция' if lang == 'ru' else 'Full instructions')+'</summary><pre>'+esc(data['scope'][lang]+data['core'][lang])+'</pre></details>')
         for c in data['connectors']:
             v = c[lang]
@@ -76,6 +77,7 @@ def build(output):
     data = {'version':VERSION, 'date':DATE,
             'core':{lang:read(f'assets/core.{lang}.txt') for lang in ('ru','en')},
             'compact':{lang:read(f'assets/compact.{lang}.txt') for lang in ('ru','en')},
+            'medium':{lang:read(f'assets/medium.{lang}.txt') for lang in ('ru','en')},
             'scope':{lang:read(f'assets/scope.{lang}.txt').rstrip('\n')+'\n\n' for lang in ('ru','en')},
             'connectors':json.loads(read('references/connectors.json')),
             'api':json.loads(read('references/api.json'))['providers'],
@@ -106,12 +108,15 @@ def build(output):
     path.write_text(result, encoding='utf-8')
     for lang in ('ru','en'):
         (output / f'beforeword_compact_{lang.upper()}.txt').write_text(data['compact'][lang], encoding='utf-8')
+        (output / f'beforeword_5000_{lang.upper()}.txt').write_text(data['medium'][lang], encoding='utf-8')
         (output / f'beforeword_core_{lang.upper()}.txt').write_text(data['scope'][lang]+data['core'][lang], encoding='utf-8')
     report = json.loads(read('references/evaluation-results.json'))
     followup = json.loads(read('references/validation-2026-10-02.json'))
     manifest = {'version':VERSION, 'date_utc':DATE, 'families':[c['id'] for c in data['connectors']],
       'core_sha256':{k:sha(v) for k,v in data['core'].items()},
       'compact_characters':{k:len(v) for k,v in data['compact'].items()},
+      'medium_characters':{k:len(v) for k,v in data['medium'].items()},
+      'medium_sha256':{k:sha(v) for k,v in data['medium'].items()},
       'native_bundles':{lang:{key:{k:v for k,v in record.items() if k!='data'} for key,record in bundles.items()} for lang,bundles in data['bundles'].items()},
       'developer_bundle':{k:v for k,v in data['developer'].items() if k!='data'},
       'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),

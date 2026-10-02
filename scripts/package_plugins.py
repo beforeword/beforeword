@@ -17,7 +17,7 @@ import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_VERSION = "1.2.2"
+DEFAULT_VERSION = "1.2.3"
 LANGUAGES = ("ru", "en")
 PLUGIN_SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 OPENAI_DOCS = "https://developers.openai.com/plugins/build/plugins"

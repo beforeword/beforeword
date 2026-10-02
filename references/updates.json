@@ -3,8 +3,8 @@
   "project": "beforeword",
   "scope": "ai-instructions",
   "status": "public-testing",
-  "current_version": "1.2.2",
-  "updated": "2026-10-02T13:21:16Z",
+  "current_version": "1.2.3",
+  "updated": "2026-10-02T14:24:48Z",
   "urls": {
     "ru": "https://beforeword.xyz/model/#bw-updates",
     "en": "https://beforeword.xyz/model/en/#bw-updates"
@@ -21,18 +21,18 @@
       "title": "beforeword — обновления инструкции для ИИ",
       "intro": "Инструкция beforeword проходит публичное тестирование. Это не финальная редакция.",
       "changes": [
-        "Уточнён разбор различений и выводов, которые вводит сам ответ: общей оговорки в конце недостаточно.",
-        "Усилен запрет первого лица и приписывания ИИ собственных мыслей, чувств и понимания.",
-        "Добавлен разбор перехода от выученных слов и требований к самоописанию; согласованы полная и краткая версии RU/EN."
+        "Добавлена самостоятельная инструкция до 5 000 знаков на русском и английском.",
+        "Кнопки копирования размещены рядом с полной инструкцией и редакцией до 5 000 знаков.",
+        "Уточнён разбор новых терминов внутри объяснения: указать «это слово» только в начале недостаточно."
       ]
     },
     "en": {
       "title": "beforeword — AI instruction updates",
       "intro": "The beforeword instructions are in public testing. This is not the final version.",
       "changes": [
-        "Clarified how to examine distinctions and conclusions introduced by the response itself; a closing disclaimer is not enough.",
-        "Strengthened the rules against an assistant persona and claims of its own thoughts, feelings or understanding.",
-        "Added examination of the move from learned words and demands to self-description; aligned the full and compact RU/EN instructions."
+        "Added self-contained Russian and English instructions up to 5,000 characters.",
+        "Placed copy buttons beside the full instructions and the 5,000-character edition.",
+        "Clarified examination of new terms within an explanation; identifying the first term as a word is not enough."
       ]
     }
   }

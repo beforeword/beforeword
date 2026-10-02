@@ -32,7 +32,7 @@ def build_files() -> dict[str, bytes]:
         guide = build_guide(Path(temporary))
         files[f"beforeword_AI_{VERSION}.html"] = guide.read_bytes()
         for language in ("ru", "en"):
-            for edition in ("core", "compact"):
+            for edition in ("core", "5000", "compact"):
                 name = f"beforeword_{edition}_{language.upper()}.txt"
                 files[name] = (Path(temporary) / name).read_bytes()
             files[f"beforeword-SKILL-{language}.md"] = skill_text(language).encode("utf-8")

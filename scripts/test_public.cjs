@@ -55,15 +55,38 @@ function checkArtifacts() {
     assert.ok(!/<script[^>]+src="https?:/i.test(html), 'No remote scripts');
     assert.ok(!/\son\w+=/i.test(html), 'No inline event handlers');
     const full = read(path.join(ROOT, 'assets', `scope.${lang}.txt`)).replace(/\n+$/, '') + '\n\n' + read(path.join(ROOT, 'assets', `core.${lang}.txt`));
+    const medium = read(path.join(ROOT, 'assets', `medium.${lang}.txt`));
     const compact = read(path.join(ROOT, 'assets', `compact.${lang}.txt`));
     assert.equal(decode(html.match(/<textarea id="instruction-text"[^>]*>([\s\S]*?)<\/textarea>/)[1]), full, 'Main copy field preserves full instructions');
+    assert.equal(decode(html.match(/<textarea id="medium-text"[^>]*>([\s\S]*?)<\/textarea>/)[1]), medium, '5,000-character field preserves the complete edition');
     assert.equal(decode(html.match(/<textarea id="compact-text"[^>]*>([\s\S]*?)<\/textarea>/)[1]), compact, 'Compact field preserves instructions');
-    for (const [prefix, expected] of [['',full],['full-',full],['compact-',compact],['micro-',compact]]) {
+    assert.ok(Array.from(medium).length <= 5000, 'The 5,000-character edition fits its published limit');
+    for (const [prefix, expected] of [['',full],['full-',full],['5000-',medium],['compact-',compact],['micro-',compact]]) {
       const alias = `beforeword-${prefix}${lang}.txt`;
       assert.equal(read(path.join(MODEL, alias)), expected, 'Legacy URL preserves current exact content');
       assert.equal(manifest.aliases[alias].sha256, hash(Buffer.from(expected)));
     }
+    assert.equal(manifest.aliases[`beforeword-5000-${lang}.txt`].content, 'medium', 'The new alias identifies its own edition');
+    assert.equal(manifest.aliases[`beforeword-micro-${lang}.txt`].content, 'compact', 'The historical micro alias still serves compact instructions');
+    for (const [detailsId, targetId, text, alias, repeated] of [
+      ['instruction-details','instruction-text',full,`beforeword-${lang}.txt`,true],
+      ['medium-details','medium-text',medium,`beforeword-5000-${lang}.txt`,true],
+      ['compact-details','compact-text',compact,`beforeword-compact-${lang}.txt`,false]
+    ]) {
+      const details = html.match(new RegExp('<details id="'+detailsId+'">([\\s\\S]*?)<\\/details>'))?.[1];
+      assert.ok(details, 'Edition can be read without JavaScript: '+detailsId);
+      const summary = details.match(/<summary>([\s\S]*?)<\/summary>/)?.[1];
+      assert.ok(summary && !/<(?:button|a)\b/.test(summary), 'Disclosure summary has no nested action: '+detailsId);
+      const count = String(Array.from(text).length).replace(/\B(?=(\d{3})+(?!\d))/g, '\u2009');
+      assert.ok(decode(summary).includes(count+' '+(lang==='ru'?'знаков':'characters')), 'Visible count matches the exact edition: '+detailsId);
+      const action = `data-copy-target="${targetId}" data-copy-details="${detailsId}"`;
+      assert.ok(details.indexOf(action) < details.indexOf('id="'+targetId+'"'), 'Copy is beside the beginning of the text: '+detailsId);
+      if (repeated) assert.ok(details.lastIndexOf(action) > details.indexOf('</textarea>'), 'Long text has a second copy action at the end: '+detailsId);
+      assert.ok(details.includes(`href="/model/${alias}" download`), 'TXT is available beside the text: '+detailsId);
+    }
     assert.ok(html.indexOf('data-copy-target="instruction-text"') < html.indexOf('id="instruction-text"'), 'Copy before long instructions');
+    const firstStep = html.match(/<ol class="steps"[^>]*>\s*<li>([\s\S]*?)<\/li>/)?.[1];
+    assert.ok(firstStep?.includes('data-copy-target="instruction-text"') && firstStep.includes('data-copy-target="medium-text"'), 'Quick start offers full and 5,000-character copy choices');
     assert.ok(html.includes('<noscript>'), 'No-JavaScript copy guidance');
     assert.equal((html.match(/class="app-settings"/g) || []).length, 9);
     const appSettings = [...html.matchAll(/<details class="app-settings">([\s\S]*?)<\/details>/g)];
@@ -205,26 +228,70 @@ async function checkCopy() {
 
 function checkInstructionNavigation() {
   const source = read(path.join(ROOT, 'assets/public.js'));
-  for (const initialHash of ['', '#instruction-details', '#bw-updates']) {
-    const instruction = {open:false};
-    const link = {addEventListener(type, listener){this[type]=listener;}};
+  const ids = ['instruction-details', 'medium-details', 'compact-details'];
+  for (const initialHash of ['', ...ids.map(id=>'#'+id), '#bw-updates']) {
+    const disclosures = Object.fromEntries(ids.map(id=>[id,{open:false}]));
+    const links = Object.fromEntries(ids.map(id=>[id,{addEventListener(type, listener){this[type]=listener;}}]));
     const events = {};
     const window = {location:{hash:initialHash},addEventListener(type,listener){events[type]=listener;}};
     const document = {
-      getElementById(id){return id==='instruction-details'?instruction:null;},
-      querySelectorAll(selector){return selector==='a[href$="#instruction-details"]'?[link]:[];},
+      getElementById(id){return disclosures[id] || null;},
+      querySelectorAll(selector){const id=selector.match(/^a\[href\$="#([^\"]+)"\]$/)?.[1];return links[id]?[links[id]]:[];},
       documentElement:{classList:{add(){}}}
     };
     vm.runInNewContext(source,{document,window});
-    assert.equal(instruction.open,initialHash==='#instruction-details','Only the instruction fragment opens its text on arrival');
-    window.location.hash='#instruction-details';events.hashchange();
-    assert.equal(instruction.open,true,'Changing the fragment reveals the full instruction');
-    instruction.open=false;link.click();
-    assert.equal(instruction.open,true,'Repeating the same link reopens manually closed instructions');
-    instruction.open=false;window.location.hash='#bw-updates';events.hashchange();
-    assert.equal(instruction.open,false,'Other fragments leave manually closed instructions alone');
+    for (const id of ids) assert.equal(disclosures[id].open,initialHash==='#'+id,'Only the requested edition opens on arrival: '+id);
+    for (const id of ids) {
+      for (const node of Object.values(disclosures)) node.open=false;
+      window.location.hash='#'+id;events.hashchange();
+      assert.equal(disclosures[id].open,true,'Changing the fragment reveals the selected edition: '+id);
+      for (const other of ids.filter(value=>value!==id)) assert.equal(disclosures[other].open,false,'Other editions remain closed');
+      disclosures[id].open=false;links[id].click();
+      assert.equal(disclosures[id].open,true,'Repeating the same link reopens the manually closed edition: '+id);
+      disclosures[id].open=false;window.location.hash='#bw-updates';events.hashchange();
+      assert.equal(disclosures[id].open,false,'Unrelated fragments leave closed editions alone');
+    }
   }
-  return 3;
+  return 5;
 }
 
-(async()=>{const artifacts=checkArtifacts();const historyFiles=checkHistory();const copyCases=await checkCopy();const navigationCases=checkNavigation();const instructionNavigationCases=checkInstructionNavigation();process.stdout.write(JSON.stringify({ok:true,...artifacts,historyFiles,copyCases,navigationCases,instructionNavigationCases,scope:'Static files and simulated DOM; no browser rendering'},null,2)+'\n');})().catch(error=>{console.error(error);process.exitCode=1;});
+async function checkEditionCopies() {
+  let cases = 0;
+  const code = read(path.join(ROOT, 'assets/public.js'));
+  for (const lang of ['ru','en']) {
+    const html = read(path.join(MODEL,lang==='ru'?'index.html':'en/index.html'));
+    for (const [targetId,detailsId] of [['instruction-text','instruction-details'],['medium-text','medium-details'],['compact-text','compact-details']]) {
+      const exact = decode(html.match(new RegExp('<textarea id="'+targetId+'"[^>]*>([\\s\\S]*?)<\\/textarea>'))[1]);
+      for (const fallback of [false,true]) {
+        let copied, selected, focused=false;
+        const source = {tagName:'TEXTAREA',value:exact,focus(){focused=true;},select(){},setSelectionRange(start,end){selected=[start,end];},scrollIntoView(){}};
+        const disclosure = {open:false};
+        const status = {textContent:'',dataset:{copied:'copied',selected:'selected',failed:'failed'}};
+        const buttons = [...html.matchAll(/<button\b[^>]*data-copy-target="([^"]+)"[^>]*data-copy-details="([^"]+)"[^>]*>/g)]
+          .filter(match=>match[1]===targetId).map(match=>({dataset:{copyTarget:match[1],copyDetails:match[2]},addEventListener(_,fn){this.click=fn;}}));
+        assert.ok(buttons.length,'Rendered edition has copy buttons: '+targetId);
+        const document = {getElementById(id){return {[targetId]:source,[detailsId]:disclosure,'copy-status':status}[id] || null;},
+          querySelectorAll(selector){return selector==='[data-copy-target]'?buttons:[];},documentElement:{classList:{add(){}}}};
+        const navigator = fallback?{}:{clipboard:{async writeText(value){copied=value;}}};
+        const window = {location:{hash:''},addEventListener(){}};
+        vm.runInNewContext(code,{document,navigator,window,setTimeout(){return 1;},clearTimeout(){}});
+        for (const button of buttons) {
+          disclosure.open=false;selected=undefined;focused=false;
+          await button.click();
+          if (fallback) {
+            assert.equal(disclosure.open,true,'Fallback reveals the correct edition');
+            assert.deepEqual(selected,[0,exact.length],'Fallback selects the complete edition');
+            assert.ok(focused);assert.equal(status.textContent,'selected');
+          } else {
+            assert.equal(copied,exact,'Rendered copy action delivers the complete source text');
+            assert.equal(status.textContent,'copied');
+          }
+          cases++;
+        }
+      }
+    }
+  }
+  return cases;
+}
+
+(async()=>{const artifacts=checkArtifacts();const historyFiles=checkHistory();const copyCases=await checkCopy();const editionCopyCases=await checkEditionCopies();const navigationCases=checkNavigation();const instructionNavigationCases=checkInstructionNavigation();process.stdout.write(JSON.stringify({ok:true,...artifacts,historyFiles,copyCases,editionCopyCases,navigationCases,instructionNavigationCases,scope:'Static files and simulated DOM; no browser rendering'},null,2)+'\n');})().catch(error=>{console.error(error);process.exitCode=1;});

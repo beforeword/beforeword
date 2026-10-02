@@ -2,7 +2,7 @@
 
 [Русский](README.ru.md) · [Website](https://beforeword.xyz/model/en/)
 
-**Public testing · instruction version 1.2.2**
+**Public testing · instruction version 1.2.3**
 
 This is not a final version. The instructions and their use across applications are open to testing and revision.
 
@@ -12,29 +12,30 @@ beforeword is a set of reading instructions for AI applications. Preserve the su
 
 ## Start in a chat
 
-1. Open the [full English instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_core_EN.txt) or [full Russian instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_core_RU.txt) and copy the complete text.
+1. Open the [full English instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_core_EN.txt) or [full Russian instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_core_RU.txt) and copy the complete text.
 2. Paste it as the first message of a new chat.
 3. Send your task. For example: `Apply beforeword to the phrase “I understand.”`
 
 No installation or API key is needed. Repeat these steps for each new chat. For saved settings, skills, updates, and removal, see the [installation guide](docs/installation.md).
 
-## Ready-to-use downloads · 1.2.2
+## Ready-to-use downloads · 1.2.3
 
 Choose one route and one instruction language. Python is not needed to use these files.
 
 | Use | English | Русский |
 |---|---|---|
-| Full instructions for a new chat | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_core_EN.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_core_RU.txt) |
-| Compact instructions for a limited settings field | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_compact_EN.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_compact_RU.txt) |
-| Claude plugin / Claude Code | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_claude_plugin_EN_1.2.2.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_claude_plugin_RU_1.2.2.zip) |
-| Codex local marketplace · desktop / CLI | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_openai_local_marketplace_EN_1.2.2.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_openai_local_marketplace_RU_1.2.2.zip) |
-| Standalone skill | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_skill_EN_1.2.2.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword-SKILL-en.md) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_skill_RU_1.2.2.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword-SKILL-ru.md) |
+| Full instructions for a new chat | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_core_EN.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_core_RU.txt) |
+| Instructions up to 5,000 characters | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_5000_EN.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_5000_RU.txt) |
+| Compact instructions for a limited settings field | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_compact_EN.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_compact_RU.txt) |
+| Claude plugin / Claude Code | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_claude_plugin_EN_1.2.3.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_claude_plugin_RU_1.2.3.zip) |
+| Codex local marketplace · desktop / CLI | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_openai_local_marketplace_EN_1.2.3.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_openai_local_marketplace_RU_1.2.3.zip) |
+| Standalone skill | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_skill_EN_1.2.3.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword-SKILL-en.md) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_skill_RU_1.2.3.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword-SKILL-ru.md) |
 
-[Download the standalone guide · RU/EN](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_AI_1.2.2.html). Save the HTML file and open it in a browser for copy buttons, installation steps, package downloads, and local API request preparation. It starts in Russian; choose EN at the top. On phones, a file preview may display text without running buttons; use the TXT links above or [the website](https://beforeword.xyz/model/en/).
+[Download the standalone guide · RU/EN](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_AI_1.2.3.html). Save the HTML file and open it in a browser for copy buttons, installation steps, package downloads, and local API request preparation. It starts in Russian; choose EN at the top. On phones, a file preview may display text without running buttons; use the TXT links above or [the website](https://beforeword.xyz/model/en/).
 
 Each package includes installation, update, and removal steps. Availability of an import control depends on the application and account; uploading an archive to a conversation is not installation. The full TXT files include both scope and core instructions.
 
-[Developer toolkit · ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/beforeword_toolkit_1.2.2.zip) · [Checksums](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/SHA256SUMS.txt) · [File manifest](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.2/manifest.json)
+[Developer toolkit · ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/beforeword_toolkit_1.2.3.zip) · [Checksums](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/SHA256SUMS.txt) · [File manifest](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.3/manifest.json)
 
 ## API
 
@@ -56,7 +57,7 @@ This creates `request.json` locally. See the [API guide](references/api-use.md) 
 
 ## Report an issue
 
-[Open a public GitHub issue](https://github.com/beforeword/beforeword/issues/new?template=report_en.yml) · [Send email](mailto:mail@beforeword.xyz?subject=beforeword%201.2.2%20report)
+[Open a public GitHub issue](https://github.com/beforeword/beforeword/issues/new?template=report_en.yml) · [Send email](mailto:mail@beforeword.xyz?subject=beforeword%201.2.3%20report)
 
 Reports can cover an AI response, installation, copying, downloads, or the website. For an AI response, include the exact request and response, mark the relevant passage, and note the instruction version and application if known. For the website, include the page and steps to reproduce the issue.
 

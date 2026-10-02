@@ -40,15 +40,19 @@
   document.querySelectorAll('[data-copy-target]').forEach(button => {
     button.addEventListener('click', () => copy(button));
   });
-  const instruction = document.getElementById('instruction-details');
-  if (instruction) {
-    const revealInstruction = () => { instruction.open = true; };
+  const disclosures = ['instruction-details', 'medium-details', 'compact-details']
+    .map(id => [id, document.getElementById(id)]).filter(([, node]) => node);
+  if (disclosures.length) {
+    for (const [id, node] of disclosures) {
+      document.querySelectorAll('a[href$="#' + id + '"]').forEach(link => {
+        link.addEventListener('click', () => { node.open = true; });
+      });
+    }
     const revealLinkedInstruction = () => {
-      if (window.location.hash === '#instruction-details') revealInstruction();
+      for (const [id, node] of disclosures) {
+        if (window.location.hash === '#' + id) node.open = true;
+      }
     };
-    document.querySelectorAll('a[href$="#instruction-details"]').forEach(link => {
-      link.addEventListener('click', revealInstruction);
-    });
     window.addEventListener('hashchange', revealLinkedInstruction);
     revealLinkedInstruction();
   }

@@ -40,14 +40,16 @@ COPY = {
   'intro':'Добавь beforeword в свой ИИ-чат: инструкция просит сохранять исходный текст, отделять добавленное прочтением и применять тот же разбор к ответу.',
   'self_scope':'beforeword, его правила и этот текст тоже входят в разбор. Ни одна словесная написанная форма не получает исключения.',
   'start':'Начать в своём чате','quick_label':'ТРИ ШАГА','quick_title':'Скопируй. Вставь. Задай вопрос.',
-  'step1':'Скопируй инструкцию','copy_full':'Скопировать для чата','download_txt':'Скачать TXT',
-  'full_note':'Полная инструкция. Для этого способа файл скачивать не требуется.',
-  'no_js':'Кнопка копирования требует JavaScript. Открой «Прочитать полную инструкцию» ниже, выдели текст и скопируй вручную. Также доступен TXT.',
+  'step1':'Скопируй инструкцию','copy_full':'Скопировать полную','copy_medium':'Скопировать · до 5\u2009000 знаков','download_txt':'Скачать TXT',
+  'full_note':'Выбери одну редакцию: полную для чата или сокращённую для поля с лимитом 5\u2009000 знаков.',
+  'no_js':'Кнопки копирования требуют JavaScript. Открой нужную инструкцию ниже, выдели текст и скопируй вручную. У каждой редакции есть ссылка «Скачать TXT».',
   'step2':'Открой свой ИИ-чат','open_note':'Выбери приложение, которым пользуешься. Ссылка открывает его в новой вкладке.',
   'apps_label':'Открыть ИИ-приложение','step3':'Вставь в новый разговор',
   'paste_note':'Отправь инструкцию первым сообщением. Следующим сообщением задай свой вопрос или пришли текст для разбора.',
   'chat_scope':'Инструкция передаётся в этот разговор, пока она доступна в его контексте. Для нового разговора вставь её снова или используй настройку приложения ниже. Согласие модели и сообщение «режим включён» не заменяют чтение ответа.',
-  'read_instruction':'Прочитать полную инструкцию','characters':'знаков',
+  'read_instruction':'Прочитать полную инструкцию','read_medium':'Инструкция до 5\u2009000 знаков','characters':'знаков',
+  'medium_note':'Самостоятельная редакция для поля с ограничением длины. Скопируй весь текст целиком.',
+  'medium_settings_link':'Для поля с лимитом 5\u2009000 знаков — открыть инструкцию',
   'example_label':'ОДИН ПРИМЕР','example_title':'Что добавляет ответ?',
   'example_note':'Пример составлен для этой страницы. Это пояснение способа чтения, а не результат испытания модели.',
   'input_label':'Запрос после инструкции','example_prompt':'Разбери фразу: «Я понимаю».',
@@ -81,14 +83,16 @@ COPY = {
   'intro':'Add beforeword to your AI chat. The instructions ask it to preserve the supplied text, separate what a reading adds, and apply the same examination to its own response.',
   'self_scope':'beforeword, its rules, and this page are included. No written verbal form is exempt.',
   'start':'Start in your own chat','quick_label':'THREE STEPS','quick_title':'Copy. Paste. Ask.',
-  'step1':'Copy the instructions','copy_full':'Copy for a chat','download_txt':'Download TXT',
-  'full_note':'Full instructions. This method does not require downloading a file.',
-  'no_js':'The copy button requires JavaScript. Open “Read the full instructions” below, select the text, and copy it manually. A TXT download is also available.',
+  'step1':'Copy the instructions','copy_full':'Copy full instructions','copy_medium':'Copy · up to 5,000 characters','download_txt':'Download TXT',
+  'full_note':'Choose one edition: full instructions for a chat, or the shorter edition for a field limited to 5,000 characters.',
+  'no_js':'Copy buttons require JavaScript. Open the instructions you need below, select the text, and copy it manually. Each edition also has a TXT download.',
   'step2':'Open your AI chat','open_note':'Choose the app you use. Each link opens it in a new tab.',
   'apps_label':'Open an AI app','step3':'Paste into a new conversation',
   'paste_note':'Send the instructions as the first message. Send your question or the text to examine in the next message.',
   'chat_scope':'The instructions are supplied to this conversation while they remain available in its context. Paste them again in a new conversation, or use the app settings below. Model agreement or a “mode activated” message does not replace examining its response.',
-  'read_instruction':'Read the full instructions','characters':'characters',
+  'read_instruction':'Read the full instructions','read_medium':'Instructions · up to 5,000 characters','characters':'characters',
+  'medium_note':'A self-contained edition for a field with a character limit. Copy the complete text.',
+  'medium_settings_link':'For a 5,000-character field — open the instructions',
   'example_label':'ONE EXAMPLE','example_title':'What does a response add?',
   'example_note':'This example was written for this page to explain the reading method. It is not a model test result.',
   'input_label':'A request after the instructions','example_prompt':'Examine the phrase “I understand”.',
@@ -185,7 +189,10 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         t['title'] = report_title
         t['description'] = ('Методика чтения ответов, сохранённые сравнения и технические проверки beforeword.' if language == 'ru' else 'Reading criteria, recorded comparisons, and technical checks for beforeword.')
     full = read(f'assets/scope.{language}.txt').rstrip('\n')+'\n\n'+read(f'assets/core.{language}.txt')
+    medium = read(f'assets/medium.{language}.txt')
     compact = read(f'assets/compact.{language}.txt')
+    if len(medium) > 5000:
+        raise ValueError(f'The {language} 5,000-character edition exceeds its limit.')
     values = {key.upper():escape(value) for key,value in t.items() if isinstance(value,str)}
     values.update({'LANG':language,'VERSION':escape(build_guide.VERSION),'LOCALE':'ru_RU' if language == 'ru' else 'en_US',
         'CANONICAL':'https://beforeword.xyz'+route+('en/' if language == 'en' else ''),
@@ -197,8 +204,9 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         'SHELL_JS_URL':shell_asset_url('site-reader-20260920.js'),
         'FAVICON_URL':shell_asset_url('favicon-paper-20260920.svg'),
         'TOOLKIT_URL':'/model/toolkit/beforeword_AI.html#'+language,
-        'FULL_TEXT':escape(full),'COMPACT_TEXT':escape(compact),
+        'FULL_TEXT':escape(full),'MEDIUM_TEXT':escape(medium),'COMPACT_TEXT':escape(compact),
         'FULL_COUNT':f'{len(full):,} {t["characters"]}'.replace(',','\u2009'),
+        'MEDIUM_COUNT':f'{len(medium):,} {t["characters"]}'.replace(',','\u2009'),
         'COMPACT_COUNT':f'{len(compact):,} {t["characters"]}'.replace(',','\u2009'),
         'NAV':nav(language,current='location' if evaluation else 'page'),'SETTINGS_ROUTES':settings(language,connectors),
         'FOOTER_NAV':nav(language,footer=True,current='location' if evaluation else 'page'),
@@ -262,8 +270,9 @@ def build(output: Path, repo_url: str | None = None) -> Path:
     aliases = {}
     for language in ('ru','en'):
         full = read(f'assets/scope.{language}.txt').rstrip('\n')+'\n\n'+read(f'assets/core.{language}.txt')
+        medium = read(f'assets/medium.{language}.txt')
         compact = read(f'assets/compact.{language}.txt')
-        for prefix,content,source in (('',full,'full'),('full-',full,'full'),('compact-',compact,'compact'),('micro-',compact,'compact')):
+        for prefix,content,source in (('',full,'full'),('full-',full,'full'),('5000-',medium,'medium'),('compact-',compact,'compact'),('micro-',compact,'compact')):
             filename=f'beforeword-{prefix}{language}.txt'
             (model/filename).write_text(content,encoding='utf-8')
             aliases[filename]={'language':language,'content':source,'sha256':sha(content.encode('utf-8'))}

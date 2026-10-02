@@ -1,5 +1,21 @@
 # Changes / Изменения
 
+## 1.2.3
+
+### English
+
+- Add self-contained Russian and English instructions up to 5,000 characters alongside the full and compact editions.
+- Place copy controls beside the instruction text, including the full text, and show the actual character count and TXT downloads.
+- Clarify that naming a frame or calling the first term a word does not exempt the definitions that follow. Examine key terms and relationships introduced by the explanation where they are used.
+- Do not substitute a claim about what words do or create for the examination of whether writing becomes what it names.
+
+### Русский
+
+- Добавлены самостоятельные инструкции до 5 000 знаков на русском и английском, рядом с полной и краткой редакциями.
+- Кнопки копирования размещены рядом с текстом инструкции, включая полный; показаны фактическое число знаков и загрузки TXT.
+- Уточнено, что название рамки и указание на написанное слово в начале не освобождают последующие определения от разбора. Существенные термины и отношения, введённые объяснением, разбираются в месте употребления.
+- Разбор перехода от написания к называемому не подменяется утверждением о том, что слова делают или создают.
+
 ## 1.2.2
 
 ### English
