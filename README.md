@@ -6,13 +6,31 @@ beforeword is a set of reading instructions for AI applications. It asks for the
 
 ## Start in a chat
 
-1. Open the [full English instructions](assets/core.en.txt) or [full Russian instructions](assets/core.ru.txt) and copy the complete file.
+1. Open the [full English instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_core_EN.txt) or [full Russian instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_core_RU.txt) and copy the complete file.
 2. Paste it as the first message of a new chat in your AI application.
 3. Send your task. For example: `Apply beforeword to the phrase “I understand.”`
 
-No download, API key, or developer account is needed for this route. The instructions are supplied to that chat; repeat the first step in another chat and specify your preferred response language when needed. Application settings and skills offer more persistent routes where supported; their availability depends on the application and account. Use a compact edition only when a saved setting has a limited field. A request such as `Stop beforeword for subsequent replies.` changes the requested mode in the current chat. It does not remove an installed skill or erase saved application settings.
+No download, API key, or developer account is needed for this route. The instructions are supplied to that chat; repeat the first step in another chat and specify your preferred response language when needed. Application settings and skills offer more persistent routes where supported; their availability depends on the application and account. Use a compact edition only when a saved setting has a limited field. To stop using instructions sent only as a message, start a new conversation without them. Remove saved app or project instructions first, or disable an installed skill through the app’s skill or plugin controls. Messages already sent remain in the previous conversation.
 
-Use one installation route. [The installation guide](docs/installation.md) explains settings, skills, updates, and removal. The generated guide offers app-specific steps, copy buttons, and separate RU/EN downloads.
+Use one installation route. [The installation guide](docs/installation.md) explains settings, skills, updates, and removal. The downloadable guide below offers app-specific steps, copy buttons, and separate RU/EN downloads.
+
+## Ready-to-use downloads · 1.2.0
+
+Choose one route and one instruction language. Python is not needed to use these files.
+
+| Use | English | Русский |
+|---|---|---|
+| Full instructions for a new chat | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_core_EN.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_core_RU.txt) |
+| Compact instructions for a limited settings field | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_compact_EN.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_compact_RU.txt) |
+| Claude plugin / Claude Code | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_claude_plugin_EN_1.2.0.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_claude_plugin_RU_1.2.0.zip) |
+| Codex local marketplace · desktop / CLI | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_openai_local_marketplace_EN_1.2.0.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_openai_local_marketplace_RU_1.2.0.zip) |
+| Standalone skill | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_skill_EN_1.2.0.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword-SKILL-en.md) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_skill_RU_1.2.0.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword-SKILL-ru.md) |
+
+[Download the standalone guide · RU/EN](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_AI_1.2.0.html). Save the HTML file and open it in a browser for copy buttons, installation steps, package downloads, and local API request preparation. It starts in Russian; choose EN at the top. On phones, a file preview may display text without running buttons; use the TXT links above or [the website](https://beforeword.xyz/model/en/).
+
+Each package includes installation, update, and removal steps. Availability of an import control depends on the application and account; uploading an archive to a conversation is not installation. The full TXT files include both scope and core instructions.
+
+[Developer toolkit · ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_toolkit_1.2.0.zip) · [Checksums](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/SHA256SUMS.txt) · [File sizes and build-input hashes](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/manifest.json)
 
 ## What is included
 
@@ -20,8 +38,6 @@ Use one installation route. [The installation guide](docs/installation.md) expla
 - Optional local-marketplace and plugin exports for supported Codex and Claude environments, plus standalone skill exports.
 - Local tools for seven text-only API request and response formats.
 - Reproducible guide and website builds, offline checks, and historical evaluation records.
-
-This repository prepares release **1.2.0**. The `/model/` and `/model/en/` website pages are build outputs; this repository does not establish that either page has been deployed. There is no published GitHub Release URL configured here yet.
 
 ## For developers
 
@@ -53,8 +69,12 @@ This command writes JSON locally. It does not send it, read an API key, or confi
 
 ## Checks and evidence
 
+If you extracted the source toolkit ZIP, first run `python3 -B scripts/build_downloads.py`: that archive excludes generated downloads. A repository checkout already contains `downloads/`.
+
 ```sh
 python3 scripts/test_payload.py
+python3 scripts/test_downloads.py
+python3 -B scripts/build_downloads.py --check
 python3 scripts/build_guide.py --output build/toolkit
 node scripts/test_guide.cjs build/toolkit/beforeword_AI.html
 python3 scripts/test_packages.py

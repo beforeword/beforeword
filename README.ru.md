@@ -6,13 +6,31 @@ beforeword — инструкции чтения для ИИ-приложени�
 
 ## Начать в чате
 
-1. Открой [полную русскую инструкцию](assets/core.ru.txt) или [полную английскую](assets/core.en.txt) и скопируй файл целиком.
+1. Открой [полную русскую инструкцию](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_core_RU.txt) или [полную английскую](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_core_EN.txt) и скопируй файл целиком.
 2. Вставь его первым сообщением нового чата в своём ИИ-приложении.
 3. Отправь задачу. Например: `Примени beforeword к фразе «Я понимаю».`
 
-Для этого способа не нужны скачивание, ключ API или аккаунт разработчика. Инструкция передаётся в выбранный чат; в другом чате передай её заново и при необходимости укажи язык ответа. Настройки приложения и навыки позволяют подключить её на более длительный срок там, где это поддерживается; доступность зависит от приложения и аккаунта. Краткая редакция нужна для ограниченного поля сохранённых настроек. Запрос `Прекрати режим beforeword для следующих ответов.` меняет запрошенный режим в текущем чате. Он не удаляет установленный навык или сохранённую настройку приложения.
+Для этого способа не нужны скачивание, ключ API или аккаунт разработчика. Инструкция передаётся в выбранный чат; в другом чате передай её заново и при необходимости укажи язык ответа. Настройки приложения и навыки позволяют подключить её на более длительный срок там, где это поддерживается; доступность зависит от приложения и аккаунта. Краткая редакция нужна для ограниченного поля сохранённых настроек. Если инструкция была отправлена только сообщением, для прекращения режима начни новый разговор без неё. Сохранённую инструкцию сначала удали из настроек приложения или проекта; установленный навык отключи через управление навыками или плагинами. Уже отправленные сообщения остаются в прежнем разговоре.
 
-Выбери один способ подключения. [Руководство по установке](docs/installation.ru.md) описывает настройки, навыки, обновление и удаление. Собираемое HTML-руководство содержит шаги для разных приложений, кнопки копирования и отдельные загрузки RU/EN.
+Выбери один способ подключения. [Руководство по установке](docs/installation.ru.md) описывает настройки, навыки, обновление и удаление. HTML-руководство ниже содержит шаги для разных приложений, кнопки копирования и отдельные загрузки RU/EN.
+
+## Готовые загрузки · 1.2.0
+
+Выбери один способ подключения и один язык инструкции. Для использования этих файлов Python не нужен.
+
+| Для чего | Русский | English |
+|---|---|---|
+| Полная инструкция для нового чата | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_core_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_core_EN.txt) |
+| Краткая инструкция для ограниченного поля настроек | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_compact_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_compact_EN.txt) |
+| Плагин Claude / Claude Code | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_claude_plugin_RU_1.2.0.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_claude_plugin_EN_1.2.0.zip) |
+| Локальный каталог Codex · desktop / CLI | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_openai_local_marketplace_RU_1.2.0.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_openai_local_marketplace_EN_1.2.0.zip) |
+| Отдельный навык | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_skill_RU_1.2.0.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword-SKILL-ru.md) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_skill_EN_1.2.0.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword-SKILL-en.md) |
+
+[Скачать самостоятельное руководство · RU/EN](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_AI_1.2.0.html). Сохрани HTML-файл и открой его в браузере: в нём есть кнопки копирования, шаги установки, загрузки пакетов и локальная подготовка API-запросов. Язык переключается вверху страницы. На телефоне предварительный просмотр файла может показывать текст без работающих кнопок; тогда используй TXT-ссылки выше или [страницу сайта](https://beforeword.xyz/model/).
+
+В каждом пакете есть шаги установки, обновления и удаления. Наличие импорта зависит от приложения и аккаунта; отправка архива в разговор не устанавливает навык. Полные TXT содержат и область действия, и ядро инструкции.
+
+[Инструменты для разработчиков · ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/beforeword_toolkit_1.2.0.zip) · [Контрольные суммы](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/SHA256SUMS.txt) · [Размеры файлов и хеши исходных файлов сборки](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.2.0/manifest.json)
 
 ## Что входит в комплект
 
@@ -20,8 +38,6 @@ beforeword — инструкции чтения для ИИ-приложени�
 - Дополнительные пакеты локального каталога и плагина для поддерживаемых сред Codex и Claude, а также отдельные пакеты навыка.
 - Локальные инструменты для семи текстовых форматов запросов и ответов API.
 - Воспроизводимая сборка руководства и страниц сайта, локальные проверки и записи предыдущих испытаний.
-
-В репозитории готовится выпуск **1.2.0**. Страницы сайта `/model/` и `/model/en/` создаются при сборке; наличие файлов здесь не означает, что страницы уже опубликованы. Адрес опубликованного GitHub Release ещё не задан.
 
 ## Для разработчиков
 
@@ -53,8 +69,12 @@ python3 "$BEFOREWORD_DIR/scripts/build_payload.py" openai \
 
 ## Проверки и записи испытаний
 
+Если исходники распакованы из ZIP инструментов, сначала выполни `python3 -B scripts/build_downloads.py`: этот архив не включает созданные загрузки. В копии репозитория каталог `downloads/` уже присутствует.
+
 ```sh
 python3 scripts/test_payload.py
+python3 scripts/test_downloads.py
+python3 -B scripts/build_downloads.py --check
 python3 scripts/build_guide.py --output build/toolkit
 node scripts/test_guide.cjs build/toolkit/beforeword_AI.html
 python3 scripts/test_packages.py
