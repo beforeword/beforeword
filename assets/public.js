@@ -40,5 +40,17 @@
   document.querySelectorAll('[data-copy-target]').forEach(button => {
     button.addEventListener('click', () => copy(button));
   });
+  const instruction = document.getElementById('instruction-details');
+  if (instruction) {
+    const revealInstruction = () => { instruction.open = true; };
+    const revealLinkedInstruction = () => {
+      if (window.location.hash === '#instruction-details') revealInstruction();
+    };
+    document.querySelectorAll('a[href$="#instruction-details"]').forEach(link => {
+      link.addEventListener('click', revealInstruction);
+    });
+    window.addEventListener('hashchange', revealLinkedInstruction);
+    revealLinkedInstruction();
+  }
   document.documentElement.classList.add('js-ready');
 })();

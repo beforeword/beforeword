@@ -20,8 +20,10 @@ SPIRAL_PATH = 'M31 8 C56 7 69 39 48 54 C36 62 16 58 14 44 C12 31 25 20 37 24 C48
 COPY = {
     'ru': {
         'status': 'Публичный тест',
-        'scope': 'Инструкция beforeword',
+        'scope': 'Инструкция beforeword для ИИ',
         'toggle': 'Обновления',
+        'purpose': 'Инструкция просит ИИ сохранять точные формулировки, отделять написанное от добавленных толкований и выводов и указывать их основания. Это относится и к собственным ответам ИИ.',
+        'open_instructions': 'Открыть инструкцию',
         'changes': 'Что изменилось в {version}',
         'follow': 'Следить за обновлениями',
         'follow_text': 'Отправь готовый запрос своему ИИ: проверять обновления раз в неделю и сообщать о новых версиях.',
@@ -57,8 +59,10 @@ COPY = {
     },
     'en': {
         'status': 'Public testing',
-        'scope': 'beforeword instructions',
+        'scope': 'beforeword instructions for AI',
         'toggle': 'Updates',
+        'purpose': "The instructions ask AI to preserve exact wording, separate the text from added interpretations and conclusions, and state their grounds. This also applies to the AI's own responses.",
+        'open_instructions': 'Open the instructions',
         'changes': 'What changed in {version}',
         'follow': 'Follow updates',
         'follow_text': 'Send your AI a ready-made request to check for updates each week and notify you about new versions.',
@@ -163,6 +167,7 @@ def render(language: str) -> str:
     email_url = links['email'] + '?' + urlencode({'subject': f'beforeword {version}'}, quote_via=quote)
     prompt = text['prompt'].format(url=FEED_URL, version=version)
     feed_url = BASE_URL + f'updates-{language}.atom'
+    instruction_url = '/model/' + ('en/' if language == 'en' else '') + '#instruction-details'
     changes = ''.join(f'<li>{escape(change)}</li>' for change in release['changes'])
     return f'''<aside class="bw-update-shell" aria-label="{escape(text['scope'], quote=True)}">
 <details id="bw-updates" class="bw-updates">
@@ -172,7 +177,11 @@ def render(language: str) -> str:
 <span class="bw-update-toggle">{escape(text['toggle'])}</span>
 </summary>
 <div class="bw-update-body">
-<p class="bw-update-intro">{escape(release['intro'])}</p>
+<div class="bw-update-intro">
+<p>{escape(text['purpose'])}</p>
+<p class="bw-update-status">{escape(release['intro'])}</p>
+<a class="bw-update-instructions" href="{escape(instruction_url, quote=True)}">{escape(text['open_instructions'])}</a>
+</div>
 <div class="bw-update-grid">
 <section class="bw-update-release" aria-labelledby="bw-update-release-title">
 <h2 id="bw-update-release-title">{escape(text['changes'].format(version=version))}</h2>

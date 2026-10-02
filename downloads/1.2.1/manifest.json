@@ -10,7 +10,7 @@
     ".github/ISSUE_TEMPLATE/report_ru.yml": "6e321bab02e54d45e66e5cb2aad30a795aba71d220032bf84295d2c7efa1d58e",
     ".github/workflows/validate.yml": "2df0adb7d12e94f4636e0db6b44860598de085dd7600adbba1e4eea858f3e564",
     ".gitignore": "96c739299c21d2f6657630817a9c4efc752c1d3e94166c08703df8b638ae68dd",
-    "CHANGELOG.md": "c6a0489bf59a9e40949e8b58afdcd90d1effc8d0e3daca33d6e3123105826e1c",
+    "CHANGELOG.md": "2f8a6e5f4d444741a8ed922bf56468234e416734da632c6ec5484e8bc20c7ca7",
     "README.md": "353d3d48aa5063968ed46d92f2039e703a5e1f12bcc8f694478ac8ab30cf3228",
     "README.ru.md": "954505dbd5c17670966811be2e86a9cb72e22e59bd3b2b91f5814da7c3c152e3",
     "SKILL.md": "b3a2839bb0b4da763cf64351eaac2fe06a3c71b7e6b7372a50829d273bf546f5",
@@ -49,7 +49,7 @@
     "assets/history/2026-09-28/snapshot.json": "6edf6754aedb55614532de9868e3fbc8f5ee0e3259701fa8ac627deb22de7542",
     "assets/icon.svg": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee",
     "assets/public.css": "b3faa6f9e12e6f6c8335c9f01a26c44bf9020625667053d3991c7171f9126f3f",
-    "assets/public.js": "ff42b5d86cd34986ee926246d135e4c17588546376a2ca4c6eca9b2685fae612",
+    "assets/public.js": "d241c05b6c387f5105e1ae8babfc49a742bfe5776a9483afb9129dda9a2f6106",
     "assets/public.template.html": "cd898118c555e08b67f0c185d4733837eaa1d933f0cdd245342312ea4fd37ef0",
     "assets/scope.en.txt": "2ee1c1796e980a992ea0592ebd10b4473b95f8b06c1bce5a9c66a36b989b5ebb",
     "assets/scope.ru.txt": "ab56e6ef9ce29a6df1241160752a768586b653f9e6802b9947bc1e423f1517e7",
@@ -60,7 +60,7 @@
     "assets/site-shell/paper-theme-20260920.css": "7def1b6862163af776bb2cad279da97b9a32ee024287dc3e04cdc7d6cd057db7",
     "assets/site-shell/site-reader-20260920.css": "3f1e449bb985ac4d289d9889b9037445ddfe816e81965fb925316962ff664785",
     "assets/site-shell/site-reader-20260920.js": "5234fb7bd34ef046f1da0b014fa8a48d78ef9d729fc6e52d3e9469d5dc6c6b8e",
-    "assets/updates.css": "c2857800ec025e0634369d07d09b9e21d38d91f91f7ded9a2084fd6fa277db15",
+    "assets/updates.css": "6e8e19b838f712f5271995b104c3f71a98c2a6206705947a58d82bc6cf9f5b67",
     "assets/updates.js": "b6f1ef519f7c5c615caaa789f8de97c6896733cd0094695c63023f0bf7393c75",
     "docs/installation.md": "d673d721f74ea35d59ea28e692897f29e6b8841325ddc86d73f4bc996833d909",
     "docs/installation.ru.md": "3dd39eb60c715443343e0d896cb166628b55b17bff0988be94aeda5de1eb5a2a",
@@ -82,16 +82,16 @@
     "scripts/build_public.py": "c2f5bc578a9f05dcd3f64b7c46799718d8a7107739c70df833777537f23f0156",
     "scripts/extract_response.py": "7bd870a055fbc4502362091649f2e93afaaae920138433d926ea83d1608b4835",
     "scripts/package_plugins.py": "046342be25496bde1ca6dd164337dabd3080f25ba59284ad8e430c7f3c4de2e0",
-    "scripts/public_updates.py": "80e4f02805b75d4c55924482582946767d209067f00e3d43b52f0a448d75ab4c",
+    "scripts/public_updates.py": "7696a4fb98cf4e02de628c520b3d2f98d2db8b0b9182fec038541bed43871eac",
     "scripts/render_report.py": "277689b37b2b7c1712cc8c80d740791df1bbcb433818dcf0d6afa008b0a18f24",
     "scripts/test_downloads.py": "612920a1f4e244712f2b26d1aa8a324fd191fd85d4daf558c8c14af7f220ba4c",
     "scripts/test_evaluation.py": "7f9522a8dab574c855da5180b05423434ffea2e2d319197b143f25c2a9d8fb06",
     "scripts/test_guide.cjs": "558870bdefbdc2f2dfaa0e5b8a6eb02bc4b0c8c30c05e79b2abebaf5ab761ea7",
     "scripts/test_packages.py": "433585bf6f61fe6fdb2d035010861ed9a682ab3389a7316199a07b497850d8fa",
     "scripts/test_payload.py": "e1c39c5db95135b92542c31b294f54e483fc89fbb5876d0a6bb35ded738561d4",
-    "scripts/test_public.cjs": "6554fa29adf534dd3c26457bb77aebf90558a051d85b11c90dfa866f89e82f66",
+    "scripts/test_public.cjs": "9dc27c5427182fa83b724d51948d61e4403e794265ed6fcc950f4e99ec982627",
     "scripts/test_updates.cjs": "1276d95f28ccd5fd7771becce2282b856ad8f6db729c906eaf41f9af9ecb842a",
-    "scripts/test_updates.py": "46f25008e6841b71f42470732e190b102535ac6acd0f92bc9c1fcc0ae4bf41eb"
+    "scripts/test_updates.py": "37dc5a00d155253b4c51fbca109e77c0b8f077aac535b4aa0d2c736f83d8d6cb"
   },
   "files": {
     "beforeword-SKILL-en.md": {
@@ -103,8 +103,8 @@
       "bytes": 14937
     },
     "beforeword_AI_1.2.1.html": {
-      "sha256": "81caf248969d0509b7398c60fd840d87e76854e7567027c979287a6db8d07c07",
-      "bytes": 938498
+      "sha256": "d87f2e6d0d824fc036ebf84c0aef340fe8fe98ffce62540d7ee0fcc4e8df7d58",
+      "bytes": 940198
     },
     "beforeword_claude_plugin_EN_1.2.1.zip": {
       "sha256": "72c634535b350ba00436d2a1bfc901070e8bf75d036f836c9d647cd7c82890be",
@@ -147,8 +147,8 @@
       "bytes": 6993
     },
     "beforeword_toolkit_1.2.1.zip": {
-      "sha256": "2bc1c888a52425e9c3037c7073dc20919305af65b0929fc7da3b975b05562628",
-      "bytes": 468517
+      "sha256": "6b18b9435f61405a47eec88906b0fa453cf710d423c8789c30498706fe331532",
+      "bytes": 469793
     }
   }
 }

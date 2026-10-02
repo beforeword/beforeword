@@ -120,6 +120,12 @@ class UpdatesDelivery(unittest.TestCase):
                         self.assertIn(node.attrs['data-update-copy'], ids, 'Copy controls have a real field')
                         self.assertEqual(node.attrs.get('type'), 'button')
                 self.assertEqual(len(component.find('button')), 2)
+                instruction_link = component.find('a', **{'class': 'bw-update-instructions'})
+                self.assertEqual(len(instruction_link), 1)
+                target = '/model/' + ('en/' if language == 'en' else '') + '#instruction-details'
+                self.assertEqual(instruction_link[0].attrs['href'], target)
+                target_page = SITE / target.split('#')[0].lstrip('/') / 'index.html'
+                self.assertEqual(len(Document(target_page.read_text(encoding='utf-8')).root.find('details', id='instruction-details')), 1)
                 self.assertFalse(component.find('form'), 'The component does not submit a task or user data')
                 for field_id in ('bw-update-prompt', 'bw-update-feed-url'):
                     self.assertIn('readonly', ids[field_id].attrs)
@@ -199,7 +205,6 @@ class UpdatesDelivery(unittest.TestCase):
 
     def test_animation_scope_and_reduced_motion(self):
         css = (ROOT / 'assets/updates.css').read_text(encoding='utf-8')
-        self.assertNotIn('infinite', css, 'No continuously looping animation')
         animations = re.findall(r'(?<![\w-])animation\s*:\s*([^;}]+)', css)
         active = [value for value in animations if value.strip() != 'none']
         self.assertEqual(len(active), 1)
@@ -208,16 +213,20 @@ class UpdatesDelivery(unittest.TestCase):
         self.assertIn(len(times), (1, 2), 'Animation declares a duration and at most one delay')
         seconds = [float(value) / (1000 if unit == 'ms' else 1) for value, unit in times]
         self.assertGreater(seconds[0], 0)
-        self.assertLessEqual(sum(seconds), 5, 'The finite animation plus any delay ends within five seconds')
-        self.assertRegex(active[0], r'\s1(?:\s|$)', 'One animation iteration')
+        self.assertIn('infinite', active[0], 'Repeat while the panel is open')
+        open_selector = '.bw-update-shell .bw-updates[open]>summary .bw-update-spiral path'
+        normal = css.split('@media(prefers-reduced-motion:reduce)')[0]
+        rule = re.search(re.escape(open_selector) + r'\{([^}]+)\}', normal)
+        self.assertIsNotNone(rule, 'Animation belongs only to the outer open panel')
+        self.assertIn('animation:' + active[0], rule[1])
+        self.assertRegex(normal, r'\.bw-update-spiral path\{[^}]*stroke-dashoffset:0[^}]*\}', 'Closed state keeps the complete mark')
         reduced = re.search(r'@media\s*\(prefers-reduced-motion\s*:\s*reduce\)(.*?)(?=@media|\Z)', css, re.S)
         self.assertIsNotNone(reduced)
         self.assertIn('animation:none', reduced[1])
-        self.assertIn('transition:none', reduced[1])
-        self.assertIn('transform:none', reduced[1])
+        self.assertIn(open_selector + '{animation:none', reduced[1], 'Reduced-motion override has the same specificity')
         for match in re.finditer(r'(?:^|[{}])\s*([^{}]+)\{', css):
             selector = match[1].strip()
-            if selector.startswith('@') or selector in ('from', 'to'):
+            if selector.startswith('@') or all(re.fullmatch(r'from|to|[\d.]+%', part.strip()) for part in selector.split(',')):
                 continue
             self.assertTrue(all(part.strip().startswith('.bw-update-shell') for part in selector.split(',')),
                             'Style selectors stay inside the component: ' + selector)

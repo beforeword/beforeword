@@ -203,4 +203,28 @@ async function checkCopy() {
   return cases;
 }
 
-(async()=>{const artifacts=checkArtifacts();const historyFiles=checkHistory();const copyCases=await checkCopy();const navigationCases=checkNavigation();process.stdout.write(JSON.stringify({ok:true,...artifacts,historyFiles,copyCases,navigationCases,scope:'Static files and simulated DOM; no browser rendering'},null,2)+'\n');})().catch(error=>{console.error(error);process.exitCode=1;});
+function checkInstructionNavigation() {
+  const source = read(path.join(ROOT, 'assets/public.js'));
+  for (const initialHash of ['', '#instruction-details', '#bw-updates']) {
+    const instruction = {open:false};
+    const link = {addEventListener(type, listener){this[type]=listener;}};
+    const events = {};
+    const window = {location:{hash:initialHash},addEventListener(type,listener){events[type]=listener;}};
+    const document = {
+      getElementById(id){return id==='instruction-details'?instruction:null;},
+      querySelectorAll(selector){return selector==='a[href$="#instruction-details"]'?[link]:[];},
+      documentElement:{classList:{add(){}}}
+    };
+    vm.runInNewContext(source,{document,window});
+    assert.equal(instruction.open,initialHash==='#instruction-details','Only the instruction fragment opens its text on arrival');
+    window.location.hash='#instruction-details';events.hashchange();
+    assert.equal(instruction.open,true,'Changing the fragment reveals the full instruction');
+    instruction.open=false;link.click();
+    assert.equal(instruction.open,true,'Repeating the same link reopens manually closed instructions');
+    instruction.open=false;window.location.hash='#bw-updates';events.hashchange();
+    assert.equal(instruction.open,false,'Other fragments leave manually closed instructions alone');
+  }
+  return 3;
+}
+
+(async()=>{const artifacts=checkArtifacts();const historyFiles=checkHistory();const copyCases=await checkCopy();const navigationCases=checkNavigation();const instructionNavigationCases=checkInstructionNavigation();process.stdout.write(JSON.stringify({ok:true,...artifacts,historyFiles,copyCases,navigationCases,instructionNavigationCases,scope:'Static files and simulated DOM; no browser rendering'},null,2)+'\n');})().catch(error=>{console.error(error);process.exitCode=1;});

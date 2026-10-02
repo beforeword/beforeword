@@ -20,10 +20,12 @@
 
 - Add a public-testing panel to the RU/EN home and instruction pages: current version, changes, update options, GitHub, and issue reporting.
 - Mark public-testing status in both READMEs and add English and Russian issue forms, with email as an alternative to a public GitHub report.
+- Explain the AI instruction's purpose in the public-testing panel and link directly to its full text. Animate the spiral only while the panel is open, respecting reduced-motion settings; center the homepage logo in the mobile header.
 - These website and repository changes do not change instruction version 1.2.1.
 
 - На главную и страницу инструкции RU/EN добавлена панель публичного теста: текущая версия, изменения, способы отслеживания, GitHub и сообщения о сбоях.
 - В обеих версиях README обозначен публичный тест; добавлены формы сообщений на русском и английском, а также почта для отправки без публичного размещения на GitHub.
+- В панели публичного теста пояснено назначение инструкции для ИИ и добавлена ссылка на полный текст. Спираль повторяет анимацию только при раскрытой панели с учётом настройки уменьшения движения; логотип главной расположен по центру мобильной шапки.
 - Эти изменения сайта и репозитория не меняют версию инструкции 1.2.1.
 
 ## 1.2.0
