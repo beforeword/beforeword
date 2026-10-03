@@ -10,8 +10,13 @@
   "support": "https://github.com/beforeword/beforeword/issues",
   "documentation": "https://github.com/beforeword/beforeword/blob/main/catalog/README.md",
   "license": {
-    "status": "pending-owner-decision",
-    "proposed": "MIT"
+    "status": "approved",
+    "spdx": "MIT",
+    "approved_on": "2026-10-04",
+    "scope": [
+      "plugins/claude/beforeword",
+      "plugins/openai/beforeword"
+    ]
   },
   "locales": {
     "en": {

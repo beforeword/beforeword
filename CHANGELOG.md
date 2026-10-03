@@ -1,5 +1,12 @@
 # Changes / Изменения
 
+## 2026-10-04 · Package license / Лицензия пакетов
+
+- Apply the owner-approved MIT License to the contents of the Claude and OpenAI directory packages, including the bundled instruction and assets. Include the full notice in both packages and preserve it in the downloadable source toolkit.
+- Update manifests, package documentation and checksums. Instruction text remains 1.2.4; host installation, directory submission and platform review remain pending.
+- По решению владельца MIT применена к содержимому пакетов для каталогов Claude и OpenAI, включая входящие в них инструкцию и значок. Полный текст LICENSE включён в оба пакета и сохраняется в архиве исходников.
+- Обновлены манифесты, описания пакетов и контрольные суммы. Текст инструкции остаётся версией 1.2.4; установка в приложениях, подача в каталоги и рассмотрение платформами ещё не выполнены.
+
 ## 2026-10-04 · Directory preparation / Подготовка к каталогам
 
 - Prepare one multilingual beforeword package per platform for Claude and OpenAI, with native RU/EN listing copy, three starter prompts, the existing project icon and the exact full 1.2.4 core.

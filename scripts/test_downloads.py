@@ -48,6 +48,13 @@ class DownloadTests(unittest.TestCase):
             actual = {name.removeprefix("beforeword/"): hashlib.sha256(archive.read(name)).hexdigest()
                       for name in archive.namelist()}
             self.assertEqual(manifest["source_files_sha256"], actual)
+            for provider in ("claude", "openai"):
+                license_path = f"plugins/{provider}/beforeword/LICENSE"
+                source_license = ROOT / license_path
+                if source_license.is_file():
+                    self.assertEqual(archive.read("beforeword/" + license_path),
+                                     source_license.read_bytes(),
+                                     "The source toolkit must retain each package's license notice")
         self.assertEqual(len([name for name in self.files if name.endswith(".zip")]), 7)
 
     def test_guide_download_links_resolve_and_start_with_complete_text(self):

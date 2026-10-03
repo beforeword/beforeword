@@ -33,3 +33,7 @@ The package contains instructions and an icon. It includes no executable code, s
 [Setup and publication status](https://github.com/beforeword/beforeword/blob/main/catalog/README.md) · [Report an issue](https://github.com/beforeword/beforeword/issues)
 
 For a useful report, include the input, output, application/model label, version, and loading method. Remove private material before sharing.
+
+## License
+
+The contents of this package are available under the [MIT License](LICENSE). Retain the copyright and license notice when redistributing them.

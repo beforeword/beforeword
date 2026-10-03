@@ -11,8 +11,9 @@ This is a preparation record. It is not a receipt from either directory. No port
 - Branch: `main`; select an agreed immutable commit or tag when submitting a release.
 - Portal: [claude.ai/directory/manage](https://claude.ai/directory/manage).
 - Type: Plugin bundle.
-- Contents: one instruction skill, bilingual README, project icon.
-- Pending: owner's license decision; actual Claude installation and task run; account eligibility and GitHub connection with push access; publisher contact; portal validation; acknowledgements and submission.
+- Contents: one instruction skill, bilingual README, project icon, MIT license notice.
+- License: MIT approved by the owner on 4 October 2026; applied to the package contents.
+- Pending: actual Claude installation and task run; account eligibility and GitHub connection with push access; publisher contact; portal validation; acknowledgements and submission.
 
 The plugin path becomes fixed for the listing. The contact email must be supplied by the publisher in the portal, not inferred from a Git commit. Paid-plan eligibility and organization permissions must be checked in the selected account.
 
@@ -23,6 +24,7 @@ The plugin path becomes fixed for the listing. The contact email must be supplie
 - Type: Skills only.
 - Submission entry: follow the dashboard link in [OpenAI's submission guide](https://developers.openai.com/plugins/deploy/submission).
 - English base metadata, Russian translation fields, three English starter prompts.
+- License: MIT approved by the owner on 4 October 2026; applied to the package contents.
 - Pending: actual plugin installation and task run; selected organization/project and publishing identity; portal import and skill scans; policy review, submission and publication.
 
 The developer name shown in the directory follows the selected publishing identity. The package uses the public project label `beforeword`; that field does not establish an account or completed identity check.

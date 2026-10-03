@@ -15,6 +15,7 @@
     "interpretation",
     "claims"
   ],
+  "license": "MIT",
   "displayName": "beforeword",
   "documentationUrl": "https://github.com/beforeword/beforeword/blob/main/catalog/README.md",
   "supportUrl": "https://github.com/beforeword/beforeword/issues",

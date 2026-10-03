@@ -14,7 +14,7 @@ The catalog packages carry the complete beforeword 1.2.4 instruction. Their Engl
 
 The instruction remains under public testing. Package checks and small task runs are recorded separately from installation in Claude or ChatGPT. Account eligibility, portal validation, platform review, and publication remain separate steps.
 
-A license decision is pending. Claude requires a license to list the plugin. The [proposal](LICENSING.md) has not been applied to either package.
+The owner approved MIT for the contents of both plugin packages on 4 October 2026. Each package includes its LICENSE notice. See the [license scope](LICENSING.md).
 
 ## Packages
 
@@ -49,7 +49,7 @@ python3 -B catalog/check.py
 python3 -B catalog/build.py --check
 ```
 
-The build uses the existing core and scope files. It does not call a model, install anything, connect an account, or submit a listing. The check distinguishes structural results from the pending license decision.
+The build uses the existing core and scope files and includes the approved MIT notice. It does not call a model, install anything, connect an account, or submit a listing. Package checks describe the files; host testing and directory review remain separate.
 
 ## Publication
 

@@ -16,6 +16,7 @@
     "interpretation",
     "claims"
   ],
+  "license": "MIT",
   "extensions": {
     "com.openai": {
       "interface": {

@@ -15,4 +15,4 @@ Prepared fields for a custom GPT. No GPT has been created, shared, or published.
 
 Do not put the instruction into a knowledge file in place of the instruction field. Do not combine both language editions or silently shorten one. The existing [5,000-character editions](../../assets/medium.en.txt) are explicitly condensed alternatives if a different field is smaller.
 
-The copyright-license decision for public distribution is recorded in [LICENSING.md](../LICENSING.md).
+The license decision for the two plugin packages is recorded in [LICENSING.md](../LICENSING.md).
