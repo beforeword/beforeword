@@ -12,6 +12,6 @@ beforeword examines the wording, the reading proposed for it and the grounds off
 
 - **[Studies and earlier work](https://beforeword.xyz/en/)** — self-description, diagnostic records, imprisonment, mathematics and descriptions of an outside view.
 - **[Public proposal: self-description and decisions based on records](https://github.com/beforeword/words-and-decisions)** — “Do not require anyone to accept that they are a written description.” Full text, constructed examples, sources and applications to AI.
-- **[Instructions for AI](docs/ai-guide.en.md)** — instructions, downloads and installation steps for examining model responses.
+- **[Instructions for AI](docs/ai-guide.en.md)** — what is written, what is added when it is read, and what justifies that step. Instructions, downloads and setup.
 
 Russian and English editions are available.

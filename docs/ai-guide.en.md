@@ -8,7 +8,9 @@ This is not a final version. The instructions and their use across applications 
 
 [Changes](../CHANGELOG.md) · [Follow updates](https://beforeword.xyz/model/en/#bw-updates) · [Report an issue](#report-an-issue)
 
-These beforeword instructions are for use in AI applications. Preserve the supplied wording, distinguish what is added through reading, and apply the same boundary to the answer itself. The instructions, this description, and assessment criteria remain written forms within that scope.
+AI writes “I understand.” These words are read as understanding. On what grounds?
+
+beforeword instructs AI to show what is written, what is added when it is read, and what justifies that step. The same scrutiny applies to AI responses and to the instruction itself.
 
 ## Start in a chat
 

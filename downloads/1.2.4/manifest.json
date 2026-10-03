@@ -10,9 +10,9 @@
     ".github/ISSUE_TEMPLATE/report_ru.yml": "bd06feec26b9f8532ca7b839d227d66dad8109848e2da984be38b71f54052190",
     ".github/workflows/validate.yml": "1dd051b2d3068e027a0f15363781a3d8870e3954af4d8992591f254805dd2ce9",
     ".gitignore": "96c739299c21d2f6657630817a9c4efc752c1d3e94166c08703df8b638ae68dd",
-    "CHANGELOG.md": "101001d6828200c4e5773b05de97a738f0978bb5261cfc8395ff7722f95a6fd6",
-    "README.md": "d30289086c131aaa3bbdf4cb1974da506720c79a5dd9c1cd0b55a997481cbcea",
-    "README.ru.md": "537b5b0850077ff87c958e085751de4ef71a206917b926e6cf86213214976a13",
+    "CHANGELOG.md": "3c4dd8240871eabe272db9ab5ed0ba59f4cff1b0463445aede891bc52a1080c6",
+    "README.md": "9fa18dac593c5c5775eec3f8b66b83c34995e042987747a30035d5b2d2941ffb",
+    "README.ru.md": "f2cb325976988039e73fb6fb80e9ba0b7cea8bcac370730d58c962be991b4ae3",
     "SKILL.md": "a1455a47fcab7b68e16bfe775de7f90d47e55d597a49d5fbc01b53618ae09457",
     "assets/compact.en.txt": "767563fe0a236a771d92f9fa4c8118381f2b60bafb0c5d888d633d91eafb6941",
     "assets/compact.ru.txt": "cd3a02b20e22af02395c2c1432d8f2208a1cbcf6251e8bb88167a0203d17839a",
@@ -64,8 +64,8 @@
     "assets/site-shell/site-reader-20260920.js": "5234fb7bd34ef046f1da0b014fa8a48d78ef9d729fc6e52d3e9469d5dc6c6b8e",
     "assets/updates.css": "6e8e19b838f712f5271995b104c3f71a98c2a6206705947a58d82bc6cf9f5b67",
     "assets/updates.js": "b6f1ef519f7c5c615caaa789f8de97c6896733cd0094695c63023f0bf7393c75",
-    "docs/ai-guide.en.md": "77fe0fd5ecada35698ab0f305e7303aebce4e74273acda02433d548bb17768d7",
-    "docs/ai-guide.ru.md": "3bfea8551553b4fa224ba2d4eee44d176299b75a184d6ae3d32f4415ce622b27",
+    "docs/ai-guide.en.md": "d0420d7f91f869b48795d8fd0a1f71470a0da7de483c8870a39493b3ea09eb79",
+    "docs/ai-guide.ru.md": "e77431575f06808863d7cb1b7e4b33c00328ee9c851fc0b7a37465c760ca32d9",
     "docs/installation.md": "11fcf32c26ad0b44967caa1c63ec088d5676ef3161e361aeacb46b69e2544b21",
     "docs/installation.ru.md": "599d8d2474e5e09dfbf5614188133fedebe8d9496fde485e69ce88ce9b4242a4",
     "references/api-use.md": "b33ee0b4ee43266cf0e0e563ce1fc453c1e3183995c02eaa69566048cf8b9d50",
@@ -87,7 +87,7 @@
     "scripts/build_public.py": "e559436f288fa6f3c172f012dd1255a01fac900150cb4bfba18cfe70aaa47acc",
     "scripts/extract_response.py": "7bd870a055fbc4502362091649f2e93afaaae920138433d926ea83d1608b4835",
     "scripts/package_plugins.py": "e73c56608aec73bd441942d88141f855663eecfdb7a7562bb2724ea72f1f7978",
-    "scripts/public_updates.py": "09d21a5633056e48faa0d4f38024a60f0e4c3a60597db74a4188aedb70444b77",
+    "scripts/public_updates.py": "700ac4f229fa50e9009a6f11de0532db591ad3c18fb0f4a20c3f35c23197dd9c",
     "scripts/render_report.py": "4f0a11b0318f1b070e68520cf62653d98beca96dc10135d1b36647a57c534276",
     "scripts/test_downloads.py": "facc5a9116745842fe7712b7d423593a5fb178ffe6b8dc4989e5b898556b1081",
     "scripts/test_evaluation.py": "7f9522a8dab574c855da5180b05423434ffea2e2d319197b143f25c2a9d8fb06",
@@ -117,8 +117,8 @@
       "bytes": 9080
     },
     "beforeword_AI_1.2.4.html": {
-      "sha256": "f35a41675c48b63cc141ae3f1da27025b85779b5c3b050c3782155f0ed427c7f",
-      "bytes": 1068176
+      "sha256": "3968544db2d561a0ec781924732717328fb7a2c43b559ae909f01455cfc4dda3",
+      "bytes": 1068604
     },
     "beforeword_claude_plugin_EN_1.2.4.zip": {
       "sha256": "5245df08f6e02fa43f59348c3766814d83b50ff7b275cab26939e19e500f6e1a",
@@ -161,8 +161,8 @@
       "bytes": 6989
     },
     "beforeword_toolkit_1.2.4.zip": {
-      "sha256": "e56138ddfd9810ff5085041d08e70589c10d1bbac31e4dd6a747a184a6e5ed0a",
-      "bytes": 530285
+      "sha256": "6e155fb9d597efa0ad7207e3d94a8992c0fbfa77364fd660e839218b9740c5f2",
+      "bytes": 530606
     }
   }
 }

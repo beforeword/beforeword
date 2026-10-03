@@ -22,7 +22,8 @@ COPY = {
         'status': 'Публичный тест',
         'scope': 'Инструкция beforeword для ИИ',
         'toggle': 'Обновления',
-        'purpose': 'Инструкция просит ИИ сохранять точные формулировки, отделять написанное от добавленных толкований и выводов и указывать их основания. Это относится и к собственным ответам ИИ.',
+        'example': 'ИИ пишет «я понимаю». Эти слова читают как понимание. На каком основании?',
+        'purpose': 'beforeword — инструкция для ИИ: показывать, что написано, что добавлено при чтении и чем обоснован этот переход. Тот же разбор применяется к ответам ИИ и к самой инструкции.',
         'open_instructions': 'Открыть инструкцию',
         'changes': 'Что изменилось в {version}',
         'follow': 'Следить за обновлениями',
@@ -61,7 +62,8 @@ COPY = {
         'status': 'Public testing',
         'scope': 'beforeword instructions for AI',
         'toggle': 'Updates',
-        'purpose': "The instructions ask AI to preserve exact wording, separate the text from added interpretations and conclusions, and state their grounds. This also applies to the AI's own responses.",
+        'example': 'AI writes “I understand.” These words are read as understanding. On what grounds?',
+        'purpose': 'beforeword instructs AI to show what is written, what is added when it is read, and what justifies that step. The same scrutiny applies to AI responses and to the instruction itself.',
         'open_instructions': 'Open the instructions',
         'changes': 'What changed in {version}',
         'follow': 'Follow updates',
@@ -179,6 +181,7 @@ def render(language: str) -> str:
 </summary>
 <div class="bw-update-body">
 <div class="bw-update-intro">
+<p>{escape(text['example'])}</p>
 <p>{escape(text['purpose'])}</p>
 <p class="bw-update-status">{escape(release['intro'])}</p>
 <a class="bw-update-instructions" href="{escape(instruction_url, quote=True)}">{escape(text['open_instructions'])}</a>

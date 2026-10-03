@@ -1,5 +1,10 @@
 # Changes / Изменения
 
+## 2026-10-04 · Public introduction / Публичное описание
+
+- Clarify the public introduction with “I understand” and the step from wording to reading. Align the website update panel and AI guides in Russian and English. The instruction text remains version 1.2.4.
+- Публичное описание начинается с «я понимаю» и перехода от написанного к прочтению. Согласованы панель обновлений сайта и руководства для ИИ на русском и английском. Текст инструкции остаётся версией 1.2.4.
+
 ## 1.2.4
 
 ### English
