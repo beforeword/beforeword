@@ -1,4 +1,4 @@
-"""Check download provenance, exact instructions, README targets and safe refresh."""
+"""Check download provenance, exact instructions, guide download targets and safe refresh."""
 import hashlib
 import io
 import json
@@ -50,9 +50,9 @@ class DownloadTests(unittest.TestCase):
             self.assertEqual(manifest["source_files_sha256"], actual)
         self.assertEqual(len([name for name in self.files if name.endswith(".zip")]), 7)
 
-    def test_readme_download_links_resolve_and_start_with_complete_text(self):
+    def test_guide_download_links_resolve_and_start_with_complete_text(self):
         prefix = f"https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/{VERSION}/"
-        for filename in ("README.md", "README.ru.md"):
+        for filename in ("docs/ai-guide.en.md", "docs/ai-guide.ru.md"):
             text = (ROOT / filename).read_text(encoding="utf-8")
             targets = re.findall(re.escape(prefix) + r"([^\s)]+)", text)
             self.assertEqual(set(targets), set(self.files))
