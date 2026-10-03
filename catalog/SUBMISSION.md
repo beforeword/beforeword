@@ -2,7 +2,7 @@
 
 Updated: 4 October 2026 (Asia/Bangkok). Instruction: 1.2.4.
 
-OpenAI version 1.2.4 was submitted for review on 4 October 2026 (Asia/Bangkok). After submission, the portal listed beforeword as **In review**, with Publication marked **Not published**. Claude has not been submitted. See the [status record](submission-status.json) and [recorded trials](validation/README.md).
+OpenAI version 1.2.4 was submitted for review on 4 October 2026 (Asia/Bangkok). After submission, the portal listed beforeword as **In review**, with Publication marked **Not published**. Claude version 1.2.4 was also submitted on 4 October 2026. Its security scan passed and publication was requested; the request is waiting for an Anthropic reviewer. Claude shows **Nothing published yet**. See the [status record](submission-status.json) and [recorded trials](validation/README.md).
 
 The trials use the packaged instruction in fresh Codex tasks without installing an app. Host installation is not a prerequisite imposed by this preparation workflow; it remains untested. Any validation required by a directory still has to complete in that directory.
 
@@ -15,10 +15,12 @@ The trials use the packaged instruction in fresh Codex tasks without installing 
 - Type: Plugin bundle.
 - Contents: one instruction skill, bilingual README, project icon, MIT license notice.
 - License: MIT approved by the owner on 4 October 2026; applied to the package contents.
-- Observed: sign-in completed. In the live five-step form, Source validation at `95673f7b979530b0bd02a67547bc6ea0fde0f463` reported seven checks passed. The directory-only warnings for `documentationUrl`, `supportUrl`, and `icon` each said **No action needed**.
-- Privacy: the listing requested `privacyPolicyUrl`. The Claude manifest now includes the existing [package privacy policy](PRIVACY.md); this updated revision has not yet been validated in the portal.
-- Blocker: GitHub is not connected to the Claude organization, so push access has not been confirmed. No submission has been sent.
-- Pending: GitHub connection with push access; validation of the updated source; completion of the remaining form steps and required acknowledgements; submission.
+- Source checks: after GitHub authorization, validation at `6df13fef64a039466918b8d3ef9e6ee1a3c52968` reported seven checks passed, and the GitHub connection blocker disappeared. The directory-only warnings for `documentationUrl`, `privacyPolicyUrl`, `supportUrl`, and `icon` each said **No action needed**.
+- Privacy: the listing displayed the [package privacy policy](PRIVACY.md) supplied by `privacyPolicyUrl` in the Claude manifest.
+- Submitted: 4 October 2026 (Asia/Bangkok), after all four owner-confirmed attestations were selected. The portal displayed **Plugin submitted for review**.
+- Observed after submission: **Scan passed**. Submitted and Security scan are complete, In review is current, and Live has not yet been reached. The latest version is `v1.2.4`, marked **Scan passed**. Version checks show **Security scan passed**. Validation and directory policy show warnings; the findings contain only the four directory-only metadata warnings listed above.
+- Publication requested: after **Publish** was selected on 4 October 2026, the portal confirmed **Publish requested. Your request is waiting for an Anthropic reviewer.** Publication still shows **Nothing published yet**. A request to publish is not publication.
+- Pending: Anthropic reviewer approval and publication. Automatic publication is disabled.
 
 The plugin path becomes fixed for the listing. The contact email must be supplied by the publisher in the portal, not inferred from a Git commit. Paid-plan eligibility and organization permissions must be checked in the selected account.
 
@@ -57,7 +59,7 @@ The draft does not assume that creating a GPT, sharing a link and publishing to 
 - Claude host installation: not run.
 - ChatGPT host installation: not run.
 - OpenAI: metadata and skill checks passed; all six owner attestations confirmed and selected; submitted for review. The portal shows In review and Not published. Acceptance and publication remain pending.
-- Claude: source validation at `95673f7b979530b0bd02a67547bc6ea0fde0f463` reported seven checks passed. The later privacy-link update remains unvalidated in the portal. GitHub connection and push access remain unresolved; no submission has been sent.
+- Claude: source validation at `6df13fef64a039466918b8d3ef9e6ee1a3c52968` reported seven checks passed; four owner-confirmed attestations were selected and the submission was sent. The security scan passed, publication was requested, and the portal shows In review as the current step. The request is waiting for an Anthropic reviewer; nothing is published yet. Automatic publication is disabled.
 
 The public-test label describes the instruction's current development status. OpenAI's guidelines require a complete working plugin and exclude trial/demo plugins. A functional package and an honest description are prepared here; acceptance is not established by this preparation.
 

@@ -5,33 +5,68 @@
   "initial_package_source_commit": "8de858dfb0c423774de88eea20f2a54cf6f0a2fb",
   "task_trials": "validation/README.md",
   "host_installation": "not-run",
-  "status": "openai-in-review-claude-not-submitted",
+  "status": "openai-in-review-claude-in-review",
   "platforms": {
     "claude": {
       "entry_url": "https://claude.ai/directory/manage",
-      "observed": "Sign-in completed and the live five-step submission form validated the GitHub source. Seven checks passed. GitHub is not connected to the Claude organization, so push access has not been confirmed and the plugin has not been submitted.",
+      "observed": "After GitHub authorization and source revalidation, all four owner-confirmed attestations were selected and the form was submitted. The portal displayed Plugin submitted for review. The security scan then passed. After Publish was selected, the portal stated: Publish requested. Your request is waiting for an Anthropic reviewer. Submitted and Security scan are complete, In review is current, and Live has not yet been reached. Nothing is published yet.",
       "source_path": "plugins/claude/beforeword",
       "source_branch": "main",
       "package_sha256": "221c3e9edefe4188891072837f87f3658096a1d2423223e43736960908162c26",
       "source_validation": {
         "observed_on": "2026-10-04",
-        "at_commit": "95673f7b979530b0bd02a67547bc6ea0fde0f463",
+        "at_commit": "6df13fef64a039466918b8d3ef9e6ee1a3c52968",
         "checks_passed": 7,
         "directory_only_warnings": {
           "documentationUrl": "No action needed",
+          "privacyPolicyUrl": "No action needed",
           "supportUrl": "No action needed",
           "icon": "No action needed"
         },
-        "privacy_policy": "The listing requested privacyPolicyUrl. That field is now prepared in the Claude manifest; the updated revision has not yet been validated in the portal.",
+        "privacy_policy": "The listing displayed the privacy-policy URL supplied by privacyPolicyUrl in the manifest.",
         "scope": "This records the source revision observed during validation. The form's source selection tracks main; it is not pinned to this commit."
       },
-      "github_connection": "not-connected-to-claude-organization",
-      "push_access": "not-confirmed",
-      "draft_created": false,
+      "github_connection": "connected",
+      "push_access": "source-validation-blocker-cleared-after-authorization",
+      "draft_created": true,
+      "source_imported": true,
       "uploaded": false,
-      "submitted_for_review": false,
+      "owner_attestations": "all-four-confirmed-by-owner-and-selected",
+      "submitted_for_review": true,
+      "submitted_on": "2026-10-04",
+      "review_status": "in-review",
+      "security_scan": "passed",
+      "publish_requested": true,
+      "publish_requested_on": "2026-10-04",
+      "auto_publish": false,
       "published": false,
-      "receipt": null
+      "receipt": {
+        "type": "observed-portal-status",
+        "confirmation": "Plugin submitted for review",
+        "name": "beforeword",
+        "latest_version": "v1.2.4",
+        "version_status": "Scan passed",
+        "status": "Scan passed",
+        "publication_request": "Publish requested. Your request is waiting for an Anthropic reviewer.",
+        "all_checks_on_version": "Security scan passed",
+        "latest_check": {
+          "validation": "Validation has warnings",
+          "directory_policy": "Directory policy has warnings",
+          "findings": "Only the four directory-only metadata warnings recorded in source_validation."
+        },
+        "steps": {
+          "Submitted": "complete",
+          "Security scan": "complete",
+          "In review": "current",
+          "Live": "not-yet-reached"
+        },
+        "publication": "Nothing published yet",
+        "activity": [
+          "New version detected v1.2.4 · 6df13fe",
+          "Submitted for scanning",
+          "Submission created"
+        ]
+      }
     },
     "openai": {
       "entry_url": "https://platform.openai.com/plugins",
@@ -62,7 +97,7 @@
   "limits": [
     "OpenAI review submission is recorded from the portal status; approval and publication have not occurred.",
     "The owner confirmed all six OpenAI submission attestations before they were selected and the submission was sent.",
-    "Claude source validation covered commit 95673f7b979530b0bd02a67547bc6ea0fde0f463, before the privacyPolicyUrl addition. The updated source needs portal validation, and GitHub push access has not been confirmed.",
+    "Claude source validation covered commit 6df13fef64a039466918b8d3ef9e6ee1a3c52968. The security scan passed and publication was requested; the portal shows In review as the current step and says the request is waiting for an Anthropic reviewer. Approval and publication have not occurred. Automatic publication is disabled.",
     "The package build manifest describes generated files; this record describes the portal attempt."
   ]
 }
