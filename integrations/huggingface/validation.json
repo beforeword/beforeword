@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "observed_at": "2026-10-03T21:33:44.766639+00:00",
+  "scope": "Local MCP HTTP protocol and exact instruction delivery; no hosted endpoint or model behavior tested",
+  "instruction_version": "1.2.4",
+  "gradio": "6.29.1",
+  "mcp": "1.30.0",
+  "python": "3.12",
+  "transport": "Streamable HTTP over loopback",
+  "protocol_version": "2025-11-25",
+  "tool": "get_beforeword_instruction",
+  "prompt": "beforeword",
+  "resource_template": "beforeword://instruction/{language}",
+  "exact_retrievals": 7,
+  "invalid_language_checks": 6,
+  "extra_argument_behavior": "rejected",
+  "sha256": {
+    "en": "b6b2d0bf4da70e72e6c82060ccdbce5f9e84634e3a12557de3f557907342e742",
+    "ru": "fe6e851c7d9ab3b27a853c1e568274425ef3b7f1ee0860b39996d7199420611c"
+  },
+  "limitations": [
+    "No model adherence or analysis behavior tested.",
+    "No public deployment or client installation established by this run.",
+    "No rendered browser UI test.",
+    "Gradio 6.29.1 does not expose MCP tool annotation parameters; read-only behavior is described, not advertised through annotation fields."
+  ]
+}
