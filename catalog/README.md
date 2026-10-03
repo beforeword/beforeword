@@ -10,9 +10,9 @@ The catalog packages carry the complete beforeword 1.2.4 instruction. Their Engl
 
 ## Current status
 
-**OpenAI draft created; review submission and publication are pending.** Claude sign-in is blocked by browser verification. No GPT Store listing has been created.
+**OpenAI version 1.2.4 was submitted for review on 4 October 2026.** The portal shows **In review** and **Not published**. Claude sign-in is blocked by browser verification; no Claude submission or GPT Store listing has been created.
 
-The instruction remains under public testing. Package checks and small task runs are recorded separately from installation in Claude or ChatGPT. Account eligibility, portal validation, platform review, and publication remain separate steps.
+The instruction remains under public testing. Package checks and small task runs are recorded separately from installation in Claude or ChatGPT. OpenAI's metadata and skill checks passed before submission; review and publication remain pending.
 
 [Eight recorded task outputs](validation/README.md) include five fresh tasks using the instruction extracted from the MIT-licensed ZIPs. The earlier unsupported addition remains in the record. A later privacy-link update leaves the instruction unchanged. See the [submission status](submission-status.json) and [package privacy policy](PRIVACY.md).
 
@@ -24,7 +24,7 @@ The owner approved MIT for the contents of both plugin packages on 4 October 202
 | --- | --- | --- |
 | Claude directory | [plugins/claude/beforeword](../plugins/claude/beforeword/) | GitHub source folder for the submission form |
 | Claude upload | [beforeword_claude_directory_1.2.4.zip](packages/beforeword_claude_directory_1.2.4.zip) | Draft package for supported plugin upload and local testing |
-| OpenAI directory | [beforeword_openai_directory_1.2.4.zip](packages/beforeword_openai_directory_1.2.4.zip) | Skills-only draft upload; includes the portable manifest and listing metadata |
+| OpenAI directory | [beforeword_openai_directory_1.2.4.zip](packages/beforeword_openai_directory_1.2.4.zip) | Skills-only package submitted for review; includes the portable manifest and listing metadata |
 | GPT Store | [gpt-store](gpt-store/) | Prepared fields and full instructions for a manually created custom GPT, if publication is available |
 
 The earlier `downloads/1.2.4` archives remain available for their documented installation routes. In particular, the OpenAI **local marketplace** archive is a different format from this directory upload.

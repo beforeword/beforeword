@@ -1,10 +1,10 @@
 {
   "name": "beforeword",
   "version": "1.2.4",
-  "status": "prepared-not-submitted",
-  "runtimeValidation": "not-run",
-  "submission": "not-started",
-  "publication": "not-published",
+  "recordType": "package-build",
+  "status": "prepared",
+  "runtimeValidation": "not-run-by-build",
+  "portalStatusRecord": "../submission-status.json",
   "license": {
     "status": "approved",
     "spdx": "MIT",
@@ -33,7 +33,7 @@
         "assets/logo.svg",
         "skills/read/SKILL.md"
       ],
-      "status": "prepared-not-submitted",
+      "status": "prepared",
       "submissionBlockers": []
     },
     "openai": {
@@ -48,7 +48,7 @@
         "plugin.json",
         "skills/read/SKILL.md"
       ],
-      "status": "prepared-not-submitted",
+      "status": "prepared",
       "submissionBlockers": []
     }
   },

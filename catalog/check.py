@@ -148,8 +148,8 @@ def run() -> dict:
         build.require(local["starters"] == listing["locales"][language]["starters"], "GPT starters differ")
         instruction_lengths[language] = len(actual)
     return {"structure": "passed", "exactPayloadPreservation": "passed", "packages": report,
-            "gptInstructionCharacters": instruction_lengths, "runtimeValidation": "not-run",
-            "submission": "not-started", "publication": "not-published",
+            "gptInstructionCharacters": instruction_lengths, "runtimeValidation": "not-run-by-check",
+            "portalStatusRecord": "catalog/submission-status.json",
             "readiness": metadata["status"], "blockers": metadata["blockers"]}
 
 

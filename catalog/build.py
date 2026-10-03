@@ -189,7 +189,7 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
         outputs[archive_path] = archive
         package_records[provider] = {
             "source": source_path, "archive": archive_path, "sha256": sha256(archive),
-            "files": sorted(files), "status": "prepared-not-submitted",
+            "files": sorted(files), "status": "prepared",
             "submissionBlockers": [] if approved_license else ["owner-license-decision-pending"],
         }
 
@@ -213,8 +213,10 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
     })
     manifest = {
         "name": listing["name"], "version": listing["version"],
-        "status": "prepared-not-submitted" if approved_license else "blocked-license-decision",
-        "runtimeValidation": "not-run", "submission": "not-started", "publication": "not-published",
+        "recordType": "package-build",
+        "status": "prepared" if approved_license else "blocked-license-decision",
+        "runtimeValidation": "not-run-by-build",
+        "portalStatusRecord": "../submission-status.json",
         "license": listing["license"],
         "blockers": [] if approved_license else ["Owner approval of a distribution license is pending."],
         "sourceCoreSha256": {language: sha256(data) for language, data in core.items()},
