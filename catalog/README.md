@@ -10,11 +10,11 @@ The catalog packages carry the complete beforeword 1.2.4 instruction. Their Engl
 
 ## Current status
 
-**Packages checked and task trials recorded; directory submission awaits publisher sign-in.** Neither directory has received a submission. No GPT Store listing has been created.
+**OpenAI draft created; review submission and publication are pending.** Claude sign-in is blocked by browser verification. No GPT Store listing has been created.
 
 The instruction remains under public testing. Package checks and small task runs are recorded separately from installation in Claude or ChatGPT. Account eligibility, portal validation, platform review, and publication remain separate steps.
 
-[Eight recorded task outputs](validation/README.md) include five fresh tasks using the instruction extracted from the final ZIPs. The earlier unsupported addition remains in the record. The [submission status](submission-status.json) records the sign-in gates encountered at both publishing routes.
+[Eight recorded task outputs](validation/README.md) include five fresh tasks using the instruction extracted from the MIT-licensed ZIPs. The earlier unsupported addition remains in the record. A later privacy-link update leaves the instruction unchanged. See the [submission status](submission-status.json) and [package privacy policy](PRIVACY.md).
 
 The owner approved MIT for the contents of both plugin packages on 4 October 2026. Each package includes its LICENSE notice. See the [license scope](LICENSING.md).
 

@@ -102,6 +102,11 @@ def run() -> dict:
             build.require(interface["category"] == "Productivity", "Unexpected directory category")
             build.text_field(interface["shortDescription"], "OpenAI shortDescription", 30)
             build.text_field(interface["longDescription"], "OpenAI longDescription", 4000)
+            build.https_url(interface["privacyPolicyURL"], "OpenAI privacyPolicyURL")
+            build.text_field(interface["privacyPolicyURL"], "OpenAI privacyPolicyURL", 1024)
+            build.require(interface["privacyPolicyURL"] == listing["privacyPolicy"],
+                          "OpenAI privacy policy differs from the reviewed listing")
+            build.require((build.CATALOG / "PRIVACY.md").is_file(), "Privacy policy source is missing")
             build.require(interface["capabilities"] == listing["locales"]["en"]["capabilities"],
                           "OpenAI displayed capabilities differ from the reviewed listing")
             build.require(interface["defaultPrompt"] == listing["locales"]["en"]["starters"],

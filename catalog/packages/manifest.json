@@ -39,7 +39,7 @@
     "openai": {
       "source": "plugins/openai/beforeword",
       "archive": "catalog/packages/beforeword_openai_directory_1.2.4.zip",
-      "sha256": "c9c9c1a7ee07ae3e17cc2c959159e938a6cf75cccf3d9eeb603caf63ab59173e",
+      "sha256": "c0beff5d1e43ba99a15dc5d6de191877d5a6c936ba824d09aed6c06c9c0e1d20",
       "files": [
         "LICENSE",
         "README.md",
@@ -70,8 +70,8 @@
       "bytes": 8084
     },
     "catalog/packages/beforeword_openai_directory_1.2.4.zip": {
-      "sha256": "c9c9c1a7ee07ae3e17cc2c959159e938a6cf75cccf3d9eeb603caf63ab59173e",
-      "bytes": 9313
+      "sha256": "c0beff5d1e43ba99a15dc5d6de191877d5a6c936ba824d09aed6c06c9c0e1d20",
+      "bytes": 9352
     },
     "plugins/claude/beforeword/.claude-plugin/plugin.json": {
       "sha256": "488637c356475b77b51ee474f212f77e3ac716b3248a413cab0df71ec9a4ef3f",
@@ -114,8 +114,8 @@
       "bytes": 297
     },
     "plugins/openai/beforeword/plugin.json": {
-      "sha256": "0a6fae09a8f2486ecf45ea18f9ded43e7b663fd34138269d6b22a678e7cd12a3",
-      "bytes": 3653
+      "sha256": "d222725682c00426362747059f4c90bf751ecefccef358466e5636ddb89c7096",
+      "bytes": 3754
     },
     "plugins/openai/beforeword/skills/read/SKILL.md": {
       "sha256": "9fadf40be7cf209969e80d9125b4d8ce76f051cb0a64ccef8aae1edbe67ed09e",

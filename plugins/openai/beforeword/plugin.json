@@ -32,6 +32,7 @@
         ],
         "websiteURL": "https://beforeword.xyz/en/model/",
         "supportURL": "https://github.com/beforeword/beforeword/issues",
+        "privacyPolicyURL": "https://github.com/beforeword/beforeword/blob/main/catalog/PRIVACY.md",
         "defaultPrompt": [
           "Apply beforeword to “I understand.” Include what your own explanation adds.",
           "Compare “I understand.” under the labels “person” and “AI”. Keep the sentence unchanged.",

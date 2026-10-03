@@ -2,14 +2,14 @@
   "recorded_on": "2026-10-04",
   "timezone": "Asia/Bangkok",
   "instruction_version": "1.2.4",
-  "package_source_commit": "8de858dfb0c423774de88eea20f2a54cf6f0a2fb",
+  "initial_package_source_commit": "8de858dfb0c423774de88eea20f2a54cf6f0a2fb",
   "task_trials": "validation/README.md",
   "host_installation": "not-run",
-  "status": "awaiting-publisher-sign-in",
+  "status": "openai-draft-checks-passed-awaiting-owner-attestations",
   "platforms": {
     "claude": {
       "entry_url": "https://claude.ai/directory/manage",
-      "observed": "Redirected to Claude sign-in before the submission form was available.",
+      "observed": "Sign-in stopped with the site message: We couldn’t verify your browser. No authenticated publisher state was reached.",
       "source_path": "plugins/claude/beforeword",
       "package_sha256": "2a1eed509258dbfcb9751d5d3f2c48df99348142b1cdcf8030ef93086c31c244",
       "draft_created": false,
@@ -19,20 +19,27 @@
       "receipt": null
     },
     "openai": {
-      "entry_url": "https://platform.openai.com/",
-      "observed": "Redirected to OpenAI Platform sign-in before the publishing dashboard was available.",
+      "entry_url": "https://platform.openai.com/plugins",
+      "observed": "Verified publisher identity; version 1.2.4 imported as a draft. After the privacy-link update, metadata shows No Issues and the read skill shows Checks passed.",
       "archive": "catalog/packages/beforeword_openai_directory_1.2.4.zip",
-      "package_sha256": "c9c9c1a7ee07ae3e17cc2c959159e938a6cf75cccf3d9eeb603caf63ab59173e",
-      "draft_created": false,
-      "uploaded": false,
+      "package_sha256": "c0beff5d1e43ba99a15dc5d6de191877d5a6c936ba824d09aed6c06c9c0e1d20",
+      "initial_upload_sha256": "c9c9c1a7ee07ae3e17cc2c959159e938a6cf75cccf3d9eeb603caf63ab59173e",
+      "instruction_sha256": "9fadf40be7cf209969e80d9125b4d8ce76f051cb0a64ccef8aae1edbe67ed09e",
+      "privacy_policy": "https://github.com/beforeword/beforeword/blob/main/catalog/PRIVACY.md",
+      "draft_created": true,
+      "uploaded": true,
+      "metadata_checks": "passed",
+      "skill_checks": "passed",
+      "owner_attestations": "awaiting-confirmation; no checkboxes selected",
       "submitted_for_review": false,
       "published": false,
       "receipt": null
     }
   },
   "limits": [
-    "Opening a publishing route is not a submission.",
-    "Account eligibility, publishing identity, portal scans and review have not been verified.",
+    "A draft and passing automated checks are not a review submission or directory approval.",
+    "OpenAI requires six owner attestations, including agreement to its App Developer Terms and Plugin Guidelines, before submission.",
+    "Claude account eligibility and portal validation have not been verified.",
     "The package build manifest describes generated files; this record describes the portal attempt."
   ]
 }

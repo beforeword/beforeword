@@ -2,7 +2,7 @@
 
 Prepared: 4 October 2026 (Asia/Bangkok). Instruction: 1.2.4.
 
-The packages and task trials are complete for the requested preparation scope. Both publishing routes were opened, but sign-in was required before a submission form could be reached. Neither package has been uploaded or submitted for review. See the [status record](submission-status.json) and [recorded trials](validation/README.md).
+The packages and task trials are complete for the requested preparation scope. OpenAI imported version 1.2.4 as a draft. After adding a package-specific privacy policy and listing URL, the portal shows No Issues for metadata and Checks passed for the skill. No review submission or directory publication has occurred. See the [status record](submission-status.json) and [recorded trials](validation/README.md).
 
 The trials use the packaged instruction in fresh Codex tasks without installing an app. Host installation is not a prerequisite imposed by this preparation workflow; it remains untested. Any validation required by a directory still has to complete in that directory.
 
@@ -15,7 +15,7 @@ The trials use the packaged instruction in fresh Codex tasks without installing 
 - Type: Plugin bundle.
 - Contents: one instruction skill, bilingual README, project icon, MIT license notice.
 - License: MIT approved by the owner on 4 October 2026; applied to the package contents.
-- Observed: the submission portal redirected to Claude sign-in; no authenticated publisher account was available for the form.
+- Observed: Claude sign-in ended with a browser-verification error. No authenticated publisher state, upload or submission was reached.
 - Pending: sign-in; account eligibility and GitHub connection with push access; publisher contact; portal validation; acknowledgements and submission.
 
 The plugin path becomes fixed for the listing. The contact email must be supplied by the publisher in the portal, not inferred from a Git commit. Paid-plan eligibility and organization permissions must be checked in the selected account.
@@ -28,8 +28,9 @@ The plugin path becomes fixed for the listing. The contact email must be supplie
 - Submission entry: follow the dashboard link in [OpenAI's submission guide](https://developers.openai.com/plugins/deploy/submission).
 - English base metadata, Russian translation fields, three English starter prompts.
 - License: MIT approved by the owner on 4 October 2026; applied to the package contents.
-- Observed: the OpenAI Platform redirected to sign-in; the publishing dashboard was not reached.
-- Pending: sign-in; selected organization/project and publishing identity; portal import and skill scans; policy review, submission and publication.
+- Observed: verified publishing identity; successful ZIP import as a 1.2.4 draft; metadata marked No Issues and bundled skill marked Checks passed.
+- Privacy: [package privacy policy](PRIVACY.md) linked from the updated OpenAI manifest. This describes the instruction package and distinguishes host-provider processing and public GitHub support.
+- Pending: owner confirmation of the six submission attestations, including agreement to OpenAI's App Developer Terms and Plugin Guidelines; submission, review and publication.
 
 The developer name shown in the directory follows the selected publishing identity. The package uses the public project label `beforeword`; that field does not establish an account or completed identity check.
 
@@ -48,10 +49,11 @@ The draft does not assume that creating a GPT, sharing a link and publishing to 
 ## Recorded checks
 
 - Local package checks: see `catalog/check.py` and the build manifest.
-- Task outputs: eight recorded tasks across two rounds, including five fresh tasks from the final directory ZIPs; see `catalog/validation/`. The earlier unsupported addition in the Russian label case remains recorded.
+- Task outputs: eight recorded tasks across two rounds, including five fresh tasks from the MIT-licensed directory ZIPs before the privacy-link update; see `catalog/validation/`. The tested instruction bytes are unchanged. The earlier unsupported addition in the Russian label case remains recorded.
 - Claude host installation: not run.
 - ChatGPT host installation: not run.
-- Portal validation, scans and acceptance: not run.
+- OpenAI: updated draft imported; metadata and skill checks passed. Owner attestations, review submission and acceptance remain separate steps.
+- Claude: portal validation not reached.
 
 The public-test label describes the instruction's current development status. OpenAI's guidelines require a complete working plugin and exclude trial/demo plugins. A functional package and an honest description are prepared here; acceptance is not established by this preparation.
 
