@@ -151,6 +151,7 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
     claude = {
         **identity, "displayName": listing["name"],
         "documentationUrl": listing["documentation"], "supportUrl": listing["support"],
+        "privacyPolicyUrl": listing["privacyPolicy"],
         "icon": "./assets/logo.svg",
     }
     openai = {

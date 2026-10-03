@@ -24,7 +24,7 @@
     "claude": {
       "source": "plugins/claude/beforeword",
       "archive": "catalog/packages/beforeword_claude_directory_1.2.4.zip",
-      "sha256": "2a1eed509258dbfcb9751d5d3f2c48df99348142b1cdcf8030ef93086c31c244",
+      "sha256": "221c3e9edefe4188891072837f87f3658096a1d2423223e43736960908162c26",
       "files": [
         ".claude-plugin/plugin.json",
         "LICENSE",
@@ -66,16 +66,16 @@
       "bytes": 14580
     },
     "catalog/packages/beforeword_claude_directory_1.2.4.zip": {
-      "sha256": "2a1eed509258dbfcb9751d5d3f2c48df99348142b1cdcf8030ef93086c31c244",
-      "bytes": 8084
+      "sha256": "221c3e9edefe4188891072837f87f3658096a1d2423223e43736960908162c26",
+      "bytes": 8106
     },
     "catalog/packages/beforeword_openai_directory_1.2.4.zip": {
       "sha256": "c0beff5d1e43ba99a15dc5d6de191877d5a6c936ba824d09aed6c06c9c0e1d20",
       "bytes": 9352
     },
     "plugins/claude/beforeword/.claude-plugin/plugin.json": {
-      "sha256": "488637c356475b77b51ee474f212f77e3ac716b3248a413cab0df71ec9a4ef3f",
-      "bytes": 717
+      "sha256": "900d0ba3dfd508cf184d12c47967a752bc6c71440c029d96e03f4e48153342e0",
+      "bytes": 812
     },
     "plugins/claude/beforeword/LICENSE": {
       "sha256": "68884273ea3f9546fb710f2c1f2035a7d5b23f94c1d0458e94513f97bc9de4ef",

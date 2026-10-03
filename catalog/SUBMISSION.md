@@ -10,13 +10,15 @@ The trials use the packaged instruction in fresh Codex tasks without installing 
 
 - Repository: `beforeword/beforeword`.
 - Plugin path: `plugins/claude/beforeword`.
-- Branch: `main`; select an agreed immutable commit or tag when submitting a release.
+- Branch: `main`. The source selection tracks this branch; the validation record identifies the revision observed at that step, not an immutable release pin.
 - Portal: [claude.ai/directory/manage](https://claude.ai/directory/manage).
 - Type: Plugin bundle.
 - Contents: one instruction skill, bilingual README, project icon, MIT license notice.
 - License: MIT approved by the owner on 4 October 2026; applied to the package contents.
-- Observed: Claude sign-in ended with a browser-verification error. No authenticated publisher state, upload or submission was reached.
-- Pending: sign-in; account eligibility and GitHub connection with push access; publisher contact; portal validation; acknowledgements and submission.
+- Observed: sign-in completed. In the live five-step form, Source validation at `95673f7b979530b0bd02a67547bc6ea0fde0f463` reported seven checks passed. The directory-only warnings for `documentationUrl`, `supportUrl`, and `icon` each said **No action needed**.
+- Privacy: the listing requested `privacyPolicyUrl`. The Claude manifest now includes the existing [package privacy policy](PRIVACY.md); this updated revision has not yet been validated in the portal.
+- Blocker: GitHub is not connected to the Claude organization, so push access has not been confirmed. No submission has been sent.
+- Pending: GitHub connection with push access; validation of the updated source; completion of the remaining form steps and required acknowledgements; submission.
 
 The plugin path becomes fixed for the listing. The contact email must be supplied by the publisher in the portal, not inferred from a Git commit. Paid-plan eligibility and organization permissions must be checked in the selected account.
 
@@ -55,7 +57,7 @@ The draft does not assume that creating a GPT, sharing a link and publishing to 
 - Claude host installation: not run.
 - ChatGPT host installation: not run.
 - OpenAI: metadata and skill checks passed; all six owner attestations confirmed and selected; submitted for review. The portal shows In review and Not published. Acceptance and publication remain pending.
-- Claude: portal validation not reached.
+- Claude: source validation at `95673f7b979530b0bd02a67547bc6ea0fde0f463` reported seven checks passed. The later privacy-link update remains unvalidated in the portal. GitHub connection and push access remain unresolved; no submission has been sent.
 
 The public-test label describes the instruction's current development status. OpenAI's guidelines require a complete working plugin and exclude trial/demo plugins. A functional package and an honest description are prepared here; acceptance is not established by this preparation.
 

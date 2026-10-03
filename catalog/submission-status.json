@@ -9,9 +9,24 @@
   "platforms": {
     "claude": {
       "entry_url": "https://claude.ai/directory/manage",
-      "observed": "Sign-in stopped with the site message: We couldn’t verify your browser. No authenticated publisher state was reached.",
+      "observed": "Sign-in completed and the live five-step submission form validated the GitHub source. Seven checks passed. GitHub is not connected to the Claude organization, so push access has not been confirmed and the plugin has not been submitted.",
       "source_path": "plugins/claude/beforeword",
-      "package_sha256": "2a1eed509258dbfcb9751d5d3f2c48df99348142b1cdcf8030ef93086c31c244",
+      "source_branch": "main",
+      "package_sha256": "221c3e9edefe4188891072837f87f3658096a1d2423223e43736960908162c26",
+      "source_validation": {
+        "observed_on": "2026-10-04",
+        "at_commit": "95673f7b979530b0bd02a67547bc6ea0fde0f463",
+        "checks_passed": 7,
+        "directory_only_warnings": {
+          "documentationUrl": "No action needed",
+          "supportUrl": "No action needed",
+          "icon": "No action needed"
+        },
+        "privacy_policy": "The listing requested privacyPolicyUrl. That field is now prepared in the Claude manifest; the updated revision has not yet been validated in the portal.",
+        "scope": "This records the source revision observed during validation. The form's source selection tracks main; it is not pinned to this commit."
+      },
+      "github_connection": "not-connected-to-claude-organization",
+      "push_access": "not-confirmed",
       "draft_created": false,
       "uploaded": false,
       "submitted_for_review": false,
@@ -47,7 +62,7 @@
   "limits": [
     "OpenAI review submission is recorded from the portal status; approval and publication have not occurred.",
     "The owner confirmed all six OpenAI submission attestations before they were selected and the submission was sent.",
-    "Claude account eligibility and portal validation have not been verified.",
+    "Claude source validation covered commit 95673f7b979530b0bd02a67547bc6ea0fde0f463, before the privacyPolicyUrl addition. The updated source needs portal validation, and GitHub push access has not been confirmed.",
     "The package build manifest describes generated files; this record describes the portal attempt."
   ]
 }

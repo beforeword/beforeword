@@ -87,8 +87,12 @@ def run() -> dict:
                       f"License inclusion differs from the explicit decision in {provider}")
         if provider == "claude":
             allowed = {"name", "version", "displayName", "description", "author", "homepage", "repository",
-                       "documentationUrl", "supportUrl", "icon", "keywords", "license"}
+                       "documentationUrl", "supportUrl", "privacyPolicyUrl", "icon", "keywords", "license"}
             build.require(not (manifest.keys() - allowed), "Unknown Claude manifest keys")
+            build.https_url(manifest["privacyPolicyUrl"], "Claude privacyPolicyUrl")
+            build.require(manifest["privacyPolicyUrl"] == listing["privacyPolicy"],
+                          "Claude privacy policy differs from the reviewed listing")
+            build.require((build.CATALOG / "PRIVACY.md").is_file(), "Privacy policy source is missing")
             checked_reference(manifest["icon"], names)
         else:
             allowed = {"$schema", "name", "version", "description", "author", "homepage", "repository",

@@ -19,5 +19,6 @@
   "displayName": "beforeword",
   "documentationUrl": "https://github.com/beforeword/beforeword/blob/main/catalog/README.md",
   "supportUrl": "https://github.com/beforeword/beforeword/issues",
+  "privacyPolicyUrl": "https://github.com/beforeword/beforeword/blob/main/catalog/PRIVACY.md",
   "icon": "./assets/logo.svg"
 }

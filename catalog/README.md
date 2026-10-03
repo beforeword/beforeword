@@ -10,7 +10,7 @@ The catalog packages carry the complete beforeword 1.2.4 instruction. Their Engl
 
 ## Current status
 
-**OpenAI version 1.2.4 was submitted for review on 4 October 2026.** The portal shows **In review** and **Not published**. Claude sign-in is blocked by browser verification; no Claude submission or GPT Store listing has been created.
+**OpenAI version 1.2.4 was submitted for review on 4 October 2026.** The portal shows **In review** and **Not published**. Claude sign-in is complete, and source validation at `95673f7` reported seven checks passed. GitHub is not connected to the Claude organization, so push access remains unconfirmed and the Claude submission has not been sent. The later addition of the privacy-policy link awaits portal validation. No GPT Store listing has been created.
 
 The instruction remains under public testing. Package checks and small task runs are recorded separately from installation in Claude or ChatGPT. OpenAI's metadata and skill checks passed before submission; review and publication remain pending.
 
