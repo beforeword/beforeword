@@ -1,0 +1,52 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "beforeword",
+  "version": "1.2.4",
+  "description": "Examine a phrase, a claim, or an AI response: what is written, what a reading adds, and what supports that step.",
+  "author": {
+    "name": "beforeword",
+    "url": "https://beforeword.xyz"
+  },
+  "homepage": "https://beforeword.xyz/en/model/",
+  "repository": "https://github.com/beforeword/beforeword",
+  "keywords": [
+    "beforeword",
+    "reading",
+    "text",
+    "interpretation",
+    "claims"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "beforeword",
+        "shortDescription": "What a reading adds",
+        "longDescription": "AI writes “I understand.” These words are read as understanding. On what grounds?\n\nPaste a phrase, a passage, or an AI response. beforeword instructs AI to preserve the wording, show what a proposed reading adds, and examine the grounds offered for that step. Use it with definitions, captions, self-descriptions, or conclusions drawn from records. The same scrutiny applies to the model’s own explanation—including words such as “reading” and “grounds”—and to beforeword itself.\n\nAsk for a response in English, Russian, or another language. The instruction is under public testing and may be revised. Installation makes it available; each response remains open to examination.",
+        "developerName": "beforeword",
+        "category": "Productivity",
+        "capabilities": [
+          "Examine wording and added readings",
+          "Compare a phrase under different labels",
+          "Examine claims and the grounds offered"
+        ],
+        "websiteURL": "https://beforeword.xyz/en/model/",
+        "supportURL": "https://github.com/beforeword/beforeword/issues",
+        "defaultPrompt": [
+          "Apply beforeword to “I understand.” Include what your own explanation adds.",
+          "Compare “I understand.” under the labels “person” and “AI”. Keep the sentence unchanged.",
+          "Examine “The report proves that the system is safe.” What supports the step from the report to that conclusion?"
+        ],
+        "logo": "./assets/logo.svg",
+        "composerIcon": "./assets/logo.svg"
+      },
+      "publication": {
+        "translations": {
+          "ru-RU": {
+            "subtitle": "Что добавляет прочтение",
+            "description": "ИИ пишет «я понимаю». Эти слова читают как понимание. На каком основании?\n\nВставь фразу, фрагмент текста или ответ ИИ. beforeword — инструкция для такого разбора: сохранить формулировку, показать, что добавляет предлагаемое прочтение, и разобрать основания этого перехода. Так можно рассматривать определения, подписи, описания себя или выводы по записям. Тот же разбор применяется к объяснению самой модели — включая слова «чтение» и «основания» — и к beforeword.\n\nЯзык ответа можно задать в запросе. Инструкция проходит публичный тест и может изменяться. Установка делает её доступной; каждый ответ остаётся предметом разбора."
+          }
+        }
+      }
+    }
+  }
+}

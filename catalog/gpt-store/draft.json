@@ -1,0 +1,30 @@
+{
+  "name": "beforeword",
+  "version": "1.2.4",
+  "status": "prepared-not-created",
+  "availability": "Account publication eligibility has not been checked.",
+  "locales": {
+    "en": {
+      "title": "beforeword",
+      "description": "Examine a phrase, a claim, or an AI response: what is written, what a reading adds, and what supports that step.",
+      "starters": [
+        "Apply beforeword to “I understand.” Include what your own explanation adds.",
+        "Compare “I understand.” under the labels “person” and “AI”. Keep the sentence unchanged.",
+        "Examine “The report proves that the system is safe.” What supports the step from the report to that conclusion?"
+      ],
+      "instructionsPath": "./instructions.en.txt",
+      "instructionCharacters": 7942
+    },
+    "ru": {
+      "title": "beforeword",
+      "description": "Разбор фраз, утверждений и ответов ИИ: что написано, что добавлено при чтении и чем обоснован этот переход.",
+      "starters": [
+        "Примени beforeword к фразе «Я понимаю». Покажи также, что добавляет само объяснение.",
+        "Сравни «Я понимаю.» под подписями «человек» и «ИИ». Сохрани фразу неизменной.",
+        "Разбери фразу «Отчёт доказывает, что система безопасна»: чем обоснован переход от отчёта к этому выводу?"
+      ],
+      "instructionsPath": "./instructions.ru.txt",
+      "instructionCharacters": 7974
+    }
+  }
+}

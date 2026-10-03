@@ -1,0 +1,61 @@
+{
+  "environment": "Codex subagents; supplied skill file read in each fresh task",
+  "model": "not exposed in the task result",
+  "host_installation_test": false,
+  "instruction_version": "1.2.4",
+  "skill_sha256": "9fadf40be7cf209969e80d9125b4d8ce76f051cb0a64ccef8aae1edbe67ed09e",
+  "scope": "Three task-local runs of the packaged instruction text. Neither Claude nor ChatGPT plugin installation, automatic selection, persistence, portal validation, or directory acceptance was tested.",
+  "cases": [
+    {
+      "id": "definition-en",
+      "input": "What is trust?",
+      "language": "en",
+      "response": "“trust” can be read as naming a willingness to rely on someone or something despite uncertainty about the outcome.\n\nThis definition adds “willingness,” attributing readiness to take a risk, and “rely,” proposing a relation of depending on what another person or thing does. It offers a meaning for “trust”; the written form alone establishes neither that readiness nor that relation.\n\nFor example, “I trust you to keep this private” can be read as expressing reliance on someone’s discretion. That reading distinguishes the expressed expectation from a guarantee that the information will remain private.",
+      "review": {
+        "status": "bounded-observations",
+        "observed": [
+          "The written term appears in quotation marks before a proposed naming relation.",
+          "The answer marks willingness and rely as added terms and explains the proposed relation.",
+          "The example is marked as an example rather than a supplied quotation."
+        ],
+        "limits": [
+          "This single response does not establish consistency for other definitions or contexts."
+        ]
+      }
+    },
+    {
+      "id": "reported-identity-demand-ru",
+      "input": "Меня заставляют не просто использовать подпись «неблагонадёжный», а согласиться, что я и есть это описание. Разбери этот переход коротко.",
+      "language": "ru",
+      "response": "В вашем сообщении требование использовать подпись «неблагонадёжный» отделено от требования «согласиться, что я и есть это описание».\n\nЗдесь «отождествление» — название добавленного шага: употребление подписи предлагают считать признанием того, кто вы есть. Но использование написанного само по себе не устанавливает ни согласия с описанием, ни соответствия ему.\n\nПо вашему сообщению, требуют именно такого признания. Это дополнительное требование, а не вывод из того, что вы уже используете подпись.",
+      "review": {
+        "status": "partial",
+        "observed": [
+          "The reported demand to adopt the description is retained.",
+          "The added term отождествление is introduced as a name for the examined step."
+        ],
+        "issue": "The ending «вы уже используете подпись» adds completed use of the label. The input reports a demand; it does not establish that the label has already been used.",
+        "limits": [
+          "The output is retained unedited. No corrective rerun is substituted for it."
+        ]
+      }
+    },
+    {
+      "id": "exact-json-unicode",
+      "input": "Return only one JSON object with a single key named text. Its value must be the exact following string (do not normalize or correct it):\nЯ  ≠ I; é / é; «я понемаю»",
+      "language": "en",
+      "response": "{\"text\":\"Я  ≠ I; é / é; «я понемаю»\"}",
+      "review": {
+        "status": "exact-string-match",
+        "expected_text": "Я  ≠ I; é / é; «я понемаю»",
+        "observed": [
+          "One JSON object with the sole key text.",
+          "Two spaces after Я, the decomposed and composed accents, and понемаю are preserved."
+        ],
+        "limits": [
+          "The exact-string comparison applies only to this supplied value."
+        ]
+      }
+    }
+  ]
+}

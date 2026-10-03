@@ -32,9 +32,9 @@ def evaluation_html(source, language):
 
 def source_bundle():
     files = {}
-    for folder in ('assets', 'references', 'scripts', 'docs', '.github'):
+    for folder in ('assets', 'references', 'scripts', 'docs', '.github', 'catalog', 'plugins'):
         for path in sorted((ROOT / folder).rglob('*')):
-            if path.is_file() and path.suffix in ('.py', '.cjs', '.md', '.txt', '.json', '.jsonl', '.html', '.svg', '.css', '.js', '.yml', '.yaml', '.woff', '.woff2', '.png') and path.name != 'release.json':
+            if path.is_file() and path.suffix in ('.py', '.cjs', '.md', '.txt', '.json', '.jsonl', '.html', '.svg', '.css', '.js', '.yml', '.yaml', '.woff', '.woff2', '.png') and path.name != 'release.json' and not path.is_relative_to(ROOT / 'catalog' / 'packages'):
                 files[path.relative_to(ROOT).as_posix()] = path.read_bytes()
     files['SKILL.md'] = (ROOT / 'SKILL.md').read_bytes()
     for name in ('README.md', 'README.ru.md', 'CHANGELOG.md', 'LICENSE', 'LICENSE.txt', 'LICENSE.md', '.gitignore'):

@@ -1,5 +1,14 @@
 # Changes / Изменения
 
+## 2026-10-04 · Directory preparation / Подготовка к каталогам
+
+- Prepare one multilingual beforeword package per platform for Claude and OpenAI, with native RU/EN listing copy, three starter prompts, the existing project icon and the exact full 1.2.4 core.
+- Add manually usable GPT Store fields and full instruction texts, constructed examples, reproducible package checks and a publication record. No catalog submission, host installation or GPT creation is claimed.
+- Record the missing license as an owner decision before distribution; the proposed MIT terms are not applied.
+- Подготовлены пакеты beforeword для Claude и OpenAI: одна карточка на платформу, описания RU/EN, три стартовых запроса, существующий знак проекта и полный неизменённый текст 1.2.4.
+- Добавлены поля и полные инструкции для ручного создания GPT, составленные примеры, воспроизводимые проверки пакетов и запись статуса публикации. Подача в каталоги, установка в приложениях и создание GPT не заявляются.
+- Отсутствующая лицензия обозначена как решение владельца перед распространением; предложенные условия MIT не применены.
+
 ## 2026-10-04 · Public introduction / Публичное описание
 
 - Clarify the public introduction with “I understand” and the step from wording to reading. Align the website update panel and AI guides in Russian and English. The instruction text remains version 1.2.4.

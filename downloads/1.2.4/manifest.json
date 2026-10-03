@@ -8,11 +8,11 @@
     ".github/ISSUE_TEMPLATE/config.yml": "fe40f94ad9b94c0fa9bdff7238da9c2dbaf1f2a7bf4a755735a4061e1e26c415",
     ".github/ISSUE_TEMPLATE/report_en.yml": "3494d52da49b0b8c891045f74df3c2c50036f664e060b832773acafb813b10b5",
     ".github/ISSUE_TEMPLATE/report_ru.yml": "bd06feec26b9f8532ca7b839d227d66dad8109848e2da984be38b71f54052190",
-    ".github/workflows/validate.yml": "1dd051b2d3068e027a0f15363781a3d8870e3954af4d8992591f254805dd2ce9",
+    ".github/workflows/validate.yml": "0eaa50de30f91b1948d80d75db70dbe3b9872d80b509a196d886e047178f8281",
     ".gitignore": "96c739299c21d2f6657630817a9c4efc752c1d3e94166c08703df8b638ae68dd",
-    "CHANGELOG.md": "3c4dd8240871eabe272db9ab5ed0ba59f4cff1b0463445aede891bc52a1080c6",
-    "README.md": "9fa18dac593c5c5775eec3f8b66b83c34995e042987747a30035d5b2d2941ffb",
-    "README.ru.md": "f2cb325976988039e73fb6fb80e9ba0b7cea8bcac370730d58c962be991b4ae3",
+    "CHANGELOG.md": "8d9f880aaac819718a57a74b3dcfa598063455ef2d17a1715745476dd02e8a2c",
+    "README.md": "ecb78a6039bc5537f704f44815dc3abcc210a26bb5aa3327992f8ef6e69f8856",
+    "README.ru.md": "03feda37f9630e957a87dacb5fda4cba63ae6828e8cc5cd541b5ccd2170a3390",
     "SKILL.md": "a1455a47fcab7b68e16bfe775de7f90d47e55d597a49d5fbc01b53618ae09457",
     "assets/compact.en.txt": "767563fe0a236a771d92f9fa4c8118381f2b60bafb0c5d888d633d91eafb6941",
     "assets/compact.ru.txt": "cd3a02b20e22af02395c2c1432d8f2208a1cbcf6251e8bb88167a0203d17839a",
@@ -64,10 +64,39 @@
     "assets/site-shell/site-reader-20260920.js": "5234fb7bd34ef046f1da0b014fa8a48d78ef9d729fc6e52d3e9469d5dc6c6b8e",
     "assets/updates.css": "6e8e19b838f712f5271995b104c3f71a98c2a6206705947a58d82bc6cf9f5b67",
     "assets/updates.js": "b6f1ef519f7c5c615caaa789f8de97c6896733cd0094695c63023f0bf7393c75",
+    "catalog/LICENSING.md": "0bb84a0747966286e9f6285989dfe434eb03edd55d22dff7bc73b7e732a7df60",
+    "catalog/README.md": "75e61aa4d71a955ab70924d010b56c4b3d9654a24d5b45b191ff7afc95469b90",
+    "catalog/README.ru.md": "67581a77b6e97e7642d7b92762209614fdfc3039e42bdb09dce443a6c0cb06ea",
+    "catalog/SUBMISSION.md": "dde2cd798793643680815de65d095d9b602dec8436c5768dece7c8940df956d2",
+    "catalog/assets/logo.png": "d96becea9fc856de0c4836d37bca8b76c1c35f5051132ecdbaa783c2911ee62d",
+    "catalog/assets/logo.svg": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
+    "catalog/build.py": "259074676aede95f6586c11fca1a5d9f36a371ce19effbe352bce7c172d48ef5",
+    "catalog/check.py": "a533dc382a86f18d38170c004ce51b57b1f5777361746e6554e6cef19befb2f6",
+    "catalog/examples.md": "7187447f891e7e63c80a8b39f73a2422ff2ad651af57ff110f004efcc17534a6",
+    "catalog/gpt-store/README.md": "0e9f7cb23157d98ad958004b256b9f6abfbbeff765b49e9b405360d05c564c67",
+    "catalog/gpt-store/README.ru.md": "af5a743996dbd7e8908893ad35e3463b2b52e76af7ff9e82e537f223ab20b454",
+    "catalog/gpt-store/draft.json": "b8c43fbb7e422d99fb3d35f7e3c5e9957e74ea8066f2d06c7be22872c0bc9739",
+    "catalog/gpt-store/instructions.en.txt": "14b8fdc38eeac89b7adb1ef30cee5cca1ae163df91cb0ac176edd388e89017d4",
+    "catalog/gpt-store/instructions.ru.txt": "5319e9891b16a3712dade2cae1f219add6eb0f9857604da25c491c25c6d22b57",
+    "catalog/listing.json": "8adda5146977a36477ffb49a44956b3ed510d6100ca5159cc1f12aeee5aad84b",
+    "catalog/plugin-readme.en.md": "38b3b5a6e99c4a1e5875a0469c8bcab421aa80800292876ac50fe9f89f8b88cc",
+    "catalog/plugin-readme.ru.md": "294613982f6a02d78329e5baaeeb7f039c60d70536f03ba0a030ecefb7cd1a30",
+    "catalog/validation/README.md": "410fae8a86427944252fa3e4cba8528fecb254d526ed2751ec451c7d3b270192",
+    "catalog/validation/task-runs.json": "0c5c6364c4dfd52eacc360e1a8d82a74f5463ed915d8cff2050189a476f092c7",
     "docs/ai-guide.en.md": "d0420d7f91f869b48795d8fd0a1f71470a0da7de483c8870a39493b3ea09eb79",
     "docs/ai-guide.ru.md": "e77431575f06808863d7cb1b7e4b33c00328ee9c851fc0b7a37465c760ca32d9",
     "docs/installation.md": "11fcf32c26ad0b44967caa1c63ec088d5676ef3161e361aeacb46b69e2544b21",
     "docs/installation.ru.md": "599d8d2474e5e09dfbf5614188133fedebe8d9496fde485e69ce88ce9b4242a4",
+    "plugins/claude/beforeword/.claude-plugin/plugin.json": "9936a4ff932c52738e5c04f187bc7752486fdd385d5a6d1cec07c849e8f86e1b",
+    "plugins/claude/beforeword/README.md": "38b3b5a6e99c4a1e5875a0469c8bcab421aa80800292876ac50fe9f89f8b88cc",
+    "plugins/claude/beforeword/README.ru.md": "294613982f6a02d78329e5baaeeb7f039c60d70536f03ba0a030ecefb7cd1a30",
+    "plugins/claude/beforeword/assets/logo.svg": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
+    "plugins/claude/beforeword/skills/read/SKILL.md": "9fadf40be7cf209969e80d9125b4d8ce76f051cb0a64ccef8aae1edbe67ed09e",
+    "plugins/openai/beforeword/README.md": "38b3b5a6e99c4a1e5875a0469c8bcab421aa80800292876ac50fe9f89f8b88cc",
+    "plugins/openai/beforeword/README.ru.md": "294613982f6a02d78329e5baaeeb7f039c60d70536f03ba0a030ecefb7cd1a30",
+    "plugins/openai/beforeword/assets/logo.svg": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
+    "plugins/openai/beforeword/plugin.json": "0bdb1ce878c0475c0823158b0c47c81772362a7f4dec749aece1f323a4cae884",
+    "plugins/openai/beforeword/skills/read/SKILL.md": "9fadf40be7cf209969e80d9125b4d8ce76f051cb0a64ccef8aae1edbe67ed09e",
     "references/api-use.md": "b33ee0b4ee43266cf0e0e563ce1fc453c1e3183995c02eaa69566048cf8b9d50",
     "references/api-use.ru.md": "e8767a5b54d8e32afa531d816f7e2820933cf31c10bc54c6c93001da8981e611",
     "references/api.json": "d8c7115fe2f4098acfb9e85a248544d5a4942c1aaa0919883b68d6a31eeac60f",
@@ -82,7 +111,7 @@
     "references/validation-1.2.4.json": "6a2edb9ce0279593024b88914a407454ef394509e7dd436a5e59d81a09451b56",
     "references/validation-2026-10-02.json": "c3a943c703b062ac0b1bc034b6c08141a99d8ec0e3c07145a0ad763fed3ab873",
     "scripts/build_downloads.py": "b107eb93f3d1e5bd3f886d0f9ec417e9ae65d310b93013ff5f30b20238c32530",
-    "scripts/build_guide.py": "45ed1db4a54630b9a8c8da28fe05d6668e9d0dbc03e9d576db7cd7eb16f8158b",
+    "scripts/build_guide.py": "1e5fdb4706e7db85d15b4d9126a9b596a1e1ef8f116356fb71810254c7884203",
     "scripts/build_payload.py": "8b78a50eddfa8d3b3483ae069a3fe1e26a2f163dcfe3021e205d2a0294dfe4ff",
     "scripts/build_public.py": "e559436f288fa6f3c172f012dd1255a01fac900150cb4bfba18cfe70aaa47acc",
     "scripts/extract_response.py": "7bd870a055fbc4502362091649f2e93afaaae920138433d926ea83d1608b4835",
@@ -117,8 +146,8 @@
       "bytes": 9080
     },
     "beforeword_AI_1.2.4.html": {
-      "sha256": "3968544db2d561a0ec781924732717328fb7a2c43b559ae909f01455cfc4dda3",
-      "bytes": 1068604
+      "sha256": "f1c5c9a1bd0cf77495a8414c919b54a9d0335ce73ee1c2d1e67b3ec02f4b5b71",
+      "bytes": 1144322
     },
     "beforeword_claude_plugin_EN_1.2.4.zip": {
       "sha256": "5245df08f6e02fa43f59348c3766814d83b50ff7b275cab26939e19e500f6e1a",
@@ -161,8 +190,8 @@
       "bytes": 6989
     },
     "beforeword_toolkit_1.2.4.zip": {
-      "sha256": "6e155fb9d597efa0ad7207e3d94a8992c0fbfa77364fd660e839218b9740c5f2",
-      "bytes": 530606
+      "sha256": "19924e691abaf8ca0438ad06ec9cdfc5e3ad7c55c7dcee0e7a3ba2251a2200f9",
+      "bytes": 586650
     }
   }
 }

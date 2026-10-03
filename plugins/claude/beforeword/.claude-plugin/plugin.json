@@ -1,0 +1,22 @@
+{
+  "name": "beforeword",
+  "version": "1.2.4",
+  "description": "Examine a phrase, a claim, or an AI response: what is written, what a reading adds, and what supports that step.",
+  "author": {
+    "name": "beforeword",
+    "url": "https://beforeword.xyz"
+  },
+  "homepage": "https://beforeword.xyz/en/model/",
+  "repository": "https://github.com/beforeword/beforeword",
+  "keywords": [
+    "beforeword",
+    "reading",
+    "text",
+    "interpretation",
+    "claims"
+  ],
+  "displayName": "beforeword",
+  "documentationUrl": "https://github.com/beforeword/beforeword/blob/main/catalog/README.md",
+  "supportUrl": "https://github.com/beforeword/beforeword/issues",
+  "icon": "./assets/logo.svg"
+}
