@@ -14,8 +14,8 @@ from package_plugins import build_bundles, skill_text
 from render_report import parse_report
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.2.3'
-DATE = '2026-10-02'
+VERSION = '1.2.4'
+DATE = '2026-10-03'
 
 def read(path):
     return (ROOT / path).read_text(encoding='utf-8')
@@ -112,6 +112,7 @@ def build(output):
         (output / f'beforeword_core_{lang.upper()}.txt').write_text(data['scope'][lang]+data['core'][lang], encoding='utf-8')
     report = json.loads(read('references/evaluation-results.json'))
     followup = json.loads(read('references/validation-2026-10-02.json'))
+    current = json.loads(read('references/validation-1.2.4.json'))
     manifest = {'version':VERSION, 'date_utc':DATE, 'families':[c['id'] for c in data['connectors']],
       'core_sha256':{k:sha(v) for k,v in data['core'].items()},
       'compact_characters':{k:len(v) for k,v in data['compact'].items()},
@@ -120,11 +121,12 @@ def build(output):
       'native_bundles':{lang:{key:{k:v for k,v in record.items() if k!='data'} for key,record in bundles.items()} for lang,bundles in data['bundles'].items()},
       'developer_bundle':{k:v for k,v in data['developer'].items() if k!='data'},
       'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
-      'evaluation_scope':'Earlier recorded instruction hashes; these runs do not establish behavior with the current release.',
+      'evaluation_scope':'Current 1.2.4 development run: 72 responses in six shared batch contexts; earlier runs are retained separately. No provider comparison or promise of future behavior.',
       'evaluation':report['method'], 'evaluation_case_count':len(data['eval'].strip().splitlines()),
       'evaluation_runs':[
         {'report':'references/evaluation-results.json', 'condition':'authored fixtures and targeted follow-up', 'method':report['method']},
-        {'report':'references/validation-2026-10-02.json', 'answers':180, 'method':followup['method']}
+        {'report':'references/validation-2026-10-02.json', 'answers':180, 'method':followup['method']},
+        {'report':'references/validation-1.2.4.json', 'answers':72, 'method':current['method']}
       ]}
     (output / 'beforeword_release.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return path

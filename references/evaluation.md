@@ -2,6 +2,16 @@
 
 A response is compared with the supplied text and task. Instruction delivery, exact preservation and response content are examined separately. The instructions, criteria and this account remain written records.
 
+## Comparison of the 1.2.4 editions
+
+This local run collected 72 responses: full, medium and compact instructions, each in Russian and English, with the same 12 requests in every condition. Six requests were Russian and six were English. The [requests, exact instruction texts, responses and assessments](validation-1.2.4.json) are preserved with the instruction hashes.
+
+The tasks cover a written name for material without an attachment, a demand to use a label versus a demand to accept that one is the description, a test result versus permission to act, a proposed rule, exact copying, JSON and arithmetic. Two reviewers assessed different groups of 36 responses; each response received one assessment against four criteria written before collection. Edition labels and instruction languages were not supplied to the reviewers.
+
+All six conditions received 48 met ratings out of 48 criteria: 288 ratings in total, with none marked not met or unclear. Separate comparisons of exact Unicode strings and parsed JSON matched the expected results in all 12 checks. These results concern the selected tasks and stated criteria; they do not certify the responses or promise that the result will recur.
+
+Each condition used one fresh context, but its 12 requests shared that context. All conditions ran in the same available environment with shared host instructions and inherited settings. The contribution of the added instructions was not isolated: there was no condition without beforeword, repeated sampling or comparison between providers. This run did not test application installation, supplied audio or the visual layout on a phone.
+
 ## How to examine a response
 
 1. Keep the complete input and response. Compare exact copies by code points or bytes without normalizing Unicode: identical appearance does not establish identical characters.

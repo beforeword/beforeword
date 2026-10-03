@@ -22,13 +22,15 @@ jobs:
           node-version: '22'
       - name: Check text request and response formats
         run: python3 scripts/test_payload.py
+      - name: Check current evaluation records and instruction hashes
+        run: python3 -B scripts/test_validation.py
       - name: Build standalone guide
         run: python3 scripts/build_guide.py --output build/toolkit
       - name: Check guide behavior in a simulated DOM
         run: node scripts/test_guide.cjs build/toolkit/beforeword_AI.html
       - name: Check RU and EN package contents
         run: python3 scripts/test_packages.py
-      - name: Check versioned downloads and direct README links
+      - name: Check versioned downloads and bilingual guide links
         run: |
           python3 -B scripts/test_downloads.py
           python3 -B scripts/build_downloads.py --check

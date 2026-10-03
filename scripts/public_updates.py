@@ -40,7 +40,7 @@ COPY = {
         'failed': 'Не удалось скопировать автоматически. Выдели текст и скопируй его вручную.',
         'github': 'beforeword на GitHub',
         'github_text': 'Файлы инструкции, история изменений и сообщения о сбоях.',
-        'open_github': 'Открыть GitHub',
+        'open_github': 'Руководство на GitHub',
         'changelog': 'История изменений',
         'report': 'Сообщить о сбое',
         'report_note': 'Укажи приложение, запрос и ответ.',
@@ -79,7 +79,7 @@ COPY = {
         'failed': 'Automatic copying failed. Select the text and copy it manually.',
         'github': 'beforeword on GitHub',
         'github_text': 'Instruction files, change history and issue reports.',
-        'open_github': 'Open GitHub',
+        'open_github': 'Guide on GitHub',
         'changelog': 'Changelog',
         'report': 'Report an issue',
         'report_note': 'Include the app, your prompt and the response.',
@@ -168,6 +168,7 @@ def render(language: str) -> str:
     prompt = text['prompt'].format(url=FEED_URL, version=version)
     feed_url = BASE_URL + f'updates-{language}.atom'
     instruction_url = '/model/' + ('en/' if language == 'en' else '') + '#instruction-details'
+    guide_url = links['repository'].rstrip('/') + '/blob/main/docs/ai-guide.' + language + '.md'
     changes = ''.join(f'<li>{escape(change)}</li>' for change in release['changes'])
     return f'''<aside class="bw-update-shell" aria-label="{escape(text['scope'], quote=True)}">
 <details id="bw-updates" class="bw-updates">
@@ -190,7 +191,7 @@ def render(language: str) -> str:
 <h3 id="bw-update-github-title">{escape(text['github'])}</h3>
 <p>{escape(text['github_text'])}</p>
 <div class="bw-update-links">
-<a href="{escape(links['repository'], quote=True)}">{escape(text['open_github'])}</a>
+<a href="{escape(guide_url, quote=True)}">{escape(text['open_github'])}</a>
 <a href="{escape(links['changelog'], quote=True)}">{escape(text['changelog'])}</a>
 </div>
 </section>

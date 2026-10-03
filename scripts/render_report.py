@@ -10,6 +10,7 @@ import re
 
 REPORT_ASSETS = frozenset({
     'eval-cases.jsonl', 'evaluation-results.json', 'validation-2026-10-02.json',
+    'validation-1.2.4.json',
 })
 _INLINE = re.compile(r'`([^`\n]+)`|\[([^\]\n]+)\]\(([^)\s]+)\)')
 _UNSUPPORTED_BLOCK = re.compile(r'^(?:#{1,6}\s|\s*[-*+]\s|\s*>|\s*```|\s*~~~|\s*<|\s*\d+[.)]\s)')

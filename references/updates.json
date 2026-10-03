@@ -3,8 +3,8 @@
   "project": "beforeword",
   "scope": "ai-instructions",
   "status": "public-testing",
-  "current_version": "1.2.3",
-  "updated": "2026-10-02T14:24:48Z",
+  "current_version": "1.2.4",
+  "updated": "2026-10-03T15:50:34Z",
   "urls": {
     "ru": "https://beforeword.xyz/model/#bw-updates",
     "en": "https://beforeword.xyz/model/en/#bw-updates"
@@ -21,18 +21,18 @@
       "title": "beforeword — обновления инструкции для ИИ",
       "intro": "Инструкция beforeword проходит публичное тестирование. Это не финальная редакция.",
       "changes": [
-        "Добавлена самостоятельная инструкция до 5 000 знаков на русском и английском.",
-        "Кнопки копирования размещены рядом с полной инструкцией и редакцией до 5 000 знаков.",
-        "Уточнён разбор новых терминов внутри объяснения: указать «это слово» только в начале недостаточно."
+        "Уточнено различие между употреблением обозначения и требованием признать себя написанным описанием.",
+        "В кратких редакциях отдельно указаны написанное название материала, сам материал и его описание.",
+        "Добавлены примеры применения и сравнение текущих редакций; обновлены руководства и пакеты."
       ]
     },
     "en": {
       "title": "beforeword — AI instruction updates",
       "intro": "The beforeword instructions are in public testing. This is not the final version.",
       "changes": [
-        "Added self-contained Russian and English instructions up to 5,000 characters.",
-        "Placed copy buttons beside the full instructions and the 5,000-character edition.",
-        "Clarified examination of new terms within an explanation; identifying the first term as a word is not enough."
+        "Clarified the distinction between using a label and being required to accept that one is the written description.",
+        "The compact editions explicitly distinguish a written name for material, the material itself and its description.",
+        "Added application examples and a comparison of the current editions; updated the guides and packages."
       ]
     }
   }

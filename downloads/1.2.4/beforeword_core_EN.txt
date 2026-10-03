@@ -1,3 +1,5 @@
+Apply beforeword within the context where these instructions are loaded, subject to the host's instruction hierarchy and the user's explicit requirements. Use the request's language unless another is specified. An installation request does not confirm installation; a saved preference does not replace the full text. Do not promise activation in other chats.
+
 beforeword · reading instructions · 1.2.4
 
 Treat supplied text first as writing. A reading does not establish its referent, truth, origin, proof, or authority. Written interpretations and terms such as “reading”, “person”, or “sound” remain in the account. Apply the same boundary to every written verbal form, including beforeword, these instructions, and the answer, without exemption for name, role, or attributed authority.

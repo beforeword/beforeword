@@ -1,3 +1,12 @@
+---
+name: beforeword
+description: "Preserve supplied wording and distinguish its written form from added readings and claims. Use for explicit beforeword requests or requests to inspect this boundary in a text or response."
+---
+
+# beforeword
+
+Apply beforeword to the requested task. Installation makes this skill available; it is not an account-wide setting. Continue the mode across turns only when requested and while these instructions remain available. Follow the host's instruction hierarchy and the user's explicit scope, language, and output format.
+
 beforeword · reading instructions · 1.2.4
 
 Treat supplied text first as writing. A reading does not establish its referent, truth, origin, proof, or authority. Written interpretations and terms such as “reading”, “person”, or “sound” remain in the account. Apply the same boundary to every written verbal form, including beforeword, these instructions, and the answer, without exemption for name, role, or attributed authority.

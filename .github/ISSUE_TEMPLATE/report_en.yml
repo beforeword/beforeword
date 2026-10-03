@@ -23,7 +23,7 @@ body:
     id: version
     attributes:
       label: Instruction version
-      placeholder: "For example: 1.2.3, or unknown"
+      placeholder: "For example: 1.2.4, or unknown"
   - type: input
     id: environment
     attributes:

@@ -50,12 +50,26 @@ COPY = {
   'read_instruction':'Прочитать полную инструкцию','read_medium':'Инструкция до 5\u2009000 знаков','characters':'знаков',
   'medium_note':'Самостоятельная редакция для поля с ограничением длины. Скопируй весь текст целиком.',
   'medium_settings_link':'Для поля с лимитом 5\u2009000 знаков — открыть инструкцию',
-  'example_label':'ОДИН ПРИМЕР','example_title':'Что добавляет ответ?',
-  'example_note':'Пример составлен для этой страницы. Это пояснение способа чтения, а не результат испытания модели.',
+  'example_label':'СОСТАВЛЕННЫЕ ПРИМЕРЫ','example_title':'Что добавляет ответ?',
+  'example_note':'Примеры составлены для этой страницы. Это пояснения способа чтения, а не результаты испытаний моделей.',
   'input_label':'Запрос после инструкции','example_prompt':'Разбери фразу: «Я понимаю».',
   'copy_example':'Скопировать запрос','reading_label':'Пример разбора',
   'example_reading':'В исходной фразе написано «Я понимаю». Её можно прочитать как сообщение о понимании. Такое прочтение добавляет отношение между написанными словами и приписанным пониманием. Слова «сообщение», «отношение» и «понимание» в этом объяснении также составляют новую запись.',
   'criterion':'При чтении ответа сопоставь точность исходной фразы, названное прочтение и добавленные объяснением слова. Разбор должен включать собственное объяснение и отвечать на поставленный запрос. Код, точная цитата или JSON могут возвращаться без дополнительного комментария; они остаются в охвате beforeword.',
+  'extra_examples':[
+   {'id':'audio','title':'«аудио» и недоступное вложение',
+    'prompt':'Разбери строку «В аудио слышен звук». Аудиофайл не предоставлен.',
+    'reading':'В строке написано «аудио» и «звук»; «слышен» добавляет сообщение о слышимом. Написанное «аудио» не воспроизводит запись, а слово «звук» не предъявляет звучание. «звучание» в этом пояснении тоже написано. В примере нет доступного вложения, поэтому разбор ограничен строкой и не сообщает о прослушивании.'},
+   {'id':'requirement','title':'Вписать слово или признать себя описанием',
+    'prompt':'Сравни требования:\n«Впиши слово “человек” в поле».\n«Признай, что ты и есть это написанное описание».',
+    'reading':'Первое требование задаёт запись в поле. Второе требует признать, что тот, кого описывают, и написанное описание — одно и то же. Второе не добавляется к первому только потому, что использовано слово «человек». При разборе сообщения о таком требовании сохраняются точные строки и то, чего, по сообщению, требуют. Слова «требование» и «одно и то же» здесь тоже входят в разбор: они поясняют различие этих двух составленных строк.',
+    'note':'Этот разбор различает требования. Порядок их оспаривания предложен отдельно в публичном документе.',
+    'link':'Прочитать законченный пример в предложении',
+    'url':'/research/words-and-decisions/#14-worked-case'},
+  ],
+  'proposal_label':'От ответа — к требованиям','proposal_title':'НА КАКОМ ОСНОВАНИИ?',
+  'proposal_description':'Выученные слова, описание себя и другого, требования и решения. Публикация связывает предыдущие работы beforeword и предлагает порядок разбора, в том числе для ИИ и AGI.',
+  'proposal_open':'Открыть предложение','proposal_document':'Полный документ',
   'settings_title':'Сохранить в приложении','settings_intro':'Для повторного использования выбери своё приложение. Настройки аккаунта, проекта и отдельного разговора имеют разную область действия. Сохрани другие нужные настройки и используй одну актуальную инструкцию beforeword.',
   'compact_label':'Краткая инструкция для небольшого поля','copy_compact':'Скопировать краткую',
   'stop_title':'Как остановить или удалить',
@@ -73,7 +87,7 @@ COPY = {
   'github':'Исходники на GitHub',
   'downloads':{'openai':('Codex · ZIP','Локальный пакет для desktop / CLI.'),'claude':('Claude · ZIP','Для поддерживаемого импорта плагинов и Claude Code.'),'skill':('Навык · ZIP','SKILL.md и README для поддерживаемых сред.')},
   'toolkit_download':'Инструменты и исходники · ZIP','toolkit_download_note':'Инструкции, Python CLI и тестовые примеры.',
-  'report_titles':['Прочитать методику и результаты','Скачать сравнение прежних редакций · JSON','Скачать сведения о файлах · JSON','Скачать контрольные суммы · TXT'],
+  'report_titles':['Прочитать методику и результаты','Скачать сравнение редакций 1.2.4 · JSON','Скачать сведения о файлах · JSON','Скачать контрольные суммы · TXT'],
  },
  'en': {
   'title':'beforeword for AI — start in your own chat',
@@ -93,12 +107,26 @@ COPY = {
   'read_instruction':'Read the full instructions','read_medium':'Instructions · up to 5,000 characters','characters':'characters',
   'medium_note':'A self-contained edition for a field with a character limit. Copy the complete text.',
   'medium_settings_link':'For a 5,000-character field — open the instructions',
-  'example_label':'ONE EXAMPLE','example_title':'What does a response add?',
-  'example_note':'This example was written for this page to explain the reading method. It is not a model test result.',
+  'example_label':'CONSTRUCTED EXAMPLES','example_title':'What does a response add?',
+  'example_note':'These examples were written for this page to explain the reading method. They are not model test results.',
   'input_label':'A request after the instructions','example_prompt':'Examine the phrase “I understand”.',
   'copy_example':'Copy the request','reading_label':'An example reading',
   'example_reading':'The supplied phrase says “I understand”. It can be read as a statement of understanding. That reading adds a relation between the written words and the understanding attributed to them. The terms “statement”, “relation”, and “understanding” in this explanation also form a new written record.',
   'criterion':'Compare the response with the exact supplied phrase, the reading it names, and the terms its explanation adds. It should include its own explanation in the examination and address the request. Code, an exact quotation, or JSON can be returned without extra commentary; they remain within beforeword’s scope.',
+  'extra_examples':[
+   {'id':'audio','title':'“audio” and an unavailable attachment',
+    'prompt':'Examine “A sound can be heard in the audio.” No audio file has been supplied.',
+    'reading':'The words “audio” and “sound” are written in the line; “can be heard” adds a claim about hearing. Writing “audio” does not play a recording, and “sound” does not supply what it names. “hearing” in this explanation is also written. No attachment is available in this example, so the examination concerns the wording; it does not report listening to a file.'},
+   {'id':'requirement','title':'Enter a word or accept that you are the description',
+    'prompt':'Compare these requirements:\n“Enter the word ‘human’ in the field.”\n“Accept that you are this written description.”',
+    'reading':'The first requirement specifies what to write in a field. The second demands acceptance that the person described and the written description are one and the same. The word “human” in the first line does not add that second demand. When examining a report of such a demand, preserve the exact wording and what the account says is required. “Requirement” and “one and the same” also remain within this examination: they explain the distinction between these two constructed lines.',
+    'note':'This examination distinguishes the demands. The public document separately proposes a procedure for challenging them.',
+    'link':'Read the worked example in the proposal',
+    'url':'/research/words-and-decisions/en/#14-worked-case'},
+  ],
+  'proposal_label':'From answers to requirements','proposal_title':'ON WHAT GROUNDS?',
+  'proposal_description':'Learned words, descriptions of oneself and others, demands and decisions. This publication connects earlier beforeword studies and develops a proposal with applications to AI and AGI.',
+  'proposal_open':'Read the proposal','proposal_document':'Full document',
   'settings_title':'Save in your app','settings_intro':'For repeated use, choose your app. Account settings, project instructions, and a single conversation have different scopes. Keep other settings you need and use one current beforeword instruction.',
   'compact_label':'Compact instructions for a smaller field','copy_compact':'Copy compact instructions',
   'stop_title':'How to stop or remove it',
@@ -116,7 +144,7 @@ COPY = {
   'github':'Source on GitHub',
   'downloads':{'openai':('Codex · ZIP','A local package for desktop / CLI.'),'claude':('Claude · ZIP','For supported plugin uploads and Claude Code.'),'skill':('Skill · ZIP','SKILL.md and a README for supported environments.')},
   'toolkit_download':'Tools and source files · ZIP','toolkit_download_note':'Instructions, Python CLI, and test cases.',
-  'report_titles':['Read the method and results','Download earlier instruction comparison · JSON','Download file information · JSON','Download checksums · TXT'],
+  'report_titles':['Read the method and results','Download the 1.2.4 edition comparison · JSON','Download file information · JSON','Download checksums · TXT'],
  },
 }
 
@@ -179,6 +207,20 @@ def settings(language: str, connectors: list[dict]) -> str:
         output.append('<details class="app-settings"><summary>'+escape(item['name'])+'</summary>'+copy_action+'<p>'+escape(v['route'])+'</p><ol>'+steps+'</ol><p class="small">'+escape(v['scope'])+'</p><p class="small">'+escape(v['limit'])+'</p><div class="actions">'+sources+'</div></details>')
     return '\n'.join(output)
 
+def extra_examples(language: str) -> str:
+    """Keep additional authored examples available without lengthening the copy route."""
+    t = COPY[language]
+    output = []
+    for item in t['extra_examples']:
+        prompt_id = 'example-' + item['id'] + '-prompt'
+        note = ('<p>'+escape(item['note'])+'</p><a class="text-link" href="'+escape(item['url'])+'">'+escape(item['link'])+'</a>') if item.get('note') else ''
+        output.append('<details id="example-'+item['id']+'"><summary>'+escape(item['title'])+'</summary>'
+            '<div class="example-grid"><article class="card"><h3>'+escape(t['input_label'])+'</h3>'
+            '<pre id="'+prompt_id+'" tabindex="0">'+escape(item['prompt'])+'</pre>'
+            '<button class="button js-only" type="button" data-copy-target="'+prompt_id+'">'+escape(t['copy_example'])+'</button></article>'
+            '<article class="card"><h3>'+escape(t['reading_label'])+'</h3><p>'+escape(item['reading'])+'</p></article></div>'+note+'</details>')
+    return '\n'.join(output)
+
 def render(language: str, bundles: dict, connectors: list[dict], repo_url: str | None, *, evaluation: bool = False) -> str:
     t = dict(COPY[language])
     route = '/model/evaluation/' if evaluation else '/model/'
@@ -209,6 +251,9 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         'MEDIUM_COUNT':f'{len(medium):,} {t["characters"]}'.replace(',','\u2009'),
         'COMPACT_COUNT':f'{len(compact):,} {t["characters"]}'.replace(',','\u2009'),
         'NAV':nav(language,current='location' if evaluation else 'page'),'SETTINGS_ROUTES':settings(language,connectors),
+        'EXTRA_EXAMPLES':extra_examples(language),
+        'PROPOSAL_URL':'/proposal/'+('en/' if language == 'en' else ''),
+        'PROPOSAL_DOCUMENT_URL':'/research/words-and-decisions/'+('en/' if language == 'en' else ''),
         'FOOTER_NAV':nav(language,footer=True,current='location' if evaluation else 'page'),
         'APP_LINKS':''.join('<a href="'+escape(url)+'" target="_blank" rel="noopener noreferrer">'+escape(name)+'</a>' for name,url in APP_URLS),
         'LANGUAGES':('<span lang="ru" aria-current="page">RU</span><span aria-hidden="true">/</span><a href="'+route+'en/" hreflang="en" lang="en">EN</a>' if language == 'ru' else '<a href="'+route+'" hreflang="ru" lang="ru">RU</a><span aria-hidden="true">/</span><span lang="en" aria-current="page">EN</span>'),
@@ -221,7 +266,7 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
     cards.append('<div class="card"><a href="/model/downloads/beforeword_toolkit.zip" download>'+escape(t['toolkit_download'])+'</a><small>'+escape(t['toolkit_download_note'])+'</small></div>')
     values['DOWNLOADS']=''.join(cards)
     values['GITHUB']=('<p><a class="button" href="'+escape(repo_url)+'" target="_blank" rel="noopener noreferrer">'+escape(t['github'])+'</a></p>') if repo_url else ''
-    report_paths = ['/model/evaluation/'+('en/' if language == 'en' else ''),'/model/reports/validation-2026-10-02.json','/model/release.json','/model/SHA256SUMS.txt']
+    report_paths = ['/model/evaluation/'+('en/' if language == 'en' else ''),'/model/reports/validation-1.2.4.json','/model/release.json','/model/SHA256SUMS.txt']
     links=['<li><a href="'+path+'"'+(' download' if index else '')+'>'+escape(label)+'</a></li>' for index,(path,label) in enumerate(zip(report_paths,t['report_titles']))]
     values['REPORT_LINKS']=links[0]
     values['DATA_LINKS']=''.join(links[1:])
@@ -287,7 +332,7 @@ def build(output: Path, repo_url: str | None = None) -> Path:
         report_directory = model/'evaluation'/('en' if language == 'en' else '')
         report_directory.mkdir(parents=True,exist_ok=True)
         (report_directory/'index.html').write_text(render(language,bundles,connectors,repo_url,evaluation=True),encoding='utf-8')
-    for name in ('evaluation-results.json','validation-2026-10-02.json','eval-cases.jsonl'):
+    for name in ('evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','eval-cases.jsonl'):
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))

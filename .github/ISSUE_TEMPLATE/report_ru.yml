@@ -23,7 +23,7 @@ body:
     id: version
     attributes:
       label: Версия инструкции
-      placeholder: "Например: 1.2.3 или неизвестна"
+      placeholder: "Например: 1.2.4 или неизвестна"
   - type: input
     id: environment
     attributes:

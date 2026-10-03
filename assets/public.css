@@ -9,3 +9,17 @@ main textarea[readonly]{display:block;width:100%;resize:vertical;min-height:220p
 @media(forced-colors:active){.button.primary{color:ButtonText;background:ButtonFace;border-color:ButtonText}.copy-status{color:CanvasText;background:Canvas;border:1px solid CanvasText}}
 @media screen and (max-width:620px){body.bw-paper.model-page.bw-shell>.bw-header{min-height:60px;padding-top:8px;padding-bottom:8px}}
 .report-heading,.report-prose,.report-download{max-width:76ch}.report-heading{padding-top:28px}.model-report main h1{font-size:clamp(34px,4.2vw,56px);max-width:26ch;margin-top:20px;overflow-wrap:anywhere}.report-prose{padding:8px 0 24px;overflow-wrap:anywhere}.report-prose h2{font-size:clamp(25px,3vw,34px);line-height:1.2;margin:36px 0 20px}.report-prose p{margin-bottom:20px}.report-prose ol{padding-left:1.6em;margin:0 0 24px}.report-prose li{padding-left:.2em;margin-bottom:14px}.report-prose code{font:.85em/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.report-table{overflow-x:auto;max-width:100%;margin:24px 0}.report-table:focus-visible{outline:3px solid var(--focus);outline-offset:4px}.report-table table{width:100%;border-collapse:collapse;text-align:left;line-height:1.5}.report-table th,.report-table td{padding:12px;border:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}.report-table th{font-weight:600}.report-download{border-top:1px solid var(--line);padding:20px 0 36px}.model-report .report-heading .text-link,.report-download .text-link{min-height:44px}@media(max-width:620px){.report-heading{padding-top:16px}.report-prose{font-size:17px}.report-table th,.report-table td{padding:10px 8px}.report-prose h2{margin-top:30px}}@media print{.report-heading>.text-link,.report-download{display:none}.report-prose{max-width:none}.report-prose h2{break-after:avoid}.report-table{overflow:visible}.report-table tr{break-inside:avoid}}
+
+/* Preserve the published proposal entry within the self-contained /model bundle. */
+.model-page .bwd-entry-card{color:#111;border:2px solid #111;padding:26px;margin:44px 0;max-width:100%;background:rgba(255,255,255,.22)}
+.model-page .bwd-entry-card h2{font:700 29px/1.1 Arial,Helvetica,sans-serif;letter-spacing:-.035em;max-width:22ch;margin:15px 0 18px}
+.model-page .bwd-entry-card p{font:17px/1.6 Arial,Helvetica,sans-serif;max-width:65ch;margin:0 0 15px}
+.model-page .bwd-entry-card .bwd-label{font-size:11px;line-height:1.5;letter-spacing:.065em;text-transform:uppercase;margin-bottom:0}
+.model-page .bwd-actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0 0;align-items:center}
+.model-page .bwd-button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;border:1.5px solid #111;background:transparent;color:#111;font:600 14px/1.35 Arial,Helvetica,sans-serif;text-decoration:none;text-align:center}
+.model-page .bwd-button--primary{background:#111;color:#fafaf8}
+.model-page .bwd-button:hover{text-decoration:underline;text-underline-offset:.2em}
+.model-page .bwd-entry-card a:focus-visible{outline:3px solid currentColor;outline-offset:5px}
+@media(max-width:760px){.model-page .bwd-entry-card{padding:24px}.model-page .bwd-entry-card h2{font-size:32px}.model-page .bwd-entry-card p{font-size:16px}}
+@media(max-width:400px){.model-page .bwd-entry-card{padding:20px}.model-page .bwd-button{width:100%}}
+@media(forced-colors:active){.model-page .bwd-entry-card{color:CanvasText;background:Canvas;border-color:CanvasText}.model-page .bwd-button{color:LinkText;background:Canvas;border-color:LinkText}}

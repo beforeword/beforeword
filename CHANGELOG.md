@@ -1,5 +1,23 @@
 # Changes / Изменения
 
+## 1.2.4
+
+### English
+
+- Clarify the difference between using a label and being required to accept that one is the written description; align Russian and English wording.
+- Restore explicit distinctions between a written name for media, supplied material, transcription and attribution in the compact instructions. A report is distinguished from the event it describes without rejecting its possible use in an argument.
+- Add two labelled, constructed examples to the public page and direct links to the language-specific AI guides. Preserve the link to the separate public proposal.
+- Record a new comparison of the full, 5,000-character and compact editions in both instruction languages, with exact inputs, responses, criteria and limits.
+- Rebuild the standalone guide, source archive, packages and checksums from one source state. Earlier instruction releases and recorded responses remain available.
+
+### Русский
+
+- Уточнено различие между употреблением обозначения и требованием признать себя написанным описанием; согласованы русская и английская формулировки.
+- В кратких инструкциях явно различены написанное название материала, предоставленный материал, расшифровка и приписывание. Рассказ отделён от описанного события без заранее объявленного отказа рассматривать его как основание.
+- На публичную страницу добавлены два обозначенных как составленные примера и прямые ссылки на руководства для ИИ на выбранном языке. Сохранён переход к отдельному публичному предложению.
+- Записано новое сравнение полной, средней и краткой редакций на обоих языках инструкции: запросы, ответы, критерии и ограничения.
+- Самостоятельное руководство, архив исходников, пакеты и контрольные суммы собраны из одного состояния исходников. Предыдущие выпуски инструкции и записи ответов сохранены.
+
 ## 1.2.3
 
 ### English
