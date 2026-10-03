@@ -55,6 +55,10 @@ This creates `request.json` locally. See the [API guide](references/api-use.md) 
 
 [Full core](assets/core.en.txt) · [Scope](assets/scope.en.txt) · [Evaluation method and recorded runs](references/evaluation.md)
 
+## Public proposal
+
+[Self-description and decisions based on records](https://github.com/beforeword/words-and-decisions) is a separate public proposal in English and Russian. It includes the full text, a worked example, ten public statements about AI, sources, and PDF/DOCX editions. Its publication version is independent of the instruction version in this repository.
+
 ## Report an issue
 
 [Open a public GitHub issue](https://github.com/beforeword/beforeword/issues/new?template=report_en.yml) · [Send email](mailto:mail@beforeword.xyz?subject=beforeword%201.2.3%20report)
