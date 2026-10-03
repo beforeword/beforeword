@@ -1,0 +1,34 @@
+{
+  "observed_at": "2026-10-03T22:16:13.030533+00:00",
+  "endpoint": "https://beforeword-beforeword.hf.space/gradio_api/mcp/",
+  "space_url": "https://huggingface.co/spaces/beforeword/beforeword",
+  "space_commit": "2fa3fd27eb4af7344502a4bb8d30bf170a3bec51",
+  "ok": true,
+  "scope": "MCP HTTP protocol and exact instruction delivery; no model behavior tested",
+  "instruction_version": "1.2.4",
+  "client_environment": {
+    "python": "3.12.14",
+    "gradio": "6.29.1",
+    "mcp": "1.30.0"
+  },
+  "server_reported": {
+    "name": "beforeword · MCP",
+    "version": "1.30.0"
+  },
+  "protocol_version": "2025-11-25",
+  "tool": "beforeword_get_beforeword_instruction",
+  "prompt": "beforeword_beforeword",
+  "resource_template": "beforeword://instruction/{language}",
+  "exact_retrievals": 7,
+  "invalid_language_checks": 6,
+  "extra_argument_behavior": "rejected",
+  "sha256": {
+    "en": "b6b2d0bf4da70e72e6c82060ccdbce5f9e84634e3a12557de3f557907342e742",
+    "ru": "fe6e851c7d9ab3b27a853c1e568274425ef3b7f1ee0860b39996d7199420611c"
+  },
+  "limitations": [
+    "Model behavior and future adherence were not tested.",
+    "Installation or use within a model provider client was not tested.",
+    "server_reported is the MCP initialize response; client_environment records the local test environment, not the hosted Gradio version."
+  ]
+}

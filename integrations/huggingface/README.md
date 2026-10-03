@@ -26,13 +26,15 @@ This server distributes the complete English and Russian instructions for **vers
 
 ## Connect and use
 
-The running app displays its MCP endpoint. On a deployed Hugging Face Space, the endpoint is:
+The public connector is available in the [beforeword Space](https://huggingface.co/spaces/beforeword/beforeword). Its MCP endpoint is:
 
 ```text
-https://<your-space-host>.hf.space/gradio_api/mcp/
+https://beforeword-beforeword.hf.space/gradio_api/mcp/
 ```
 
-The hostname above is a placeholder, not a published service address. Use the actual URL displayed by the running app or its **View API → MCP** panel.
+The running app and its **Use via API or MCP** panel also display this URL. A copy deployed to another Space will have its own hostname.
+
+The hosted server advertises the tool as `beforeword_get_beforeword_instruction` and the prompt as `beforeword_beforeword`. Use the names discovered by your client; the resource URI remains `beforeword://instruction/{language}`.
 
 1. Add that URL to a client supporting remote MCP servers over **Streamable HTTP**.
 2. If the client exposes **MCP prompts**, select `beforeword` with `language: en` or `language: ru`.
@@ -75,6 +77,8 @@ python test_protocol.py
 
 This starts a local server and uses an MCP client over HTTP to initialize a session, discover the interface, retrieve both editions through every primitive, compare exact bytes, and check invalid inputs. It does not test model behavior or future adherence. To check an already running endpoint, pass `--url https://<actual-host>/gradio_api/mcp/`.
 
+The [hosted protocol run](validation.hosted.json) completed seven byte-exact instruction retrievals, rejected six invalid language requests, and rejected an extra text argument. It did not test model behavior or installation in a model provider's client.
+
 See [PRIVACY.md](PRIVACY.md) for data handling. Gradio usage analytics is disabled in the app; this does not disable the hosting provider's request processing.
 
 ## Licensing scope
@@ -95,6 +99,8 @@ The English instruction `instruction.en.txt` is copied unchanged from the instru
 
 ## Подключение
 
+Публичный коннектор размещён в [Space beforeword](https://huggingface.co/spaces/beforeword/beforeword). Его MCP-адрес приведён выше. Сервер объявляет инструмент как `beforeword_get_beforeword_instruction`, а промпт — `beforeword_beforeword`; используй имена, которые обнаружил твой клиент.
+
 1. Скопируй адрес MCP из работающего приложения или панели **View API → MCP**. Добавь его в клиент с поддержкой удалённых серверов MCP через **Streamable HTTP**.
 2. Если клиент поддерживает промпты MCP, выбери `beforeword` с `language: ru` или `language: en`.
 3. Если доступны только инструменты, явно запроси `get_beforeword_instruction` с нужным языком, затем попроси клиент использовать полученную инструкцию для задачи. Клиент может добавить префикс к названию инструмента.
@@ -112,6 +118,8 @@ The English instruction `instruction.en.txt` is copied unchanged from the instru
 Оба файла инструкции скопированы из `assets/core.*.txt` без изменения байтов; длины и SHA-256 записаны в `instructions.json`. В выдачу не добавляется сообщение об активации.
 
 Команды локального запуска и протокольной проверки приведены выше. Проверка рассматривает выдачу текста по MCP; она не испытывает поведение модели. Обработка данных описана в [PRIVACY.md](PRIVACY.md). Аналитика Gradio отключена, но это не отключает обработку запросов хостингом.
+
+[Протокольная проверка публичного сервера](validation.hosted.json): семь выдач инструкции совпали побайтно, шесть запросов с неподдерживаемым языком и дополнительный аргумент с текстом отклонены. Поведение модели и установка в клиенте поставщика модели не испытывались.
 
 Английская инструкция `instruction.en.txt` без изменений взята из текста, включённого в пакеты с MIT-лицензией; уведомление сохранено в `LICENSE.instruction-en.txt` и относится только к этому файлу. Лицензия не распространяется этим уведомлением на код коннектора, русскую инструкцию или весь репозиторий.
 

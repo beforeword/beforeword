@@ -62,7 +62,9 @@ async def check(url: str) -> dict:
                 assert set(tool.inputSchema["properties"]) == {"language"}, tool.inputSchema
                 assert set(tool.inputSchema["properties"]["language"]["enum"]) == {"en", "ru"}
                 prompts = (await session.list_prompts()).prompts
-                assert len(prompts) == 1 and prompts[0].name == "beforeword", prompts
+                assert len(prompts) == 1, prompts
+                prompt_name = prompts[0].name
+                assert prompt_name == "beforeword" or prompt_name.endswith("_beforeword"), prompts
                 assert [arg.name for arg in prompts[0].arguments] == ["language"]
                 resources = (await session.list_resources()).resources
                 assert resources == [], resources
@@ -74,7 +76,7 @@ async def check(url: str) -> dict:
                     assert not result.isError, result
                     assert content_text(result.content).encode("utf-8") == exact
                     counts["exact_retrievals"] += 1
-                    prompt = await session.get_prompt("beforeword", {"language": language})
+                    prompt = await session.get_prompt(prompt_name, {"language": language})
                     assert len(prompt.messages) == 1
                     assert prompt.messages[0].content.type == "text"
                     assert prompt.messages[0].content.text.encode("utf-8") == exact
@@ -93,7 +95,7 @@ async def check(url: str) -> dict:
                     assert result.isError, f"Tool accepted invalid language: {invalid!r}"
                     counts["invalid_language_checks"] += 1
                 for action in [
-                    lambda: session.get_prompt("beforeword", {"language": "fr"}),
+                    lambda: session.get_prompt(prompt_name, {"language": "fr"}),
                     lambda: session.read_resource("beforeword://instruction/fr"),
                 ]:
                     try:
@@ -116,8 +118,12 @@ async def check(url: str) -> dict:
                     "ok": True,
                     "scope": "MCP HTTP protocol and exact instruction delivery; no model behavior tested",
                     "instruction_version": "1.2.4",
-                    "gradio": importlib.metadata.version("gradio"),
-                    "mcp": importlib.metadata.version("mcp"),
+                    "client_environment": {
+                        "python": sys.version.split()[0],
+                        "gradio": importlib.metadata.version("gradio"),
+                        "mcp": importlib.metadata.version("mcp"),
+                    },
+                    "server_reported": initialized.serverInfo.model_dump(exclude_none=True),
                     "protocol_version": initialized.protocolVersion,
                     "tool": tool.name,
                     "prompt": prompts[0].name,
