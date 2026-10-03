@@ -1,0 +1,38 @@
+{
+  "recorded_on": "2026-10-04",
+  "timezone": "Asia/Bangkok",
+  "instruction_version": "1.2.4",
+  "package_source_commit": "8de858dfb0c423774de88eea20f2a54cf6f0a2fb",
+  "task_trials": "validation/README.md",
+  "host_installation": "not-run",
+  "status": "awaiting-publisher-sign-in",
+  "platforms": {
+    "claude": {
+      "entry_url": "https://claude.ai/directory/manage",
+      "observed": "Redirected to Claude sign-in before the submission form was available.",
+      "source_path": "plugins/claude/beforeword",
+      "package_sha256": "2a1eed509258dbfcb9751d5d3f2c48df99348142b1cdcf8030ef93086c31c244",
+      "draft_created": false,
+      "uploaded": false,
+      "submitted_for_review": false,
+      "published": false,
+      "receipt": null
+    },
+    "openai": {
+      "entry_url": "https://platform.openai.com/",
+      "observed": "Redirected to OpenAI Platform sign-in before the publishing dashboard was available.",
+      "archive": "catalog/packages/beforeword_openai_directory_1.2.4.zip",
+      "package_sha256": "c9c9c1a7ee07ae3e17cc2c959159e938a6cf75cccf3d9eeb603caf63ab59173e",
+      "draft_created": false,
+      "uploaded": false,
+      "submitted_for_review": false,
+      "published": false,
+      "receipt": null
+    }
+  },
+  "limits": [
+    "Opening a publishing route is not a submission.",
+    "Account eligibility, publishing identity, portal scans and review have not been verified.",
+    "The package build manifest describes generated files; this record describes the portal attempt."
+  ]
+}
