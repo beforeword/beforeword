@@ -55,6 +55,10 @@ python3 scripts/build_payload.py openai \
 
 [Полное ядро](assets/core.ru.txt) · [Область действия](assets/scope.ru.txt) · [Методика и записи испытаний](references/evaluation.ru.md)
 
+## Публичное предложение
+
+[«Слова о себе и решения по записям»](https://github.com/beforeword/words-and-decisions/blob/main/README.ru.md) — отдельное публичное предложение на русском и английском. В репозитории размещены полный текст, законченный пример, десять публичных заявлений об ИИ, источники и редакции PDF/DOCX. Версия этой публикации учитывается отдельно от версии инструкции в текущем репозитории.
+
 ## Сообщить о сбое
 
 [Открыть публичное сообщение на GitHub](https://github.com/beforeword/beforeword/issues/new?template=report_ru.yml) · [Написать по почте](mailto:mail@beforeword.xyz?subject=beforeword%201.2.3%20report)
