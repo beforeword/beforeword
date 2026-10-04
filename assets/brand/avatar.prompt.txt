@@ -1,5 +1,9 @@
-Use case: logo-brand.
-Asset type: final GitHub profile avatar for beforeword.
-Create ONE square 1:1 image, a single custom lowercase letter b centered on a perfectly flat warm ivory background #F6F2EA. The b is solid deep ink teal/navy #173B45. Refined humanist/geometric typography, confident substantial stroke, subtle gently rounded terminals, broad open counter. A sophisticated approachable editorial identity that remains immediately recognizable at 32px. Optically centered, letter height approximately 60% of the square, generous whitespace with every part safe inside a GitHub circular crop. Crisp flat vector-like silhouette and flawless smooth edges.
-Text (verbatim): "b" — one lowercase Latin b only.
-No circle baked into the image, no frame, no border, no gradients, no shadows, no shine, no texture, no extra objects, no extra letters or slogans, no AI brain, no shield, no cross, no watermark. Plain flat ivory entire background. Deliver the finished standalone avatar, not a mockup, presentation, or grid.
+Approved beforeword avatar: a custom black mark based on Ы, with an upright left component and a detached inclined right stroke, on pale paper.
+Created with the built-in imagegen tool by editing the prior upright Ы concept. The angle below is the requested visual direction, not a measured specification of the generated artwork.
+
+Final edit prompt (verbatim):
+
+Use case: logo-brand. Make one precise edit to this supplied beforeword avatar concept.
+Tilt ONLY the detached right-hand black stem approximately 15 degrees clockwise from vertical, so its TOP leans to the RIGHT and its bottom remains toward the left, like a restrained forward slash /. Make this tilt clearly visible. The intended mark is an upright soft-sign-like left component followed by a slightly inclined thick stroke: ь/. It is a deliberate custom mark based on Ы.
+Preserve the left component's upright stem, huge rounded lower bowl, interior counter, solid near-black ink, smooth sharp contours and exact massive sans-serif character. Preserve the right stroke's visual thickness and approximately the same vertical height. The tilted stroke remains a simple straight thick bar, no hooks or serifs. Keep a clear visible paper gap between the right stroke and the left bowl at their closest point; they must not touch. Preserve the square composition, warm white paper and very subtle paper texture. Optically recenter the combined mark and use a minimal uniform scale adjustment if needed so the tilted top remains safely inside a circular avatar crop with generous margins.
+No other redesign. No words, labels, frames, additional characters, circles, beforeword wordmark, decorative effects or mockup. Return one finished standalone square avatar image.
