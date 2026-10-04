@@ -1,0 +1,5 @@
+Use case: logo-brand.
+Asset type: final GitHub profile avatar for beforeword.
+Create ONE square 1:1 image, a single custom lowercase letter b centered on a perfectly flat warm ivory background #F6F2EA. The b is solid deep ink teal/navy #173B45. Refined humanist/geometric typography, confident substantial stroke, subtle gently rounded terminals, broad open counter. A sophisticated approachable editorial identity that remains immediately recognizable at 32px. Optically centered, letter height approximately 60% of the square, generous whitespace with every part safe inside a GitHub circular crop. Crisp flat vector-like silhouette and flawless smooth edges.
+Text (verbatim): "b" — one lowercase Latin b only.
+No circle baked into the image, no frame, no border, no gradients, no shadows, no shine, no texture, no extra objects, no extra letters or slogans, no AI brain, no shield, no cross, no watermark. Plain flat ivory entire background. Deliver the finished standalone avatar, not a mockup, presentation, or grid.
