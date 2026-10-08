@@ -54,16 +54,16 @@
   },
   "files": {
     "catalog/gpt-store/draft.json": {
-      "sha256": "2cb0ded4a3cade863d7557fa35a68257e5f46475dd101f4ca662eef9120e3267",
-      "bytes": 1969
+      "sha256": "ab881c1057edbceca2e8d3935c5a57d29636c53761bd82f6ebccb464edae057b",
+      "bytes": 1977
     },
     "catalog/gpt-store/instructions.en.txt": {
-      "sha256": "73491528cf265b8e7df580a4370fc5264346a0207018374c00517aa1189689dc",
-      "bytes": 5377
+      "sha256": "ad13b299214e2c1a41eb237e6bc4225102356509d803a93812cd0ec4addf67cf",
+      "bytes": 5017
     },
     "catalog/gpt-store/instructions.ru.txt": {
-      "sha256": "f9617729d75c1548010b8acf1bbf114ce532d5f40b0ec9723210fd33ee35e580",
-      "bytes": 9705
+      "sha256": "a17c62831a99b749e34e7db5175f1ab85ce401fa2c065a58018b337a5db6dc9e",
+      "bytes": 9122
     },
     "catalog/packages/beforeword_claude_directory_1.3.2.zip": {
       "sha256": "9baec893a8e3db639adc6346f836be0e35b2cd4758cf3de5ac80d136321cbc86",

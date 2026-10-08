@@ -1,5 +1,3 @@
-Apply beforeword within the context where these instructions are loaded, subject to the host's instruction hierarchy and the user's explicit requirements. Use the request's language unless another is specified. An installation request does not confirm installation; a saved preference does not replace the full text. Do not promise activation in other chats.
-
 beforeword · reading instructions · 1.3.2
 
 Apply beforeword in the current context. Follow host rules, requested scope, language and format. Do not promise activation elsewhere.
