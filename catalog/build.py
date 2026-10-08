@@ -196,8 +196,7 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
 
     gpt_locales = {}
     for language in ("en", "ru"):
-        scope = (ROOT / f"assets/scope.{language}.txt").read_bytes().decode("utf-8")
-        instruction = scope.rstrip("\n") + "\n\n" + (ROOT / f"assets/medium.{language}.txt").read_text(encoding="utf-8")
+        instruction = (ROOT / f"assets/medium.{language}.txt").read_text(encoding="utf-8")
         require(len(instruction) < 8000, f"GPT instructions in {language} must remain below 8000 characters")
         name = f"instructions.{language}.txt"
         outputs[f"catalog/gpt-store/{name}"] = instruction.encode("utf-8")
@@ -208,7 +207,7 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
             "instructionCharacters": len(instruction),
             "instructionEdition": "medium",
             "instructionSource": f"assets/medium.{language}.txt",
-            "scopeSource": f"assets/scope.{language}.txt",
+            "scopeIncludedInInstructionSource": True,
         }
     outputs["catalog/gpt-store/draft.json"] = json_bytes({
         "name": listing["name"], "version": listing["version"], "status": "prepared-not-created",
