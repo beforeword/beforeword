@@ -1,5 +1,5 @@
 ---
-name: read
+name: beforeword
 description: "Preserve supplied wording and distinguish its written form from added readings and claims. Use for explicit beforeword requests or requests to inspect this boundary in a text or response."
 ---
 

@@ -1,14 +1,16 @@
 # Directory publication record
 
-Source release: 1.3.0, prepared 8 October 2026. The earlier portal observations below concern 1.2.4 and were recorded on 4 October 2026 (Asia/Bangkok). They do not establish review or publication of 1.3.0. See [submission-status.json](submission-status.json) for separately recorded portal updates.
+Source release: 1.3.1, prepared 8 October 2026. The earlier portal observations below concern 1.2.4 and were recorded on 4 October 2026 (Asia/Bangkok). They do not establish review or publication of 1.3.1. See [submission-status.json](submission-status.json) for separately recorded portal updates.
 
-The prepared OpenAI upload is `catalog/packages/beforeword_openai_directory_1.3.0.zip`; the current Claude source is `plugins/claude/beforeword` on `main`. A source rebuild and a directory submission are separate actions.
+The prepared OpenAI upload is `catalog/packages/beforeword_openai_directory_1.3.1.zip`; the current Claude source is `plugins/claude/beforeword` on `main`. A source rebuild and a directory submission are separate actions.
 
 OpenAI version 1.2.4 was submitted for review on 4 October 2026 (Asia/Bangkok). After submission, the portal listed beforeword as **In review**, with Publication marked **Not published**. Claude version 1.2.4 was also submitted on 4 October 2026. Its security scan passed and publication was requested; the request is waiting for an Anthropic reviewer. Claude shows **Nothing published yet**. See the [status record](submission-status.json) and [recorded trials](validation/README.md).
 
+On 8 October, the Claude portal showed version 1.2.4 as live and version 1.3.0 as having passed its scan. The OpenAI portal required sign-in; its earlier review state was not rechecked. At preparation, the 1.3.1 update had not yet been submitted or scanned. These observations do not establish publication of the new package.
+
 The trials use the packaged instruction in fresh Codex tasks without installing an app. Host installation is not a prerequisite imposed by this preparation workflow; it remains untested. Any validation required by a directory still has to complete in that directory.
 
-## Claude
+## Claude — observations recorded 4 October 2026
 
 - Repository: `beforeword/beforeword`.
 - Plugin path: `plugins/claude/beforeword`.
@@ -26,7 +28,7 @@ The trials use the packaged instruction in fresh Codex tasks without installing 
 
 The plugin path becomes fixed for the listing. The contact email must be supplied by the publisher in the portal, not inferred from a Git commit. Paid-plan eligibility and organization permissions must be checked in the selected account.
 
-## OpenAI
+## OpenAI — observations recorded 4 October 2026
 
 - Archive: `catalog/packages/beforeword_openai_directory_1.2.4.zip`.
 - Format: root `plugin.json` with the Agent Plugins schema.
@@ -54,10 +56,10 @@ Check the current builder and public-sharing options in the publishing account. 
 
 The draft does not assume that creating a GPT, sharing a link and publishing to the Store are the same operation.
 
-## Recorded checks
+## Recorded checks and earlier portal observations
 
 - Local package checks: see `catalog/check.py` and the build manifest.
-- Task outputs: eight recorded tasks across two rounds, including five fresh tasks from the MIT-licensed directory ZIPs before the privacy-link update; see `catalog/validation/`. The tested instruction bytes belong to 1.2.4, not the current 1.3.0 source. The earlier unsupported addition in the Russian label case remains recorded.
+- Task outputs: eight recorded tasks across two rounds, including five fresh tasks from the MIT-licensed directory ZIPs before the privacy-link update; see `catalog/validation/`. The tested instruction bytes belong to 1.2.4, not the current 1.3.1 source. The earlier unsupported addition in the Russian label case remains recorded.
 - Claude host installation: not run.
 - ChatGPT host installation: not run.
 - OpenAI: metadata and skill checks passed; all six owner attestations confirmed and selected; submitted for review. The portal shows In review and Not published. Acceptance and publication remain pending.

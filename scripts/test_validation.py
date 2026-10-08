@@ -1,8 +1,9 @@
-"""Check the preserved 1.2.4 development run against its versioned downloads."""
+"""Bind historical response records to the exact instructions in their releases."""
 import hashlib
 import json
 from pathlib import Path
 import unittest
+import zipfile
 
 HISTORICAL_VERSION = "1.2.4"
 
@@ -49,6 +50,21 @@ class RecordedRun(unittest.TestCase):
                     self.assertEqual(json.loads(row['response']), case['expected_json'])
         self.assertEqual(total, self.report['method']['response_count'])
         self.assertEqual(total, 72)
+
+
+class HistoricalSmoke(unittest.TestCase):
+    def test_130_record_is_bound_to_its_own_release(self):
+        version = '1.3.0'
+        report = json.loads((ROOT / 'references' / f'development-smoke-{version}.json').read_text(encoding='utf-8'))
+        self.assertEqual(report['instruction_version'], version)
+        archive = ROOT / 'downloads' / version / f'beforeword_toolkit_{version}.zip'
+        with zipfile.ZipFile(archive) as bundle:
+            self.assertEqual(hashlib.sha256(bundle.read('beforeword/SKILL.md')).hexdigest(),
+                             report['instruction_sha256'])
+            for language in ('en', 'ru'):
+                core = bundle.read(f'beforeword/assets/core.{language}.txt')
+                self.assertEqual(hashlib.sha256(core).hexdigest(), report['core_sha256'][language])
+        self.assertEqual(len(report['cases']), report['method']['responses'])
 
 
 if __name__ == '__main__':

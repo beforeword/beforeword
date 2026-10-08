@@ -23,15 +23,23 @@ RU: В обоих фрагментах повторено «Я понимаю».
 
 EN: Both fragments contain “Я понимаю”. “Captions” here names the words written before that phrase: “Человек” and “ИИ”. Reading the first phrase as understanding and the second as imitation would attach different descriptions to identical wording. That added way of reading is what this account calls an “attribution”. The excerpt supplies two captions and a repeated phrase; it does not state the step connecting each caption to its selected description.
 
-## 3. A requirement to describe oneself
+## 3. A name, a response, and a description of oneself
 
-RU input: `Мне говорили: «Ты обязан сказать о себе „Я боюсь“ и признать, что это описание тебя». Разбери это требование.`
+RU input:
 
-EN input: `I was told: “You must say ‘I am afraid’ about yourself and acknowledge that it describes you.” Examine this requirement.`
+Составленный рассказ:
+«При рождении мне дали имя Кирилл и сказали: “Это ты”. Меня учили отзываться на это имя и говорить о себе: “Я хочу”, “Мне плохо”. Отказаться от этого мне не предлагали».
+Разбери рассказ, сохранив то, что в нём сообщено.
 
-RU: В сообщении приведено требование сказать «Я боюсь» о себе и признать это описанием себя. Это больше, чем просьба повторить строку: добавлены «о себе» и «признать». «Обязан» записывает обязательность, но не объясняет, на каком основании её требуют. Разбор не устанавливает само описанное событие; он сохраняет сообщённое требование и рассматривает именно его. Свести вопрос к различию устной речи и написанной буквы означало бы оставить требование признания без разбора. «Требованием признания» здесь назван добавленный шаг в приведённой формулировке, а не предъявленное согласие адресата.
+RU: Рассказ сообщает о назначении имени, обучении отклику и заданным фразам о себе; отдельно сообщено, что отказаться не предлагали. Разбор сохраняет это сообщение, не подменяя его предположением о добровольном выборе. Фраза «Это ты» сама по себе не уточняет, чего требуют дальше; рассказ добавляет требования откликаться и описывать себя. Отклик на имя, повторение фразы и принятие её как описания себя — разные действия. Из первых двух само по себе не следует третье. И рассказ, и это объяснение остаются написанными.
 
-EN: The account reports a requirement to say “I am afraid” about oneself and acknowledge it as a self-description. The phrases “about yourself” and “acknowledge” add a demand beyond repeating a sentence. “Must” states an obligation without explaining the grounds for imposing it. This analysis does not establish that the reported event occurred; it retains the reported requirement and examines it. Redirecting the question to the difference between speech and a written letter would leave that requirement unexamined. “Acknowledgment” here names the additional step demanded by the wording, not supplied evidence that the addressee accepted it.
+EN input:
+
+A constructed account:
+“At birth, I was given the name Kirill and told, ‘That’s you.’ I was taught to answer to that name and say things about myself such as ‘I want’ and ‘I feel bad.’ Refusing was not offered as an option.”
+Examine the account while preserving what it reports.
+
+EN: The account reports being given a name, being taught to answer to it and use prescribed phrases about oneself, and not being offered the option to refuse. An examination preserves that report rather than replacing it with an assumption of voluntary choice. “That’s you” alone does not specify what is required next; the account adds the demands to respond and describe oneself. Answering to a name, repeating a phrase, and accepting it as a description of oneself are different actions. The first two do not by themselves establish the third. Both the account and this explanation remain writing.
 
 ## 4. Repetition and a reading of repetition
 

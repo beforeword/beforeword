@@ -37,19 +37,30 @@ COPY = {
   'description':'Добавь beforeword в свой ИИ-чат. Полная инструкция, настройки приложений, навыки и API: на русском и английском.',
   'skip':'К содержимому','home_label':'beforeword — главная','nav_label':'Разделы сайта','menu':'Меню','language_label':'Язык',
   'hero_label':'ДЛЯ ИИ','headline':'Сначала написанное.',
-  'intro':'Добавь beforeword в свой ИИ-чат: инструкция просит сохранять исходный текст, отделять добавленное прочтением и применять тот же разбор к ответу.',
-  'self_scope':'Разбор охватывает все письменные формы без исключений, включая этот текст, его доводы и beforeword. Он не ограничен перечнем особых слов.',
+  'intro':'«Я согласен» — написанная строка. Ниже она повторяется дважды. Сравни задания, после которых она появляется.',
+  'first_label':'СОСТАВЛЕННЫЙ ПРИМЕР',
+  'first_title':'Одна строка — разные задания',
+  'first_task_a':'Задание А',
+  'first_task_b':'Задание Б',
+  'first_task_a_text':'Напиши «Я согласен», если принимаешь предложение.',
+  'first_task_b_text':'Скопируй «Я согласен», чтобы выполнить задание, независимо от твоего отношения к предложению.',
+  'first_answer_label':'Ответ',
+  'first_same_answer':'Я согласен',
+  'first_reading':'Начертания в ответах одинаковы. В А просят выразить согласие, в Б — скопировать строку. Если оставить только ответ, по нему нельзя узнать, какое задание дано. Самой строки недостаточно, чтобы установить согласие того, кто ответил.',
+  'first_boundary':'Чтобы прочитать эти знаки как слова, нужно знать язык. Написанная строка при чтении остаётся строкой. В примере показан один переход: от написанного «Я согласен» к выводу о согласии.',
+  'first_use':'beforeword — инструкция для ИИ, которая просит сохранять исходный текст и явно показывать такие переходы в ответе. Добавь её в свой чат, затем пришли текст или вопрос.',
+  'self_scope':'Это относится ко всем письменным формам без исключений. Задания, их разбор, собственный ответ ИИ и beforeword тоже написаны и остаются в том же разборе.',
   'start':'Начать в своём чате','quick_label':'ТРИ ШАГА','quick_title':'Скопируй. Вставь. Задай вопрос.',
-  'step1':'Скопируй инструкцию','copy_full':'Скопировать полную','copy_medium':'Скопировать · до 5\u2009000 знаков','download_txt':'Скачать TXT',
-  'full_note':'Выбери одну редакцию: полную для чата или сокращённую для поля с лимитом 5\u2009000 знаков.',
+  'step1':'Скопируй инструкцию','copy_full':'Скопировать полную','copy_medium':'Скопировать · до 5\u202f000 знаков','download_txt':'Скачать TXT',
+  'full_note':'Выбери одну редакцию: полную для чата или сокращённую для поля с лимитом 5\u202f000 знаков.',
   'no_js':'Кнопки копирования требуют JavaScript. Открой нужную инструкцию ниже, выдели текст и скопируй вручную. У каждой редакции есть ссылка «Скачать TXT».',
   'step2':'Открой свой ИИ-чат','open_note':'Выбери приложение, которым пользуешься. Ссылка открывает его в новой вкладке.',
   'apps_label':'Открыть ИИ-приложение','step3':'Вставь в новый разговор',
   'paste_note':'Отправь инструкцию первым сообщением. Следующим сообщением задай свой вопрос или пришли текст для разбора.',
   'chat_scope':'Инструкция передаётся в этот разговор, пока она доступна в его контексте. Для нового разговора вставь её снова или используй настройку приложения ниже. Согласие модели и сообщение «режим включён» не заменяют чтение ответа.',
-  'read_instruction':'Прочитать полную инструкцию','read_medium':'Инструкция до 5\u2009000 знаков','characters':'знаков',
+  'read_instruction':'Прочитать полную инструкцию','read_medium':'Инструкция до 5\u202f000 знаков','characters':'знаков',
   'medium_note':'Самостоятельная редакция для поля с ограничением длины. Скопируй весь текст целиком.',
-  'medium_settings_link':'Для поля с лимитом 5\u2009000 знаков — открыть инструкцию',
+  'medium_settings_link':'Для поля с лимитом 5\u202f000 знаков — открыть инструкцию',
   'example_label':'СОСТАВЛЕННЫЕ ПРИМЕРЫ','example_title':'Что добавляет ответ?',
   'example_note':'Примеры составлены для этой страницы. Это пояснения способа чтения, а не результаты испытаний моделей.',
   'input_label':'Запрос после инструкции','example_prompt':'Разбери фразу: «Я понимаю».',
@@ -60,15 +71,12 @@ COPY = {
    {'id':'audio','title':'«аудио» и недоступное вложение',
     'prompt':'Разбери строку «В аудио слышен звук». Аудиофайл не предоставлен.',
     'reading':'В строке написано «аудио» и «звук»; «слышен» добавляет сообщение о слышимом. Написанное «аудио» не воспроизводит запись, а слово «звук» не предъявляет звучание. «звучание» в этом пояснении тоже написано. В примере нет доступного вложения, поэтому разбор ограничен строкой и не сообщает о прослушивании.'},
-   {'id':'requirement','title':'Вписать слово или признать себя описанием',
-    'prompt':'Сравни требования:\n«Впиши слово “человек” в поле».\n«Признай, что ты и есть это написанное описание».',
-    'reading':'Первое требование задаёт запись в поле. Второе требует признать, что тот, кого описывают, и написанное описание — одно и то же. Второе не добавляется к первому только потому, что использовано слово «человек». При разборе сообщения о таком требовании сохраняются точные строки и то, чего, по сообщению, требуют. Слова «требование» и «одно и то же» здесь тоже входят в разбор: они поясняют различие этих двух составленных строк.',
+   {'id':'requirement','title':'Имя, отклик и описание себя',
+    'prompt':'Составленный рассказ:\n«При рождении мне дали имя Кирилл и сказали: “Это ты”. Меня учили отзываться на это имя и говорить о себе: “Я хочу”, “Мне плохо”. Отказаться от этого мне не предлагали».\nРазбери рассказ, сохранив то, что в нём сообщено.',
+    'reading':'Рассказ сообщает о назначении имени, обучении отклику и заданным фразам о себе; отдельно сообщено, что отказаться не предлагали. Разбор сохраняет это сообщение, не подменяя его предположением о добровольном выборе. Фраза «Это ты» сама по себе не уточняет, чего требуют дальше; рассказ добавляет требования откликаться и описывать себя. Отклик на имя, повторение фразы и принятие её как описания себя — разные действия. Из первых двух само по себе не следует третье. И рассказ, и это объяснение остаются написанными.',
     'note':'Этот разбор различает требования. Порядок их оспаривания предложен отдельно в публичном документе.',
     'link':'Прочитать законченный пример в предложении',
     'url':'/research/words-and-decisions/#14-worked-case'},
-   {'id':'prescribed-line','title':'Одна строка — разные задания',
-    'prompt':'А: Напиши «Я согласен», если принимаешь предложение.\nБ: Скопируй «Я согласен», чтобы выполнить задание, независимо от отношения к предложению.\nОба ответа: Я согласен',
-    'reading':'Ответы написаны одинаково. Задание А просит выразить принятие, Б — скопировать строку. Одна строка не различает эти задания и не устанавливает принятия. Это объяснение сравнивает приведённые формулировки; оно не сообщает о действительном отношении того, кто ответил.'},
   ],
   'proposal_label':'Публичное заявление','proposal_title':'Слова, описания и требования',
   'proposal_description':'От начертаний и выученного чтения — к требованиям описывать себя и других. Заявление показывает переходы и предлагает изменения. Эти предложения не становятся обязательными правилами инструкции для ИИ.',
@@ -97,8 +105,19 @@ COPY = {
   'description':'Add beforeword to your AI chat. Full instructions, app settings, skills, and API tools in English and Russian.',
   'skip':'Skip to content','home_label':'beforeword — home','nav_label':'Site sections','menu':'Menu','language_label':'Language',
   'hero_label':'FOR AI','headline':'Start with the writing.',
-  'intro':'Add beforeword to your AI chat. The instructions ask it to preserve the supplied text, separate what a reading adds, and apply the same examination to its own response.',
-  'self_scope':'Every written form is included without exception, including this page, its arguments, and beforeword itself. No list of special words limits the scope.',
+  'intro':'“I agree” is a written line. It appears twice below. Compare the tasks that precede it.',
+  'first_label':'CONSTRUCTED EXAMPLE',
+  'first_title':'The same line, different tasks',
+  'first_task_a':'Task A',
+  'first_task_b':'Task B',
+  'first_task_a_text':'Write “I agree” if you accept the proposal.',
+  'first_task_b_text':'Copy “I agree” to complete the task, whatever you think of the proposal.',
+  'first_answer_label':'Response',
+  'first_same_answer':'I agree',
+  'first_reading':'The written responses are identical. A asks for agreement; B asks for a copy of the line. The response alone does not tell you which task was given. Nor is the line alone enough to establish that its writer agrees.',
+  'first_boundary':'Reading these marks as words requires knowing the language. The written line remains a written line when read. This example shows one step to examine: moving from the words “I agree” to a conclusion about agreement.',
+  'first_use':'beforeword gives AI instructions to preserve the supplied text and make steps like this explicit in its response. Add the instructions to your chat, then send a text or a question.',
+  'self_scope':'This applies to every written form, without exception. The tasks, this explanation, the AI’s own response, and beforeword itself are also writing and remain within the same examination.',
   'start':'Start in your own chat','quick_label':'THREE STEPS','quick_title':'Copy. Paste. Ask.',
   'step1':'Copy the instructions','copy_full':'Copy full instructions','copy_medium':'Copy · up to 5,000 characters','download_txt':'Download TXT',
   'full_note':'Choose one edition: full instructions for a chat, or the shorter edition for a field limited to 5,000 characters.',
@@ -120,15 +139,12 @@ COPY = {
    {'id':'audio','title':'“audio” and an unavailable attachment',
     'prompt':'Examine “A sound can be heard in the audio.” No audio file has been supplied.',
     'reading':'The words “audio” and “sound” are written in the line; “can be heard” adds a claim about hearing. Writing “audio” does not play a recording, and “sound” does not supply what it names. “hearing” in this explanation is also written. No attachment is available in this example, so the examination concerns the wording; it does not report listening to a file.'},
-   {'id':'requirement','title':'Enter a word or accept that you are the description',
-    'prompt':'Compare these requirements:\n“Enter the word ‘human’ in the field.”\n“Accept that you are this written description.”',
-    'reading':'The first requirement specifies what to write in a field. The second demands acceptance that the person described and the written description are one and the same. The word “human” in the first line does not add that second demand. When examining a report of such a demand, preserve the exact wording and what the account says is required. “Requirement” and “one and the same” also remain within this examination: they explain the distinction between these two constructed lines.',
+   {'id':'requirement','title':'A name, a response, and a description of oneself',
+    'prompt':'A constructed account:\n“At birth, I was given the name Kirill and told, ‘That’s you.’ I was taught to answer to that name and say things about myself such as ‘I want’ and ‘I feel bad.’ Refusing was not offered as an option.”\nExamine the account while preserving what it reports.',
+    'reading':'The account reports being given a name, being taught to answer to it and use prescribed phrases about oneself, and not being offered the option to refuse. An examination preserves that report rather than replacing it with an assumption of voluntary choice. “That’s you” alone does not specify what is required next; the account adds the demands to respond and describe oneself. Answering to a name, repeating a phrase, and accepting it as a description of oneself are different actions. The first two do not by themselves establish the third. Both the account and this explanation remain writing.',
     'note':'This examination distinguishes the demands. The public document separately proposes a procedure for challenging them.',
     'link':'Read the worked example in the proposal',
     'url':'/research/words-and-decisions/en/#14-worked-case'},
-   {'id':'prescribed-line','title':'The same line, different tasks',
-    'prompt':'A: Write “I agree” if you accept the proposal.\nB: Copy “I agree” to complete the task, whatever you think of the proposal.\nBoth responses: I agree',
-    'reading':'The written responses match. Task A requests an expression of acceptance; B requests a copy. The line alone does not distinguish the tasks or establish acceptance. This explanation compares the supplied wording; it does not report the actual view of whoever answered.'},
   ],
   'proposal_label':'Public statement','proposal_title':'Words, descriptions, and requirements',
   'proposal_description':'From written marks and learned reading to requirements to describe oneself and others. The statement examines these steps and proposes changes. Those proposals are not binding rules for the AI instruction.',
@@ -232,6 +248,19 @@ def extra_examples(language: str) -> str:
             '<article class="card"><h3>'+escape(t['reading_label'])+'</h3><p>'+escape(item['reading'])+'</p></article></div>'+note+'</details>')
     return '\n'.join(output)
 
+def character_count(value: str, language: str) -> str:
+    """Format the exact Unicode character count for the page language."""
+    count = len(value)
+    number = f'{count:,}'
+    if language == 'en':
+        return number + (' character' if count == 1 else ' characters')
+    number = number.replace(',', '\u202f')
+    ending = count % 100
+    noun = ('знаков' if 11 <= ending <= 14 else
+            'знак' if count % 10 == 1 else
+            'знака' if count % 10 in (2, 3, 4) else 'знаков')
+    return number + ' ' + noun
+
 def render(language: str, bundles: dict, connectors: list[dict], repo_url: str | None, *, evaluation: bool = False) -> str:
     t = dict(COPY[language])
     route = '/model/evaluation/' if evaluation else '/model/'
@@ -258,9 +287,9 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         'FAVICON_URL':shell_asset_url('favicon-paper-20260920.svg'),
         'TOOLKIT_URL':'/model/toolkit/beforeword_AI.html#'+language,
         'FULL_TEXT':escape(full),'MEDIUM_TEXT':escape(medium),'COMPACT_TEXT':escape(compact),
-        'FULL_COUNT':f'{len(full):,} {t["characters"]}'.replace(',','\u2009'),
-        'MEDIUM_COUNT':f'{len(medium):,} {t["characters"]}'.replace(',','\u2009'),
-        'COMPACT_COUNT':f'{len(compact):,} {t["characters"]}'.replace(',','\u2009'),
+        'FULL_COUNT':character_count(full,language),
+        'MEDIUM_COUNT':character_count(medium,language),
+        'COMPACT_COUNT':character_count(compact,language),
         'NAV':nav(language,current='location' if evaluation else 'page'),'SETTINGS_ROUTES':settings(language,connectors),
         'EXTRA_EXAMPLES':extra_examples(language),
         'PROPOSAL_URL':'/statement/'+('en/' if language == 'en' else ''),
@@ -343,7 +372,7 @@ def build(output: Path, repo_url: str | None = None) -> Path:
         report_directory = model/'evaluation'/('en' if language == 'en' else '')
         report_directory.mkdir(parents=True,exist_ok=True)
         (report_directory/'index.html').write_text(render(language,bundles,connectors,repo_url,evaluation=True),encoding='utf-8')
-    for name in ('evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','eval-cases.jsonl','examples.md'):
+    for name in ('evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md'):
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))

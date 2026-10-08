@@ -84,6 +84,8 @@ function boot(hash,expectedLanguage){
 boot('#en','en');boot('#ru','ru');boot('#unknown','ru');
 const context=boot('','ru');
 const run=source=>vm.runInContext(source,context);
+for(const [count,expected] of [[1,'1 символ'],[2,'2 символа'],[5,'5 символов'],[11,'11 символов'],[21,'21 символ'],[111,'111 символов'],[4982,'4\u202f982 символа']])assert.equal(run(`characterCount(${count},'ru')`),expected);
+assert.equal(run("characterCount(4982,'en')"),'4,982 characters');
 const parsedPayload=()=>JSON.parse(nodes['api-out'].textContent);
 const setProvider=value=>{nodes['api-provider'].value=value;nodes['api-provider'].listeners.change()};
 function validInput(){nodes['api-model'].value='test-model';nodes['api-input'].value='e\u0301 ≠ é\n  «Я»\t<script>not executable</script>';nodes['api-history'].value='';nodes['api-max-tokens'].value='2048';nodes['api-endpoint'].value='https://example.invalid/v1/chat/completions'}

@@ -1,5 +1,14 @@
 # Changes / Изменения
 
+## 1.3.1
+
+- Open the public instruction page with the A/B example before setup steps. Distinguish the repeated line from the task and from acceptance.
+- Revise the self-description example without inserting an explicit demand to be a written description. Clarify the English core’s distinction between a claim about what words do and the question of writing becoming what it names.
+- Correct Russian interface wording and keep all language editions and packages aligned. Earlier response records remain bound to the instruction version used in each run.
+- Публичная страница начинается с примера А/Б до шагов подключения. Повтор строки отделён от задания и от принятия написанного.
+- Пример самоописания больше не вводит требование буквально быть письменным описанием. В основном тексте уточнено различение утверждений о действии слов и вопроса о превращении записи в называемое.
+- Исправлены русские подписи интерфейса; языковые редакции и пакеты согласованы. Прежние записи ответов сохраняют версии использованных инструкций.
+
 ## 1.3.0
 
 - Apply one rule to every written form, including the response, its offered grounds, and beforeword itself. No fixed list of special words limits the scope.

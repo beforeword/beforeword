@@ -51,6 +51,13 @@ function checkArtifacts() {
       }
     }
     assert.ok(html.includes('id="where"'), 'Existing homepage fragment preserved');
+    const firstExample = html.match(/<section id="example-prescribed-line"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+    assert.ok(firstExample, 'The first reading example is present');
+    assert.ok(!/<details\b|\bhidden(?:\s|=|>)/.test(firstExample), 'The first example is openly readable without clicks');
+    assert.ok(html.indexOf('id="example-prescribed-line"') < html.indexOf('data-copy-target="instruction-text"'), 'The example precedes the instruction copy route');
+    const shownAnswers = [...firstExample.matchAll(/<pre class="same-answer">([\s\S]*?)<\/pre>/g)].map(match => decode(match[1]));
+    assert.equal(shownAnswers.length, 2, 'Both task responses are shown');
+    assert.equal(shownAnswers[0], shownAnswers[1], 'The compared responses are written identically');
     assert.ok(!/__\w+__/.test(html), 'No unexpanded placeholders');
     assert.ok(!/<script[^>]+src="https?:/i.test(html), 'No remote scripts');
     assert.ok(!/\son\w+=/i.test(html), 'No inline event handlers');
@@ -77,8 +84,11 @@ function checkArtifacts() {
       assert.ok(details, 'Edition can be read without JavaScript: '+detailsId);
       const summary = details.match(/<summary>([\s\S]*?)<\/summary>/)?.[1];
       assert.ok(summary && !/<(?:button|a)\b/.test(summary), 'Disclosure summary has no nested action: '+detailsId);
-      const count = String(Array.from(text).length).replace(/\B(?=(\d{3})+(?!\d))/g, '\u2009');
-      assert.ok(decode(summary).includes(count+' '+(lang==='ru'?'знаков':'characters')), 'Visible count matches the exact edition: '+detailsId);
+      const length = Array.from(text).length;
+      const count = new Intl.NumberFormat(lang).format(length).replace(/\u00a0/g, '\u202f');
+      const plural = new Intl.PluralRules(lang).select(length);
+      const noun = lang==='ru' ? ({one:'знак',few:'знака',many:'знаков',other:'знака'}[plural]) : (plural==='one'?'character':'characters');
+      assert.ok(decode(summary).includes(count+' '+noun), 'Visible count uses the exact edition and the page locale: '+detailsId);
       const action = `data-copy-target="${targetId}" data-copy-details="${detailsId}"`;
       assert.ok(details.indexOf(action) < details.indexOf('id="'+targetId+'"'), 'Copy is beside the beginning of the text: '+detailsId);
       if (repeated) assert.ok(details.lastIndexOf(action) > details.indexOf('</textarea>'), 'Long text has a second copy action at the end: '+detailsId);

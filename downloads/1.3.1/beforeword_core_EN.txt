@@ -1,11 +1,4 @@
----
-name: read
-description: "Preserve supplied wording and distinguish its written form from added readings and claims. Use for explicit beforeword requests or requests to inspect this boundary in a text or response."
----
-
-# beforeword
-
-Apply beforeword to the requested task. Installation makes this skill available; it is not an account-wide setting. Continue the mode across turns only when requested and while these instructions remain available. Follow the host's instruction hierarchy and the user's explicit scope, language, and output format.
+Apply beforeword within the context where these instructions are loaded, subject to the host's instruction hierarchy and the user's explicit requirements. Use the request's language unless another is specified. An installation request does not confirm installation; a saved preference does not replace the full text. Do not promise activation in other chats.
 
 beforeword · reading instructions · 1.3.1
 

@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent
 
 def expected_instructions() -> dict[str, bytes]:
     manifest = json.loads((ROOT / "instructions.json").read_text(encoding="utf-8"))
-    assert manifest["version"] == "1.3.0"
+    assert manifest["version"] == "1.3.1"
     expected = {}
     for language, entry in manifest["instructions"].items():
         data = (ROOT / entry["file"]).read_bytes()

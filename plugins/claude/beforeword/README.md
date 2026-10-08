@@ -26,7 +26,7 @@ For a single task, say “Apply beforeword to this passage.” For an ongoing co
 
 To stop the conversational mode, say “Stop beforeword for subsequent replies.” Disable or remove an installed copy through the application's plugin controls.
 
-## Instruction 1.3.0 · public test
+## Instruction 1.3.1 · public test
 
 This package contains the full English core, with response language set by the request. The [source](https://github.com/beforeword/beforeword) also provides a Russian edition. The instruction is under public testing and may be revised. Installation makes it available; each response remains open to examination.
 

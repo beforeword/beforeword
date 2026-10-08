@@ -8,7 +8,7 @@ Prepared fields for a custom GPT. No GPT has been created, shared, or published.
 
 1. Use the name `beforeword`.
 2. Copy the English description and three starter prompts from [draft.json](draft.json). The Russian values are provided in the same file.
-3. Paste the entire [English instruction](instructions.en.txt) or [Russian instruction](instructions.ru.txt) into the instruction field. Use one edition. These files contain the scope and the explicitly condensed 1.3.0 medium edition. Exact lengths and source paths are recorded in `draft.json`. The Claude and OpenAI plugin packages use the full core instead.
+3. Paste the entire [English instruction](instructions.en.txt) or [Russian instruction](instructions.ru.txt) into the instruction field. Use one edition. These files contain the scope and the explicitly condensed 1.3.1 medium edition. Exact lengths and source paths are recorded in `draft.json`. The Claude and OpenAI plugin packages use the full core instead.
 4. Use the [512-pixel PNG project mark](../assets/logo.png) for the icon; the [SVG source](../assets/logo.svg) is also included. No additional actions, server, or uploaded knowledge file is needed for the supplied workflow. Available host tools can be configured separately if the intended task requires them.
 5. Try the starter prompts in preview. Then try a new definition, a claim attributed to a document, and an exact-copy request. Keep the input and output. Check the wording, added reading, grounds, self-application and requested format.
 6. Inspect the final instructions and sharing audience before saving or publishing. Confirm that the full text was retained. A successful save does not establish the behavior of later answers.
