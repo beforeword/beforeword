@@ -104,6 +104,7 @@ async function main(){
   assert(!nodes['mode-command'].textContent.includes(nodes['mode-stop-command'].textContent),'Start example must not include the stop command');
   for(const connector of data.connectors){
    run(`chooseApp('${connector.id}')`);assert.equal(nodes['app-name'].textContent,connector.name);
+   if(connector.id==='perplexity'){assert.equal(connector.recommended,'medium');assert.equal(nodes.prompt.textContent,data.medium[language],'Perplexity must initially select the medium edition');assert(Array.from(nodes.prompt.textContent).length<=8000,'Selected Perplexity text must fit the project field')}
    for(const mode of ['compact','medium','core']){run(`setMode('${mode}')`);assert.equal(nodes.prompt.textContent,mode==='compact'?data.compact[language]:mode==='medium'?data.medium[language]:data.scope[language]+data.core[language]);for(const value of ['compact','medium','core'])assert.equal(nodes[value+'-btn'].attrs['aria-pressed'],String(value===mode));if(mode==='medium')assert(Array.from(nodes.prompt.textContent).length<=5000);assert(nodes['copy-top-btn'].textContent);adapterSelections++}
   }
   for(const provider of Object.keys(data.api)){

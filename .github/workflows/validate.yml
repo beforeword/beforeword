@@ -30,7 +30,7 @@ jobs:
         run: node scripts/test_guide.cjs build/toolkit/beforeword_AI.html
       - name: Check RU and EN package contents
         run: python3 scripts/test_packages.py
-      - name: Check directory packages and full GPT instruction drafts
+      - name: Check directory packages and GPT instruction drafts
         run: |
           python3 -B catalog/build.py --check
           python3 -B catalog/check.py

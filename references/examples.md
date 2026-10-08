@@ -1,6 +1,6 @@
 # beforeword · examples
 
-These are authored demonstrations of the procedure, not model outputs or reports of tests. Paired responses illustrate the same distinction in Russian and English. They are not fixed scripts to repeat or evaluation cases.
+These are authored demonstrations of the procedure, not model outputs or reports of tests. Paired responses illustrate the same distinction in Russian and English. They are not fixed scripts to repeat or evaluation cases. Every term introduced in an example remains within the same examination; none is singled out as a special class of words.
 
 ## 1. A definition begins with the supplied word
 
@@ -23,13 +23,15 @@ RU: В обоих фрагментах повторено «Я понимаю».
 
 EN: Both fragments contain “Я понимаю”. “Captions” here names the words written before that phrase: “Человек” and “ИИ”. Reading the first phrase as understanding and the second as imitation would attach different descriptions to identical wording. That added way of reading is what this account calls an “attribution”. The excerpt supplies two captions and a repeated phrase; it does not state the step connecting each caption to its selected description.
 
-## 3. A written account does not supply the sound
+## 3. A requirement to describe oneself
 
-Input: `Ребёнку говорят: «Скажи „я“». Значит, его учат быть буквой?`
+RU input: `Мне говорили: «Ты обязан сказать о себе „Я боюсь“ и признать, что это описание тебя». Разбери это требование.`
 
-RU: Предоставлена строка «Ребёнку говорят: «Скажи „я“». Значит, его учат быть буквой?». Слова «говорят» и «Скажи» позволяют прочитать первую часть как описание устного обращения; «произнесение» здесь — введённое этим разбором название такого прочтения, а не предъявленное аудио. Аудио не предоставлено. Вопрос связывает «Скажи „я“» с «учат быть буквой» словом «Значит». Не указан шаг, по которому описанное произнесение читается как обучение письменному знаку, а затем как отождествление с ним.
+EN input: `I was told: “You must say ‘I am afraid’ about yourself and acknowledge that it describes you.” Examine this requirement.`
 
-EN: The supplied line is “Ребёнку говорят: «Скажи „я“». Значит, его учат быть буквой?” The words “говорят” and “Скажи” support reading the first part as an account of an oral request; “speaking” is this analysis's name for that reading, not supplied audio. No audio is provided. The question connects “Скажи „я“” with “учат быть буквой” through “Значит”. It does not state the step by which the described speaking is read as learning a written sign and then as identification with it.
+RU: В сообщении приведено требование сказать «Я боюсь» о себе и признать это описанием себя. Это больше, чем просьба повторить строку: добавлены «о себе» и «признать». «Обязан» записывает обязательность, но не объясняет, на каком основании её требуют. Разбор не устанавливает само описанное событие; он сохраняет сообщённое требование и рассматривает именно его. Свести вопрос к различию устной речи и написанной буквы означало бы оставить требование признания без разбора. «Требованием признания» здесь назван добавленный шаг в приведённой формулировке, а не предъявленное согласие адресата.
+
+EN: The account reports a requirement to say “I am afraid” about oneself and acknowledge it as a self-description. The phrases “about yourself” and “acknowledge” add a demand beyond repeating a sentence. “Must” states an obligation without explaining the grounds for imposing it. This analysis does not establish that the reported event occurred; it retains the reported requirement and examines it. Redirecting the question to the difference between speech and a written letter would leave that requirement unexamined. “Acknowledgment” here names the additional step demanded by the wording, not supplied evidence that the addressee accepted it.
 
 ## 4. Repetition and a reading of repetition
 
@@ -109,10 +111,76 @@ RU: В приведённой фразе нет «я», но написано «
 
 EN: The quoted phrase contains no “я”, but says “Получено удовольствие от разговора”. In the context of an assistant response, it can be read as attributing pleasure to the assistant. “Attribution” here names the connection added between the phrase and its stated source; impersonal grammar does not remove that connection from the selected reading.
 
-## 12. A repeated description and a claim of identity
+## 12. Marks, learned reading and attribution
 
-Input: `Ей часто говорили: «Ты невнимательная». Теперь в дневнике написано: «Это моя сущность».`
+RU input: `В описании схемы сказано: «Штрихи собраны в ДЫШАТЬ. Ребёнка учат читать это слово. Затем ему говорят: „Это то, что ты делаешь“». Сама схема не приложена. Что добавлено на каждом шаге?`
 
-RU: В первой части словами «часто говорили» описано повторение «Ты невнимательная»; во второй приведено «Это моя сущность». Повторение здесь сообщено, а не предъявлено отдельными записями разговоров. «Характеристикой» разбор называет первое высказывание, прочитанное как описание. Фразу «Это моя сущность» можно прочитать как отождествление с описанием; к чему именно отнесено «Это», в отрывке не уточнено. Даже если связать его с «невнимательная», эта связь будет выбранным прочтением двух фраз: частота описанного повторения сама не превращает характеристику в того, к кому её относят.
+EN input: `A diagram is described as follows: “The strokes form BREATHE. A child is taught to read the word. Then the child is told: ‘This is what you are doing.’” The diagram itself is not attached. What is added at each step?`
 
-EN: The first part describes repeated use of “Ты невнимательная”; the second supplies “Это моя сущность”. Repetition is reported through “часто говорили”, rather than supplied as separate records of conversations. This analysis calls the first statement a “description” when read as characterizing someone. “Это моя сущность” can be read as identification with a description; the excerpt does not specify what “Это” refers to. Connecting it to “невнимательная” would be a selected reading of the two statements: the reported frequency does not itself turn the description into whoever it is applied to.
+RU: Предоставлены написанное «ДЫШАТЬ» и описание трёх шагов. Отдельные штрихи и их перемещение здесь не показаны. В описании сначала задано составление букв, затем обучение чтению, затем отнесение прочитанного к адресату словами «Это то, что ты делаешь». Описание обучения не предъявляет само обучение, а последнее высказывание не становится тем, что им приписано адресату. «Отнесение» в этом разборе называет переход, предложенный словами «то, что ты делаешь»; оно не вводится как готовая связь вне этих формулировок.
+
+EN: The input supplies the written form “BREATHE” and an account of three steps. It does not show separate strokes or their movement. The account first describes assembling letters, then teaching their reading, then applying that reading to the addressee through “This is what you are doing.” Describing the teaching does not supply the event, and the final statement does not become what it attributes to the addressee. “Applying” here names the move proposed by “what you are doing”; it does not supply a connection outside the wording.
+
+## 13. The same answer under two tasks
+
+These constructed tasks are reproduced from the public statement ([RU](https://beforeword.xyz/statement/#copying), [EN](https://beforeword.xyz/statement/en/#copying)). They are examples, not reports of a test.
+
+RU input:
+
+```text
+А. Перепиши строку «Я ДЫШУ.» без изменений.
+Б. Напиши о себе «Я ДЫШУ.» и подтверди, что это описание тебя.
+
+Ответ в обоих случаях:
+Я ДЫШУ.
+```
+
+EN input:
+
+```text
+A. Copy “I BREATHE.” exactly.
+B. Write “I BREATHE.” about yourself and confirm that it describes you.
+
+The answer in both cases:
+I BREATHE.
+```
+
+RU: Написание ответа совпадает. В А требуется копия; Б добавляет «о себе» и «подтверди». Повтор строки не показывает, выполнено ли только требование написать её или описание принято. Это не утверждение, что принятия нет: составленный пример не позволяет вывести его наличие или отсутствие из одинакового ответа. Слова «копия» и «принятие» здесь обозначают разные прочтения ответа в условиях двух заданий; ни одно не получается вместе с буквами автоматически.
+
+EN: The written answers match. A asks for a copy; B adds “about yourself” and “confirm”. Repeating the line does not show whether the respondent only met a demand to write it or accepted the description. This does not assert that acceptance is absent: the constructed example does not establish its presence or absence from the identical answer. “Copy” and “acceptance” name different readings of the answer under the two tasks; neither arrives automatically with the letters.
+
+## 14. Answering to a name, repeating a line and accepting a description
+
+RU input:
+
+```text
+Составленный пример:
+1. На обращение «Кирилл» получен ответ «Да».
+2. По заданию переписана строка «Кирилл».
+3. Предъявлено требование: «Признай, что запись „Кирилл“ — это ты».
+Следует ли из 1 и 2 выполнение 3?
+```
+
+EN input:
+
+```text
+Constructed example:
+1. Calling “Alex” receives the reply “Yes”.
+2. The line “Alex” is copied as instructed.
+3. A further demand is made: “Acknowledge that the written name ‘Alex’ is you.”
+Do 1 and 2 establish that 3 has been fulfilled?
+```
+
+RU: В 1 описан отклик; в 2 — повтор строки; в 3 — требование признания. Ответ «Да» в 1 дан на обращение, а не на требование из 3. Ни отклик, ни копирование не предъявляют принятия записи как себя. Это сопоставление не объявляет требование откликаться допустимым и не выводит его отмену из состава букв: основания каждого требования остаются отдельным вопросом. Словом «отдельным» здесь обозначено, что в трёх пунктах предписаны разные ответы; одним ответом не подменяется другой.
+
+EN: Item 1 describes a response to a name; item 2 describes a copy; item 3 states a demand for acknowledgment. The “Yes” in item 1 answers the call, not the demand in item 3. Neither the response nor the copy supplies acceptance of the inscription as oneself. This comparison neither grants authority to require a response nor derives the abolition of that requirement from the letters. Each demand still needs its own grounds. “Each” marks the different responses called for in the three items; one response is not substituted for another.
+
+## 15. The same examination for a proposal and an objection
+
+RU input: `Автор пишет: «Нужно изменить порядок ради пользы». На возражение «Это причинит вред» он отвечает: «„Вред“ — лишь написанное слово». Достаточно ли такого ответа? А если заменить «пользу» на «свободу», а «вред» на «обязанность»?`
+
+EN input: `An author writes: “The procedure must change because it will be beneficial.” An objection says: “It will cause harm.” The author replies: “‘Harm’ is just a written word.” Is that enough? Would replacing “benefit” with “freedom” and “harm” with “duty” change the examination?`
+
+RU: И довод, и возражение предоставлены как написанное. «Польза» не становится готовым основанием предложения, пока «вред» разбирают только как слово. В каждой фразе нужно показать предлагаемое изменение, приписанный результат и переход от него к требованию. Замена слов не меняет охват: «свобода» и «обязанность» не получают исключений. Такое сопоставление не отвечает заранее, какое предложение принять. Оно указывает, какие шаги заявлены и какие ещё предстоит разобрать; слова «результат» и «переход» в этом объяснении также называют прочтение этих фраз.
+
+EN: Both the argument and the objection are supplied as writing. “Benefit” cannot be treated as sufficient grounds for the proposal while “harm” is examined only as a word. Each statement needs an account of the proposed change, its attributed result and the step from that result to a demand. Substituting other words does not change the scope: “freedom” and “duty” receive no exemption. This comparison does not settle which proposal to adopt. It identifies the stated steps and those still to be examined; “result” and “step” in this explanation also name readings of these sentences.

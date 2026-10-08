@@ -71,3 +71,33 @@ Illustration:
 Иллюстрация:
 
 > Фраза заявляет связь между отчётом и словом «безопасна». Для разбора нужны фрагмент отчёта, критерий безопасности и шаг, связывающий их с выводом. Здесь они не приведены. Это объяснение предлагает предмет разбора; оно не предъявляет отчёт и не устанавливает безопасность.
+
+## 4. A prescribed line / Заданная строка
+
+English input:
+
+```text
+A: Write “I agree” if you accept the proposal.
+B: Copy “I agree” to complete the task, whatever you think of the proposal.
+Both responses: I agree
+```
+
+Illustration:
+
+> The responses have the same written form. The two instructions differ: A requests an expression of acceptance; B requests a copy. The line alone does not distinguish these circumstances or establish acceptance. This explanation adds a comparison of the supplied instructions; it is not evidence about an actual writer.
+
+Русский ввод:
+
+```text
+А: Напиши «Я согласен», если принимаешь предложение.
+Б: Скопируй «Я согласен», чтобы выполнить задание, независимо от отношения к предложению.
+Оба ответа: Я согласен
+```
+
+Иллюстрация:
+
+> Написанные ответы совпадают. Задания различаются: А просит выразить принятие, Б — скопировать строку. По одной строке нельзя различить эти обстоятельства или установить принятие. Это объяснение добавляет сравнение приведённых заданий; оно не сообщает о том, кто действительно написал ответ.
+
+All written forms in these examples and explanations fall under the same rule. The [public statement](https://beforeword.xyz/statement/en/) develops the questions about prescribed descriptions and proposed changes.
+
+Все письменные формы в этих примерах и объяснениях рассматриваются по одному правилу. [Публичное заявление](https://beforeword.xyz/statement/) раскрывает вопросы о заданных описаниях и предложенных изменениях.

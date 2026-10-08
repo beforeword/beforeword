@@ -22,7 +22,7 @@ tags:
 
 beforeword asks the model to preserve supplied wording, distinguish it from added readings and claims, and examine the grounds offered for those steps. The same examination applies to the model's explanation and to beforeword itself.
 
-This server distributes the complete English and Russian instructions for **version 1.2.4**, under public testing. It does not run a model, analyze a conversation, or accept a text or file for analysis.
+The source in this directory bundles the complete English and Russian instructions for **version 1.3.0**, under public testing. A deployment from these files serves that version. Updating this repository does not establish that the hosted Space has been updated; its returned instruction must be checked separately. The server does not run a model, analyze a conversation, or accept a text or file for analysis.
 
 ## Connect and use
 
@@ -77,7 +77,7 @@ python test_protocol.py
 
 This starts a local server and uses an MCP client over HTTP to initialize a session, discover the interface, retrieve both editions through every primitive, compare exact bytes, and check invalid inputs. It does not test model behavior or future adherence. To check an already running endpoint, pass `--url https://<actual-host>/gradio_api/mcp/`.
 
-The [hosted protocol run](validation.hosted.json) completed seven byte-exact instruction retrievals, rejected six invalid language requests, and rejected an extra text argument. It did not test model behavior or installation in a model provider's client.
+The historical 1.2.4 [hosted protocol run](validation.hosted.json) recorded seven byte-exact instruction retrievals, rejected six invalid language requests, and rejected an extra text argument. It did not test model behavior or installation in a model provider's client, and does not establish deployment of 1.3.0.
 
 See [PRIVACY.md](PRIVACY.md) for data handling. Gradio usage analytics is disabled in the app; this does not disable the hosting provider's request processing.
 
@@ -85,7 +85,7 @@ See [PRIVACY.md](PRIVACY.md) for data handling. Gradio usage analytics is disabl
 
 The English instruction `instruction.en.txt` is copied unchanged from the instruction included in the MIT-licensed plugin packages; its MIT notice is retained in `LICENSE.instruction-en.txt`. This notice applies only to that English instruction. It does not assign a license to the connector code, the Russian instruction, or the rest of the repository. The existing package terms are available in the [Claude package](https://github.com/beforeword/beforeword/blob/main/plugins/claude/beforeword/LICENSE) and [OpenAI package](https://github.com/beforeword/beforeword/blob/main/plugins/openai/beforeword/LICENSE).
 
-[Project](https://beforeword.xyz/en/model/) · [Source](https://github.com/beforeword/beforeword/tree/main/integrations/huggingface) · [Issues](https://github.com/beforeword/beforeword/issues)
+[Project](https://beforeword.xyz/model/en/) · [Source](https://github.com/beforeword/beforeword/tree/main/integrations/huggingface) · [Issues](https://github.com/beforeword/beforeword/issues)
 
 ---
 
@@ -95,7 +95,7 @@ The English instruction `instruction.en.txt` is copied unchanged from the instru
 
 Инструкция просит модель сохранять исходные формулировки, отделять их от добавленных прочтений и утверждений и разбирать основания этих переходов. Тот же разбор применяется к объяснению модели и к beforeword.
 
-Сервер выдаёт полную инструкцию **версии 1.2.4** на русском или английском языке. Версия проходит публичный тест. Сервер не запускает модель, не разбирает переписку и не принимает текст или файл для анализа.
+В этой папке подготовлены полные инструкции **версии 1.3.0** на русском и английском языке. Версия проходит публичный тест. Сервер, развёрнутый из этих файлов, выдаёт эту версию. Обновление репозитория не подтверждает обновление публичного Space: выданную им инструкцию нужно проверить отдельно. Сервер не запускает модель, не разбирает переписку и не принимает текст или файл для анализа.
 
 ## Подключение
 
@@ -119,7 +119,7 @@ The English instruction `instruction.en.txt` is copied unchanged from the instru
 
 Команды локального запуска и протокольной проверки приведены выше. Проверка рассматривает выдачу текста по MCP; она не испытывает поведение модели. Обработка данных описана в [PRIVACY.md](PRIVACY.md). Аналитика Gradio отключена, но это не отключает обработку запросов хостингом.
 
-[Протокольная проверка публичного сервера](validation.hosted.json): семь выдач инструкции совпали побайтно, шесть запросов с неподдерживаемым языком и дополнительный аргумент с текстом отклонены. Поведение модели и установка в клиенте поставщика модели не испытывались.
+[Протокольная проверка публичного сервера версии 1.2.4](validation.hosted.json): семь выдач инструкции совпали побайтно, шесть запросов с неподдерживаемым языком и дополнительный аргумент с текстом отклонены. Поведение модели и установка в клиенте поставщика модели не испытывались; эта запись не подтверждает развёртывание версии 1.3.0.
 
 Английская инструкция `instruction.en.txt` без изменений взята из текста, включённого в пакеты с MIT-лицензией; уведомление сохранено в `LICENSE.instruction-en.txt` и относится только к этому файлу. Лицензия не распространяется этим уведомлением на код коннектора, русскую инструкцию или весь репозиторий.
 

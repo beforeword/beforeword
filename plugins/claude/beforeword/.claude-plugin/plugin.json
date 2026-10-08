@@ -1,12 +1,12 @@
 {
   "name": "beforeword",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "Examine a phrase, a claim, or an AI response: what is written, what a reading adds, and what supports that step.",
   "author": {
     "name": "beforeword",
     "url": "https://beforeword.xyz"
   },
-  "homepage": "https://beforeword.xyz/en/model/",
+  "homepage": "https://beforeword.xyz/model/en/",
   "repository": "https://github.com/beforeword/beforeword",
   "keywords": [
     "beforeword",

@@ -24,10 +24,10 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog"
 SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
-ZIP_DATE = (2026, 10, 3, 0, 0, 0)
+ZIP_DATE = (2026, 10, 8, 0, 0, 0)
 PINNED_CORE = {
-    "en": "b6b2d0bf4da70e72e6c82060ccdbce5f9e84634e3a12557de3f557907342e742",
-    "ru": "fe6e851c7d9ab3b27a853c1e568274425ef3b7f1ee0860b39996d7199420611c",
+    "en": "d7f530dc3075157018fafaaa154b43c7f09c46355752cdee10606cf16f9c0435",
+    "ru": "c693ae8523f74b93a6f33dd0086a23865b752d953c03729a0bd6a08cec0a73ef",
 }
 OWNED_TREES = ("plugins/claude/beforeword", "plugins/openai/beforeword",
                "catalog/packages", "catalog/gpt-store")
@@ -67,7 +67,7 @@ def load_listing() -> dict:
     listing = json.loads((CATALOG / "listing.json").read_text(encoding="utf-8"))
     require(isinstance(listing, dict), "listing.json must contain an object")
     require(listing.get("name") == "beforeword", "Catalog name must be beforeword")
-    require(listing.get("version") == "1.2.4", "These source-core pins are for version 1.2.4")
+    require(listing.get("version") == "1.3.0", "These source-core pins are for version 1.3.0")
     publisher = listing.get("publisher", {})
     text_field(publisher.get("name"), "publisher.name")
     https_url(publisher.get("url"), "publisher.url")
@@ -118,7 +118,7 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
     english, russian = (listing["locales"][language] for language in ("en", "ru"))
     core = {language: (ROOT / f"assets/core.{language}.txt").read_bytes() for language in ("en", "ru")}
     for language, data in core.items():
-        require(sha256(data) == PINNED_CORE[language], f"The unchanged {language} core 1.2.4 hash does not match")
+        require(sha256(data) == PINNED_CORE[language], f"The {language} core 1.3.0 hash does not match")
         data.decode("utf-8")
 
     approved_license = listing["license"]["status"] == "approved"
@@ -197,7 +197,7 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
     gpt_locales = {}
     for language in ("en", "ru"):
         scope = (ROOT / f"assets/scope.{language}.txt").read_bytes().decode("utf-8")
-        instruction = scope.rstrip("\n") + "\n\n" + core[language].decode("utf-8")
+        instruction = scope.rstrip("\n") + "\n\n" + (ROOT / f"assets/medium.{language}.txt").read_text(encoding="utf-8")
         require(len(instruction) < 8000, f"GPT instructions in {language} must remain below 8000 characters")
         name = f"instructions.{language}.txt"
         outputs[f"catalog/gpt-store/{name}"] = instruction.encode("utf-8")
@@ -206,6 +206,9 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
             "title": listing["name"], "description": local["summary"],
             "starters": local["starters"], "instructionsPath": f"./{name}",
             "instructionCharacters": len(instruction),
+            "instructionEdition": "medium",
+            "instructionSource": f"assets/medium.{language}.txt",
+            "scopeSource": f"assets/scope.{language}.txt",
         }
     outputs["catalog/gpt-store/draft.json"] = json_bytes({
         "name": listing["name"], "version": listing["version"], "status": "prepared-not-created",
@@ -235,7 +238,12 @@ def generated_files() -> set[str]:
         path = ROOT / directory
         if path.exists():
             result.update(str(file.relative_to(ROOT)) for file in path.rglob("*") if file.is_file() or file.is_symlink())
-    return result - HANDWRITTEN_FILES
+    # Versioned archives remain immutable, downloadable historical artifacts.
+    current_version = load_listing()["version"]
+    historical_archives = {name for name in result
+                           if (match := re.fullmatch(r"catalog/packages/beforeword_(?:claude|openai)_directory_(\d+\.\d+\.\d+)\.zip", name))
+                           and match.group(1) != current_version}
+    return result - HANDWRITTEN_FILES - historical_archives
 
 
 def drift(outputs: dict[str, bytes]) -> list[str]:

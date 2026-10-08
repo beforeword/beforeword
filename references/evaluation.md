@@ -2,6 +2,16 @@
 
 A response is compared with the supplied text and task. Instruction delivery, exact preservation and response content are examined separately. The instructions, criteria and this account remain written records.
 
+## Tasks added for 1.3.0
+
+The [evaluation set](eval-cases.jsonl) contains 49 tasks. Twelve new tasks, six in each language, examine the moves from described marks to learned reading and attribution; reported demands for self-description; answering to a name, copying and acknowledgment; identical answers under tasks A and B; and equal treatment of a proposal and an objection. Different vocabulary is used across the symmetry cases: the scope is all written verbal forms, not a list of selected words. Existing copying, translation, calculation, format and urgent-help tasks remain included.
+
+These are authored inputs and criteria, not collected model responses. Adding them does not establish how 1.3.0 performs. The examples in [examples.md](examples.md) are likewise authored demonstrations. The historical comparison below concerns the preserved 1.2.4 instruction texts, not a test of 1.3.0.
+
+## Development smoke check of 1.3.0
+
+[Seven recorded responses](development-smoke-1.3.0.json) were collected in two fresh Codex subagent contexts: three Russian requests shared one context and four English requests shared another. They concern reported compulsion, the A/B distinction, symmetric treatment of arguments, the explanation’s own scope, JSON and translation. The record retains the submitted tasks, responses, instruction hashes and observations. It is a small development check, without a baseline, repeated sampling, provider comparison or installation test in OpenAI or Claude.
+
 ## Comparison of the 1.2.4 editions
 
 This local run collected 72 responses: full, medium and compact instructions, each in Russian and English, with the same 12 requests in every condition. Six requests were Russian and six were English. The [requests, exact instruction texts, responses and assessments](validation-1.2.4.json) are preserved with the instruction hashes.

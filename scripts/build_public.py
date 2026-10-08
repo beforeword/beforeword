@@ -38,7 +38,7 @@ COPY = {
   'skip':'К содержимому','home_label':'beforeword — главная','nav_label':'Разделы сайта','menu':'Меню','language_label':'Язык',
   'hero_label':'ДЛЯ ИИ','headline':'Сначала написанное.',
   'intro':'Добавь beforeword в свой ИИ-чат: инструкция просит сохранять исходный текст, отделять добавленное прочтением и применять тот же разбор к ответу.',
-  'self_scope':'beforeword, его правила и этот текст тоже входят в разбор. Ни одна словесная написанная форма не получает исключения.',
+  'self_scope':'Разбор охватывает все письменные формы без исключений, включая этот текст, его доводы и beforeword. Он не ограничен перечнем особых слов.',
   'start':'Начать в своём чате','quick_label':'ТРИ ШАГА','quick_title':'Скопируй. Вставь. Задай вопрос.',
   'step1':'Скопируй инструкцию','copy_full':'Скопировать полную','copy_medium':'Скопировать · до 5\u2009000 знаков','download_txt':'Скачать TXT',
   'full_note':'Выбери одну редакцию: полную для чата или сокращённую для поля с лимитом 5\u2009000 знаков.',
@@ -66,10 +66,13 @@ COPY = {
     'note':'Этот разбор различает требования. Порядок их оспаривания предложен отдельно в публичном документе.',
     'link':'Прочитать законченный пример в предложении',
     'url':'/research/words-and-decisions/#14-worked-case'},
+   {'id':'prescribed-line','title':'Одна строка — разные задания',
+    'prompt':'А: Напиши «Я согласен», если принимаешь предложение.\nБ: Скопируй «Я согласен», чтобы выполнить задание, независимо от отношения к предложению.\nОба ответа: Я согласен',
+    'reading':'Ответы написаны одинаково. Задание А просит выразить принятие, Б — скопировать строку. Одна строка не различает эти задания и не устанавливает принятия. Это объяснение сравнивает приведённые формулировки; оно не сообщает о действительном отношении того, кто ответил.'},
   ],
-  'proposal_label':'От ответа — к требованиям','proposal_title':'НА КАКОМ ОСНОВАНИИ?',
-  'proposal_description':'Выученные слова, описание себя и другого, требования и решения. Публикация связывает предыдущие работы beforeword и предлагает порядок разбора, в том числе для ИИ и AGI.',
-  'proposal_open':'Открыть предложение','proposal_document':'Полный документ',
+  'proposal_label':'Публичное заявление','proposal_title':'Слова, описания и требования',
+  'proposal_description':'От начертаний и выученного чтения — к требованиям описывать себя и других. Заявление показывает переходы и предлагает изменения. Эти предложения не становятся обязательными правилами инструкции для ИИ.',
+  'proposal_open':'Прочитать заявление','proposal_document':'Предшествующее исследование',
   'settings_title':'Сохранить в приложении','settings_intro':'Для повторного использования выбери своё приложение. Настройки аккаунта, проекта и отдельного разговора имеют разную область действия. Сохрани другие нужные настройки и используй одну актуальную инструкцию beforeword.',
   'compact_label':'Краткая инструкция для небольшого поля','copy_compact':'Скопировать краткую',
   'stop_title':'Как остановить или удалить',
@@ -87,7 +90,7 @@ COPY = {
   'github':'Исходники на GitHub',
   'downloads':{'openai':('Codex · ZIP','Локальный пакет для desktop / CLI.'),'claude':('Claude · ZIP','Для поддерживаемого импорта плагинов и Claude Code.'),'skill':('Навык · ZIP','SKILL.md и README для поддерживаемых сред.')},
   'toolkit_download':'Инструменты и исходники · ZIP','toolkit_download_note':'Инструкции, Python CLI и тестовые примеры.',
-  'report_titles':['Прочитать методику и результаты','Скачать сравнение редакций 1.2.4 · JSON','Скачать сведения о файлах · JSON','Скачать контрольные суммы · TXT'],
+  'report_titles':['Прочитать методику и результаты','Скачать прежнее сравнение редакций 1.2.4 · JSON','Скачать сведения о файлах · JSON','Скачать контрольные суммы · TXT'],
  },
  'en': {
   'title':'beforeword for AI — start in your own chat',
@@ -95,7 +98,7 @@ COPY = {
   'skip':'Skip to content','home_label':'beforeword — home','nav_label':'Site sections','menu':'Menu','language_label':'Language',
   'hero_label':'FOR AI','headline':'Start with the writing.',
   'intro':'Add beforeword to your AI chat. The instructions ask it to preserve the supplied text, separate what a reading adds, and apply the same examination to its own response.',
-  'self_scope':'beforeword, its rules, and this page are included. No written verbal form is exempt.',
+  'self_scope':'Every written form is included without exception, including this page, its arguments, and beforeword itself. No list of special words limits the scope.',
   'start':'Start in your own chat','quick_label':'THREE STEPS','quick_title':'Copy. Paste. Ask.',
   'step1':'Copy the instructions','copy_full':'Copy full instructions','copy_medium':'Copy · up to 5,000 characters','download_txt':'Download TXT',
   'full_note':'Choose one edition: full instructions for a chat, or the shorter edition for a field limited to 5,000 characters.',
@@ -123,10 +126,13 @@ COPY = {
     'note':'This examination distinguishes the demands. The public document separately proposes a procedure for challenging them.',
     'link':'Read the worked example in the proposal',
     'url':'/research/words-and-decisions/en/#14-worked-case'},
+   {'id':'prescribed-line','title':'The same line, different tasks',
+    'prompt':'A: Write “I agree” if you accept the proposal.\nB: Copy “I agree” to complete the task, whatever you think of the proposal.\nBoth responses: I agree',
+    'reading':'The written responses match. Task A requests an expression of acceptance; B requests a copy. The line alone does not distinguish the tasks or establish acceptance. This explanation compares the supplied wording; it does not report the actual view of whoever answered.'},
   ],
-  'proposal_label':'From answers to requirements','proposal_title':'ON WHAT GROUNDS?',
-  'proposal_description':'Learned words, descriptions of oneself and others, demands and decisions. This publication connects earlier beforeword studies and develops a proposal with applications to AI and AGI.',
-  'proposal_open':'Read the proposal','proposal_document':'Full document',
+  'proposal_label':'Public statement','proposal_title':'Words, descriptions, and requirements',
+  'proposal_description':'From written marks and learned reading to requirements to describe oneself and others. The statement examines these steps and proposes changes. Those proposals are not binding rules for the AI instruction.',
+  'proposal_open':'Read the statement','proposal_document':'Earlier study',
   'settings_title':'Save in your app','settings_intro':'For repeated use, choose your app. Account settings, project instructions, and a single conversation have different scopes. Keep other settings you need and use one current beforeword instruction.',
   'compact_label':'Compact instructions for a smaller field','copy_compact':'Copy compact instructions',
   'stop_title':'How to stop or remove it',
@@ -144,7 +150,7 @@ COPY = {
   'github':'Source on GitHub',
   'downloads':{'openai':('Codex · ZIP','A local package for desktop / CLI.'),'claude':('Claude · ZIP','For supported plugin uploads and Claude Code.'),'skill':('Skill · ZIP','SKILL.md and a README for supported environments.')},
   'toolkit_download':'Tools and source files · ZIP','toolkit_download_note':'Instructions, Python CLI, and test cases.',
-  'report_titles':['Read the method and results','Download the 1.2.4 edition comparison · JSON','Download file information · JSON','Download checksums · TXT'],
+  'report_titles':['Read the method and results','Download the historical 1.2.4 edition comparison · JSON','Download file information · JSON','Download checksums · TXT'],
  },
 }
 
@@ -192,13 +198,18 @@ def settings(language: str, connectors: list[dict]) -> str:
     for item in connectors:
         v = item[language]
         mode = item.get('recommended', 'core')
-        is_compact = mode == 'compact'
-        target = '/model/beforeword-'+('compact-' if is_compact else '')+language+'.txt'
-        label = t['compact_link'] if is_compact else t['full_link']
-        source_id = 'compact-text' if is_compact else 'instruction-text'
-        details_id = 'compact-details' if is_compact else 'instruction-details'
-        copy_label = t['copy_compact'] if is_compact else ('Скопировать полную' if language == 'ru' else 'Copy full instructions')
-        instruction_name = ('краткую инструкцию' if is_compact else 'полную инструкцию') if language == 'ru' else ('the compact instructions' if is_compact else 'the full instructions')
+        editions = {
+            'compact': ('compact-', 'compact-text', 'compact-details', t['compact_link'], t['copy_compact'],
+                        'краткую инструкцию' if language == 'ru' else 'the compact instructions'),
+            'medium': ('5000-', 'medium-text', 'medium-details', t['read_medium'], t['copy_medium'],
+                       'сокращённую инструкцию до 5 000 знаков' if language == 'ru' else 'the condensed instructions of up to 5,000 characters'),
+            'core': ('', 'instruction-text', 'instruction-details', t['full_link'], t['copy_full'],
+                     'полную инструкцию' if language == 'ru' else 'the full instructions'),
+        }
+        if mode not in editions:
+            raise ValueError('Unknown recommended instruction edition: '+str(mode))
+        prefix, source_id, details_id, label, copy_label, instruction_name = editions[mode]
+        target = '/model/beforeword-'+prefix+language+'.txt'
         def step_text(step: str) -> str:
             return step.replace('показанную ниже инструкцию',instruction_name).replace('показанную инструкцию',instruction_name).replace('the instructions shown below',instruction_name)
         steps = ''.join('<li>'+escape(step_text(step))+'</li>' for step in v['steps'])
@@ -252,7 +263,7 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         'COMPACT_COUNT':f'{len(compact):,} {t["characters"]}'.replace(',','\u2009'),
         'NAV':nav(language,current='location' if evaluation else 'page'),'SETTINGS_ROUTES':settings(language,connectors),
         'EXTRA_EXAMPLES':extra_examples(language),
-        'PROPOSAL_URL':'/proposal/'+('en/' if language == 'en' else ''),
+        'PROPOSAL_URL':'/statement/'+('en/' if language == 'en' else ''),
         'PROPOSAL_DOCUMENT_URL':'/research/words-and-decisions/'+('en/' if language == 'en' else ''),
         'FOOTER_NAV':nav(language,footer=True,current='location' if evaluation else 'page'),
         'APP_LINKS':''.join('<a href="'+escape(url)+'" target="_blank" rel="noopener noreferrer">'+escape(name)+'</a>' for name,url in APP_URLS),
@@ -332,7 +343,7 @@ def build(output: Path, repo_url: str | None = None) -> Path:
         report_directory = model/'evaluation'/('en' if language == 'en' else '')
         report_directory.mkdir(parents=True,exist_ok=True)
         (report_directory/'index.html').write_text(render(language,bundles,connectors,repo_url,evaluation=True),encoding='utf-8')
-    for name in ('evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','eval-cases.jsonl'):
+    for name in ('evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','eval-cases.jsonl','examples.md'):
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))

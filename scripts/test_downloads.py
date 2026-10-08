@@ -11,6 +11,7 @@ import unittest
 import zipfile
 
 from build_downloads import ROOT, VERSION, build_files, write_files
+from build_public import settings
 
 
 class DownloadTests(unittest.TestCase):
@@ -22,7 +23,6 @@ class DownloadTests(unittest.TestCase):
         for language in ("ru", "en"):
             scope = (ROOT / "assets" / f"scope.{language}.txt").read_bytes().decode("utf-8").rstrip("\n") + "\n\n"
             core = (ROOT / "assets" / f"core.{language}.txt").read_bytes().decode("utf-8")
-            self.assertLessEqual(len(scope + core), 8000, "Full instructions must fit the declared 8,000-character route")
             self.assertLessEqual(len(self.files[f"beforeword_compact_{language.upper()}.txt"].decode("utf-8")), 1500,
                                  "Compact instructions must fit the declared settings field")
             medium = self.files[f"beforeword_5000_{language.upper()}.txt"]
@@ -31,6 +31,23 @@ class DownloadTests(unittest.TestCase):
             self.assertEqual(self.files[f"beforeword_core_{language.upper()}.txt"], (scope + core).encode("utf-8"))
             self.assertEqual(self.files[f"beforeword_compact_{language.upper()}.txt"],
                              (ROOT / "assets" / f"compact.{language}.txt").read_bytes())
+
+    def test_perplexity_uses_medium_and_fits_its_declared_field(self):
+        connectors = json.loads((ROOT / "references/connectors.json").read_text(encoding="utf-8"))
+        platforms = json.loads((ROOT / "references/platforms.json").read_text(encoding="utf-8"))["connectors"]
+        selected = next(item for item in connectors if item["id"] == "perplexity")
+        self.assertEqual(selected["recommended"], "medium")
+        self.assertEqual(next(item for item in platforms if item["id"] == "perplexity")["recommended"], "medium")
+        for language in ("ru", "en"):
+            medium = self.files[f"beforeword_5000_{language.upper()}.txt"].decode("utf-8")
+            self.assertLessEqual(len(medium), 8000, "The selected project instruction fits its field")
+            rendered = settings(language, [selected])
+            self.assertIn('data-copy-target="medium-text"', rendered)
+            self.assertIn('data-copy-details="medium-details"', rendered)
+            self.assertIn(f'href="/model/beforeword-5000-{language}.txt"', rendered)
+            self.assertNotIn('data-copy-target="instruction-text"', rendered)
+            scope = (ROOT / "assets" / f"scope.{language}.txt").read_text(encoding="utf-8").rstrip("\n") + "\n\n"
+            self.assertLess(len(scope + medium), 8000, "The GPT draft's medium edition plus scope also fits its field")
 
     def test_checksums_sizes_and_nonrecursive_source_archive(self):
         manifest = json.loads(self.files["manifest.json"])

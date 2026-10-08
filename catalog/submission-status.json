@@ -99,5 +99,22 @@
     "The owner confirmed all six OpenAI submission attestations before they were selected and the submission was sent.",
     "Claude source validation covered commit 6df13fef64a039466918b8d3ef9e6ee1a3c52968. The security scan passed and publication was requested; the portal shows In review as the current step and says the request is waiting for an Anthropic reviewer. Approval and publication have not occurred. Automatic publication is disabled.",
     "The package build manifest describes generated files; this record describes the portal attempt."
-  ]
+  ],
+  "prepared_update": {
+    "instruction_version": "1.3.0",
+    "prepared_on": "2026-10-08",
+    "openai": {
+      "package": "catalog/packages/beforeword_openai_directory_1.3.0.zip",
+      "submitted": false,
+      "observation": "The plugins URL redirected to sign-in on 2026-10-08; authentication was not completed. The prior 1.2.4 review status was not rechecked."
+    },
+    "claude": {
+      "source_path": "plugins/claude/beforeword",
+      "branch": "main",
+      "submitted": false,
+      "observation": "On 2026-10-08 the portal showed Published: live v1.2.4 at 6df13fef64a039466918b8d3ef9e6ee1a3c52968. The newer v1.2.4 at be2144ad6e3f25ae2fbb4d7c6f63350aab43fad3 had passed its security scan and awaited an Anthropic reviewer. Version 1.3.0 had not yet been pushed or scanned at this observation.",
+      "published_version_observed": "1.2.4",
+      "published_commit_observed": "6df13fef64a039466918b8d3ef9e6ee1a3c52968"
+    }
+  }
 }

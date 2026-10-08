@@ -1,11 +1,11 @@
 {
   "name": "beforeword",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "publisher": {
     "name": "beforeword",
     "url": "https://beforeword.xyz"
   },
-  "website": "https://beforeword.xyz/en/model/",
+  "website": "https://beforeword.xyz/model/en/",
   "repository": "https://github.com/beforeword/beforeword",
   "support": "https://github.com/beforeword/beforeword/issues",
   "privacyPolicy": "https://github.com/beforeword/beforeword/blob/main/catalog/PRIVACY.md",
@@ -23,7 +23,7 @@
     "en": {
       "subtitle": "What a reading adds",
       "summary": "Examine a phrase, a claim, or an AI response: what is written, what a reading adds, and what supports that step.",
-      "description": "AI writes “I understand.” These words are read as understanding. On what grounds?\n\nPaste a phrase, a passage, or an AI response. beforeword instructs AI to preserve the wording, show what a proposed reading adds, and examine the grounds offered for that step. Use it with definitions, captions, self-descriptions, or conclusions drawn from records. The same scrutiny applies to the model’s own explanation—including words such as “reading” and “grounds”—and to beforeword itself.\n\nAsk for a response in English, Russian, or another language. The instruction is under public testing and may be revised. Installation makes it available; each response remains open to examination.",
+      "description": "AI writes “I understand.” These words are read as understanding. On what grounds?\n\nPaste a phrase, a passage, or an AI response. beforeword instructs AI to preserve the wording, show what a proposed reading adds, and examine the grounds offered for that step. Use it with definitions, captions, self-descriptions, or conclusions drawn from records. Every written form is in scope, including the model’s own explanation, the grounds it offers, and beforeword itself. No fixed list of special words limits the examination.\n\nAsk for a response in English, Russian, or another language. The instruction is under public testing and may be revised. Installation makes it available; each response remains open to examination.",
       "starters": [
         "Apply beforeword to “I understand.” Include what your own explanation adds.",
         "Compare “I understand.” under the labels “person” and “AI”. Keep the sentence unchanged.",
@@ -38,7 +38,7 @@
     "ru": {
       "subtitle": "Что добавляет прочтение",
       "summary": "Разбор фраз, утверждений и ответов ИИ: что написано, что добавлено при чтении и чем обоснован этот переход.",
-      "description": "ИИ пишет «я понимаю». Эти слова читают как понимание. На каком основании?\n\nВставь фразу, фрагмент текста или ответ ИИ. beforeword — инструкция для такого разбора: сохранить формулировку, показать, что добавляет предлагаемое прочтение, и разобрать основания этого перехода. Так можно рассматривать определения, подписи, описания себя или выводы по записям. Тот же разбор применяется к объяснению самой модели — включая слова «чтение» и «основания» — и к beforeword.\n\nЯзык ответа можно задать в запросе. Инструкция проходит публичный тест и может изменяться. Установка делает её доступной; каждый ответ остаётся предметом разбора.",
+      "description": "ИИ пишет «я понимаю». Эти слова читают как понимание. На каком основании?\n\nВставь фразу, фрагмент текста или ответ ИИ. beforeword — инструкция для такого разбора: сохранить формулировку, показать, что добавляет предлагаемое прочтение, и разобрать основания этого перехода. Так можно рассматривать определения, подписи, описания себя или выводы по записям. Разбор охватывает все письменные формы без исключений, включая объяснение самой модели, предложенные ею основания и beforeword. Его область не ограничена перечнем особых слов.\n\nЯзык ответа можно задать в запросе. Инструкция проходит публичный тест и может изменяться. Установка делает её доступной; каждый ответ остаётся предметом разбора.",
       "starters": [
         "Примени beforeword к фразе «Я понимаю». Покажи также, что добавляет само объяснение.",
         "Сравни «Я понимаю.» под подписями «человек» и «ИИ». Сохрани фразу неизменной.",

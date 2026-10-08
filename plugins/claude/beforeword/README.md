@@ -1,12 +1,14 @@
 # beforeword
 
-[Русский](README.ru.md) · [Website](https://beforeword.xyz/en/model/)
+[Русский](README.ru.md) · [Website](https://beforeword.xyz/model/en/)
 
 **What a reading adds**
 
 AI writes “I understand.” These words are read as understanding. On what grounds?
 
-Paste a phrase, a passage, or an AI response. beforeword instructs AI to preserve the wording, show what a proposed reading adds, and examine the grounds offered for that step. The same scrutiny applies to its own explanation and to beforeword itself.
+Paste a phrase, a passage, or an AI response. beforeword instructs AI to preserve the wording, show what a proposed reading adds, and examine the grounds offered for that step. Every written form is included without exception, including the explanation, its offered grounds, and beforeword itself.
+
+The [public statement](https://beforeword.xyz/statement/en/) develops the questions about learned words and required descriptions. Its proposed changes remain proposals, not binding rules for this instruction.
 
 ## Try it
 
@@ -24,7 +26,7 @@ For a single task, say “Apply beforeword to this passage.” For an ongoing co
 
 To stop the conversational mode, say “Stop beforeword for subsequent replies.” Disable or remove an installed copy through the application's plugin controls.
 
-## Instruction 1.2.4 · public test
+## Instruction 1.3.0 · public test
 
 This package contains the full English core, with response language set by the request. The [source](https://github.com/beforeword/beforeword) also provides a Russian edition. The instruction is under public testing and may be revised. Installation makes it available; each response remains open to examination.
 

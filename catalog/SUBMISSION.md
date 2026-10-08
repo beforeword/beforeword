@@ -1,6 +1,8 @@
 # Directory publication record
 
-Updated: 4 October 2026 (Asia/Bangkok). Instruction: 1.2.4.
+Source release: 1.3.0, prepared 8 October 2026. The earlier portal observations below concern 1.2.4 and were recorded on 4 October 2026 (Asia/Bangkok). They do not establish review or publication of 1.3.0. See [submission-status.json](submission-status.json) for separately recorded portal updates.
+
+The prepared OpenAI upload is `catalog/packages/beforeword_openai_directory_1.3.0.zip`; the current Claude source is `plugins/claude/beforeword` on `main`. A source rebuild and a directory submission are separate actions.
 
 OpenAI version 1.2.4 was submitted for review on 4 October 2026 (Asia/Bangkok). After submission, the portal listed beforeword as **In review**, with Publication marked **Not published**. Claude version 1.2.4 was also submitted on 4 October 2026. Its security scan passed and publication was requested; the request is waiting for an Anthropic reviewer. Claude shows **Nothing published yet**. See the [status record](submission-status.json) and [recorded trials](validation/README.md).
 
@@ -46,16 +48,16 @@ Skills-only uploads do not require an MCP server, MCP review cases or a demo rec
 
 ## GPT Store
 
-The `gpt-store` folder supplies a name, descriptions, starter prompts and full instructions in both languages. No custom GPT has been created.
+The `gpt-store` folder supplies a name, descriptions, starter prompts and the explicitly condensed medium instruction in both languages. The plugin packages retain the full core. No custom GPT has been created.
 
-Check the current builder and public-sharing options in the publishing account. Use one complete instruction language edition. Do not concatenate the two editions or replace their full text with a summary. No extra actions, external API connection, or knowledge file is required for the prepared workflow.
+Check the current builder and public-sharing options in the publishing account. Use one complete file from the prepared draft. The selected medium edition and source paths are recorded in `draft.json`; do not concatenate the two languages or silently truncate the file. No extra actions, external API connection, or knowledge file is required for the prepared workflow.
 
 The draft does not assume that creating a GPT, sharing a link and publishing to the Store are the same operation.
 
 ## Recorded checks
 
 - Local package checks: see `catalog/check.py` and the build manifest.
-- Task outputs: eight recorded tasks across two rounds, including five fresh tasks from the MIT-licensed directory ZIPs before the privacy-link update; see `catalog/validation/`. The tested instruction bytes are unchanged. The earlier unsupported addition in the Russian label case remains recorded.
+- Task outputs: eight recorded tasks across two rounds, including five fresh tasks from the MIT-licensed directory ZIPs before the privacy-link update; see `catalog/validation/`. The tested instruction bytes belong to 1.2.4, not the current 1.3.0 source. The earlier unsupported addition in the Russian label case remains recorded.
 - Claude host installation: not run.
 - ChatGPT host installation: not run.
 - OpenAI: metadata and skill checks passed; all six owner attestations confirmed and selected; submitted for review. The portal shows In review and Not published. Acceptance and publication remain pending.

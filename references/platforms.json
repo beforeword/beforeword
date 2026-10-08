@@ -258,12 +258,12 @@
     {
       "id": "perplexity",
       "name": "Perplexity",
-      "recommended": "core",
+      "recommended": "medium",
       "native": null,
       "ru": {
         "route": "Projects → + New project → инструкции проекта",
         "scope": "Инструкции проекта относятся к запросам внутри выбранного проекта.",
-        "limit": "Лимит поля — 8 000 символов; настройка не распространяется на все разговоры Perplexity.",
+        "limit": "Для поля с лимитом 8 000 знаков выбрана сокращённая редакция до 5 000 знаков. Полная редакция длиннее лимита. Вне проекта инструкцию можно отправить сообщением в новом чате.",
         "steps": [
           "Открой Projects и создай проект beforeword через + New project.",
           "Вставь показанную ниже инструкцию в поле инструкций проекта и сохрани его.",
@@ -273,7 +273,7 @@
       "en": {
         "route": "Projects → + New project → project instructions",
         "scope": "Project instructions apply to queries within the selected project.",
-        "limit": "The field allows 8,000 characters; this setting does not cover all Perplexity conversations.",
+        "limit": "The condensed edition of up to 5,000 characters is selected for the 8,000-character field. The full edition exceeds that limit. Outside the project, the instructions can be sent as a message in a new chat.",
         "steps": [
           "Open Projects and create a beforeword project using + New project.",
           "Paste the instructions shown below into the project instructions field and save it.",

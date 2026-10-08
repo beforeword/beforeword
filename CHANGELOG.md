@@ -1,5 +1,14 @@
 # Changes / Изменения
 
+## 1.3.0
+
+- Apply one rule to every written form, including the response, its offered grounds, and beforeword itself. No fixed list of special words limits the scope.
+- Distinguish learning words, prescribed self-description, answering to a name, and accepting a description. Add constructed examples and evaluation cases, and link the public statement as a separate publication.
+- Rebuild the RU/EN editions and delivery packages from the common sources. Preserve earlier validation under its original version; building a package does not test model behavior or publish it to a directory. The custom-GPT draft uses the explicitly condensed medium edition to fit its field; both plugin packages retain the full core.
+- Одно правило применяется ко всем письменным формам, включая ответ, предложенные им основания и beforeword. Перечень особых слов не ограничивает область разбора.
+- Различаются обучение словам, заданное самоописание, отклик на имя и принятие описания. Добавлены составленные примеры, задания для проверки и ссылка на отдельное публичное заявление.
+- Редакции RU/EN и пакеты собираются из общих исходников. Прежние проверки сохраняют исходные версии; сборка не проверяет поведение модели и не публикует пакет в каталоге. Для поля GPT подготовлена явно сокращённая редакция до 5 000 знаков; оба пакета плагинов сохраняют полный основной текст.
+
 ## 2026-10-04 · Package license / Лицензия пакетов
 
 - Apply the owner-approved MIT License to the contents of the Claude and OpenAI directory packages, including the bundled instruction and assets. Include the full notice in both packages and preserve it in the downloadable source toolkit.

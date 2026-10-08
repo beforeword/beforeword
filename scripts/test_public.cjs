@@ -92,9 +92,12 @@ function checkArtifacts() {
     const appSettings = [...html.matchAll(/<details class="app-settings">([\s\S]*?)<\/details>/g)];
     const connectors = JSON.parse(read(path.join(ROOT, 'references/connectors.json')));
     for (const [index, app] of appSettings.entries()) {
-      const compactRecommended = connectors[index].recommended === 'compact';
-      const copyTarget = compactRecommended ? 'compact-text' : 'instruction-text';
-      const copyDetails = compactRecommended ? 'compact-details' : 'instruction-details';
+      const edition = connectors[index].recommended || 'core';
+      const copyTargets = {compact: 'compact-text', medium: 'medium-text', core: 'instruction-text'};
+      const copyDetailTargets = {compact: 'compact-details', medium: 'medium-details', core: 'instruction-details'};
+      const copyTarget = copyTargets[edition];
+      const copyDetails = copyDetailTargets[edition];
+      assert.ok(copyTarget && copyDetails, 'Known recommended instruction edition: ' + edition);
       assert.ok(app[1].includes(`data-copy-target="${copyTarget}" data-copy-details="${copyDetails}"`), 'App setting copies its recommended instruction: ' + connectors[index].id);
       assert.ok(!/показанную ниже инструкцию|instructions shown below/.test(app[1]), 'App steps name the instruction beside their copy action');
     }

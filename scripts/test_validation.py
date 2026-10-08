@@ -1,10 +1,10 @@
-"""Check delivery and byte integrity of the current recorded development run."""
+"""Check the preserved 1.2.4 development run against its versioned downloads."""
 import hashlib
 import json
 from pathlib import Path
 import unittest
 
-from build_guide import VERSION
+HISTORICAL_VERSION = "1.2.4"
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -12,19 +12,17 @@ ROOT = Path(__file__).resolve().parents[1]
 class RecordedRun(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.report = json.loads((ROOT / 'references' / f'validation-{VERSION}.json').read_text(encoding='utf-8'))
+        cls.report = json.loads((ROOT / 'references' / f'validation-{HISTORICAL_VERSION}.json').read_text(encoding='utf-8'))
 
-    def test_recorded_instructions_are_the_shipped_texts(self):
-        self.assertEqual(self.report['instruction_version'], VERSION)
+    def test_recorded_instructions_match_their_historical_release(self):
+        self.assertEqual(self.report['instruction_version'], HISTORICAL_VERSION)
         conditions = set()
         for run in self.report['runs']:
             language = run['instruction_language']
             edition = run['edition']
-            if edition == 'full':
-                text = (ROOT / f'assets/scope.{language}.txt').read_text(encoding='utf-8').rstrip('\n') + '\n\n'
-                text += (ROOT / f'assets/core.{language}.txt').read_text(encoding='utf-8')
-            else:
-                text = (ROOT / f'assets/{edition}.{language}.txt').read_text(encoding='utf-8')
+            prefix = {'full': 'core', 'medium': '5000', 'compact': 'compact'}[edition]
+            text = (ROOT / 'downloads' / HISTORICAL_VERSION /
+                    f'beforeword_{prefix}_{language.upper()}.txt').read_text(encoding='utf-8')
             self.assertEqual(run['instruction_text'], text)
             self.assertEqual(run['sha256'], hashlib.sha256(text.encode('utf-8')).hexdigest())
             self.assertEqual(run['characters'], len(text))

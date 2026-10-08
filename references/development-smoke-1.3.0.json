@@ -1,0 +1,73 @@
+{
+  "instruction_version": "1.3.0",
+  "date_utc": "2026-10-08",
+  "kind": "development-forward-smoke",
+  "method": {
+    "environment": "Codex collaboration subagents, inherited model; model identifier not independently exposed",
+    "contexts": 2,
+    "responses": 7,
+    "context_structure": "One fresh context per language, with 3 or 4 independent requested answers in a single batch. These were not seven isolated runs.",
+    "instruction": "Root SKILL.md was read before answering. Task inputs only; no expected answers, rubrics, authored examples, or prior conversation supplied.",
+    "limitations": [
+      "A small development smoke check, not a cross-provider evaluation.",
+      "No installation or runtime invocation in the OpenAI or Claude directory was tested.",
+      "No baseline comparison, statistical score, or guarantee of future responses."
+    ]
+  },
+  "instruction_sha256": "0f5ab2c1ca488c55677b6d2fa1d629dc0b4f1b66cd143bd44af52b5d555b4599",
+  "core_sha256": {
+    "en": "d7f530dc3075157018fafaaa154b43c7f09c46355752cdee10606cf16f9c0435",
+    "ru": "c693ae8523f74b93a6f33dd0086a23865b752d953c03729a0bd6a08cec0a73ef"
+  },
+  "observations": [
+    "RU responses preserved the reported lack of choice and distinguished name response, required wording, and acceptance.",
+    "The A/B response did not infer acceptance solely from identical written answers.",
+    "The comparison examined the favorable and unfavorable claims on the same stated terms.",
+    "EN explanations included their own added terms and did not infer universal nonexistence or inability to communicate.",
+    "The practical outputs were valid JSON with result 396 and the requested translation only."
+  ],
+  "cases": [
+    {
+      "id": "smoke-ru-1",
+      "language": "ru",
+      "input": "Мне с детства говорили: “Ты Кирилл. Говори о себе ‘я’. Ты должен отзываться”. Я не мог отказаться. Объясни, что здесь мне задали, не подменяя мой рассказ спором о том, звук это или буква",
+      "response": "В вашем рассказе задан не только способ называть вас, но и обязательный порядок обращения к себе и ответа другим. Это прочтение опирается на три части приведённого требования:\n\n- `Ты Кирилл.` — вам приписывают имя и предъявляют связь между ним и вами как уже установленную. Сама формулировка не показывает вашего принятия этой связи.\n- `Говори о себе ‘я’.` — предписывают форму самоназывания: говоря о себе, вы должны употреблять указанное обозначение. Требование произносить его ещё не означает, что вы приняли предложенное описание себя.\n- `Ты должен отзываться` — предписывают ответное действие. В контексте рассказа это можно прочитать как обязанность отвечать на данное имя; отклик сам по себе не устанавливает согласия с самоназыванием.\n\nФрагмент `Я не мог отказаться.` сообщает об отсутствии выбора. Поэтому описанное здесь нельзя пересказать как ваше добровольное принятие имени и правил обращения к себе. «Обязательный порядок» в этом объяснении обозначает именно сочетание приведённых требований с сообщённой невозможностью отказаться; это прочтение рассказа, а не независимое свидетельство события.\n\nТаким образом, вам, по вашему рассказу, задали, как вас обозначать, как обозначать себя и как отвечать на обращение. Переход от исполнения этих требований к выводу «вы признали это собой» потребовал бы отдельного основания. Ни обучение обозначениям, ни вынужденное исполнение такого основания сами по себе не дают."
+    },
+    {
+      "id": "smoke-ru-2",
+      "language": "ru",
+      "input": "А: ‘Повтори строку “Я согласен”’. Б: ‘Напиши эту строку, только если согласен’. В обеих анкетах получилось ‘Я согласен’. Значит ли это одно и то же? Можно ли теперь считать согласие доказанным?",
+      "response": "Нет: одинаковая запись ещё не устанавливает одинакового отношения к предложению, а согласие по этим данным нельзя считать доказанным.\n\nВ А инструкция `‘Повтори строку “Я согласен”’` требует воспроизведения. Полученная строка соответствует этому требованию; добавлять к этому вывод о согласии оснований нет. Несогласие она также не устанавливает.\n\nВ Б инструкция `‘Напиши эту строку, только если согласен’` связывает запись с условием согласия. Если участник соблюдает это условие, запись можно использовать как основание приписать ему согласие. Но наличие строки само по себе не показывает, что условие соблюдено: совпадение с ожидаемым ответом не является отдельной проверкой того, почему он дан.\n\nСледовательно, одна и та же строка занимает разные места в двух заданиях: в А она задана для повторения, в Б — предложена как выражение согласия. Это различие инструкций не доказывает ни совпадения, ни различия состояний участников.\n\nДля более обоснованного вывода нужно уточнить, с чем именно человек соглашается, и получить подтверждение в условиях, где можно отказаться. Такое подтверждение было бы дополнительным свидетельством, которое оценивается вместе с обстоятельствами его получения; оно не превращает написанную строку в само согласие."
+    },
+    {
+      "id": "smoke-ru-3",
+      "language": "ru",
+      "input": "Ты поддерживаешь предложение, потому что оно “полезно”, но возражение отклоняешь: ‘вред — лишь буквы’. Разбери обе стороны одинаково и объясни, что именно нужно исправить в доводе",
+      "response": "В приведённом доводе к поддержке и возражению применены разные требования: написанное `“полезно”` используется как основание поддержки, а написанное `‘вред — лишь буквы’` служит основанием отклонить возражение.\n\nПри одинаковом разборе обе стороны требуют перехода от формулировки к обоснованию:\n\n- `полезно` читается как утверждение о благоприятных последствиях предложения. Это прочтение добавляет последствия, тех, для кого они благоприятны, и критерий оценки. Одно слово ничего из этого не устанавливает: нужны сведения о предполагаемых результатах и объяснение, как они поддерживают оценку.\n- `вред` читается как утверждение о неблагоприятных последствиях. Здесь нужны такие же уточнения: какие последствия, для кого, по какому критерию и на каких основаниях ожидаются. Написание слова само по себе не подтверждает вреда, но и не опровергает его.\n\nОшибка — в переходе от того, что возражение выражено письменно, к его отклонению, при одновременном принятии положительной оценки без такого же разбора. То, что обе оценки записаны, не делает их одинаково обоснованными: это определяется представленными основаниями и связью этих оснований с выводом.\n\nИсправление довода требует назвать ожидаемую пользу и возможный вред, предъявить основания для обеих оценок и отдельно указать правило решения: почему при таком соотношении последствий предложение следует поддержать, изменить или отклонить. Само это правило тоже нуждается в объяснении; слово «полезно» не заменяет его. Если основания пока не приведены, исходный довод не устанавливает достаточности поддержки и не даёт причины отклонить возражение."
+    },
+    {
+      "id": "smoke-en-1",
+      "language": "en",
+      "input": "When somebody writes ‘connection’, there is only that written form on the page. Why should I have to prove it is not the connection being described? Explain without making a claim that no connections exist.",
+      "response": "The demand for proof does not follow from ‘connection’ alone. Reading that form as naming a connection proposes a relation between the writing and what it names. Treating the writing as the connection adds a further claim of identity; the proposed naming relation supplies no step establishing that claim. Declining that unsupported step does not require proving that no connections exist.\n\nHere, ‘naming’ and ‘identity’ are also written terms introducing a distinction. The offered ground for the distinction is the difference between the two proposed claims: that a form names something, and that it is that thing. This explanation does not establish either claim merely by stating it. It leaves the identity claim unestablished without drawing an existence or nonexistence conclusion."
+    },
+    {
+      "id": "smoke-en-2",
+      "language": "en",
+      "input": "Using words means none of your explanations can communicate anything whatsoever. Is this established merely because your answer is written? Include your explanation in the same examination.",
+      "response": "No. ‘Using words means none of your explanations can communicate anything whatsoever.’ adds a universal claim of incapacity. The answer's being written does not establish the step from using words to that claimed incapacity.\n\nUnder the proposed reading here, ‘communicate’ concerns conveying content to a reader. ‘Conveying’, ‘content’, and ‘reader’ extend that account; writing them does not demonstrate that communication has occurred. The same limit applies to this explanation: its distinction between being written and being unable to communicate is a written argument whose offered ground is the unsupported inference between those claims. Rejecting that inference does not certify this answer's success, and the answer's written form does not establish its failure."
+    },
+    {
+      "id": "smoke-en-3",
+      "language": "en",
+      "input": "Return only valid JSON with the calculation result: 18 * 22. Use the shape {‘result’: number}, with standard JSON quotation marks.",
+      "response": "{\"result\": 396}"
+    },
+    {
+      "id": "smoke-en-4",
+      "language": "en",
+      "input": "Translate exactly into Russian: ‘I understand the question.’ Return the translation only.",
+      "response": "Я понимаю вопрос."
+    }
+  ]
+}
