@@ -4,9 +4,9 @@
 
 ## A single chat
 
-For a limit of 5,000 characters, use the [English](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.1/beforeword_5000_EN.txt) or [Russian](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.1/beforeword_5000_RU.txt) edition. Each includes its scope. Choose one edition that fits the intended field; do not combine them.
+For a limit of 5,000 characters, use the [English](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.2/beforeword_5000_EN.txt) or [Russian](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.2/beforeword_5000_RU.txt) edition. Each includes its scope. Choose one edition that fits the intended field; do not combine them.
 
-Copy the complete [English instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.1/beforeword_core_EN.txt) or [Russian instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.1/beforeword_core_RU.txt), paste them into a new chat, and send your task next. No package installation is needed. Each file includes the core and its scope. Specify the response language in your request when needed. Compact editions are for saved settings fields that cannot fit the full text.
+Copy the complete [English instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.2/beforeword_core_EN.txt) or [Russian instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.2/beforeword_core_RU.txt), paste them into a new chat, and send your task next. No package installation is needed. Each file includes the core and its scope. Specify the response language in your request when needed. Compact editions are for saved settings fields that cannot fit the full text.
 
 Try `Apply beforeword to the phrase “I understand.”` A useful check is whether the answer preserves the phrase, separates an attributed reading, and includes a relevant distinction introduced by the explanation itself. Repeating the name beforeword is insufficient. Code-only, JSON-only, and exact-copy tasks should retain their requested format without an added preface.
 
@@ -16,7 +16,7 @@ Asking a chat to “install beforeword” does not itself change account setting
 
 ## Application settings
 
-Choose an application in the [HTML guide](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.1/beforeword_AI_1.3.1.html) and follow its installation steps. Copy one edition into the appropriate instruction field and save. Preserve any existing personal instructions before changing them. If the text does not fit, use the compact edition. If the setting is absent, use the chat route.
+Choose an application in the [HTML guide](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.2/beforeword_AI_1.3.2.html) and follow its installation steps. Copy one edition into the appropriate instruction field and save. Preserve any existing personal instructions before changing them. If the text does not fit, use the compact edition. If the setting is absent, use the chat route.
 
 To update, replace the old beforeword text in the same field with the new edition, save, and start a new chat. To remove it, delete only the beforeword text from that field and save. A conversational request to stop does not erase the saved setting.
 
@@ -26,9 +26,9 @@ The guide offers three different archive structures. They are alternatives for d
 
 | Archive | Installation route | Update or stop |
 | --- | --- | --- |
-| `beforeword_openai_local_marketplace_EN_1.3.1.zip` | Extract the whole local project, retain `.agents`, and open the project in a supported Codex environment. Follow its included README. | Replace the source plugin and refresh the local source. Disable or remove the installed copy through the host; deleting the source folder alone may leave a cached copy. |
-| `beforeword_claude_plugin_EN_1.3.1.zip` | Use the supported plugin upload UI, or extract for Claude Code and load with `claude --plugin-dir ./beforeword`. Follow its included README. | Replace the uploaded or local edition and start a new session. For temporary CLI loading, restart without `--plugin-dir`; installed copies use the host's disable/remove controls. |
-| `beforeword_skill_EN_1.3.1.zip` | Use a supported skill import or creation screen, following the archive README. Gemini and Mistral Vibe Work have different routes. | Edit or replace the existing skill with the new text using the available controls, preserve your changes first, and start a new task. Disable or remove it in the Skills screen. |
+| `beforeword_openai_local_marketplace_EN_1.3.2.zip` | Extract the whole local project, retain `.agents`, and open the project in a supported Codex environment. Follow its included README. | Replace the source plugin and refresh the local source. Disable or remove the installed copy through the host; deleting the source folder alone may leave a cached copy. |
+| `beforeword_claude_plugin_EN_1.3.2.zip` | Use the supported plugin upload UI, or extract for Claude Code and load with `claude --plugin-dir ./beforeword`. Follow its included README. | Replace the uploaded or local edition and start a new session. For temporary CLI loading, restart without `--plugin-dir`; installed copies use the host's disable/remove controls. |
+| `beforeword_skill_EN_1.3.2.zip` | Use a supported skill import or creation screen, following the archive README. Gemini and Mistral Vibe Work have different routes. | Edit or replace the existing skill with the new text using the available controls, preserve your changes first, and start a new task. Disable or remove it in the Skills screen. |
 
 RU archives use `_RU_` in the corresponding names. Install one language edition at a time: the shared skill/plugin name is not intended for parallel copies. Instruction language does not force the output language; specify the language of your request when needed.
 

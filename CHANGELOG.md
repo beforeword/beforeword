@@ -1,5 +1,16 @@
 # Changes / Изменения
 
+## 1.3.2
+
+- Make the A/B condition explicit, remove the ambiguous English pronoun in the understanding example, and state the reported requirement directly in the constructed name account.
+- Reuse the approved beforeword mark in the public page, guide, favicon, link preview and directory packages. Historical artifacts retain their original contents.
+- В примере А/Б прямо указано условие; устранена двусмысленность английского местоимения; требование прямо записано в составленном рассказе об имени.
+- Утверждённый знак beforeword используется на странице, в руководстве, favicon, карточке ссылки и пакетах каталогов. Содержимое исторических файлов сохранено.
+- Clarify that a selected reading does not establish its claims by itself. Keep this limit on inference separate from the unchanged boundary between written form and what it names.
+- Synchronize full, medium and compact editions, the root skill, package sources and instruction copies. Earlier response records retain their original versions; no new model-response run is claimed for 1.3.2.
+- Уточнено, что выбранное прочтение само по себе не устанавливает приписанного. Это ограничение вывода отделено от неизменной границы между написанной формой и называемым.
+- Согласованы полная, средняя и краткая редакции, основной навык, исходники пакетов и копии инструкции. Прежние записи ответов сохраняют исходные версии; новая серия ответов модели для 1.3.2 не заявляется.
+
 ## 1.3.1
 
 - Open the public instruction page with the A/B example before setup steps. Distinguish the repeated line from the task and from acceptance.

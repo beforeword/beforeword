@@ -1,6 +1,6 @@
 {
   "name": "beforeword",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "recordType": "package-build",
   "status": "prepared",
   "runtimeValidation": "not-run-by-build",
@@ -16,15 +16,15 @@
   },
   "blockers": [],
   "sourceCoreSha256": {
-    "en": "3ad2ab616f7681cdd1baebccdc491e5f5b26a5eb51630af661d7a8bfe0be8374",
-    "ru": "a2210d1d40703c43481238d9dbd788acb1985d854950cb4eef920c9fd6f3884c"
+    "en": "5504aa1d763137f42cad1b7e54a0914648a5ca27ab0834e5b7e7f921306db425",
+    "ru": "14f3702c0e6283e7dcf1917c4d4a96d8cc14226440fd46728c4495ba4bca29e2"
   },
-  "sharedSkillSha256": "a6a5bc467004ef8aa2269987cd186060b07df74cdcf967862a9a39ba387f4bdf",
+  "sharedSkillSha256": "37e70349fba8c2facfaa8d21a6c1f4a29bcd53a95a355542ebeefdf1c5d60a1b",
   "packages": {
     "claude": {
       "source": "plugins/claude/beforeword",
-      "archive": "catalog/packages/beforeword_claude_directory_1.3.1.zip",
-      "sha256": "317cb1b57c67624abbf37f2c61d974999b451248a8bf9d8cdeb52c247caed076",
+      "archive": "catalog/packages/beforeword_claude_directory_1.3.2.zip",
+      "sha256": "9baec893a8e3db639adc6346f836be0e35b2cd4758cf3de5ac80d136321cbc86",
       "files": [
         ".claude-plugin/plugin.json",
         "LICENSE",
@@ -38,8 +38,8 @@
     },
     "openai": {
       "source": "plugins/openai/beforeword",
-      "archive": "catalog/packages/beforeword_openai_directory_1.3.1.zip",
-      "sha256": "9a89fc2e68c775de5c97884ee60cd5e7e6154001982032b7f63262f7f484c894",
+      "archive": "catalog/packages/beforeword_openai_directory_1.3.2.zip",
+      "sha256": "42fd68d40123832d6949c1e018b76104a8130bce4dc9a660e55a276c89cc2b64",
       "files": [
         "LICENSE",
         "README.md",
@@ -54,27 +54,27 @@
   },
   "files": {
     "catalog/gpt-store/draft.json": {
-      "sha256": "f4f4b7476d10ba8b80f83cc7bb481eeef9cca21612a7ed5816c1882bb20c73df",
+      "sha256": "2cb0ded4a3cade863d7557fa35a68257e5f46475dd101f4ca662eef9120e3267",
       "bytes": 1969
     },
     "catalog/gpt-store/instructions.en.txt": {
-      "sha256": "1789952df5b9a8f9bf236b771338d05cdd38aacfedb99ed5202a2ae96b9106be",
-      "bytes": 5365
+      "sha256": "73491528cf265b8e7df580a4370fc5264346a0207018374c00517aa1189689dc",
+      "bytes": 5377
     },
     "catalog/gpt-store/instructions.ru.txt": {
-      "sha256": "ad0e8154279ccb70fff50e3f944eeeeafead954ef3f9ff5cfdaa2d2273b3d6eb",
-      "bytes": 9682
+      "sha256": "f9617729d75c1548010b8acf1bbf114ce532d5f40b0ec9723210fd33ee35e580",
+      "bytes": 9705
     },
-    "catalog/packages/beforeword_claude_directory_1.3.1.zip": {
-      "sha256": "317cb1b57c67624abbf37f2c61d974999b451248a8bf9d8cdeb52c247caed076",
-      "bytes": 8409
+    "catalog/packages/beforeword_claude_directory_1.3.2.zip": {
+      "sha256": "9baec893a8e3db639adc6346f836be0e35b2cd4758cf3de5ac80d136321cbc86",
+      "bytes": 10529
     },
-    "catalog/packages/beforeword_openai_directory_1.3.1.zip": {
-      "sha256": "9a89fc2e68c775de5c97884ee60cd5e7e6154001982032b7f63262f7f484c894",
-      "bytes": 9718
+    "catalog/packages/beforeword_openai_directory_1.3.2.zip": {
+      "sha256": "42fd68d40123832d6949c1e018b76104a8130bce4dc9a660e55a276c89cc2b64",
+      "bytes": 11838
     },
     "plugins/claude/beforeword/.claude-plugin/plugin.json": {
-      "sha256": "2a61e6ba5fe32ce1214314c71b1e7b460ade4305fb4c688cffda6a0d26b6d1a8",
+      "sha256": "7aec634464047973c1733507a08486397fe0fd34dad8e9b005ace70995382ef6",
       "bytes": 812
     },
     "plugins/claude/beforeword/LICENSE": {
@@ -82,44 +82,44 @@
       "bytes": 1067
     },
     "plugins/claude/beforeword/README.md": {
-      "sha256": "25db09fde51300b637933b985c4ca7efdec0964fb6edc7e49d4db8dabf179554",
+      "sha256": "2597bc7995aa12ff4077c323fb3ba88e0b1e8198a93d0e2b24600c69f2e18e25",
       "bytes": 2899
     },
     "plugins/claude/beforeword/README.ru.md": {
-      "sha256": "2d8a4ad0ee9acb80eb205932ed4a45c02860a02d57ae72da512289e80a9b069c",
+      "sha256": "2cd6db6f791c7dbd0dae6bd44305525f9d9a03bc86a62f5d57775143adc79161",
       "bytes": 4892
     },
     "plugins/claude/beforeword/assets/logo.svg": {
-      "sha256": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
-      "bytes": 297
+      "sha256": "b0dc232dd31d26e9328089df74989a08d1ef5b276226a7b29408be6809d73ac7",
+      "bytes": 5143
     },
     "plugins/claude/beforeword/skills/read/SKILL.md": {
-      "sha256": "a6a5bc467004ef8aa2269987cd186060b07df74cdcf967862a9a39ba387f4bdf",
-      "bytes": 8402
+      "sha256": "37e70349fba8c2facfaa8d21a6c1f4a29bcd53a95a355542ebeefdf1c5d60a1b",
+      "bytes": 8414
     },
     "plugins/openai/beforeword/LICENSE": {
       "sha256": "68884273ea3f9546fb710f2c1f2035a7d5b23f94c1d0458e94513f97bc9de4ef",
       "bytes": 1067
     },
     "plugins/openai/beforeword/README.md": {
-      "sha256": "25db09fde51300b637933b985c4ca7efdec0964fb6edc7e49d4db8dabf179554",
+      "sha256": "2597bc7995aa12ff4077c323fb3ba88e0b1e8198a93d0e2b24600c69f2e18e25",
       "bytes": 2899
     },
     "plugins/openai/beforeword/README.ru.md": {
-      "sha256": "2d8a4ad0ee9acb80eb205932ed4a45c02860a02d57ae72da512289e80a9b069c",
+      "sha256": "2cd6db6f791c7dbd0dae6bd44305525f9d9a03bc86a62f5d57775143adc79161",
       "bytes": 4892
     },
     "plugins/openai/beforeword/assets/logo.svg": {
-      "sha256": "c197601de516e8f21658b224b5290158920d336f1a25d77f6bbb356041e643c7",
-      "bytes": 297
+      "sha256": "b0dc232dd31d26e9328089df74989a08d1ef5b276226a7b29408be6809d73ac7",
+      "bytes": 5143
     },
     "plugins/openai/beforeword/plugin.json": {
-      "sha256": "1d75925d8b8a4e877f797a4860ad5b6be1da1c237d541ee288c025eb54843c08",
+      "sha256": "e16d979250bab8d82310561f767a69dafb95ad8c3c450b3b3223fdc3281bd3c4",
       "bytes": 3907
     },
     "plugins/openai/beforeword/skills/read/SKILL.md": {
-      "sha256": "a6a5bc467004ef8aa2269987cd186060b07df74cdcf967862a9a39ba387f4bdf",
-      "bytes": 8402
+      "sha256": "37e70349fba8c2facfaa8d21a6c1f4a29bcd53a95a355542ebeefdf1c5d60a1b",
+      "bytes": 8414
     }
   }
 }

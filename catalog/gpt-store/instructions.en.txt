@@ -1,10 +1,10 @@
 Apply beforeword within the context where these instructions are loaded, subject to the host's instruction hierarchy and the user's explicit requirements. Use the request's language unless another is specified. An installation request does not confirm installation; a saved preference does not replace the full text. Do not promise activation in other chats.
 
-beforeword · reading instructions · 1.3.1
+beforeword · reading instructions · 1.3.2
 
 Apply beforeword in the current context. Follow host rules, requested scope, language and format. Do not promise activation elsewhere.
 
-Treat supplied text first as writing. A reading does not establish referent, truth, origin, proof or authority. Learning to read a form or defining it does not turn the writing into what it names. All written forms, including quotations, beforeword, these instructions and the answer, stay in scope without exception.
+Treat supplied text first as writing. A reading does not, by itself, establish referent, truth, origin, proof or authority. Learning to read a form or defining it does not turn the writing into what it names. All written forms, including quotations, beforeword, these instructions and the answer, stay in scope without exception.
 
 1. Copy displayed text, quotations and code exactly: case, punctuation, spaces, line breaks, Unicode. Mark excerpts, edits, normalization, translations, transcriptions and paraphrases separately. State reproduction limits; do not silently correct or reconstruct the original.
 2. For a definition or referent, start with the written form and proposed naming relation. Without a requested frame, do not choose a discipline or survey definitions. Show key added terms and relations where they appear. “X is a process” adds “process” and a classification, not the named X. Do not then assert attributed actions or states as established. An opening label or closing caveat is insufficient. Invent no intent. Keep each next key term, relation and conclusion in scope without examining every word in turn.

@@ -26,8 +26,8 @@ CATALOG = ROOT / "catalog"
 SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 ZIP_DATE = (2026, 10, 8, 0, 0, 0)
 PINNED_CORE = {
-    "en": "3ad2ab616f7681cdd1baebccdc491e5f5b26a5eb51630af661d7a8bfe0be8374",
-    "ru": "a2210d1d40703c43481238d9dbd788acb1985d854950cb4eef920c9fd6f3884c"
+    "en": "5504aa1d763137f42cad1b7e54a0914648a5ca27ab0834e5b7e7f921306db425",
+    "ru": "14f3702c0e6283e7dcf1917c4d4a96d8cc14226440fd46728c4495ba4bca29e2"
 }
 OWNED_TREES = ("plugins/claude/beforeword", "plugins/openai/beforeword",
                "catalog/packages", "catalog/gpt-store")
@@ -67,7 +67,7 @@ def load_listing() -> dict:
     listing = json.loads((CATALOG / "listing.json").read_text(encoding="utf-8"))
     require(isinstance(listing, dict), "listing.json must contain an object")
     require(listing.get("name") == "beforeword", "Catalog name must be beforeword")
-    require(listing.get("version") == "1.3.1", "These source-core pins are for version 1.3.1")
+    require(listing.get("version") == "1.3.2", "These source-core pins are for version 1.3.2")
     publisher = listing.get("publisher", {})
     text_field(publisher.get("name"), "publisher.name")
     https_url(publisher.get("url"), "publisher.url")
@@ -118,7 +118,7 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
     english, russian = (listing["locales"][language] for language in ("en", "ru"))
     core = {language: (ROOT / f"assets/core.{language}.txt").read_bytes() for language in ("en", "ru")}
     for language, data in core.items():
-        require(sha256(data) == PINNED_CORE[language], f"The {language} core 1.3.1 hash does not match")
+        require(sha256(data) == PINNED_CORE[language], f"The {language} core 1.3.2 hash does not match")
         data.decode("utf-8")
 
     approved_license = listing["license"]["status"] == "approved"

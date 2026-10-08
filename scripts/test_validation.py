@@ -53,18 +53,19 @@ class RecordedRun(unittest.TestCase):
 
 
 class HistoricalSmoke(unittest.TestCase):
-    def test_130_record_is_bound_to_its_own_release(self):
-        version = '1.3.0'
-        report = json.loads((ROOT / 'references' / f'development-smoke-{version}.json').read_text(encoding='utf-8'))
-        self.assertEqual(report['instruction_version'], version)
-        archive = ROOT / 'downloads' / version / f'beforeword_toolkit_{version}.zip'
-        with zipfile.ZipFile(archive) as bundle:
-            self.assertEqual(hashlib.sha256(bundle.read('beforeword/SKILL.md')).hexdigest(),
-                             report['instruction_sha256'])
-            for language in ('en', 'ru'):
-                core = bundle.read(f'beforeword/assets/core.{language}.txt')
-                self.assertEqual(hashlib.sha256(core).hexdigest(), report['core_sha256'][language])
-        self.assertEqual(len(report['cases']), report['method']['responses'])
+    def test_smoke_records_are_bound_to_their_own_releases(self):
+        for version in ('1.3.0', '1.3.1'):
+            with self.subTest(version=version):
+                report = json.loads((ROOT / 'references' / f'development-smoke-{version}.json').read_text(encoding='utf-8'))
+                self.assertEqual(report['instruction_version'], version)
+                archive = ROOT / 'downloads' / version / f'beforeword_toolkit_{version}.zip'
+                with zipfile.ZipFile(archive) as bundle:
+                    self.assertEqual(hashlib.sha256(bundle.read('beforeword/SKILL.md')).hexdigest(),
+                                     report['instruction_sha256'])
+                    for language in ('en', 'ru'):
+                        core = bundle.read(f'beforeword/assets/core.{language}.txt')
+                        self.assertEqual(hashlib.sha256(core).hexdigest(), report['core_sha256'][language])
+                self.assertEqual(len(report['cases']), report['method']['responses'])
 
 
 if __name__ == '__main__':

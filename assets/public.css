@@ -26,3 +26,6 @@ main textarea[readonly]{display:block;width:100%;resize:vertical;min-height:220p
 
 /* Show the written example before the installation route. */
 main .first-look{padding-top:0;border-top:0}.first-look .card{display:flex;flex-direction:column}.first-look .answer-label{margin:auto 0 0;padding-top:16px;font-size:14px;color:var(--muted)}.first-look .same-answer{font-size:24px;line-height:1.3;margin:10px 0 0;overflow:visible}.first-explanation{max-width:70ch;margin-top:24px}.first-look .scope-line{max-width:70ch}.first-look .button{margin-top:4px}@media(max-width:620px){.first-look .button{width:100%}.first-look .scope-line{font-size:16px}}
+
+/* Reuse the approved beforeword mark. */
+.bw-shell.bw-shell .bw-home svg.bw-brand-mark{display:block;width:34px;height:30px;flex:none}@media(max-width:480px){.bw-shell.bw-shell .bw-home svg.bw-brand-mark{width:32px;height:28px}}

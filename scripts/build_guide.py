@@ -14,7 +14,7 @@ from package_plugins import build_bundles, skill_text
 from render_report import parse_report
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.3.1'
+VERSION = '1.3.2'
 DATE = '2026-10-08'
 
 def read(path):
@@ -101,8 +101,9 @@ def build(output):
     data['sources'] = list(sources.values())
     data['developer'] = source_bundle()
     serialized = json.dumps(data, ensure_ascii=False).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
-    result = read('assets/guide.template.html').replace('__DATA__', serialized).replace('__STATIC_FALLBACK__', fallback(data)).replace('__EVALUATION_RU__', data['evaluationHtmlRu']).replace('__EVALUATION_EN__', data['evaluationHtml'])
-    if any(token in result for token in ('__DATA__', '__STATIC_FALLBACK__', '__EVALUATION_RU__', '__EVALUATION_EN__')):
+    brand_svg = read('assets/beforeword.svg').replace('<svg ', '<svg width="36" height="36" aria-hidden="true" focusable="false" ', 1)
+    result = read('assets/guide.template.html').replace('__BRAND_SVG__', brand_svg).replace('__DATA__', serialized).replace('__STATIC_FALLBACK__', fallback(data)).replace('__EVALUATION_RU__', data['evaluationHtmlRu']).replace('__EVALUATION_EN__', data['evaluationHtml'])
+    if any(token in result for token in ('__BRAND_SVG__', '__DATA__', '__STATIC_FALLBACK__', '__EVALUATION_RU__', '__EVALUATION_EN__')):
         raise ValueError('unresolved template placeholder')
     path = output / 'beforeword_AI.html'
     path.write_text(result, encoding='utf-8')
@@ -114,7 +115,7 @@ def build(output):
     followup = json.loads(read('references/validation-2026-10-02.json'))
     previous = json.loads(read('references/validation-1.2.4.json'))
     smoke = json.loads(read('references/development-smoke-1.3.0.json'))
-    current_smoke = json.loads(read('references/development-smoke-1.3.1.json'))
+    previous_smoke = json.loads(read('references/development-smoke-1.3.1.json'))
     manifest = {'version':VERSION, 'date_utc':DATE, 'families':[c['id'] for c in data['connectors']],
       'core_sha256':{k:sha(v) for k,v in data['core'].items()},
       'compact_characters':{k:len(v) for k,v in data['compact'].items()},
@@ -123,10 +124,10 @@ def build(output):
       'native_bundles':{lang:{key:{k:v for k,v in record.items() if k!='data'} for key,record in bundles.items()} for lang,bundles in data['bundles'].items()},
       'developer_bundle':{k:v for k,v in data['developer'].items() if k!='data'},
       'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
-      'evaluation_scope':'The recorded 1.3.1 development check contains two responses in two fresh contexts, one task per context. It is not a platform runtime test, scored evaluation or provider comparison. The build does not run a model. All earlier runs retain their original instruction versions; no result guarantees future behavior.',
+      'evaluation_scope':'No new model-response run is recorded for 1.3.2. The historical 1.3.1 development check contains two responses in two fresh contexts, one task per context. It is not a test of 1.3.2, a platform runtime test, a scored evaluation or a provider comparison. The build does not run a model. All earlier runs retain their original instruction versions; no result guarantees future behavior.',
       'runtime_validation':'not-run-by-build', 'evaluation':report['method'], 'evaluation_case_count':len(data['eval'].strip().splitlines()),
       'evaluation_runs':[
-        {'report':'references/development-smoke-1.3.1.json', 'instruction_version':'1.3.1', 'answers':current_smoke['method']['responses'], 'method':current_smoke['method']},
+        {'report':'references/development-smoke-1.3.1.json', 'instruction_version':'1.3.1', 'historical':True, 'answers':previous_smoke['method']['responses'], 'method':previous_smoke['method']},
         {'report':'references/development-smoke-1.3.0.json', 'instruction_version':'1.3.0', 'answers':smoke['method']['responses'], 'method':smoke['method']},
         {'report':'references/evaluation-results.json', 'condition':'authored fixtures and targeted follow-up', 'method':report['method']},
         {'report':'references/validation-2026-10-02.json', 'answers':180, 'method':followup['method']},

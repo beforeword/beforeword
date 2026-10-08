@@ -28,7 +28,7 @@ def load_instruction(language: str) -> str:
 
 
 def get_beforeword_instruction(language: Language = "en") -> str:
-    """Retrieve the complete beforeword 1.3.1 instruction, unchanged.
+    """Retrieve the complete beforeword 1.3.2 instruction, unchanged.
 
     Use when the user requests beforeword or asks to load its reading instruction.
     This read-only tool returns instruction text, not an analysis of a conversation.
@@ -39,14 +39,14 @@ def get_beforeword_instruction(language: Language = "en") -> str:
     Args:
         language: Instruction edition: 'en' for English or 'ru' for Russian.
     Returns:
-        The exact UTF-8 instruction text for beforeword version 1.3.1.
+        The exact UTF-8 instruction text for beforeword version 1.3.2.
     """
     return load_instruction(language)
 
 
 @gr.mcp.prompt()
 def beforeword(language: Language = "en") -> str:
-    """Load the complete beforeword 1.3.1 instruction as a reusable prompt.
+    """Load the complete beforeword 1.3.2 instruction as a reusable prompt.
 
     Args:
         language: Instruction edition: 'en' for English or 'ru' for Russian.
@@ -56,7 +56,7 @@ def beforeword(language: Language = "en") -> str:
 
 @gr.mcp.resource("beforeword://instruction/{language}", mime_type="text/plain")
 def instruction_resource(language: Language) -> str:
-    """Read the unchanged beforeword 1.3.1 instruction; language is en or ru."""
+    """Read the unchanged beforeword 1.3.2 instruction; language is en or ru."""
     return load_instruction(language)
 
 
@@ -82,7 +82,7 @@ with gr.Blocks(title="beforeword · MCP", analytics_enabled=False) as demo:
 Load the reading instruction into a compatible AI client.  
 Подключение инструкции к ИИ через совместимый клиент.
 
-**1.3.1 · public testing / публичный тест**
+**1.3.2 · public testing / публичный тест**
 """
     )
     gr.Markdown("## Connect / Подключить\n\n**Streamable HTTP · MCP URL**")
@@ -126,7 +126,7 @@ The client controls how returned text enters the model's context. This does not 
     )
     retrieve_button = gr.Button("Get instruction / Получить инструкцию", variant="primary")
     instruction_output = gr.Textbox(
-        label="Complete instruction · 1.3.1 / Полная инструкция · 1.3.1",
+        label="Complete instruction · 1.3.2 / Полная инструкция · 1.3.2",
         interactive=False,
         lines=15,
         max_lines=30,

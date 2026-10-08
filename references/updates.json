@@ -3,8 +3,8 @@
   "project": "beforeword",
   "scope": "ai-instructions",
   "status": "public-testing",
-  "current_version": "1.3.1",
-  "updated": "2026-10-08T17:46:30Z",
+  "current_version": "1.3.2",
+  "updated": "2026-10-08T18:44:42Z",
   "urls": {
     "ru": "https://beforeword.xyz/model/#bw-updates",
     "en": "https://beforeword.xyz/model/en/#bw-updates"
@@ -21,18 +21,20 @@
       "title": "beforeword — обновления инструкции для ИИ",
       "intro": "Инструкция beforeword проходит публичное тестирование. Это не финальная редакция.",
       "changes": [
-        "В начале страницы показано, почему одинаковая строка «Я согласен» не устанавливает одинакового задания или принятия написанного.",
-        "Пример о заданном самоописании начинает разбор со слов «Это ты» и сопровождающих требований; буквальное отождествление не приписывается заранее.",
-        "Уточнены русские и английские формулировки; инструкция и пакеты пересобираются из общих исходников. Прежние проверки сохраняют исходные версии."
+        "Уточнено: выбранное прочтение само по себе не устанавливает приписанного. Это не запрет на обоснованные выводы и не изменение границы между записью и называемым.",
+        "Уточнены условие в примере А/Б, английский разбор «I understand» и прямо сообщённое требование в рассказе об имени.",
+        "На странице, в руководстве и пакетах используется утверждённый знак beforeword.",
+        "Прежние записи ответов сохранены с версиями использованных инструкций. Новая серия ответов модели для 1.3.2 не заявляется."
       ]
     },
     "en": {
       "title": "beforeword — AI instruction updates",
       "intro": "The beforeword instructions are in public testing. This is not the final version.",
       "changes": [
-        "The page opens with an example showing why the same line, “I agree,” does not establish the same task or acceptance of the wording.",
-        "The prescribed self-description example starts with “This is you” and the accompanying demands; literal identification is not assumed in advance.",
-        "Russian and English wording has been clarified, and the instruction and packages are built from shared sources. Earlier checks retain their original version labels."
+        "Clarified that a reading does not establish an attribution by itself. This does not rule out supported conclusions or alter the boundary between writing and what it names.",
+        "Clarified the A/B condition, the reading of “I understand”, and the explicitly reported requirement in the name example.",
+        "The page, guide and packages use the approved beforeword mark.",
+        "Earlier response records retain the versions of the instructions used. No new model-response run is claimed for 1.3.2."
       ]
     }
   }

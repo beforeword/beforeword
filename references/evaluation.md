@@ -2,7 +2,7 @@
 
 A response is compared with the supplied text and task. Instruction delivery, exact preservation and response content are examined separately. The instructions, criteria and this account remain written records.
 
-## Development check of 1.3.1
+## Historical development check of 1.3.1
 
 [Two recorded responses](development-smoke-1.3.1.json) were collected in separate fresh Codex agent contexts, one task per context, using the full instruction from SKILL.md. The Russian task concerns a reported name, demands to respond and describe oneself, and no offered refusal. The English task examines whether a claim about what a word can do supports a conclusion about identity. Both ask the explanation to include its own additions. The record preserves the exact inputs, responses and instruction hashes. This is a two-task development check, without a baseline, repeated sampling, independent scoring, provider comparison or platform installation test.
 

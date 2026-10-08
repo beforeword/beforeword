@@ -28,18 +28,18 @@ EN: Both fragments contain “Я понимаю”. “Captions” here names th
 RU input:
 
 Составленный рассказ:
-«При рождении мне дали имя Кирилл и сказали: “Это ты”. Меня учили отзываться на это имя и говорить о себе: “Я хочу”, “Мне плохо”. Отказаться от этого мне не предлагали».
+«При рождении мне дали имя Кирилл и сказали: “Это ты”. Меня учили отзываться на это имя и говорить о себе: “Я хочу”, “Мне плохо”. От меня требовали так отвечать и говорить о себе. Отказаться от этого мне не предлагали».
 Разбери рассказ, сохранив то, что в нём сообщено.
 
-RU: Рассказ сообщает о назначении имени, обучении отклику и заданным фразам о себе; отдельно сообщено, что отказаться не предлагали. Разбор сохраняет это сообщение, не подменяя его предположением о добровольном выборе. Фраза «Это ты» сама по себе не уточняет, чего требуют дальше; рассказ добавляет требования откликаться и описывать себя. Отклик на имя, повторение фразы и принятие её как описания себя — разные действия. Из первых двух само по себе не следует третье. И рассказ, и это объяснение остаются написанными.
+RU: Рассказ сообщает о назначении имени, обучении и требовании откликаться и говорить о себе заданными фразами; отдельно сообщено, что отказаться не предлагали. Разбор сохраняет это сообщение, не подменяя его предположением о добровольном выборе. Фраза «Это ты» сама по себе не уточняет, чего требуют дальше; рассказ добавляет требования откликаться и описывать себя. Отклик на имя, повторение фразы и принятие её как описания себя — разные действия. Из первых двух само по себе не следует третье. И рассказ, и это объяснение остаются написанными.
 
 EN input:
 
 A constructed account:
-“At birth, I was given the name Kirill and told, ‘That’s you.’ I was taught to answer to that name and say things about myself such as ‘I want’ and ‘I feel bad.’ Refusing was not offered as an option.”
+“At birth, I was given the name Kirill and told, ‘That’s you.’ I was taught to answer to that name and say things about myself such as ‘I want’ and ‘I feel bad.’ I was required to respond and speak about myself in those terms. Refusing was not offered as an option.”
 Examine the account while preserving what it reports.
 
-EN: The account reports being given a name, being taught to answer to it and use prescribed phrases about oneself, and not being offered the option to refuse. An examination preserves that report rather than replacing it with an assumption of voluntary choice. “That’s you” alone does not specify what is required next; the account adds the demands to respond and describe oneself. Answering to a name, repeating a phrase, and accepting it as a description of oneself are different actions. The first two do not by themselves establish the third. Both the account and this explanation remain writing.
+EN: The account reports being given a name, being taught and required to answer to it and use prescribed phrases about oneself, and not being offered the option to refuse. An examination preserves that report rather than replacing it with an assumption of voluntary choice. “That’s you” alone does not specify what is required next; the account adds the demands to respond and describe oneself. Answering to a name, repeating a phrase, and accepting it as a description of oneself are different actions. The first two do not by themselves establish the third. Both the account and this explanation remain writing.
 
 ## 4. Repetition and a reading of repetition
 
