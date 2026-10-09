@@ -189,6 +189,7 @@ def _comparison(data: dict, language: str) -> str:
 <section aria-labelledby="bw-update-tasks-title">
 <h3 id="bw-update-tasks-title">{escape(text['tasks_heading'])}</h3>
 <div class="bw-update-tasks">{tasks}</div>
+<p class="bw-update-note">{escape(text['example'])}</p>
 </section>
 <section aria-labelledby="bw-update-results-title">
 <h3 id="bw-update-results-title">{escape(text['results_heading'])}</h3>

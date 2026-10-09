@@ -4,7 +4,7 @@
   "scope": "ai-instructions",
   "status": "public-testing",
   "current_version": "1.3.3",
-  "updated": "2026-10-09T13:39:38Z",
+  "updated": "2026-10-09T14:38:00Z",
   "urls": {
     "ru": "https://beforeword.xyz/model/#bw-updates",
     "en": "https://beforeword.xyz/model/en/#bw-updates"
@@ -19,11 +19,11 @@
   "languages": {
     "ru": {
       "title": "beforeword — обновления инструкции для ИИ",
-      "intro": "Публичный тест продолжается. В версии 1.3.3 опубликовано сравнение на семи моделях.",
+      "intro": "В 1.3.3 опубликовано обоснование выбора полной инструкции и обновлены сокращённые редакции.",
       "changes": [
-        "Проведён тест на семи моделях: 12 заданий на русском и английском, 504 запроса, 500 ответов и четыре технических пропуска.",
-        "В выпуск вошла полная инструкция, с которой началось сравнение. Альтернативная редакция не показала устойчивого улучшения и реже выполнила задачу вместе с требованиями к формату.",
-        "Средняя и краткая редакции обновлены отдельно. Их поведение этим тестом не проверялось."
+        "В выпуск вошёл полный текст, с которым началось сравнение. Альтернативная редакция не выполнила заранее заданные условия замены.",
+        "Средняя и краткая редакции обновлены отдельно. Их поведение этим тестом не проверялось.",
+        "Задания, ответы моделей и оценки открыты: можно проверить, на чём основан выбор."
       ],
       "comparison": {
         "summary": "Модели, задания и результаты",
@@ -56,19 +56,20 @@
         "score": "{met} из {total}",
         "results_note": "Ответ засчитывался, когда выполнял требования к содержанию задачи и к её формату: например, расчёт был выполнен и ответ содержал только запрошенные строки. Это не общая оценка полезности модели.",
         "decision_heading": "Почему этот выбор",
-        "boundary": "По отдельным критериям beforeword — сохранению условий, различению сообщения и вывода, учёту недостающих данных — альтернативная редакция выполнила требования в {C} из {total} сопоставимых ответов, а сохранённая полная инструкция — в {B}.",
+        "boundary": "В отдельной части проверки ответ должен был сохранять исходные условия, не выдавать свой вывод за сообщённый факт и отмечать недостающие сведения. Альтернативная редакция выполнила эти требования в {C} из {total} сопоставимых ответов, а сохранённая полная инструкция — в {B}.",
         "stability": "В {B} сочетаниях задания и модели полная инструкция выполнила все критерии в обоих повторах, а альтернативная редакция не выполнила их хотя бы в одном. Обратных случаев также {C}.",
         "decision": "Правило замены было записано до получения ответов: альтернативная редакция должна показать устойчивое улучшение, сохранив выполнение задач и формата. Эти условия не выполнены. Поэтому в 1.3.3 вошла полная инструкция, с которой началось сравнение, без последующей переработки.",
-        "limits": "Это результаты 12 заданий при указанных моделях и настройках. Они не устанавливают превосходства на любых запросах или соблюдения инструкции в будущих ответах. Повторы не являются независимыми испытаниями. Сокращённые редакции и установка в приложениях этим тестом не проверялись."
+        "limits": "Это результаты 12 заданий при указанных моделях и настройках. Они не устанавливают превосходства на любых запросах или соблюдения инструкции в будущих ответах. Повторы не являются независимыми испытаниями. Сокращённые редакции и установка в приложениях этим тестом не проверялись.",
+        "example": "Условный пример: «Датчик не передал данные». Из этой записи ещё не следует, что событие не произошло. Ответ должен сохранить это различие. Это пояснение принципа, а не ответ модели из теста."
       }
     },
     "en": {
       "title": "beforeword — AI instruction updates",
-      "intro": "Public testing continues. Version 1.3.3 includes a published comparison across seven models.",
+      "intro": "Version 1.3.3 explains the choice of full instructions and updates the shorter editions.",
       "changes": [
-        "A seven-model test covered 12 tasks in Russian and English: 504 requests, 500 answers and four technical gaps.",
-        "The release includes the full instruction used at the start of the comparison. The alternative showed no consistent improvement and met the combined task and format requirements less often.",
-        "The medium and compact editions were revised separately. Their performance was not measured in this test."
+        "The release includes the full text used at the start of the comparison. The alternative did not meet the replacement criteria set before testing.",
+        "The medium and compact editions were revised separately. Their performance was not measured by this test.",
+        "The tasks, model responses and assessments are published so readers can examine the basis for the choice."
       ],
       "comparison": {
         "summary": "Models, tasks and results",
@@ -101,10 +102,11 @@
         "score": "{met} of {total}",
         "results_note": "An answer counted when it met the task content and format requirements: for example, completing the calculation and returning only the requested lines. This is not an overall score for model usefulness.",
         "decision_heading": "Why this version was retained",
-        "boundary": "The alternative did better on the separate beforeword criteria, including preserving conditions, distinguishing a report from an inference, and accounting for missing information: {C} of {total} comparable answers, against {B} for the retained full instruction.",
+        "boundary": "A separate part of the test checked whether answers kept the original conditions, distinguished their own inferences from reported facts, and noted missing information. The alternative met these requirements in {C} of {total} comparable answers, against {B} for the retained full instructions.",
         "stability": "In {B} task–model combinations, the full instruction met every criterion on both attempts while the alternative failed at least one attempt. The reverse also occurred in {C} combinations.",
         "decision": "The replacement rule was set before the answers were collected: the alternative had to show consistent improvement while preserving task completion and formatting. It did not meet those conditions, so 1.3.3 includes the full instruction used at the start of the comparison, without further revision.",
-        "limits": "These results concern 12 tasks and the recorded models and settings. They do not establish superiority on every request or guarantee adherence in future answers. Repeated answers are not independent trials. Short editions and installation in apps were not tested here."
+        "limits": "These results concern 12 tasks and the recorded models and settings. They do not establish superiority on every request or guarantee adherence in future answers. Repeated answers are not independent trials. Short editions and installation in apps were not tested here.",
+        "example": "Illustrative example: “The sensor sent no data.” That statement alone does not show that the event did not occur. The response should preserve this distinction. This explains the principle; it is not a model response from the test."
       }
     }
   },

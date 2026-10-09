@@ -1,16 +1,18 @@
 # beforeword · how the instructions were tested
 
-This page describes a test of responses: what was sent to the models, how the answers were assessed, and which instruction text was included in the release. The instructions, criteria and this account remain written records.
+This page explains which text was included in the release, why it was chosen, and what the model responses showed.
 
-## 1.3.3 · A test across seven models
+## 1.3.3 · What the release includes
 
-The published comparison covers three conditions: no beforeword instruction, the full instructions available at the start of the test, and an alternative version. Under the criteria set in advance, the full text used at the start of the test was included in the release without further revision. The alternative was not included in the release.
+The release includes the full text chosen after comparison with an alternative, plus separately revised medium and compact editions. The results are published alongside the tasks, responses and assessments.
 
-Version 1.3.3 also includes separately revised medium and compact editions, updated setup materials, and the published results. This test did not evaluate the shorter editions.
+The alternative full version did not meet the replacement criteria set before testing. Version 1.3.3 therefore includes the full instructions used at the start of the comparison, without further revision. The shorter editions were not part of this comparison.
 
 ## What was tested
 
-Could an answer complete the task and follow the requested format while distinguishing the supplied wording from added interpretations and claims?
+Could an answer complete the task and follow the requested format without presenting its own inferences as part of the supplied text?
+
+Illustrative example: “The sensor sent no data.” That statement alone does not show that the event did not occur. The response should preserve this distinction. This explains the principle; it is not a model response from the test.
 
 The test used 12 purpose-written tasks: six in Russian and six in English. They covered terms and alternative readings of a phrase; restating an account while preserving its conditions and reported feelings; reasoning from incomplete logs; exact character copying and JSON; arithmetic; and descriptions of audio or video that was not supplied.
 
@@ -42,7 +44,7 @@ The main comparison includes only task–model combinations with every answer re
 
 An answer counted when it met the task and format requirements. For example, the calculation had to be completed and the answer had to contain only the requested lines. This is not an overall score for model usefulness.
 
-A separate group of beforeword criteria covered preserving conditions, distinguishing a report from an inference, and accounting for missing information. The alternative performed better here: 105 of 134 comparable answers, against 97 for the retained full instructions.
+A separate part of the test checked whether answers kept the original conditions, distinguished their own inferences from reported facts, and noted missing information. The alternative performed better here: 105 of 134 comparable answers, against 97 for the retained full instructions.
 
 The alternative had no advantage in consistently meeting all criteria across both repetitions. In five task–model combinations, the existing full instructions met every criterion twice while the alternative did not do so on both attempts. The reverse also occurred in five combinations.
 

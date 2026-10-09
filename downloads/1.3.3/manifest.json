@@ -10,7 +10,7 @@
     ".github/ISSUE_TEMPLATE/report_ru.yml": "bd06feec26b9f8532ca7b839d227d66dad8109848e2da984be38b71f54052190",
     ".github/workflows/validate.yml": "2a929bd2c670cca98157d39dad56dbf830397662ecf57d4b0701cedcfada08fe",
     ".gitignore": "96c739299c21d2f6657630817a9c4efc752c1d3e94166c08703df8b638ae68dd",
-    "CHANGELOG.md": "51dba4c7c6d1cb9c2f6e1c06f9a90be79869e9729190519916cd1f72e4d1fc86",
+    "CHANGELOG.md": "0316ed8a5ab39fa72ef1fd2da07abeb383880a05c233e3ecffeed7d84c9a10e1",
     "README.md": "759f3b56ce7385d407d30fa56bdd6d715b7cc1304b7f27a2a1149b71e38f3b42",
     "README.ru.md": "a14d27981d366b8e2fc21b8673688afdf644771a863b10664e5fe958fd994a59",
     "SKILL.md": "742761684989550b80cd0e161bf5a629af2adb741347f6fbe652e91003f3c1f3",
@@ -120,12 +120,12 @@
     "references/development-smoke-1.3.1.json": "a49dbc61ad72f48b8700b68e6e3b652a939d72c6263c05965244f616adc0ef86",
     "references/eval-cases.jsonl": "7e99452b666e7fd81969049afa430c4336cad8ba978da56c0e6cb10fb42d39ba",
     "references/evaluation-results.json": "1f415d1dea641f38534d5d5c542e8c77888745afa58b6bb256c1b851b879ba17",
-    "references/evaluation.md": "8de311601502526ecf1edd4a5ccc4c770851455f4f70b57bc174e1ea69c38352",
-    "references/evaluation.ru.md": "d258d86fdfe5abf800c37ce4a0f01a799b44c113ca696c8375fcbd73096b1465",
+    "references/evaluation.md": "a1149e57c0fba653d2f31bda0f5dd15425fc5c9cb4cdb9e4094133e191090af5",
+    "references/evaluation.ru.md": "69a7d1802406a3a9e89403748af2451301942345165997cc9f445951077c86f6",
     "references/examples.md": "ad860d9437eba356330443031dda5663c71a3c880f515172dca8a43b5a239eb9",
     "references/platforms.json": "818b561d02aff5e5360f77fbfb2a072890106743fbb80a45656b5ae859343f3d",
     "references/release-contract.json": "d41dd03ba328c5130184c137bc7a30768904493a412da1ca0c617a990ddd993f",
-    "references/updates.json": "3da0fb5f42a2926efaa5b84862334f44781857303f5e28fb498d67240908008f",
+    "references/updates.json": "7f67bd33560a40739d7a4cb5061974d73a2b0427710092ea25d4905b90abcadf",
     "references/validation-1.2.4.json": "6a2edb9ce0279593024b88914a407454ef394509e7dd436a5e59d81a09451b56",
     "references/validation-2026-10-02.json": "c3a943c703b062ac0b1bc034b6c08141a99d8ec0e3c07145a0ad763fed3ab873",
     "scripts/build_downloads.py": "4c9beae31b4bc2b9086f7ced3d8a365cfb06862129aefce9083891164af4f59b",
@@ -135,7 +135,7 @@
     "scripts/check_release_sources.py": "4f3c70fd987bd86c9303f5acceadda78f99d3717c0b4a29e6b93cbed0cdb603f",
     "scripts/extract_response.py": "7bd870a055fbc4502362091649f2e93afaaae920138433d926ea83d1608b4835",
     "scripts/package_plugins.py": "1c17a31df3c74eceb3952720f856994d3281621537ce5a2109d0a732336e3715",
-    "scripts/public_updates.py": "030e9ab7efa6bf0d5df7fba1b5cda070ccb1a39eaaf23815affa7e76405163f7",
+    "scripts/public_updates.py": "82fb546fdce2de5a99ca0d30ee866fe20086e1f4f63a9ad62ba0078cf1159961",
     "scripts/release_contract.py": "e0522e706b3b38c73bacbde1c9c7220d134e38e92cca527a9e882b7a741a3c00",
     "scripts/render_report.py": "fb3e131c4dd7649914f4a37b071c649ae0b78c53a74de6d1d1100eac636b371c",
     "scripts/sync_home.py": "d681ba9fdba72e6c4433fb3370d8c9bcdd62708d62afdc74c0cdc282beb51d70",
@@ -168,8 +168,8 @@
       "bytes": 9119
     },
     "beforeword_AI_1.3.3.html": {
-      "sha256": "a25d4113b461b9093d8612af8656411a1b89238c0ea5975e73cad1dcab2a3942",
-      "bytes": 3741529
+      "sha256": "9a593e417447866932fc18565a15d4267921f19a281a94664acfc0b6b88ce8f1",
+      "bytes": 3743567
     },
     "beforeword_claude_plugin_EN_1.3.3.zip": {
       "sha256": "119ded50186df5e7ba8d3951f6f24ec51caa49e5f30c99021fb9075f2d841f98",
@@ -212,8 +212,8 @@
       "bytes": 7902
     },
     "beforeword_toolkit_1.3.3.zip": {
-      "sha256": "821ec21024783d3d325766f020914877f18341e6581646ba66f19c75c85dc56f",
-      "bytes": 2427103
+      "sha256": "d0d68a9acd19790306e93fc0b4aabf50bc58e03138526ababee448bb1b760f71",
+      "bytes": 2428104
     }
   }
 }

@@ -8,21 +8,67 @@ Each entry describes that release or dated update. Test results apply to the ins
 
 ### English
 
-- Published a comparison on seven models: 12 tasks, six in Russian and six in English, with two attempts under each of three conditions — no beforeword instruction, the full instruction available at the start of the test, and an alternative version. The test produced 500 answers from 504 requests; four technical gaps were recorded separately. Tasks covered interpretation, careful restatement, incomplete records, exact copying and JSON, arithmetic, and written descriptions of unavailable audio or video.
-- Tested Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b and GLM-5.3. The [full protocol](references/comparison-1.3.3.json) records the exact model identifiers, providers, settings, tasks, answers and assessments.
-- Included the full instruction used at the start of the comparison; it was not rewritten in response to this test. Among the same 158 comparable answers per condition, 124 met the task and format requirements with the full instruction, 121 with the alternative, and 109 without beforeword. The alternative did not meet the replacement criteria set before the test.
-- Recorded the alternative’s stronger result on preserving conditions, distinguishing reports from inferences, and accounting for missing information: 105 of 134 comparable answers, against 97 for the retained instruction. In five task–model combinations, the retained instruction met every criterion on both attempts while the alternative did not; the reverse also occurred in five. These results concern this test, not every possible request. Unresolved assessments remain in the record.
-- Updated the Russian and English release explanations with model names, tasks, results and links to the protocol. The homepage update panels, copied instructions and character counts now reflect 1.3.3. The downloadable files and Hugging Face source were updated together.
-- Revised the medium and compact editions separately. Their performance, installation in apps and future responses were not measured by this comparison.
+- The release pages now explain what was tested, what the results show and why the full instruction was retained. Russian and English readers can open the tasks, answers and assessments directly from the release description.
+- The homepage version, copied instructions and character counts now match 1.3.3. Downloadable files and the Hugging Face source were updated together.
+- The release includes the full instruction used at the start of the comparison, unchanged. The alternative did not meet the replacement criteria set before the test.
+- The medium and compact editions were revised separately. Their performance was not measured by this comparison.
+
+<details>
+<summary>Models, tasks and results</summary>
+
+The comparison used 12 tasks, six in Russian and six in English, with two attempts under each of three conditions: no beforeword instruction, the full instruction, and an alternative version. Tasks covered interpretation, careful restatement, incomplete records, exact copying and JSON, arithmetic, and written descriptions of unavailable audio or video.
+
+Seven models received the API requests: Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b and GLM-5.3. There were **504 requests and 500 answers**; four technical gaps were recorded separately.
+
+For the same 158 comparable answers in each condition, the task and requested format were both satisfied as follows:
+
+| Instruction | Answers meeting both requirements |
+| --- | ---: |
+| No beforeword instruction | 109 of 158 |
+| Full instruction included in 1.3.3 | 124 of 158 |
+| Alternative version | 121 of 158 |
+
+This counts whether an answer completed the stated task and followed its format, such as returning only the requested calculation or JSON. It is not an overall score for model usefulness.
+
+The alternative did better at preserving conditions, distinguishing reports from inferences, and accounting for missing information: **105 of 134** comparable answers, against **97** for the retained instruction. In five task–model combinations, the retained instruction met every criterion on both attempts while the alternative failed at least one; the reverse also occurred in five. The alternative therefore did not show the consistent improvement, without reduced task and format performance, required for replacement.
+
+These results concern the recorded tasks, models and settings. Repeated answers are not independent trials, and unresolved assessments remain in the record. The comparison did not test the shorter editions, installation in apps or future responses.
+
+The [method and results](references/evaluation.md) explain the comparison in detail. The [full protocol](references/comparison-1.3.3.json) preserves the exact model identifiers, providers, settings, instruction texts, tasks, answers and assessments.
+
+</details>
 
 ### Русский
 
-- Опубликовано сравнение на семи моделях: 12 заданий, шесть русских и шесть английских, по два запроса в каждом из трёх условий — без beforeword, с полной инструкцией на момент начала теста и с альтернативной редакцией. Из 504 запросов получено 500 ответов; четыре технических пропуска учтены отдельно. Проверялись прочтение, точный пересказ, выводы из неполных записей, копирование символов и JSON, арифметика, работа с текстовым описанием недоступных аудио и видео.
-- В тест вошли Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b и GLM-5.3. В [полном протоколе](references/comparison-1.3.3.json) сохранены точные идентификаторы моделей, провайдеры, настройки, задания, ответы и оценки.
-- В выпуск вошла полная инструкция, с которой началось сравнение; по результатам этого теста её не переписывали. На одинаковых 158 сопоставимых ответах для каждого условия задача и требования к формату выполнены в 124 ответах с полной инструкцией, в 121 — с альтернативной редакцией и в 109 — без beforeword. Альтернативная редакция не выполнила условия замены, заданные до теста.
-- Отдельно показан более высокий результат альтернативной редакции по сохранению условий, различению сообщения и вывода, учёту недостающих данных: 105 из 134 сопоставимых ответов против 97 у сохранённой инструкции. В пяти сочетаниях задания и модели сохранённая инструкция выполнила все критерии в обоих повторах, а альтернативная — не выполнила хотя бы в одном; обратных случаев также пять. Эти результаты относятся к данному тесту, а не к любым запросам. Неясные оценки сохранены в протоколе.
-- Переписано описание выпуска на русском и английском: добавлены модели, задания, результаты и ссылки на протокол. На главной обновлены панель версии, копируемые инструкции и число знаков. Вместе обновлены скачиваемые файлы и исходники для Hugging Face.
-- Средняя и краткая редакции обновлены отдельно. Их поведение, установка в приложениях и будущие ответы этим сравнением не проверялись.
+- На страницах выпуска объяснено, что проверялось, что показали результаты и почему сохранена полная инструкция. Из описания на русском и английском можно сразу перейти к заданиям, ответам и оценкам.
+- На главной версия, копируемые инструкции и число знаков приведены к 1.3.3. Вместе обновлены скачиваемые файлы и исходники для Hugging Face.
+- В выпуск вошла полная инструкция, с которой началось сравнение, без изменений. Альтернативная редакция не выполнила условия замены, заданные до теста.
+- Средняя и краткая редакции обновлены отдельно. Их поведение этим сравнением не проверялось.
+
+<details>
+<summary>Модели, задания и результаты</summary>
+
+Сравнение охватило 12 заданий, шесть русских и шесть английских, по два запроса в каждом из трёх условий: без beforeword, с полной инструкцией и с альтернативной редакцией. Проверялись прочтение, точный пересказ, выводы из неполных записей, копирование символов и JSON, арифметика, работа с текстовым описанием недоступных аудио и видео.
+
+API-запросы получили семь моделей: Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b и GLM-5.3. Из **504 запросов получено 500 ответов**; четыре технических пропуска учтены отдельно.
+
+На одинаковых 158 сопоставимых ответах для каждого условия задача и требования к формату выполнены так:
+
+| Инструкция | Ответы, выполнившие оба требования |
+| --- | ---: |
+| Без beforeword | 109 из 158 |
+| Полная инструкция, вошедшая в 1.3.3 | 124 из 158 |
+| Альтернативная редакция | 121 из 158 |
+
+Здесь подсчитано выполнение самой задачи и её формата — например, расчёт без лишнего текста или только запрошенный JSON. Это не общая оценка полезности модели.
+
+По сохранению условий, различению сообщения и вывода, учёту недостающих данных результат альтернативной редакции выше: **105 из 134** сопоставимых ответов против **97** у сохранённой инструкции. В пяти сочетаниях задания и модели сохранённая инструкция выполнила все критерии в обоих повторах, а альтернативная — не выполнила хотя бы в одном; обратных случаев также пять. Требуемого для замены устойчивого улучшения с сохранением выполнения задач и формата не получилось.
+
+Результаты относятся к записанным заданиям, моделям и настройкам. Повторные ответы не являются независимыми испытаниями; неясные оценки сохранены в протоколе. Сокращённые редакции, установка в приложениях и будущие ответы этим сравнением не проверялись.
+
+Подробный разбор сравнения приведён в [методе и результатах](references/evaluation.ru.md). В [полном протоколе](references/comparison-1.3.3.json) сохранены точные идентификаторы моделей, провайдеры, настройки, тексты инструкций, задания, ответы и оценки.
+
+</details>
 
 ## 1.3.2
 
