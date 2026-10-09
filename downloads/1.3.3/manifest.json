@@ -10,7 +10,7 @@
     ".github/ISSUE_TEMPLATE/report_ru.yml": "bd06feec26b9f8532ca7b839d227d66dad8109848e2da984be38b71f54052190",
     ".github/workflows/validate.yml": "2a929bd2c670cca98157d39dad56dbf830397662ecf57d4b0701cedcfada08fe",
     ".gitignore": "96c739299c21d2f6657630817a9c4efc752c1d3e94166c08703df8b638ae68dd",
-    "CHANGELOG.md": "0316ed8a5ab39fa72ef1fd2da07abeb383880a05c233e3ecffeed7d84c9a10e1",
+    "CHANGELOG.md": "dbc9f35ddf2cc0a1264a6a4d23a7c57ecc7ce0a936605b7489d9b66711509f05",
     "README.md": "759f3b56ce7385d407d30fa56bdd6d715b7cc1304b7f27a2a1149b71e38f3b42",
     "README.ru.md": "a14d27981d366b8e2fc21b8673688afdf644771a863b10664e5fe958fd994a59",
     "SKILL.md": "742761684989550b80cd0e161bf5a629af2adb741347f6fbe652e91003f3c1f3",
@@ -131,7 +131,7 @@
     "scripts/build_downloads.py": "4c9beae31b4bc2b9086f7ced3d8a365cfb06862129aefce9083891164af4f59b",
     "scripts/build_guide.py": "7ba7fd84d938c152ee2adcff7e6de85d26065a812c74b51b530d1d562d5a4cb7",
     "scripts/build_payload.py": "6fee9e63cc69d74e15793589bd647eeba2fc0a4c6e5d066076ca2c9606818d3f",
-    "scripts/build_public.py": "90b3ddc4c789f03bf0285bba5dda6315a6312105d4f0bb725853c0437c498da3",
+    "scripts/build_public.py": "97966272c7475aef48f1273c49e2b7650c59af953920c93b3f7134079ab9110d",
     "scripts/check_release_sources.py": "4f3c70fd987bd86c9303f5acceadda78f99d3717c0b4a29e6b93cbed0cdb603f",
     "scripts/extract_response.py": "7bd870a055fbc4502362091649f2e93afaaae920138433d926ea83d1608b4835",
     "scripts/package_plugins.py": "1c17a31df3c74eceb3952720f856994d3281621537ce5a2109d0a732336e3715",
@@ -144,7 +144,7 @@
     "scripts/test_guide.cjs": "cf4fc392594223e73edea89508df5c11ad3a4787d940d14f467a8506f41b7588",
     "scripts/test_packages.py": "2477d9eaec4e951a7e438ff8b04771bec23f2e7acc1b44d4c9e30e31527a4339",
     "scripts/test_payload.py": "92dafc55926ebb03552f2fc87e552ea6f0158329dfe85f50fc59c43325eec030",
-    "scripts/test_public.cjs": "0794a260e8aa4773780f2ef2e76caed37fb95355559e1156bdef8714ea9418c2",
+    "scripts/test_public.cjs": "92891a41d10804d61a21908ae4e0e19df74ca9f49248e9f73bb37ded154b88ec",
     "scripts/test_release_contract.py": "a073827b17d85475d1e94d178bf80c739f91bbc349a31e6a581f2882e78f3cff",
     "scripts/test_updates.cjs": "1276d95f28ccd5fd7771becce2282b856ad8f6db729c906eaf41f9af9ecb842a",
     "scripts/test_updates.py": "cdc912891b4ed0f3b2bed6d5845ca646de38bb301d44cf62b75864c4e708b3fe",
@@ -168,8 +168,8 @@
       "bytes": 9119
     },
     "beforeword_AI_1.3.3.html": {
-      "sha256": "9a593e417447866932fc18565a15d4267921f19a281a94664acfc0b6b88ce8f1",
-      "bytes": 3743567
+      "sha256": "3d4e548d0a097a88f73453de131f57d919ab2ebd30e788e6c9099076837055a1",
+      "bytes": 3743687
     },
     "beforeword_claude_plugin_EN_1.3.3.zip": {
       "sha256": "119ded50186df5e7ba8d3951f6f24ec51caa49e5f30c99021fb9075f2d841f98",
@@ -212,8 +212,8 @@
       "bytes": 7902
     },
     "beforeword_toolkit_1.3.3.zip": {
-      "sha256": "d0d68a9acd19790306e93fc0b4aabf50bc58e03138526ababee448bb1b760f71",
-      "bytes": 2428104
+      "sha256": "f7c882917c1dedc57de663dd0f51f77802c9de3435c9d5eaf955b7ace4ab205d",
+      "bytes": 2428193
     }
   }
 }

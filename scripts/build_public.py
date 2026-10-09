@@ -52,7 +52,7 @@ COPY = {
   'self_scope':'Это относится ко всем письменным формам без исключений. Задания, их разбор, собственный ответ ИИ и beforeword тоже написаны и остаются в том же разборе.',
   'start':'Начать в своём чате','quick_label':'ТРИ ШАГА','quick_title':'Скопируй. Вставь. Задай вопрос.',
   'step1':'Скопируй инструкцию','copy_full':'Скопировать полную','copy_medium':'Скопировать · до 5\u202f000 знаков','download_txt':'Скачать TXT',
-  'full_note':'Выбери одну редакцию: полную для чата или сокращённую для поля с лимитом 5\u202f000 знаков.',
+  'full_note':'Выбери одну редакцию: полную для сообщения в чате или сокращённую для поля с лимитом 5\u202f000 знаков. Скопируй выбранный текст целиком.',
   'no_js':'Кнопки копирования требуют JavaScript. Открой нужную инструкцию ниже, выдели текст и скопируй вручную. У каждой редакции есть ссылка «Скачать TXT».',
   'step2':'Открой свой ИИ-чат','open_note':'Выбери приложение, которым пользуешься. Ссылка открывает его в новой вкладке.',
   'apps_label':'Открыть ИИ-приложение','step3':'Вставь в новый разговор',
@@ -120,7 +120,7 @@ COPY = {
   'self_scope':'This applies to every written form, without exception. The tasks, this explanation, the AI’s own response, and beforeword itself are also writing and remain within the same examination.',
   'start':'Start in your own chat','quick_label':'THREE STEPS','quick_title':'Copy. Paste. Ask.',
   'step1':'Copy the instructions','copy_full':'Copy full instructions','copy_medium':'Copy · up to 5,000 characters','download_txt':'Download TXT',
-  'full_note':'Choose one edition: full instructions for a chat, or the shorter edition for a field limited to 5,000 characters.',
+  'full_note':'Choose one edition: the full text for a chat message, or the shorter text for a field limited to 5,000 characters. Copy the chosen edition in full.',
   'no_js':'Copy buttons require JavaScript. Open the instructions you need below, select the text, and copy it manually. Each edition also has a TXT download.',
   'step2':'Open your AI chat','open_note':'Choose the app you use. Each link opens it in a new tab.',
   'apps_label':'Open an AI app','step3':'Paste into a new conversation',
@@ -276,7 +276,6 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
     if len(medium) > 5000:
         raise ValueError(f'The {language} 5,000-character edition exceeds its limit.')
     values = {key.upper():escape(value) for key,value in t.items() if isinstance(value,str)}
-    values['FULL_NOTE'] += ' ' + escape(read(f'assets/scope.{language}.txt').strip())
     values.update({'LANG':language,'VERSION':escape(build_guide.VERSION),'LOCALE':'ru_RU' if language == 'ru' else 'en_US',
         'CANONICAL':'https://beforeword.xyz'+route+('en/' if language == 'en' else ''),
         'ALTERNATE_RU_URL':'https://beforeword.xyz'+route,

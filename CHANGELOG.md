@@ -10,6 +10,7 @@ Each entry describes that release or dated update. Test results apply to the ins
 
 - The release pages now explain what was tested, what the results show and why the full instruction was retained. Russian and English readers can open the tasks, answers and assessments directly from the release description.
 - The homepage version, copied instructions and character counts now match 1.3.3. Downloadable files and the Hugging Face source were updated together.
+- The setup steps clarify which edition to choose and how to copy it in full.
 - The release includes the full instruction used at the start of the comparison, unchanged. The alternative did not meet the replacement criteria set before the test.
 - The medium and compact editions were revised separately. Their performance was not measured by this comparison.
 
@@ -42,6 +43,7 @@ The [method and results](references/evaluation.md) explain the comparison in det
 
 - На страницах выпуска объяснено, что проверялось, что показали результаты и почему сохранена полная инструкция. Из описания на русском и английском можно сразу перейти к заданиям, ответам и оценкам.
 - На главной версия, копируемые инструкции и число знаков приведены к 1.3.3. Вместе обновлены скачиваемые файлы и исходники для Hugging Face.
+- В шагах подключения пояснено, какую редакцию выбрать и как скопировать её целиком.
 - В выпуск вошла полная инструкция, с которой началось сравнение, без изменений. Альтернативная редакция не выполнила условия замены, заданные до теста.
 - Средняя и краткая редакции обновлены отдельно. Их поведение этим сравнением не проверялось.
 
