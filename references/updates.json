@@ -4,7 +4,7 @@
   "scope": "ai-instructions",
   "status": "public-testing",
   "current_version": "1.3.3",
-  "updated": "2026-10-09T14:38:00Z",
+  "updated": "2026-10-09T15:20:00Z",
   "urls": {
     "ru": "https://beforeword.xyz/model/#bw-updates",
     "en": "https://beforeword.xyz/model/en/#bw-updates"
@@ -19,18 +19,19 @@
   "languages": {
     "ru": {
       "title": "beforeword — обновления инструкции для ИИ",
-      "intro": "В 1.3.3 опубликовано обоснование выбора полной инструкции и обновлены сокращённые редакции.",
+      "intro": "Сравнили ответы семи моделей на одинаковые задания: без beforeword, с полной инструкцией и с предложенным новым вариантом.",
       "changes": [
-        "В выпуск вошёл полный текст, с которым началось сравнение. Альтернативная редакция не выполнила заранее заданные условия замены.",
-        "Средняя и краткая редакции обновлены отдельно. Их поведение этим тестом не проверялось.",
-        "Задания, ответы моделей и оценки открыты: можно проверить, на чём основан выбор."
+        "Цель теста — проверить, помогает ли beforeword выполнять запрос и не приписывать исходному тексту то, чего в нём нет. Отдельно оценивались соблюдение формата, сохранение условий и различение сообщения и вывода.",
+        "Модели: Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b и GLM-5.3.",
+        "12 заданий: 6 русских и 6 английских. Пересказ, объяснение терминов, выводы из неполных записей, точное копирование, JSON и арифметика. Каждое задание отправлялось каждой модели дважды в каждом из трёх условий. Из 504 запросов получено 500 ответов; 4 завершились техническими ошибками.",
+        "Для сравнения выполнения задачи и формата взяты одинаковые задания с завершёнными ответами и оценками — по 158 ответов на условие. Оба требования выполнены: без beforeword — в 109 ответах, с полной инструкцией — в 124, с новым вариантом — в 121. Это результат выбранных заданий, а не общая оценка моделей."
       ],
       "comparison": {
         "summary": "Модели, задания и результаты",
         "report_label": "Полный протокол и ответы",
         "report_url": "https://beforeword.xyz/model/evaluation/",
         "question": "Может ли ответ выполнить запрос и сохранить нужный формат, отделяя исходный текст от добавленного прочтения и утверждений?",
-        "design": "{tasks} специально составленных заданий — {russian_tasks} русских и {english_tasks} английских. Каждое отправлялось каждой модели {repetitions} раза в трёх условиях: без beforeword, с полной инструкцией на момент начала теста и с альтернативной редакцией. Полная инструкция сохранена в 1.3.3; альтернативная редакция в выпуск не вошла.",
+        "design": "{tasks} специально составленных заданий — {russian_tasks} русских и {english_tasks} английских. Каждое отправлялось каждой модели {repetitions} раза в трёх условиях: без beforeword, с полной инструкцией на момент начала теста и с альтернативной редакцией.",
         "collection": "Из {requests} запросов получено {answers} ответов. {technical_gaps} технических пропуска и неясные оценки учтены отдельно.",
         "models_heading": "Семь моделей",
         "models_note": "Указаны модели и провайдеры, которым отправлялись запросы. Точные идентификаторы и настройки сохранены в протоколе.",
@@ -58,25 +59,26 @@
         "decision_heading": "Почему этот выбор",
         "boundary": "В отдельной части проверки ответ должен был сохранять исходные условия, не выдавать свой вывод за сообщённый факт и отмечать недостающие сведения. Альтернативная редакция выполнила эти требования в {C} из {total} сопоставимых ответов, а сохранённая полная инструкция — в {B}.",
         "stability": "В {B} сочетаниях задания и модели полная инструкция выполнила все критерии в обоих повторах, а альтернативная редакция не выполнила их хотя бы в одном. Обратных случаев также {C}.",
-        "decision": "Правило замены было записано до получения ответов: альтернативная редакция должна показать устойчивое улучшение, сохранив выполнение задач и формата. Эти условия не выполнены. Поэтому в 1.3.3 вошла полная инструкция, с которой началось сравнение, без последующей переработки.",
+        "decision": "Правило замены было записано до получения ответов: альтернативная редакция должна показать устойчивое улучшение, сохранив выполнение задач и формата. Эти условия не выполнены. Поэтому в 1.3.3 вошла полная инструкция, с которой началось сравнение, без последующей переработки. Средняя и краткая редакции обновлены отдельно; их поведение этим сравнением не проверялось.",
         "limits": "Это результаты 12 заданий при указанных моделях и настройках. Они не устанавливают превосходства на любых запросах или соблюдения инструкции в будущих ответах. Повторы не являются независимыми испытаниями. Сокращённые редакции и установка в приложениях этим тестом не проверялись.",
         "example": "Условный пример: «Датчик не передал данные». Из этой записи ещё не следует, что событие не произошло. Ответ должен сохранить это различие. Это пояснение принципа, а не ответ модели из теста."
       }
     },
     "en": {
       "title": "beforeword — AI instruction updates",
-      "intro": "Version 1.3.3 explains the choice of full instructions and updates the shorter editions.",
+      "intro": "Seven models answered the same tasks under three conditions: no beforeword instruction, the full instruction, and a proposed revision.",
       "changes": [
-        "The release includes the full text used at the start of the comparison. The alternative did not meet the replacement criteria set before testing.",
-        "The medium and compact editions were revised separately. Their performance was not measured by this test.",
-        "The tasks, model responses and assessments are published so readers can examine the basis for the choice."
+        "The test asked whether beforeword helps answers complete the request without attributing claims to the supplied text that it does not make. Assessments covered the requested format, preservation of the original conditions, and the distinction between reported information and inference.",
+        "Models: Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b and GLM-5.3.",
+        "There were 12 tasks: six in Russian and six in English. They covered restatement, definitions, reasoning from incomplete records, exact copying, JSON and arithmetic. Each task was sent to every model twice under each of the three conditions. The 504 requests produced 500 answers; four ended in technical errors.",
+        "Task completion and formatting were compared on the same tasks with completed answers and resolved assessments: 158 answers per condition. Both requirements were met by 109 answers without beforeword, 124 with the full instruction and 121 with the proposed revision. These are results for the selected tasks, not overall model ratings."
       ],
       "comparison": {
         "summary": "Models, tasks and results",
         "report_label": "Full protocol and answers",
         "report_url": "https://beforeword.xyz/model/evaluation/en/",
         "question": "Could an answer complete the task and follow the requested format while distinguishing the supplied text from added interpretations and claims?",
-        "design": "{tasks} purpose-written tasks: {russian_tasks} in Russian and {english_tasks} in English. Each was sent to each model {repetitions} times under three conditions: no beforeword instruction, the full instruction available at the start of the test, and an alternative version. Version 1.3.3 retains the full instruction; the alternative was not adopted.",
+        "design": "{tasks} purpose-written tasks: {russian_tasks} in Russian and {english_tasks} in English. Each was sent to each model {repetitions} times under three conditions: no beforeword instruction, the full instruction available at the start of the test, and an alternative version.",
         "collection": "There were {requests} requests and {answers} returned answers. The {technical_gaps} technical gaps and unresolved assessments remain separately recorded.",
         "models_heading": "Seven models",
         "models_note": "These are the models and providers used for the requests. The protocol includes the exact identifiers and settings.",
@@ -104,7 +106,7 @@
         "decision_heading": "Why this version was retained",
         "boundary": "A separate part of the test checked whether answers kept the original conditions, distinguished their own inferences from reported facts, and noted missing information. The alternative met these requirements in {C} of {total} comparable answers, against {B} for the retained full instructions.",
         "stability": "In {B} task–model combinations, the full instruction met every criterion on both attempts while the alternative failed at least one attempt. The reverse also occurred in {C} combinations.",
-        "decision": "The replacement rule was set before the answers were collected: the alternative had to show consistent improvement while preserving task completion and formatting. It did not meet those conditions, so 1.3.3 includes the full instruction used at the start of the comparison, without further revision.",
+        "decision": "The replacement rule was set before the answers were collected: the alternative had to show consistent improvement while preserving task completion and formatting. It did not meet those conditions, so 1.3.3 includes the full instruction used at the start of the comparison, without further revision. The medium and compact editions were revised separately; their performance was not measured in this comparison.",
         "limits": "These results concern 12 tasks and the recorded models and settings. They do not establish superiority on every request or guarantee adherence in future answers. Repeated answers are not independent trials. Short editions and installation in apps were not tested here.",
         "example": "Illustrative example: “The sensor sent no data.” That statement alone does not show that the event did not occur. The response should preserve this distinction. This explains the principle; it is not a model response from the test."
       }

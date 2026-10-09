@@ -10,7 +10,7 @@
     ".github/ISSUE_TEMPLATE/report_ru.yml": "bd06feec26b9f8532ca7b839d227d66dad8109848e2da984be38b71f54052190",
     ".github/workflows/validate.yml": "2a929bd2c670cca98157d39dad56dbf830397662ecf57d4b0701cedcfada08fe",
     ".gitignore": "96c739299c21d2f6657630817a9c4efc752c1d3e94166c08703df8b638ae68dd",
-    "CHANGELOG.md": "dbc9f35ddf2cc0a1264a6a4d23a7c57ecc7ce0a936605b7489d9b66711509f05",
+    "CHANGELOG.md": "128dd26e3ad75f94331f6481428d8bd76ccd5f5a666ace70a69ecb689e08f78d",
     "README.md": "759f3b56ce7385d407d30fa56bdd6d715b7cc1304b7f27a2a1149b71e38f3b42",
     "README.ru.md": "a14d27981d366b8e2fc21b8673688afdf644771a863b10664e5fe958fd994a59",
     "SKILL.md": "742761684989550b80cd0e161bf5a629af2adb741347f6fbe652e91003f3c1f3",
@@ -125,7 +125,7 @@
     "references/examples.md": "ad860d9437eba356330443031dda5663c71a3c880f515172dca8a43b5a239eb9",
     "references/platforms.json": "818b561d02aff5e5360f77fbfb2a072890106743fbb80a45656b5ae859343f3d",
     "references/release-contract.json": "d41dd03ba328c5130184c137bc7a30768904493a412da1ca0c617a990ddd993f",
-    "references/updates.json": "7f67bd33560a40739d7a4cb5061974d73a2b0427710092ea25d4905b90abcadf",
+    "references/updates.json": "9eea136e0684da68a87addb8c4cde0490dc5114c55e9db73f0ee18a59627eb65",
     "references/validation-1.2.4.json": "6a2edb9ce0279593024b88914a407454ef394509e7dd436a5e59d81a09451b56",
     "references/validation-2026-10-02.json": "c3a943c703b062ac0b1bc034b6c08141a99d8ec0e3c07145a0ad763fed3ab873",
     "scripts/build_downloads.py": "4c9beae31b4bc2b9086f7ced3d8a365cfb06862129aefce9083891164af4f59b",
@@ -168,8 +168,8 @@
       "bytes": 9119
     },
     "beforeword_AI_1.3.3.html": {
-      "sha256": "3d4e548d0a097a88f73453de131f57d919ab2ebd30e788e6c9099076837055a1",
-      "bytes": 3743687
+      "sha256": "9a35127afd49c1afbd2c60d2820f8b01ab947116b47b9df3c7b4d9c0f9c2d12d",
+      "bytes": 3743903
     },
     "beforeword_claude_plugin_EN_1.3.3.zip": {
       "sha256": "119ded50186df5e7ba8d3951f6f24ec51caa49e5f30c99021fb9075f2d841f98",
@@ -212,8 +212,8 @@
       "bytes": 7902
     },
     "beforeword_toolkit_1.3.3.zip": {
-      "sha256": "f7c882917c1dedc57de663dd0f51f77802c9de3435c9d5eaf955b7ace4ab205d",
-      "bytes": 2428193
+      "sha256": "8016b73cf93494c6894ba1537984b3579569a21941520257ce76f3938479389e",
+      "bytes": 2428354
     }
   }
 }

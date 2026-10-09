@@ -8,16 +8,9 @@ Each entry describes that release or dated update. Test results apply to the ins
 
 ### English
 
-- The release pages now explain what was tested, what the results show and why the full instruction was retained. Russian and English readers can open the tasks, answers and assessments directly from the release description.
-- The homepage version, copied instructions and character counts now match 1.3.3. Downloadable files and the Hugging Face source were updated together.
-- The setup steps clarify which edition to choose and how to copy it in full.
-- The release includes the full instruction used at the start of the comparison, unchanged. The alternative did not meet the replacement criteria set before the test.
-- The medium and compact editions were revised separately. Their performance was not measured by this comparison.
-
-<details>
-<summary>Models, tasks and results</summary>
-
 The comparison used 12 tasks, six in Russian and six in English, with two attempts under each of three conditions: no beforeword instruction, the full instruction, and an alternative version. Tasks covered interpretation, careful restatement, incomplete records, exact copying and JSON, arithmetic, and written descriptions of unavailable audio or video.
+
+Seven models received the same tasks with no beforeword instruction, with the full instruction, and with an alternative version. The test checked whether answers completed the task in the requested format, preserved the supplied conditions, and distinguished reported information from added inferences.
 
 Seven models received the API requests: Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b and GLM-5.3. There were **504 requests and 500 answers**; four technical gaps were recorded separately.
 
@@ -37,22 +30,15 @@ These results concern the recorded tasks, models and settings. Repeated answers 
 
 The [method and results](references/evaluation.md) explain the comparison in detail. The [full protocol](references/comparison-1.3.3.json) preserves the exact model identifiers, providers, settings, instruction texts, tasks, answers and assessments.
 
-</details>
+The medium and compact editions were revised separately; this comparison did not test them. The homepage, copy buttons and downloads now provide the 1.3.3 texts.
 
 ### Русский
 
-- На страницах выпуска объяснено, что проверялось, что показали результаты и почему сохранена полная инструкция. Из описания на русском и английском можно сразу перейти к заданиям, ответам и оценкам.
-- На главной версия, копируемые инструкции и число знаков приведены к 1.3.3. Вместе обновлены скачиваемые файлы и исходники для Hugging Face.
-- В шагах подключения пояснено, какую редакцию выбрать и как скопировать её целиком.
-- В выпуск вошла полная инструкция, с которой началось сравнение, без изменений. Альтернативная редакция не выполнила условия замены, заданные до теста.
-- Средняя и краткая редакции обновлены отдельно. Их поведение этим сравнением не проверялось.
-
-<details>
-<summary>Модели, задания и результаты</summary>
-
-Сравнение охватило 12 заданий, шесть русских и шесть английских, по два запроса в каждом из трёх условий: без beforeword, с полной инструкцией и с альтернативной редакцией. Проверялись прочтение, точный пересказ, выводы из неполных записей, копирование символов и JSON, арифметика, работа с текстовым описанием недоступных аудио и видео.
+Семь моделей получили одинаковые задания без beforeword, с полной инструкцией и с её альтернативной редакцией. Проверялось выполнение задачи и формата, сохранение исходных условий и различение сообщённого и добавленных выводов.
 
 API-запросы получили семь моделей: Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b и GLM-5.3. Из **504 запросов получено 500 ответов**; четыре технических пропуска учтены отдельно.
+
+Сравнение охватило 12 заданий, шесть русских и шесть английских, по два запроса в каждом из трёх условий: без beforeword, с полной инструкцией и с альтернативной редакцией. Проверялись прочтение, точный пересказ, выводы из неполных записей, копирование символов и JSON, арифметика, работа с текстовым описанием недоступных аудио и видео.
 
 На одинаковых 158 сопоставимых ответах для каждого условия задача и требования к формату выполнены так:
 
@@ -70,7 +56,7 @@ API-запросы получили семь моделей: Qwen3.8-27B, DeepSe
 
 Подробный разбор сравнения приведён в [методе и результатах](references/evaluation.ru.md). В [полном протоколе](references/comparison-1.3.3.json) сохранены точные идентификаторы моделей, провайдеры, настройки, тексты инструкций, задания, ответы и оценки.
 
-</details>
+Средняя и краткая редакции обновлены отдельно; этим сравнением они не проверялись. На главной, в кнопках копирования и скачиваемых файлах размещены тексты 1.3.3.
 
 ## 1.3.2
 
