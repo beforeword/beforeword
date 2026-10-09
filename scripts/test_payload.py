@@ -188,17 +188,16 @@ class PayloadTests(unittest.TestCase):
             self.assertEqual(source.read_text(), 'keep input')
             self.assertEqual(history.read_text(), '[]')
 
-    def test_language_and_per_turn_scope(self):
+    def test_language_and_per_turn_exact_core(self):
         for language in module.LANGUAGES:
             core = module.read_utf8(module.ASSETS / ('core.' + language + '.txt'), 'core')
-            scope = module.read_utf8(module.ASSETS / ('scope.' + language + '.txt'), 'scope').rstrip('\n')
             for provider in module.PROVIDERS:
                 result = module.build_payload(provider, 'test', 'next', language, self.history)
                 if provider == 'openai': instruction = result['instructions']
                 elif provider == 'anthropic': instruction = result['system']
                 elif provider == 'gemini': instruction = result['system_instruction']
                 else: instruction = result['input' if provider == 'grok' else 'messages'][0]['content']
-                self.assertEqual(instruction, scope + '\n\n' + core)
+                self.assertEqual(instruction, core)
 
     def test_api_registry_has_seven_sources_headers_and_explicit_qwen_endpoint(self):
         path = SCRIPT.parent.parent / 'references' / 'api.json'

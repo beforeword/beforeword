@@ -3,8 +3,8 @@
   "project": "beforeword",
   "scope": "ai-instructions",
   "status": "public-testing",
-  "current_version": "1.3.2",
-  "updated": "2026-10-08T18:44:42Z",
+  "current_version": "1.3.3",
+  "updated": "2026-10-09T12:22:31Z",
   "urls": {
     "ru": "https://beforeword.xyz/model/#bw-updates",
     "en": "https://beforeword.xyz/model/en/#bw-updates"
@@ -21,20 +21,20 @@
       "title": "beforeword — обновления инструкции для ИИ",
       "intro": "Инструкция beforeword проходит публичное тестирование. Это не финальная редакция.",
       "changes": [
-        "Уточнено: выбранное прочтение само по себе не устанавливает приписанного. Это не запрет на обоснованные выводы и не изменение границы между записью и называемым.",
-        "Уточнены условие в примере А/Б, английский разбор «I understand» и прямо сообщённое требование в рассказе об имени.",
-        "На странице, в руководстве и пакетах используется утверждённый знак beforeword.",
-        "Прежние записи ответов сохранены с версиями использованных инструкций. Новая серия ответов модели для 1.3.2 не заявляется."
+        "После заранее заданного сравнения сохранён полный вариант B. Получено 500 итоговых ответов из 504 запросов; четыре технических пропуска и неразрешённые оценки сохранены отдельно.",
+        "У сокращённого кандидата C и B по пять устойчивых побед в полных кластерах. C не прошёл условия замены; это не доказательство общего превосходства B над отсутствием инструкции.",
+        "Полные тексты при копировании, скачивании и сборке API передаются точно; навыки содержат отдельную обёртку. Средняя и краткая редакции обновлены отдельно, без переноса на них результатов полного текста.",
+        "Сохранены задания, ответы, исходные оценки, разбор разногласий и правило выбора. Подготовка исходников и пакетов не означает установку или публикацию в каталоге."
       ]
     },
     "en": {
       "title": "beforeword — AI instruction updates",
       "intro": "The beforeword instructions are in public testing. This is not the final version.",
       "changes": [
-        "Clarified that a reading does not establish an attribution by itself. This does not rule out supported conclusions or alter the boundary between writing and what it names.",
-        "Clarified the A/B condition, the reading of “I understand”, and the explicitly reported requirement in the name example.",
-        "The page, guide and packages use the approved beforeword mark.",
-        "Earlier response records retain the versions of the instructions used. No new model-response run is claimed for 1.3.2."
+        "The prospective comparison retained full candidate B. It received 500 final answers from 504 requests; four collection gaps and unresolved judgments remain separately recorded.",
+        "C and B each had five stable wins in complete clusters. C did not pass the replacement rule; this does not establish general superiority of B over no instruction.",
+        "Full copy, download and API paths preserve the exact core; skills add a separate wrapper. Medium and compact editions were updated separately, without transferring full-text results to them.",
+        "The record preserves tasks, answers, original reviews, disagreement adjudications and the selection rule. Preparing sources and packages does not establish installation or directory publication."
       ]
     }
   }

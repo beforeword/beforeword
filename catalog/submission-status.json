@@ -101,26 +101,22 @@
     "The package build manifest describes generated files; this record describes the portal attempt."
   ],
   "prepared_update": {
-    "instruction_version": "1.3.2",
-    "prepared_on": "2026-10-08",
-    "record_scope": "Package preparation before publication of the new source commit; directory submission and live publication are separate actions.",
+    "instruction_version": "1.3.3",
+    "prepared_on": "2026-10-09",
+    "record_scope": "Reviewed source and package preparation only; no directory upload, submission, publication or hosted deployment of 1.3.3 is established by this record.",
+    "selected_full_core": "B",
     "openai": {
-      "package": "catalog/packages/beforeword_openai_directory_1.3.2.zip",
+      "package": "catalog/packages/beforeword_openai_directory_1.3.3.zip",
       "submitted": false,
-      "observation": "The portal requires sign-in; a new package has not been uploaded."
+      "observation": "The 2026-10-09 10:57 UTC portal read required sign-in; a 1.3.3 package has not been uploaded."
     },
     "claude": {
       "source_path": "plugins/claude/beforeword",
       "branch": "main",
       "submitted": false,
-      "observation": "At preparation,1.3.1 had passed scanning and publication was requested.1.3.2 had not yet been pushed or scanned;1.2.4 remained live.",
-      "icon_upload": {
-        "uploaded": true,
-        "review_status": "waiting-for-review",
-        "asset": "catalog/assets/logo.png",
-        "sha256": "19060387d95ba7e46f079af0f7cdd9a9ab77c8e5fbad7b530b2f6c86e2bfed9e",
-        "observation": "Portal confirmed: Icon uploaded. It’s waiting for review. It is not shown on the public listing until Anthropic approves it."
-      }
+      "observation": "The 2026-10-09 10:57 UTC portal read showed 1.2.4 Serving, a pending publication request for 1.3.1 and 1.3.2 Approved. The newer publish button was disabled and the icon was waiting for review. This is not a submission or serving record for 1.3.3.",
+      "published_version_observed": "1.2.4",
+      "published_commit_observed": "6df13fef64a039466918b8d3ef9e6ee1a3c52968"
     }
   },
   "update_history": [
@@ -160,6 +156,29 @@
         "source_commit": "c8954c5d5bc9ede1623320e2a4f8928176ac5983",
         "publish_requested": true,
         "published": false
+      }
+    },
+    {
+      "instruction_version": "1.3.2",
+      "prepared_on": "2026-10-08",
+      "record_scope": "Package preparation before publication of the new source commit; directory submission and live publication are separate actions.",
+      "openai": {
+        "package": "catalog/packages/beforeword_openai_directory_1.3.2.zip",
+        "submitted": false,
+        "observation": "The portal requires sign-in; a new package has not been uploaded."
+      },
+      "claude": {
+        "source_path": "plugins/claude/beforeword",
+        "branch": "main",
+        "submitted": false,
+        "observation": "At preparation,1.3.1 had passed scanning and publication was requested.1.3.2 had not yet been pushed or scanned;1.2.4 remained live.",
+        "icon_upload": {
+          "uploaded": true,
+          "review_status": "waiting-for-review",
+          "asset": "catalog/assets/logo.png",
+          "sha256": "19060387d95ba7e46f079af0f7cdd9a9ab77c8e5fbad7b530b2f6c86e2bfed9e",
+          "observation": "Portal confirmed: Icon uploaded. It’s waiting for review. It is not shown on the public listing until Anthropic approves it."
+        }
       }
     }
   ]

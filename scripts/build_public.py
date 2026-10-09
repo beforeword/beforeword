@@ -59,7 +59,7 @@ COPY = {
   'paste_note':'Отправь инструкцию первым сообщением. Следующим сообщением задай свой вопрос или пришли текст для разбора.',
   'chat_scope':'Инструкция передаётся в этот разговор, пока она доступна в его контексте. Для нового разговора вставь её снова или используй настройку приложения ниже. Согласие модели и сообщение «режим включён» не заменяют чтение ответа.',
   'read_instruction':'Прочитать полную инструкцию','read_medium':'Инструкция до 5\u202f000 знаков','characters':'знаков',
-  'medium_note':'Самостоятельная редакция для поля с ограничением длины. Скопируй весь текст целиком.',
+  'medium_note':'Самостоятельная редакция для поля с ограничением длины. Скопируй весь текст целиком. Эта сокращённая редакция не проверялась в сравнении 1.3.3; результаты полной инструкции к ней не переносятся.',
   'medium_settings_link':'Для поля с лимитом 5\u202f000 знаков — открыть инструкцию',
   'example_label':'СОСТАВЛЕННЫЕ ПРИМЕРЫ','example_title':'Что добавляет ответ?',
   'example_note':'Примеры составлены для этой страницы. Это пояснения способа чтения, а не результаты испытаний моделей.',
@@ -127,7 +127,7 @@ COPY = {
   'paste_note':'Send the instructions as the first message. Send your question or the text to examine in the next message.',
   'chat_scope':'The instructions are supplied to this conversation while they remain available in its context. Paste them again in a new conversation, or use the app settings below. Model agreement or a “mode activated” message does not replace examining its response.',
   'read_instruction':'Read the full instructions','read_medium':'Instructions · up to 5,000 characters','characters':'characters',
-  'medium_note':'A self-contained edition for a field with a character limit. Copy the complete text.',
+  'medium_note':'A self-contained edition for a field with a character limit. Copy the complete text. This shorter edition was not tested in the 1.3.3 comparison; full-text results do not transfer to it.',
   'medium_settings_link':'For a 5,000-character field — open the instructions',
   'example_label':'CONSTRUCTED EXAMPLES','example_title':'What does a response add?',
   'example_note':'These examples were written for this page to explain the reading method. They are not model test results.',
@@ -171,7 +171,7 @@ COPY = {
 }
 
 def read(path: str) -> str:
-    return (ROOT / path).read_text(encoding='utf-8')
+    return (ROOT / path).read_bytes().decode('utf-8')
 
 def sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
@@ -270,12 +270,13 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         report_title, report_content = parse_report(read(source))
         t['title'] = report_title
         t['description'] = ('Методика чтения ответов, сохранённые сравнения и технические проверки beforeword.' if language == 'ru' else 'Reading criteria, recorded comparisons, and technical checks for beforeword.')
-    full = read(f'assets/scope.{language}.txt').rstrip('\n')+'\n\n'+read(f'assets/core.{language}.txt')
+    full = read(f'assets/core.{language}.txt')
     medium = read(f'assets/medium.{language}.txt')
     compact = read(f'assets/compact.{language}.txt')
     if len(medium) > 5000:
         raise ValueError(f'The {language} 5,000-character edition exceeds its limit.')
     values = {key.upper():escape(value) for key,value in t.items() if isinstance(value,str)}
+    values['FULL_NOTE'] += ' ' + escape(read(f'assets/scope.{language}.txt').strip())
     values.update({'LANG':language,'VERSION':escape(build_guide.VERSION),'LOCALE':'ru_RU' if language == 'ru' else 'en_US',
         'CANONICAL':'https://beforeword.xyz'+route+('en/' if language == 'en' else ''),
         'ALTERNATE_RU_URL':'https://beforeword.xyz'+route,
@@ -338,6 +339,7 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
     return result
 
 def build(output: Path, repo_url: str | None = None) -> Path:
+    build_guide.require_selected(ROOT)
     output = output.resolve()
     for owned in ('assets','references','scripts','docs','.github'):
         source_root = ROOT / owned
@@ -357,7 +359,7 @@ def build(output: Path, repo_url: str | None = None) -> Path:
     connectors = json.loads(read('references/connectors.json'))
     aliases = {}
     for language in ('ru','en'):
-        full = read(f'assets/scope.{language}.txt').rstrip('\n')+'\n\n'+read(f'assets/core.{language}.txt')
+        full = read(f'assets/core.{language}.txt')
         medium = read(f'assets/medium.{language}.txt')
         compact = read(f'assets/compact.{language}.txt')
         for prefix,content,source in (('',full,'full'),('full-',full,'full'),('5000-',medium,'medium'),('compact-',compact,'compact'),('micro-',compact,'compact')):
@@ -375,7 +377,7 @@ def build(output: Path, repo_url: str | None = None) -> Path:
         report_directory = model/'evaluation'/('en' if language == 'en' else '')
         report_directory.mkdir(parents=True,exist_ok=True)
         (report_directory/'index.html').write_text(render(language,bundles,connectors,repo_url,evaluation=True),encoding='utf-8')
-    for name in ('evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md'):
+    for name in ('comparison-1.3.3.json','evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md'):
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))

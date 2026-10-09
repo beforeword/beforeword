@@ -2,13 +2,13 @@
 """Render the public instruction status and publish its static update feeds."""
 from __future__ import annotations
 
-import ast
 import hashlib
 from html import escape
 import json
 from pathlib import Path
 from urllib.parse import quote, urlencode
 import xml.etree.ElementTree as ET
+from release_contract import load_contract
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -110,14 +110,7 @@ def _language(language: str) -> str:
 def load() -> dict:
     """Read the public metadata; reject a stale release number at build time."""
     data = json.loads((ROOT / 'references' / 'updates.json').read_text(encoding='utf-8'))
-    source = ast.parse((ROOT / 'scripts' / 'build_guide.py').read_text(encoding='utf-8'))
-    versions = [
-        ast.literal_eval(node.value)
-        for node in source.body
-        if isinstance(node, ast.Assign)
-        and any(isinstance(target, ast.Name) and target.id == 'VERSION' for target in node.targets)
-    ]
-    if versions != [data['current_version']]:
+    if load_contract(ROOT)['version'] != data['current_version']:
         raise ValueError('Public update version does not match the instruction release.')
     if data['status'] != 'public-testing':
         raise ValueError('The public-test component requires public-testing metadata.')

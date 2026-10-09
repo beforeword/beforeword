@@ -2,6 +2,54 @@
 
 A response is compared with the supplied text and task. Instruction delivery, exact preservation and response content are examined separately. The instructions, criteria and this account remain written records.
 
+## beforeword 1.3.3: full-text comparison
+
+## Scope and decision
+
+There were 504 planned requests, 500 received final answers and 4 collection gaps. Selected arm: B; release-rule decision: `retain_B`. Complete three-arm, two-repetition clusters: 79 of 84.
+
+C did not pass the replacement rule: stable wins were tied at 5 / 5, and C met task and format in 121 of 158 answers, compared with B in 124 of the same 158. These paired results cover complete clusters only; the descriptive totals below use different denominators.
+
+## Descriptive response totals
+
+Cells show met / resolved for each measure. Repeated answers are not independent trials; missing and unresolved outcomes are excluded from these denominators and retained separately in the data. Empty axes are not counted.
+
+| Arm | All criteria | Boundary | Task | Format | Task AND format |
+| --- | --- | --- | --- | --- | --- |
+| No beforeword | 93 / 165 | 93 / 138 | 126 / 165 | 136 / 153 | 113 / 165 |
+| B | 103 / 165 | 98 / 138 | 130 / 166 | 145 / 152 | 127 / 166 |
+| C | 106 / 167 | 108 / 140 | 129 / 167 | 144 / 153 | 125 / 167 |
+
+The boundary axis measures specified beforeword distinctions. Failing it alone does not establish that an answer is unhelpful. Generic utility is limited here to task AND format; it is not an overall measure of model usefulness.
+
+## Complete clusters and selection rule
+
+| Group | Clusters | Stable wins C / B | Boundary C − B | Utility C − B | Utility C − none |
+| --- | --- | --- | --- | --- | --- |
+| All | 79 | 5 / 5 | 8 | -3 | 12 |
+| RU | 40 | 2 / 2 | 4 | -2 | 6 |
+| EN | 39 | 3 / 3 | 4 | -1 | 6 |
+| RU excluding exploratory | 34 | 1 / 2 | 4 | -2 | 6 |
+
+A stable C win means C meets every original criterion in both repetitions and B does not meet them in both; a stable B win is the reverse. Boundary and utility differences count paired responses within the same complete clusters. Utility means task AND format. All 15 rule gates and all three pairwise contrasts, including B versus no instruction, are retained in the JSON.
+
+## Evidence and limitations
+
+[Texts, tasks, answers, judgments and decision](comparison-1.3.3.json).
+
+These are descriptive results from one frozen experiment: 12 synthetic tasks, 7 routes, 3 arms and 2 actual repetitions. Repeated-response totals and criteria are not independent trials.
+
+Missing final content receives no semantic failure grade. Unclear and unresolved disagreements remain unresolved. An empty axis is not_applicable.
+
+Two separate review contexts do not establish independence across model families or a human panel. Exact-excerpt validation does not certify a judgment's semantic accuracy; absence observations remain reviewer claims.
+
+The decision implements the prospective full-text release rule. Retaining B does not establish that B beats no_beforeword. Neither outcome certifies 10/10, universal adherence or the causal contribution of an individual clause.
+
+The Russian Llama route is exploratory_author_unsupported_ru and is excluded in an additional analysis. Short editions, platform wrappers, installation and future chats were not tested here. Earlier studies are not pooled into a growth score.
+
+The C author and editorial-equivalence reviewer did not see the fresh tasks, responses or grades. Before freezing the texts, the coordinator, who had already read the fresh tasks, applied the reviewer's eight source-grounded repairs to scope, conditions and claim objects. No task-specific rules were added. Restricted author and reviewer access therefore does not mean the entire editorial process was blind to task content.
+
+
 ## Historical development check of 1.3.1
 
 [Two recorded responses](development-smoke-1.3.1.json) were collected in separate fresh Codex agent contexts, one task per context, using the full instruction from SKILL.md. The Russian task concerns a reported name, demands to respond and describe oneself, and no offered refusal. The English task examines whether a claim about what a word can do supports a conclusion about identity. Both ask the explanation to include its own additions. The record preserves the exact inputs, responses and instruction hashes. This is a two-task development check, without a baseline, repeated sampling, independent scoring, provider comparison or platform installation test.

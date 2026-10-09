@@ -61,7 +61,8 @@ function checkArtifacts() {
     assert.ok(!/__\w+__/.test(html), 'No unexpanded placeholders');
     assert.ok(!/<script[^>]+src="https?:/i.test(html), 'No remote scripts');
     assert.ok(!/\son\w+=/i.test(html), 'No inline event handlers');
-    const full = read(path.join(ROOT, 'assets', `scope.${lang}.txt`)).replace(/\n+$/, '') + '\n\n' + read(path.join(ROOT, 'assets', `core.${lang}.txt`));
+    const full = read(path.join(ROOT, 'assets', `core.${lang}.txt`));
+    assert.ok(decode(html).includes(read(path.join(ROOT, 'assets', `scope.${lang}.txt`)).trim()), 'Usage guidance is visible outside the copied core');
     const medium = read(path.join(ROOT, 'assets', `medium.${lang}.txt`));
     const compact = read(path.join(ROOT, 'assets', `compact.${lang}.txt`));
     assert.equal(decode(html.match(/<textarea id="instruction-text"[^>]*>([\s\S]*?)<\/textarea>/)[1]), full, 'Main copy field preserves full instructions');

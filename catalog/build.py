@@ -22,13 +22,12 @@ import zipfile
 sys.dont_write_bytecode = True
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from release_contract import VERSION, DATE, require_selected
+
 CATALOG = ROOT / "catalog"
 SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
-ZIP_DATE = (2026, 10, 8, 0, 0, 0)
-PINNED_CORE = {
-    "en": "5504aa1d763137f42cad1b7e54a0914648a5ca27ab0834e5b7e7f921306db425",
-    "ru": "14f3702c0e6283e7dcf1917c4d4a96d8cc14226440fd46728c4495ba4bca29e2"
-}
+ZIP_DATE = (*map(int, DATE.split("-")), 0, 0, 0)
 OWNED_TREES = ("plugins/claude/beforeword", "plugins/openai/beforeword",
                "catalog/packages", "catalog/gpt-store")
 HANDWRITTEN_FILES = {"catalog/gpt-store/README.md", "catalog/gpt-store/README.ru.md"}
@@ -67,7 +66,7 @@ def load_listing() -> dict:
     listing = json.loads((CATALOG / "listing.json").read_text(encoding="utf-8"))
     require(isinstance(listing, dict), "listing.json must contain an object")
     require(listing.get("name") == "beforeword", "Catalog name must be beforeword")
-    require(listing.get("version") == "1.3.2", "These source-core pins are for version 1.3.2")
+    require(listing.get("version") == VERSION, "Catalog and release-contract versions differ")
     publisher = listing.get("publisher", {})
     text_field(publisher.get("name"), "publisher.name")
     https_url(publisher.get("url"), "publisher.url")
@@ -114,11 +113,12 @@ def zip_bytes(files: dict[str, bytes]) -> bytes:
 
 def expected_outputs() -> tuple[dict[str, bytes], dict]:
     """Return expected file bytes and release metadata; never writes anything."""
+    contract = require_selected(ROOT)
     listing = load_listing()
     english, russian = (listing["locales"][language] for language in ("en", "ru"))
     core = {language: (ROOT / f"assets/core.{language}.txt").read_bytes() for language in ("en", "ru")}
     for language, data in core.items():
-        require(sha256(data) == PINNED_CORE[language], f"The {language} core 1.3.2 hash does not match")
+        require(sha256(data) == contract["core_sha256"][language], f"The selected {language} core hash does not match")
         data.decode("utf-8")
 
     approved_license = listing["license"]["status"] == "approved"
@@ -196,8 +196,7 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
 
     gpt_locales = {}
     for language in ("en", "ru"):
-        scope = (ROOT / f"assets/scope.{language}.txt").read_bytes().decode("utf-8")
-        instruction = scope.rstrip("\n") + "\n\n" + (ROOT / f"assets/medium.{language}.txt").read_text(encoding="utf-8")
+        instruction = (ROOT / f"assets/medium.{language}.txt").read_bytes().decode("utf-8")
         require(len(instruction) < 8000, f"GPT instructions in {language} must remain below 8000 characters")
         name = f"instructions.{language}.txt"
         outputs[f"catalog/gpt-store/{name}"] = instruction.encode("utf-8")
@@ -208,7 +207,7 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
             "instructionCharacters": len(instruction),
             "instructionEdition": "medium",
             "instructionSource": f"assets/medium.{language}.txt",
-            "scopeSource": f"assets/scope.{language}.txt",
+            "scopeIncludedInInstructionSource": True,
         }
     outputs["catalog/gpt-store/draft.json"] = json_bytes({
         "name": listing["name"], "version": listing["version"], "status": "prepared-not-created",

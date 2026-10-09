@@ -24,9 +24,14 @@ from mcp.shared.exceptions import McpError
 ROOT = Path(__file__).resolve().parent
 
 
-def expected_instructions() -> dict[str, bytes]:
+def expected_instructions() -> tuple[str, dict[str, bytes]]:
     manifest = json.loads((ROOT / "instructions.json").read_text(encoding="utf-8"))
-    assert manifest["version"] == "1.3.2"
+    contract_path = ROOT.parent.parent / "references/release-contract.json"
+    if contract_path.is_file():
+        contract = json.loads(contract_path.read_bytes())
+        assert contract["status"] == "selected", "Release selection is pending"
+        assert manifest["version"] == contract["version"], "Changed release version"
+        assert {language: entry["sha256"] for language, entry in manifest["instructions"].items()} == contract["core_sha256"], "Changed selected-core hashes"
     expected = {}
     for language, entry in manifest["instructions"].items():
         data = (ROOT / entry["file"]).read_bytes()
@@ -37,7 +42,7 @@ def expected_instructions() -> dict[str, bytes]:
             assert data == source.read_bytes(), f"Changed canonical {language} source"
         expected[language] = data
     assert set(expected) == {"en", "ru"}
-    return expected
+    return manifest["version"], expected
 
 
 def content_text(content: list) -> str:
@@ -47,7 +52,7 @@ def content_text(content: list) -> str:
 
 
 async def check(url: str) -> dict:
-    expected = expected_instructions()
+    instruction_version, expected = expected_instructions()
     counts = {"exact_retrievals": 0, "invalid_language_checks": 0}
     local = urlsplit(url).hostname in {"127.0.0.1", "localhost", "::1"}
     # Ignore proxy configuration only for loopback, where no network service is used.
@@ -117,7 +122,7 @@ async def check(url: str) -> dict:
                 return {
                     "ok": True,
                     "scope": "MCP HTTP protocol and exact instruction delivery; no model behavior tested",
-                    "instruction_version": "1.2.4",
+                    "instruction_version": instruction_version,
                     "client_environment": {
                         "python": sys.version.split()[0],
                         "gradio": importlib.metadata.version("gradio"),

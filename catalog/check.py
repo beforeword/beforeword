@@ -140,15 +140,16 @@ def run() -> dict:
     build.require(draft["status"] == "prepared-not-created", "GPT draft status must remain explicit")
     instruction_lengths = {}
     for language in ("en", "ru"):
-        scope = (build.ROOT / f"assets/scope.{language}.txt").read_bytes().decode("utf-8")
         medium = (build.ROOT / f"assets/medium.{language}.txt").read_bytes().decode("utf-8")
-        expected_instruction = scope.rstrip("\n") + "\n\n" + medium
         actual = (build.CATALOG / f"gpt-store/instructions.{language}.txt").read_bytes().decode("utf-8")
-        build.require(actual == expected_instruction, f"GPT {language} instructions do not preserve the exact sources")
+        build.require(actual == medium, f"GPT {language} instructions do not preserve the exact medium source")
         build.require(len(actual) < 8000, f"GPT {language} instruction exceeds the character budget")
         local = draft["locales"][language]
         build.require(local["instructionEdition"] == "medium", "GPT condensed edition must be explicit")
         build.require(local["instructionSource"] == f"assets/medium.{language}.txt", "GPT instruction source differs")
+        build.require(local["scopeIncludedInInstructionSource"] is True,
+                      "GPT scope must be included in the medium instruction source")
+        build.require("scopeSource" not in local, "GPT draft must not declare a second scope source")
         checked_reference(local["instructionsPath"], {f"instructions.{language}.txt"})
         build.require(local["instructionCharacters"] == len(actual), f"GPT {language} character count differs")
         build.require(local["starters"] == listing["locales"][language]["starters"], "GPT starters differ")

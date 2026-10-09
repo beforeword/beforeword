@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import ast
 from datetime import datetime
 import hashlib
 from html.parser import HTMLParser
@@ -14,6 +13,8 @@ import unittest
 import xml.etree.ElementTree as ET
 
 import public_updates
+import build_guide
+from release_contract import require_selected
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = None
@@ -80,12 +81,17 @@ class UpdatesDelivery(unittest.TestCase):
         cls.data = json.loads((ROOT / 'references/updates.json').read_text(encoding='utf-8'))
 
     def test_metadata_version_and_exact_json(self):
-        module = ast.parse((ROOT / 'scripts/build_guide.py').read_text(encoding='utf-8'))
-        versions = [ast.literal_eval(node.value) for node in module.body if isinstance(node, ast.Assign)
-                    and any(isinstance(target, ast.Name) and target.id == 'VERSION' for target in node.targets)]
-        self.assertEqual(versions, [self.data['current_version']])
+        contract = require_selected(ROOT)
+        self.assertEqual(build_guide.VERSION, contract['version'])
+        self.assertEqual(build_guide.DATE, contract['date_utc'])
+        self.assertEqual(self.data['current_version'], contract['version'])
         manifest = json.loads((SITE / 'model/release.json').read_text(encoding='utf-8'))
         self.assertEqual(manifest['version'], self.data['current_version'])
+        self.assertEqual(manifest['date_utc'], contract['date_utc'])
+        guide = json.loads((SITE / 'model/toolkit/beforeword_release.json').read_text(encoding='utf-8'))
+        self.assertEqual(guide['version'], contract['version'])
+        self.assertEqual(guide['date_utc'], contract['date_utc'])
+        self.assertEqual(guide['core_sha256'], contract['core_sha256'])
         self.assertEqual(self.data['status'], 'public-testing')
         self.assertEqual((SITE / 'model/updates.json').read_bytes(), (ROOT / 'references/updates.json').read_bytes())
         updated = datetime.fromisoformat(self.data['updated'].replace('Z', '+00:00'))

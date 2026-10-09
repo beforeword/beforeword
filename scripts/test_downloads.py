@@ -19,16 +19,15 @@ class DownloadTests(unittest.TestCase):
     def setUpClass(cls):
         cls.files = build_files()
 
-    def test_full_text_has_exact_scope_and_core(self):
+    def test_full_text_has_exact_core_and_editions_remain_separate(self):
         for language in ("ru", "en"):
-            scope = (ROOT / "assets" / f"scope.{language}.txt").read_bytes().decode("utf-8").rstrip("\n") + "\n\n"
             core = (ROOT / "assets" / f"core.{language}.txt").read_bytes().decode("utf-8")
             self.assertLessEqual(len(self.files[f"beforeword_compact_{language.upper()}.txt"].decode("utf-8")), 1500,
                                  "Compact instructions must fit the declared settings field")
             medium = self.files[f"beforeword_5000_{language.upper()}.txt"]
             self.assertLessEqual(len(medium.decode("utf-8")), 5000, "The complete medium edition fits 5,000 characters")
             self.assertEqual(medium, (ROOT / "assets" / f"medium.{language}.txt").read_bytes())
-            self.assertEqual(self.files[f"beforeword_core_{language.upper()}.txt"], (scope + core).encode("utf-8"))
+            self.assertEqual(self.files[f"beforeword_core_{language.upper()}.txt"], core.encode("utf-8"))
             self.assertEqual(self.files[f"beforeword_compact_{language.upper()}.txt"],
                              (ROOT / "assets" / f"compact.{language}.txt").read_bytes())
 
@@ -46,8 +45,7 @@ class DownloadTests(unittest.TestCase):
             self.assertIn('data-copy-details="medium-details"', rendered)
             self.assertIn(f'href="/model/beforeword-5000-{language}.txt"', rendered)
             self.assertNotIn('data-copy-target="instruction-text"', rendered)
-            scope = (ROOT / "assets" / f"scope.{language}.txt").read_text(encoding="utf-8").rstrip("\n") + "\n\n"
-            self.assertLess(len(scope + medium), 8000, "The GPT draft's medium edition plus scope also fits its field")
+            self.assertLess(len(medium), 8000, "The GPT draft uses the medium edition without a second scope prefix")
 
     def test_checksums_sizes_and_nonrecursive_source_archive(self):
         manifest = json.loads(self.files["manifest.json"])

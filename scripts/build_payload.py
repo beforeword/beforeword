@@ -72,9 +72,7 @@ def build_payload(provider, model, input_text, language="en", history=None, max_
     if type(max_tokens) is not int or max_tokens <= 0:
         raise ValueError("max_tokens must be a positive integer")
     messages = validate_history(history)
-    core = read_utf8(ASSETS / ("core." + language + ".txt"), "core instruction")
-    scope = read_utf8(ASSETS / ("scope." + language + ".txt"), "scope instruction").rstrip("\n")
-    instruction = scope + "\n\n" + core
+    instruction = read_utf8(ASSETS / ("core." + language + ".txt"), "core instruction")
     messages.append({"role": "user", "content": input_text})
     body = {"model": model}
     if provider == "openai":

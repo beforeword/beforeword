@@ -1,5 +1,14 @@
 # Changes / Изменения
 
+## 1.3.3
+
+- Retain the exact B full instruction under the frozen three-arm selection rule: 504 planned requests, 500 final answers, four collection gaps, and 79 complete three-arm/two-repetition clusters. C and B each had five stable whole-response wins; C had three fewer task-and-format passes than B in those clusters. Retaining B does not establish superiority over no instruction or certify universal adherence.
+- Preserve the exact B/C texts, synthetic tasks, answers, original reviews, adjudications, unresolved judgments and decision in `references/comparison-1.3.3.json`. Keep earlier studies under their original versions.
+- Make full website copying, TXT downloads and API preparation use the exact selected core. Keep skill wrappers separate, and synchronize RU/EN source files and the Hugging Face distributor source without claiming a hosted deployment.
+- Update separately edited medium and compact editions. Their behavior, platform wrappers and installations were not evaluated by the full-text comparison. Package preparation does not establish directory publication.
+- По заранее заданному правилу сохранён точный полный вариант B: 504 запроса, 500 итоговых ответов, четыре технических пропуска и 79 полных кластеров. У C и B по пять устойчивых побед; у C на три выполнения задачи и формата меньше в этих кластерах. Это не доказательство превосходства B над отсутствием инструкции и не удостоверение будущего соблюдения.
+- Сохранены точные тексты, задания, ответы, исходные оценки, разбор разногласий и неразрешённые случаи. Полные копии и API используют точное ядро; платформенные обёртки и сокращённые редакции отделены. Исходники и пакеты подготовлены без заявления о публикации или развёртывании.
+
 ## 1.3.2
 
 - Make the A/B condition explicit, remove the ambiguous English pronoun in the understanding example, and state the reported requirement directly in the constructed name account.

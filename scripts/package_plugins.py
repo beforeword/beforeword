@@ -15,9 +15,10 @@ import json
 from pathlib import Path
 import re
 import zipfile
+from release_contract import VERSION, require_selected
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_VERSION = "1.3.2"
+DEFAULT_VERSION = VERSION
 LANGUAGES = ("ru", "en")
 PLUGIN_SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 OPENAI_DOCS = "https://developers.openai.com/plugins/build/plugins"
@@ -41,11 +42,12 @@ def skill_text(language: str, name: str = "beforeword") -> str:
         raise ValueError("language must be 'ru' or 'en'")
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name):
         raise ValueError("skill name must use lowercase letters, digits and hyphens")
-    core = (ROOT / "assets" / f"core.{language}.txt").read_text(encoding="utf-8")
+    require_selected(ROOT)
+    core = (ROOT / "assets" / f"core.{language}.txt").read_bytes().decode("utf-8")
     description = json.dumps(DESCRIPTIONS[language], ensure_ascii=False)
     return (
         f"---\nname: {name}\ndescription: {description}\n---\n\n"
-        f"# beforeword\n\n{SCOPES[language]}\n\n{core.rstrip()}\n"
+        f"# beforeword\n\n{SCOPES[language]}\n\n{core}"
     )
 
 
@@ -166,6 +168,8 @@ def build_bundles(language: str, *, version: str = DEFAULT_VERSION) -> dict[str,
         raise ValueError("language must be 'ru' or 'en'")
     if not re.fullmatch(r"\d+\.\d+\.\d+", version):
         raise ValueError("version must be a numeric MAJOR.MINOR.PATCH value")
+    if version != require_selected(ROOT)["version"]:
+        raise ValueError("Package version differs from the selected release")
     identity = {
         "name": "beforeword",
         "version": version,

@@ -22,6 +22,8 @@ jobs:
           node-version: '22'
       - name: Check text request and response formats
         run: python3 scripts/test_payload.py
+      - name: Check release selection and exact core packaging boundaries
+        run: python3 -B scripts/test_release_contract.py
       - name: Check current evaluation records and instruction hashes
         run: python3 -B scripts/test_validation.py
       - name: Build standalone guide
@@ -40,6 +42,10 @@ jobs:
           python3 -B scripts/build_downloads.py --check
       - name: Build site files locally
         run: python3 scripts/build_public.py --output build/site --github-url https://github.com/beforeword/beforeword
+      - name: Check selected core and generated adapter relationships
+        run: |
+          beforeword_release="$(python3 -B -c 'from scripts.release_contract import VERSION; print(VERSION)')"
+          python3 -B scripts/check_release_sources.py --generated --downloads "downloads/$beforeword_release" --site build/site/public_html
       - name: Check site files and simulated interactions
         run: node scripts/test_public.cjs build/site/public_html
       - name: Check evaluation reader pages and preserved text

@@ -9,7 +9,7 @@ import html
 import re
 
 REPORT_ASSETS = frozenset({
-    'eval-cases.jsonl', 'evaluation-results.json', 'validation-2026-10-02.json',
+    'comparison-1.3.3.json', 'eval-cases.jsonl', 'evaluation-results.json', 'validation-2026-10-02.json',
     'validation-1.2.4.json', 'development-smoke-1.3.0.json', 'development-smoke-1.3.1.json', 'examples.md',
 })
 _INLINE = re.compile(r'`([^`\n]+)`|\[([^\]\n]+)\]\(([^)\s]+)\)')

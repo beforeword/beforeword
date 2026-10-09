@@ -1,6 +1,6 @@
 {
   "name": "beforeword",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "status": "prepared-not-created",
   "availability": "Account publication eligibility has not been checked.",
   "locales": {
@@ -13,10 +13,10 @@
         "Examine “The report proves that the system is safe.” What supports the step from the report to that conclusion?"
       ],
       "instructionsPath": "./instructions.en.txt",
-      "instructionCharacters": 5349,
+      "instructionCharacters": 5000,
       "instructionEdition": "medium",
       "instructionSource": "assets/medium.en.txt",
-      "scopeSource": "assets/scope.en.txt"
+      "scopeIncludedInInstructionSource": true
     },
     "ru": {
       "title": "beforeword",
@@ -27,10 +27,10 @@
         "Разбери фразу «Отчёт доказывает, что система безопасна»: чем обоснован переход от отчёта к этому выводу?"
       ],
       "instructionsPath": "./instructions.ru.txt",
-      "instructionCharacters": 5318,
+      "instructionCharacters": 4996,
       "instructionEdition": "medium",
       "instructionSource": "assets/medium.ru.txt",
-      "scopeSource": "assets/scope.ru.txt"
+      "scopeIncludedInInstructionSource": true
     }
   }
 }

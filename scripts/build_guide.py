@@ -12,13 +12,12 @@ import stat
 import zipfile
 from package_plugins import build_bundles, skill_text
 from render_report import parse_report
+from release_contract import VERSION, DATE, require_selected
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.3.2'
-DATE = '2026-10-08'
 
 def read(path):
-    return (ROOT / path).read_text(encoding='utf-8')
+    return (ROOT / path).read_bytes().decode('utf-8')
 
 def sha(text):
     return hashlib.sha256(text.encode('utf-8')).hexdigest()
@@ -61,7 +60,7 @@ def fallback(data):
         sections.append('<p>'+('Выбери один способ: настройка ответов, навык или API. Не требуется устанавливать всё. Полная инструкция раскрывает больше различий; краткая предназначена для ограниченного поля.' if lang == 'ru' else 'Choose one route: response settings, a skill, or API. These are alternatives. The full instruction covers more distinctions; the compact text is intended for limited fields.')+'</p>')
         sections.append('<h3>'+('Краткая инструкция' if lang == 'ru' else 'Compact instructions')+'</h3><pre>'+esc(data['compact'][lang])+'</pre>')
         sections.append('<h3>'+('Инструкция до 5 000 знаков' if lang == 'ru' else 'Instructions up to 5,000 characters')+'</h3><pre>'+esc(data['medium'][lang])+'</pre>')
-        sections.append('<details><summary>'+('Полная инструкция' if lang == 'ru' else 'Full instructions')+'</summary><pre>'+esc(data['scope'][lang]+data['core'][lang])+'</pre></details>')
+        sections.append('<details><summary>'+('Полная инструкция' if lang == 'ru' else 'Full instructions')+'</summary><p>'+esc(data['scope'][lang].strip())+'</p><pre>'+esc(data['core'][lang])+'</pre></details>')
         for c in data['connectors']:
             v = c[lang]
             sections.append('<details><summary>'+esc(c['name'])+'</summary><p>'+esc(v['route'])+'</p><ol>'+''.join('<li>'+esc(step)+'</li>' for step in v['steps'])+'</ol><p>'+esc(v['scope'])+'</p><p>'+esc(v['limit'])+'</p></details>')
@@ -72,6 +71,7 @@ def fallback(data):
     return '\n'.join(sections)
 
 def build(output):
+    require_selected(ROOT)
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     data = {'version':VERSION, 'date':DATE,
@@ -110,12 +110,13 @@ def build(output):
     for lang in ('ru','en'):
         (output / f'beforeword_compact_{lang.upper()}.txt').write_text(data['compact'][lang], encoding='utf-8')
         (output / f'beforeword_5000_{lang.upper()}.txt').write_text(data['medium'][lang], encoding='utf-8')
-        (output / f'beforeword_core_{lang.upper()}.txt').write_text(data['scope'][lang]+data['core'][lang], encoding='utf-8')
+        (output / f'beforeword_core_{lang.upper()}.txt').write_bytes(data['core'][lang].encode('utf-8'))
     report = json.loads(read('references/evaluation-results.json'))
     followup = json.loads(read('references/validation-2026-10-02.json'))
     previous = json.loads(read('references/validation-1.2.4.json'))
     smoke = json.loads(read('references/development-smoke-1.3.0.json'))
     previous_smoke = json.loads(read('references/development-smoke-1.3.1.json'))
+    comparison = json.loads(read('references/comparison-1.3.3.json'))
     manifest = {'version':VERSION, 'date_utc':DATE, 'families':[c['id'] for c in data['connectors']],
       'core_sha256':{k:sha(v) for k,v in data['core'].items()},
       'compact_characters':{k:len(v) for k,v in data['compact'].items()},
@@ -124,9 +125,10 @@ def build(output):
       'native_bundles':{lang:{key:{k:v for k,v in record.items() if k!='data'} for key,record in bundles.items()} for lang,bundles in data['bundles'].items()},
       'developer_bundle':{k:v for k,v in data['developer'].items() if k!='data'},
       'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
-      'evaluation_scope':'No new model-response run is recorded for 1.3.2. The historical 1.3.1 development check contains two responses in two fresh contexts, one task per context. It is not a test of 1.3.2, a platform runtime test, a scored evaluation or a provider comparison. The build does not run a model. All earlier runs retain their original instruction versions; no result guarantees future behavior.',
+      'evaluation_scope':'The frozen 1.3.3 full-text comparison planned 504 requests across 12 fresh tasks, 7 routes, 3 arms and 2 repetitions; it received 500 final answers and retained 4 collection gaps. The prospective release rule retained exact B. This does not establish general superiority over no instruction. Short editions, wrappers, installations and future chats were not tested. The build runs no model; earlier records retain their original versions.',
       'runtime_validation':'not-run-by-build', 'evaluation':report['method'], 'evaluation_case_count':len(data['eval'].strip().splitlines()),
       'evaluation_runs':[
+        {'report':'references/comparison-1.3.3.json', 'instruction_version':'1.3.3', 'selected_arm':comparison['selection']['selected_arm'], 'decision':comparison['selection']['decision'], 'answers':len(comparison['responses']), 'method':comparison['study']},
         {'report':'references/development-smoke-1.3.1.json', 'instruction_version':'1.3.1', 'historical':True, 'answers':previous_smoke['method']['responses'], 'method':previous_smoke['method']},
         {'report':'references/development-smoke-1.3.0.json', 'instruction_version':'1.3.0', 'answers':smoke['method']['responses'], 'method':smoke['method']},
         {'report':'references/evaluation-results.json', 'condition':'authored fixtures and targeted follow-up', 'method':report['method']},

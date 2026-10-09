@@ -6,13 +6,13 @@
 
 AI writes “I understand.” These words are read as understanding. On what grounds?
 
-The catalog packages carry the complete beforeword 1.3.2 instruction. Their English instruction text accepts an explicit response-language request; Russian copy and examples are included. Each platform gets one beforeword listing.
+The catalog build packages the complete beforeword 1.3.3 core. Their English instruction text accepts an explicit response-language request; Russian copy and examples are included. Each platform gets one beforeword listing.
 
 ## Release and directory status
 
-**The source and packages in this repository are version 1.3.2.** Directory acceptance and publication are recorded separately in [submission-status.json](submission-status.json); rebuilding the source does not update a submission.
+**Release source: 1.3.3.** Directory acceptance and publication are recorded separately in [submission-status.json](submission-status.json); rebuilding the source does not update a submission.
 
-On 9 October 2026 (Asia/Bangkok), the Claude portal showed **1.2.4 live**. Version 1.3.1 at commit `c8954c5` had passed scanning and its publication request was waiting for an Anthropic reviewer. The approved beforeword icon was uploaded separately and is also waiting for review. These observations do not establish submission or publication of 1.3.2. OpenAI required sign-in; the new package has not been uploaded.
+The recorded portal read on 9 October 2026 showed **Claude 1.2.4 serving**, a pending publication request for 1.3.1 at `c8954c5`, and 1.3.2 at `dfacdd2` marked Approved. The newer publication button was disabled; the icon was waiting for review. OpenAI required sign-in. These observations do not establish submission or publication of 1.3.3.
 
 ### Earlier submission: 1.2.4
 
@@ -20,7 +20,7 @@ On 9 October 2026 (Asia/Bangkok), the Claude portal showed **1.2.4 live**. Versi
 
 The instruction remains under public testing. Package checks and small task runs are recorded separately from installation in Claude or ChatGPT. OpenAI's metadata and skill checks passed before submission; review and publication remain pending.
 
-[Eight recorded task outputs](validation/README.md) include five fresh tasks using the instruction extracted from the MIT-licensed ZIPs. The earlier unsupported addition remains in the record. Those runs used the 1.2.4 instruction; they are not results for 1.3.2. See the [submission status](submission-status.json) and [package privacy policy](PRIVACY.md).
+[Eight recorded task outputs](validation/README.md) include five fresh tasks using the instruction extracted from the MIT-licensed ZIPs. The earlier unsupported addition remains in the record. Those runs used the 1.2.4 instruction; they are not results for 1.3.3. See the [submission status](submission-status.json) and [package privacy policy](PRIVACY.md).
 
 The owner approved MIT for the contents of both plugin packages on 4 October 2026. Each package includes its LICENSE notice. See the [license scope](LICENSING.md).
 
@@ -29,11 +29,13 @@ The owner approved MIT for the contents of both plugin packages on 4 October 202
 | Destination | Source or file | Use |
 | --- | --- | --- |
 | Claude directory | [plugins/claude/beforeword](../plugins/claude/beforeword/) | GitHub source folder for the submission form |
-| Claude upload | [beforeword_claude_directory_1.3.2.zip](packages/beforeword_claude_directory_1.3.2.zip) | 1.3.2 package for supported plugin upload and local testing |
-| OpenAI directory | [beforeword_openai_directory_1.3.2.zip](packages/beforeword_openai_directory_1.3.2.zip) | Skills-only 1.3.2 package for upload; includes the portable manifest and listing metadata |
+| Claude upload | [beforeword_claude_directory_1.3.3.zip](packages/beforeword_claude_directory_1.3.3.zip) | 1.3.3 package for supported plugin upload and local testing |
+| OpenAI directory | [beforeword_openai_directory_1.3.3.zip](packages/beforeword_openai_directory_1.3.3.zip) | Skills-only 1.3.3 package for upload; includes the portable manifest and listing metadata |
 | GPT Store | [gpt-store](gpt-store/) | Prepared fields and the explicitly condensed medium instruction for a manually created custom GPT |
 
 The earlier `downloads/1.2.4` archives remain available for their documented installation routes. In particular, the OpenAI **local marketplace** archive is a different format from this directory upload.
+
+The full TXT and primary copy controls use the exact core. Skill packages add frontmatter and activation guidance around it. The compact, 5,000-character and GPT-medium texts are separately edited editions; no model-response evaluation is reported here for those 1.3.3 editions. Full-core results do not transfer to them or to a host installation.
 
 The [public statement](https://beforeword.xyz/statement/en/) is a separate publication. Its proposed changes are not additional binding rules for the plugin.
 
@@ -54,12 +56,16 @@ The same package can be requested in Russian:
 From the repository root:
 
 ```bash
+python3 -B scripts/test_release_contract.py
 python3 -B catalog/build.py --write
 python3 -B catalog/check.py
 python3 -B catalog/build.py --check
+python3 -B scripts/check_release_sources.py --generated
 ```
 
-The build uses the existing core and scope files and includes the approved MIT notice. It does not call a model, install anything, connect an account, or submit a listing. Package checks describe the files; host testing and directory review remain separate.
+[release-contract.json](../references/release-contract.json) binds the release version to the selected RU/EN core hashes. The build stops while selection is pending or either source hash differs. Version metadata stays outside the exact core text. Generated skill wrappers and separately edited short instructions have their own byte checks. Earlier versioned downloads and directory ZIPs are preserved.
+
+The build includes the approved MIT notice. It does not call a model, install anything, connect an account, or submit a listing. Package checks describe the files; host testing and directory review remain separate.
 
 ## Publication
 

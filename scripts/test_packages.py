@@ -83,8 +83,8 @@ class PackageTests(unittest.TestCase):
                 with self.subTest(language=language, provider=provider):
                     with zipfile.ZipFile(io.BytesIO(record["bytes"])) as archive:
                         skill = archive.read(SKILL_PATHS[provider]).decode("utf-8")
-                    core = cores[language].rstrip()
-                    self.assertTrue(skill.endswith(core + "\n"))
+                    core = cores[language]
+                    self.assertTrue(skill.endswith(core))
                     self.assertEqual(skill.count(core), 1)
                     self.assertNotIn(cores[other].rstrip(), skill)
                     expected_name = "beforeword" if provider == "skill" else "read"

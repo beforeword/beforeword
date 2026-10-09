@@ -107,7 +107,7 @@ async function main(){
   for(const connector of data.connectors){
    run(`chooseApp('${connector.id}')`);assert.equal(nodes['app-name'].textContent,connector.name);
    if(connector.id==='perplexity'){assert.equal(connector.recommended,'medium');assert.equal(nodes.prompt.textContent,data.medium[language],'Perplexity must initially select the medium edition');assert(Array.from(nodes.prompt.textContent).length<=8000,'Selected Perplexity text must fit the project field')}
-   for(const mode of ['compact','medium','core']){run(`setMode('${mode}')`);assert.equal(nodes.prompt.textContent,mode==='compact'?data.compact[language]:mode==='medium'?data.medium[language]:data.scope[language]+data.core[language]);for(const value of ['compact','medium','core'])assert.equal(nodes[value+'-btn'].attrs['aria-pressed'],String(value===mode));if(mode==='medium')assert(Array.from(nodes.prompt.textContent).length<=5000);assert(nodes['copy-top-btn'].textContent);adapterSelections++}
+   for(const mode of ['compact','medium','core']){run(`setMode('${mode}')`);assert.equal(nodes.prompt.textContent,mode==='compact'?data.compact[language]:mode==='medium'?data.medium[language]:data.core[language]);for(const value of ['compact','medium','core'])assert.equal(nodes[value+'-btn'].attrs['aria-pressed'],String(value===mode));if(mode==='medium')assert(Array.from(nodes.prompt.textContent).length<=5000);if(mode==='core')assert(nodes['mode-note'].textContent.includes(data.scope[language].trim()),'Usage scope remains outside copied instructions');assert(nodes['copy-top-btn'].textContent);adapterSelections++}
   }
   for(const provider of Object.keys(data.api)){
    setProvider(provider);validInput();
@@ -115,7 +115,7 @@ async function main(){
     nodes['api-history'].value=withHistory?'[{"role":"user","content":"old user\\r\\n"},{"role":"assistant","content":"old assistant"}]':'';
     assert(run('makePayload()'),provider);const body=parsedPayload();
     assert.equal(body.model,'test-model');
-    const instruction=data.scope[language]+data.core[language];
+    const instruction=data.core[language];
     if(provider==='gemini'){
      assert.equal(body.system_instruction,instruction);
      if(withHistory){assert.equal(body.input.length,3);assert.equal(body.input[0].type,'user_input');assert.equal(body.input[1].type,'model_output');assert.equal(body.input[2].type,'user_input');assert(!('role' in body.input[0]));assert.equal(body.input[0].content[0].text,'old user\r\n');assert.equal(body.input.at(-1).content[0].text,nodes['api-input'].value)}
@@ -141,11 +141,11 @@ async function main(){
  context.window.location.hash='#ru';context.window.listeners.hashchange();
  assert.equal(document.documentElement.lang,'ru','History/hash navigation must restore Russian');
  assert.equal(nodes['guide-home'].href,'https://beforeword.xyz/model/');
- assert.equal(nodes.prompt.textContent,data.scope.ru+data.core.ru);
+ assert.equal(nodes.prompt.textContent,data.core.ru);
  context.window.location.hash='#en';context.window.listeners.hashchange();
  assert.equal(document.documentElement.lang,'en','History/hash navigation must restore English');
  assert.equal(nodes['guide-home'].href,'https://beforeword.xyz/model/en/');
- assert.equal(nodes.prompt.textContent,data.scope.en+data.core.en);
+ assert.equal(nodes.prompt.textContent,data.core.en);
  for(const route of ['settings','skill','api']){run(`setRoute('${route}')`);for(const other of ['settings','skill','api']){assert.equal(nodes[other+'-section'].hidden,other!==route);assert.equal(nodes[other+'-route-btn'].attrs['aria-pressed'],String(other===route))}}
  validInput();setProvider('openai');
  for(const field of ['api-model','api-history','api-max-tokens','api-input','api-endpoint']){validInput();assert(run('makePayload()'));nodes[field].listeners.input();assert.equal(nodes['api-out'].hidden,true);assert.equal(nodes['api-out'].textContent,'')}

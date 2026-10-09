@@ -67,6 +67,8 @@ def write_files(output: Path, files: dict[str, bytes], *, replace: bool = False,
     if output.is_symlink() or any(parent.is_symlink() for parent in output.parents):
         raise ValueError("Output directory must not use symlinks")
     resolved = output.resolve()
+    if resolved.is_relative_to(ROOT / "downloads") and resolved != ROOT / "downloads" / VERSION:
+        raise ValueError("Versioned historical downloads cannot be overwritten by this release")
     if resolved == ROOT or any(resolved.is_relative_to(ROOT / name)
                                for name in ("assets", "references", "scripts", "docs", ".github")):
         raise ValueError("Output directory cannot contain or replace source files")
