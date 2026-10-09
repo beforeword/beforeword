@@ -4,7 +4,7 @@
   "scope": "ai-instructions",
   "status": "public-testing",
   "current_version": "1.3.3",
-  "updated": "2026-10-09T12:22:31Z",
+  "updated": "2026-10-09T13:39:38Z",
   "urls": {
     "ru": "https://beforeword.xyz/model/#bw-updates",
     "en": "https://beforeword.xyz/model/en/#bw-updates"
@@ -19,23 +19,168 @@
   "languages": {
     "ru": {
       "title": "beforeword — обновления инструкции для ИИ",
-      "intro": "Инструкция beforeword проходит публичное тестирование. Это не финальная редакция.",
+      "intro": "Публичный тест продолжается. В версии 1.3.3 опубликовано сравнение на семи моделях.",
       "changes": [
-        "После заранее заданного сравнения сохранён полный вариант B. Получено 500 итоговых ответов из 504 запросов; четыре технических пропуска и неразрешённые оценки сохранены отдельно.",
-        "У сокращённого кандидата C и B по пять устойчивых побед в полных кластерах. C не прошёл условия замены; это не доказательство общего превосходства B над отсутствием инструкции.",
-        "Полные тексты при копировании, скачивании и сборке API передаются точно; навыки содержат отдельную обёртку. Средняя и краткая редакции обновлены отдельно, без переноса на них результатов полного текста.",
-        "Сохранены задания, ответы, исходные оценки, разбор разногласий и правило выбора. Подготовка исходников и пакетов не означает установку или публикацию в каталоге."
-      ]
+        "Проведён тест на семи моделях: 12 заданий на русском и английском, 504 запроса, 500 ответов и четыре технических пропуска.",
+        "В выпуск вошла полная инструкция, с которой началось сравнение. Альтернативная редакция не показала устойчивого улучшения и реже выполнила задачу вместе с требованиями к формату.",
+        "Средняя и краткая редакции обновлены отдельно. Их поведение этим тестом не проверялось."
+      ],
+      "comparison": {
+        "summary": "Модели, задания и результаты",
+        "report_label": "Полный протокол и ответы",
+        "report_url": "https://beforeword.xyz/model/evaluation/",
+        "question": "Может ли ответ выполнить запрос и сохранить нужный формат, отделяя исходный текст от добавленного прочтения и утверждений?",
+        "design": "{tasks} специально составленных заданий — {russian_tasks} русских и {english_tasks} английских. Каждое отправлялось каждой модели {repetitions} раза в трёх условиях: без beforeword, с полной инструкцией на момент начала теста и с альтернативной редакцией. Полная инструкция сохранена в 1.3.3; альтернативная редакция в выпуск не вошла.",
+        "collection": "Из {requests} запросов получено {answers} ответов. {technical_gaps} технических пропуска и неясные оценки учтены отдельно.",
+        "models_heading": "Семь моделей",
+        "models_note": "Указаны модели и провайдеры, которым отправлялись запросы. Точные идентификаторы и настройки сохранены в протоколе.",
+        "tasks_heading": "Что проверялось",
+        "tasks": [
+          "Значение термина и разные прочтения фразы.",
+          "Пересказ: условия, действия и названные переживания.",
+          "Выводы из неполных журналов и записей.",
+          "Точное копирование символов и преобразование в JSON.",
+          "Арифметика и соблюдение условий задачи.",
+          "Текстовые описания аудио и видео без самих записей."
+        ],
+        "results_heading": "Выполнение задачи и формата",
+        "results_intro": "Сравнение ниже охватывает одинаковые задания и повторы, для которых получены все ответы и завершены оценки: по 158 ответов в каждом условии.",
+        "condition_heading": "Условие",
+        "score_heading": "Выполнены задача и формат",
+        "conditions": {
+          "none": "Без beforeword",
+          "B": "Полная инструкция",
+          "C": "Альтернативная редакция"
+        },
+        "selected_label": "Сохранена в 1.3.3",
+        "score": "{met} из {total}",
+        "results_note": "Ответ засчитывался, когда выполнял требования к содержанию задачи и к её формату: например, расчёт был выполнен и ответ содержал только запрошенные строки. Это не общая оценка полезности модели.",
+        "decision_heading": "Почему этот выбор",
+        "boundary": "По отдельным критериям beforeword — сохранению условий, различению сообщения и вывода, учёту недостающих данных — альтернативная редакция выполнила требования в {C} из {total} сопоставимых ответов, а сохранённая полная инструкция — в {B}.",
+        "stability": "В {B} сочетаниях задания и модели полная инструкция выполнила все критерии в обоих повторах, а альтернативная редакция не выполнила их хотя бы в одном. Обратных случаев также {C}.",
+        "decision": "Правило замены было записано до получения ответов: альтернативная редакция должна показать устойчивое улучшение, сохранив выполнение задач и формата. Эти условия не выполнены. Поэтому в 1.3.3 вошла полная инструкция, с которой началось сравнение, без последующей переработки.",
+        "limits": "Это результаты 12 заданий при указанных моделях и настройках. Они не устанавливают превосходства на любых запросах или соблюдения инструкции в будущих ответах. Повторы не являются независимыми испытаниями. Сокращённые редакции и установка в приложениях этим тестом не проверялись."
+      }
     },
     "en": {
       "title": "beforeword — AI instruction updates",
-      "intro": "The beforeword instructions are in public testing. This is not the final version.",
+      "intro": "Public testing continues. Version 1.3.3 includes a published comparison across seven models.",
       "changes": [
-        "The prospective comparison retained full candidate B. It received 500 final answers from 504 requests; four collection gaps and unresolved judgments remain separately recorded.",
-        "C and B each had five stable wins in complete clusters. C did not pass the replacement rule; this does not establish general superiority of B over no instruction.",
-        "Full copy, download and API paths preserve the exact core; skills add a separate wrapper. Medium and compact editions were updated separately, without transferring full-text results to them.",
-        "The record preserves tasks, answers, original reviews, disagreement adjudications and the selection rule. Preparing sources and packages does not establish installation or directory publication."
-      ]
+        "A seven-model test covered 12 tasks in Russian and English: 504 requests, 500 answers and four technical gaps.",
+        "The release includes the full instruction used at the start of the comparison. The alternative showed no consistent improvement and met the combined task and format requirements less often.",
+        "The medium and compact editions were revised separately. Their performance was not measured in this test."
+      ],
+      "comparison": {
+        "summary": "Models, tasks and results",
+        "report_label": "Full protocol and answers",
+        "report_url": "https://beforeword.xyz/model/evaluation/en/",
+        "question": "Could an answer complete the task and follow the requested format while distinguishing the supplied text from added interpretations and claims?",
+        "design": "{tasks} purpose-written tasks: {russian_tasks} in Russian and {english_tasks} in English. Each was sent to each model {repetitions} times under three conditions: no beforeword instruction, the full instruction available at the start of the test, and an alternative version. Version 1.3.3 retains the full instruction; the alternative was not adopted.",
+        "collection": "There were {requests} requests and {answers} returned answers. The {technical_gaps} technical gaps and unresolved assessments remain separately recorded.",
+        "models_heading": "Seven models",
+        "models_note": "These are the models and providers used for the requests. The protocol includes the exact identifiers and settings.",
+        "tasks_heading": "What was tested",
+        "tasks": [
+          "Explaining a term and alternative readings of a phrase.",
+          "Restating conditions, actions and reported feelings.",
+          "Reasoning from incomplete logs and records.",
+          "Preserving exact characters and producing JSON.",
+          "Arithmetic under the stated task conditions.",
+          "Written descriptions of audio or video that was not supplied."
+        ],
+        "results_heading": "Completing the task in the requested format",
+        "results_intro": "The comparison below uses the same tasks and repetitions in all three conditions, restricted to cases with all answers received and all assessments resolved: 158 answers per condition.",
+        "condition_heading": "Condition",
+        "score_heading": "Met task and format requirements",
+        "conditions": {
+          "none": "No beforeword instruction",
+          "B": "Full instruction",
+          "C": "Alternative version"
+        },
+        "selected_label": "Retained in 1.3.3",
+        "score": "{met} of {total}",
+        "results_note": "An answer counted when it met the task content and format requirements: for example, completing the calculation and returning only the requested lines. This is not an overall score for model usefulness.",
+        "decision_heading": "Why this version was retained",
+        "boundary": "The alternative did better on the separate beforeword criteria, including preserving conditions, distinguishing a report from an inference, and accounting for missing information: {C} of {total} comparable answers, against {B} for the retained full instruction.",
+        "stability": "In {B} task–model combinations, the full instruction met every criterion on both attempts while the alternative failed at least one attempt. The reverse also occurred in {C} combinations.",
+        "decision": "The replacement rule was set before the answers were collected: the alternative had to show consistent improvement while preserving task completion and formatting. It did not meet those conditions, so 1.3.3 includes the full instruction used at the start of the comparison, without further revision.",
+        "limits": "These results concern 12 tasks and the recorded models and settings. They do not establish superiority on every request or guarantee adherence in future answers. Repeated answers are not independent trials. Short editions and installation in apps were not tested here."
+      }
+    }
+  },
+  "comparison": {
+    "tasks": 12,
+    "russian_tasks": 6,
+    "english_tasks": 6,
+    "models_count": 7,
+    "conditions": 3,
+    "repetitions": 2,
+    "requests": 504,
+    "answers": 500,
+    "technical_gaps": 4,
+    "complete_task_model_pairs": 79,
+    "models": [
+      {
+        "name": "Qwen3.8-27B",
+        "id": "Qwen/Qwen3.8-27B",
+        "provider": "DeepInfra"
+      },
+      {
+        "name": "DeepSeek-V4.1-Flash",
+        "id": "deepseek-ai/DeepSeek-V4.1-Flash",
+        "provider": "DeepInfra"
+      },
+      {
+        "name": "Gemma 4 31B IT",
+        "id": "google/gemma-4-31B-it",
+        "provider": "Novita"
+      },
+      {
+        "name": "Llama 3.3 70B Instruct",
+        "id": "meta-llama/Llama-3.3-70B-Instruct",
+        "provider": "OVHcloud"
+      },
+      {
+        "name": "Kimi-K3",
+        "id": "moonshotai/Kimi-K3",
+        "provider": "Together"
+      },
+      {
+        "name": "gpt-oss-120b",
+        "id": "openai/gpt-oss-120b",
+        "provider": "DeepInfra"
+      },
+      {
+        "name": "GLM-5.3",
+        "id": "zai-org/GLM-5.3",
+        "provider": "DeepInfra"
+      }
+    ],
+    "completion": [
+      {
+        "condition": "none",
+        "met": 109,
+        "total": 158
+      },
+      {
+        "condition": "B",
+        "met": 124,
+        "total": 158
+      },
+      {
+        "condition": "C",
+        "met": 121,
+        "total": 158
+      }
+    ],
+    "boundary": {
+      "B": 97,
+      "C": 105,
+      "total": 134
+    },
+    "stable_wins": {
+      "B": 5,
+      "C": 5
     }
   }
 }

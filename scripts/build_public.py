@@ -338,7 +338,7 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         raise ValueError('unresolved public template placeholder')
     return result
 
-def build(output: Path, repo_url: str | None = None) -> Path:
+def build(output: Path, repo_url: str | None = None, home_source: Path | None = None) -> Path:
     build_guide.require_selected(ROOT)
     output = output.resolve()
     for owned in ('assets','references','scripts','docs','.github'):
@@ -382,6 +382,9 @@ def build(output: Path, repo_url: str | None = None) -> Path:
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))
     public_updates.write_assets(model)
+    if home_source is not None:
+        from sync_home import sync
+        sync(home_source, site)
     shutil.copytree(ROOT/'assets'/'site-shell',model/'assets'/'site-shell'/shell_revision(),dirs_exist_ok=True)
     shutil.copytree(ROOT/'assets'/'history',model/'history',dirs_exist_ok=True)
     manifest={'version':build_guide.VERSION,'date_utc':build_guide.DATE,'public_paths':['/model/','/model/en/','/model/evaluation/','/model/evaluation/en/'],
@@ -401,5 +404,6 @@ if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',required=True,type=Path)
     parser.add_argument('--github-url',type=github_url,help='Approved public repository URL; omit to hide the GitHub link.')
+    parser.add_argument('--home-source',type=Path,help='Current homepage directory containing index.html and en/index.html; update their AI sections only.')
     args=parser.parse_args()
-    print(build(args.output,args.github_url))
+    print(build(args.output,args.github_url,args.home_source))

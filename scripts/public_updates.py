@@ -151,6 +151,65 @@ def _feedback(text: dict) -> str:
     )
 
 
+def _comparison(data: dict, language: str) -> str:
+    """Render the recorded comparison from plain-text, structured metadata."""
+    study = data['comparison']
+    text = data['languages'][language]['comparison']
+    models = ''.join(
+        '<div><dt>' + escape(model['name']) + '</dt><dd>'
+        + escape(model['provider']) + '</dd></div>'
+        for model in study['models']
+    )
+    tasks = ''.join(f'<p>{escape(task)}</p>' for task in text['tasks'])
+    rows = []
+    for result in study['completion']:
+        condition = result['condition']
+        selected = (
+            f'<span class="bw-update-selected">{escape(text["selected_label"])}</span>'
+            if condition == 'B' else ''
+        )
+        row_class = ' class="bw-update-result-selected"' if condition == 'B' else ''
+        rows.append(
+            f'<tr{row_class}>'
+            f'<th scope="row">{escape(text["conditions"][condition])}{selected}</th>'
+            f'<td>{escape(text["score"].format(**result))}</td></tr>'
+        )
+    return f'''<p class="bw-update-protocol"><a href="{escape(text['report_url'], quote=True)}">{escape(text['report_label'])}</a></p>
+<details class="bw-update-comparison">
+<summary>{escape(text['summary'])}</summary>
+<div class="bw-update-comparison-body">
+<p class="bw-update-question">{escape(text['question'])}</p>
+<p>{escape(text['design'].format(**study))}</p>
+<p class="bw-update-note">{escape(text['collection'].format(**study))}</p>
+<section aria-labelledby="bw-update-models-title">
+<h3 id="bw-update-models-title">{escape(text['models_heading'])}</h3>
+<dl class="bw-update-models">{models}</dl>
+<p class="bw-update-note">{escape(text['models_note'])}</p>
+</section>
+<section aria-labelledby="bw-update-tasks-title">
+<h3 id="bw-update-tasks-title">{escape(text['tasks_heading'])}</h3>
+<div class="bw-update-tasks">{tasks}</div>
+</section>
+<section aria-labelledby="bw-update-results-title">
+<h3 id="bw-update-results-title">{escape(text['results_heading'])}</h3>
+<p id="bw-update-result-scope">{escape(text['results_intro'])}</p>
+<table class="bw-update-results" aria-labelledby="bw-update-results-title" aria-describedby="bw-update-result-scope bw-update-result-note">
+<thead><tr><th scope="col">{escape(text['condition_heading'])}</th><th scope="col">{escape(text['score_heading'])}</th></tr></thead>
+<tbody>{''.join(rows)}</tbody>
+</table>
+<p class="bw-update-note" id="bw-update-result-note">{escape(text['results_note'])}</p>
+</section>
+<section aria-labelledby="bw-update-decision-title">
+<h3 id="bw-update-decision-title">{escape(text['decision_heading'])}</h3>
+<p>{escape(text['boundary'].format(**study['boundary']))}</p>
+<p>{escape(text['stability'].format(**study['stable_wins']))}</p>
+<p>{escape(text['decision'])}</p>
+<p class="bw-update-note">{escape(text['limits'])}</p>
+</section>
+</div>
+</details>'''
+
+
 def render(language: str) -> str:
     """Build a native disclosure usable without JavaScript."""
     language = _language(language)
@@ -183,6 +242,7 @@ def render(language: str) -> str:
 <section class="bw-update-release" aria-labelledby="bw-update-release-title">
 <h2 id="bw-update-release-title">{escape(text['changes'].format(version=version))}</h2>
 <ul>{changes}</ul>
+{_comparison(data, language)}
 <section class="bw-update-github" aria-labelledby="bw-update-github-title">
 <h3 id="bw-update-github-title">{escape(text['github'])}</h3>
 <p>{escape(text['github_text'])}</p>
@@ -251,6 +311,8 @@ def _atom(data: dict, language: str) -> bytes:
     element(entry, 'title', f'beforeword {version}')
     element(entry, 'updated', data['updated'])
     element(entry, 'link', href=data['urls'][language], rel='alternate', type='text/html')
+    comparison = release['comparison']
+    element(entry, 'link', href=comparison['report_url'], rel='related', type='text/html')
     element(entry, 'summary', release['intro'] + '\n\n' + '\n'.join(release['changes']), type='text')
     ET.indent(root, space='  ')
     return ET.tostring(root, encoding='utf-8', xml_declaration=True) + b'\n'

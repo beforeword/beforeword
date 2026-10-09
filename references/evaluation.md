@@ -1,54 +1,72 @@
-# beforeword · method and checks
+# beforeword · how the instructions were tested
 
-A response is compared with the supplied text and task. Instruction delivery, exact preservation and response content are examined separately. The instructions, criteria and this account remain written records.
+This page describes a test of responses: what was sent to the models, how the answers were assessed, and which instruction text was included in the release. The instructions, criteria and this account remain written records.
 
-## beforeword 1.3.3: full-text comparison
+## 1.3.3 · A test across seven models
 
-## Scope and decision
+The published comparison covers three conditions: no beforeword instruction, the full instructions available at the start of the test, and an alternative version. Under the criteria set in advance, the full text used at the start of the test was included in the release without further revision. The alternative was not included in the release.
 
-There were 504 planned requests, 500 received final answers and 4 collection gaps. Selected arm: B; release-rule decision: `retain_B`. Complete three-arm, two-repetition clusters: 79 of 84.
+Version 1.3.3 also includes separately revised medium and compact editions, updated setup materials, and the published results. This test did not evaluate the shorter editions.
 
-C did not pass the replacement rule: stable wins were tied at 5 / 5, and C met task and format in 121 of 158 answers, compared with B in 124 of the same 158. These paired results cover complete clusters only; the descriptive totals below use different denominators.
+## What was tested
 
-## Descriptive response totals
+Could an answer complete the task and follow the requested format while distinguishing the supplied wording from added interpretations and claims?
 
-Cells show met / resolved for each measure. Repeated answers are not independent trials; missing and unresolved outcomes are excluded from these denominators and retained separately in the data. Empty axes are not counted.
+The test used 12 purpose-written tasks: six in Russian and six in English. They covered terms and alternative readings of a phrase; restating an account while preserving its conditions and reported feelings; reasoning from incomplete logs; exact character copying and JSON; arithmetic; and descriptions of audio or video that was not supplied.
 
-| Arm | All criteria | Boundary | Task | Format | Task AND format |
-| --- | --- | --- | --- | --- | --- |
-| No beforeword | 93 / 165 | 93 / 138 | 126 / 165 | 136 / 153 | 113 / 165 |
-| B | 103 / 165 | 98 / 138 | 130 / 166 | 145 / 152 | 127 / 166 |
-| C | 106 / 167 | 108 / 140 | 129 / 167 | 144 / 153 | 125 / 167 |
+Each task was sent to each model twice under each of the three conditions. There were 504 requests and 500 final answers. Four requests ended in technical errors and were not graded as substantive answers.
 
-The boundary axis measures specified beforeword distinctions. Failing it alone does not establish that an answer is unhelpful. Generic utility is limited here to task AND format; it is not an overall measure of model usefulness.
+## Models used in the test
 
-## Complete clusters and selection rule
+These model identifiers and providers come from the request records. They identify the routes used in this test; they are not a test of the ChatGPT, Claude or Gemini consumer apps.
 
-| Group | Clusters | Stable wins C / B | Boundary C − B | Utility C − B | Utility C − none |
-| --- | --- | --- | --- | --- | --- |
-| All | 79 | 5 / 5 | 8 | -3 | 12 |
-| RU | 40 | 2 / 2 | 4 | -2 | 6 |
-| EN | 39 | 3 / 3 | 4 | -1 | 6 |
-| RU excluding exploratory | 34 | 1 / 2 | 4 | -2 | 6 |
+| Model identifier | Provider |
+| --- | --- |
+| Qwen/Qwen3.8-27B | DeepInfra |
+| deepseek-ai/DeepSeek-V4.1-Flash | DeepInfra |
+| google/gemma-4-31B-it | Novita |
+| meta-llama/Llama-3.3-70B-Instruct | OVHcloud |
+| moonshotai/Kimi-K3 | Together |
+| openai/gpt-oss-120b | DeepInfra |
+| zai-org/GLM-5.3 | DeepInfra |
 
-A stable C win means C meets every original criterion in both repetitions and B does not meet them in both; a stable B win is the reverse. Boundary and utility differences count paired responses within the same complete clusters. Utility means task AND format. All 15 rule gates and all three pairwise contrasts, including B versus no instruction, are retained in the JSON.
+## Results on the same tasks
 
-## Evidence and limitations
+The main comparison includes only task–model combinations with every answer received and every assessment resolved: 79 of 84 combinations, with two repetitions each. Every condition therefore has the same denominator below: 158 answers.
 
-[Texts, tasks, answers, judgments and decision](comparison-1.3.3.json).
+| Condition | Met the task and format requirements |
+| --- | --- |
+| No beforeword instruction | 109 of 158 |
+| Full instructions retained in 1.3.3 | 124 of 158 |
+| Alternative version | 121 of 158 |
 
-These are descriptive results from one frozen experiment: 12 synthetic tasks, 7 routes, 3 arms and 2 actual repetitions. Repeated-response totals and criteria are not independent trials.
+An answer counted when it met the task and format requirements. For example, the calculation had to be completed and the answer had to contain only the requested lines. This is not an overall score for model usefulness.
 
-Missing final content receives no semantic failure grade. Unclear and unresolved disagreements remain unresolved. An empty axis is not_applicable.
+A separate group of beforeword criteria covered preserving conditions, distinguishing a report from an inference, and accounting for missing information. The alternative performed better here: 105 of 134 comparable answers, against 97 for the retained full instructions.
 
-Two separate review contexts do not establish independence across model families or a human panel. Exact-excerpt validation does not certify a judgment's semantic accuracy; absence observations remain reviewer claims.
+The alternative had no advantage in consistently meeting all criteria across both repetitions. In five task–model combinations, the existing full instructions met every criterion twice while the alternative did not do so on both attempts. The reverse also occurred in five combinations.
 
-The decision implements the prospective full-text release rule. Retaining B does not establish that B beats no_beforeword. Neither outcome certifies 10/10, universal adherence or the causal contribution of an individual clause.
+## Why the full instructions were retained
 
-The Russian Llama route is exploratory_author_unsupported_ru and is excluded in an additional analysis. Short editions, platform wrappers, installation and future chats were not tested here. Earlier studies are not pooled into a growth score.
+The replacement criteria were set before the answers were collected: the alternative had to show consistent improvement without reducing combined task completion and formatting. It performed better on one group of criteria but did not meet the replacement requirements as a whole. Version 1.3.3 therefore includes the full text used at the start of the comparison. Individual clauses were not rewritten in response to this set of tasks.
 
-The C author and editorial-equivalence reviewer did not see the fresh tasks, responses or grades. Before freezing the texts, the coordinator, who had already read the fresh tasks, applied the reviewer's eight source-grounded repairs to scope, conditions and claim objects. No task-specific rules were added. Restricted author and reviewer access therefore does not mean the entire editorial process was blind to task content.
+## How answers were assessed
 
+Each of the 500 answers was assessed in two separate model contexts, producing 1,000 original assessments. Forty-one disagreements were adjudicated. Five criteria across three answers remained uncertain; those answers were excluded from the main comparison, along with the technical gaps. They were not turned into passes or failures.
+
+Two assessment contexts do not amount to a human panel or independent model families. The assessments are judgments against stated requirements. The records preserve the original answers and rationales for further examination.
+
+## Limits of the result
+
+The counts concern these 12 tasks and the recorded models, providers and settings. Repetitions and individual criteria are not independent trials. The results do not establish general superiority on every request, error-free performance, future adherence, or the effect of an individual clause.
+
+Russian-language tasks sent to Llama are marked as an additional exploratory check. The release criteria were also calculated for the Russian subset excluding that route. Shorter editions, installation in apps and future chats were not tested. Earlier studies are not pooled with this one as a measure of improvement.
+
+The alternative's author and the reviewer checking it against the existing text had not seen the new tasks when preparing their contributions. The coordinator had read the tasks and, before the texts were frozen, applied the reviewer's requested restorations of conditions and scope from the existing instructions. The entire editorial process is therefore not described as fully blind.
+
+[All instructions, tasks, answers, assessments and selection criteria](comparison-1.3.3.json).
+
+Earlier studies follow below, each under its original version.
 
 ## Historical development check of 1.3.1
 

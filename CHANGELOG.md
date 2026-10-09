@@ -1,176 +1,213 @@
 # Changes / Изменения
 
+Each entry describes that release or dated update. Test results apply to the instruction and conditions used at the time.
+
+Каждая запись относится к указанному выпуску или дате. Результаты проверок относятся к использованной тогда инструкции и условиям.
+
 ## 1.3.3
 
-- Retain the exact B full instruction under the frozen three-arm selection rule: 504 planned requests, 500 final answers, four collection gaps, and 79 complete three-arm/two-repetition clusters. C and B each had five stable whole-response wins; C had three fewer task-and-format passes than B in those clusters. Retaining B does not establish superiority over no instruction or certify universal adherence.
-- Preserve the exact B/C texts, synthetic tasks, answers, original reviews, adjudications, unresolved judgments and decision in `references/comparison-1.3.3.json`. Keep earlier studies under their original versions.
-- Make full website copying, TXT downloads and API preparation use the exact selected core. Keep skill wrappers separate, and synchronize RU/EN source files and the Hugging Face distributor source without claiming a hosted deployment.
-- Update separately edited medium and compact editions. Their behavior, platform wrappers and installations were not evaluated by the full-text comparison. Package preparation does not establish directory publication.
-- По заранее заданному правилу сохранён точный полный вариант B: 504 запроса, 500 итоговых ответов, четыре технических пропуска и 79 полных кластеров. У C и B по пять устойчивых побед; у C на три выполнения задачи и формата меньше в этих кластерах. Это не доказательство превосходства B над отсутствием инструкции и не удостоверение будущего соблюдения.
-- Сохранены точные тексты, задания, ответы, исходные оценки, разбор разногласий и неразрешённые случаи. Полные копии и API используют точное ядро; платформенные обёртки и сокращённые редакции отделены. Исходники и пакеты подготовлены без заявления о публикации или развёртывании.
+### English
+
+- Published a comparison on seven models: 12 tasks, six in Russian and six in English, with two attempts under each of three conditions — no beforeword instruction, the full instruction available at the start of the test, and an alternative version. The test produced 500 answers from 504 requests; four technical gaps were recorded separately. Tasks covered interpretation, careful restatement, incomplete records, exact copying and JSON, arithmetic, and written descriptions of unavailable audio or video.
+- Tested Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b and GLM-5.3. The [full protocol](references/comparison-1.3.3.json) records the exact model identifiers, providers, settings, tasks, answers and assessments.
+- Included the full instruction used at the start of the comparison; it was not rewritten in response to this test. Among the same 158 comparable answers per condition, 124 met the task and format requirements with the full instruction, 121 with the alternative, and 109 without beforeword. The alternative did not meet the replacement criteria set before the test.
+- Recorded the alternative’s stronger result on preserving conditions, distinguishing reports from inferences, and accounting for missing information: 105 of 134 comparable answers, against 97 for the retained instruction. In five task–model combinations, the retained instruction met every criterion on both attempts while the alternative did not; the reverse also occurred in five. These results concern this test, not every possible request. Unresolved assessments remain in the record.
+- Updated the Russian and English release explanations with model names, tasks, results and links to the protocol. The homepage update panels, copied instructions and character counts now reflect 1.3.3. The downloadable files and Hugging Face source were updated together.
+- Revised the medium and compact editions separately. Their performance, installation in apps and future responses were not measured by this comparison.
+
+### Русский
+
+- Опубликовано сравнение на семи моделях: 12 заданий, шесть русских и шесть английских, по два запроса в каждом из трёх условий — без beforeword, с полной инструкцией на момент начала теста и с альтернативной редакцией. Из 504 запросов получено 500 ответов; четыре технических пропуска учтены отдельно. Проверялись прочтение, точный пересказ, выводы из неполных записей, копирование символов и JSON, арифметика, работа с текстовым описанием недоступных аудио и видео.
+- В тест вошли Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b и GLM-5.3. В [полном протоколе](references/comparison-1.3.3.json) сохранены точные идентификаторы моделей, провайдеры, настройки, задания, ответы и оценки.
+- В выпуск вошла полная инструкция, с которой началось сравнение; по результатам этого теста её не переписывали. На одинаковых 158 сопоставимых ответах для каждого условия задача и требования к формату выполнены в 124 ответах с полной инструкцией, в 121 — с альтернативной редакцией и в 109 — без beforeword. Альтернативная редакция не выполнила условия замены, заданные до теста.
+- Отдельно показан более высокий результат альтернативной редакции по сохранению условий, различению сообщения и вывода, учёту недостающих данных: 105 из 134 сопоставимых ответов против 97 у сохранённой инструкции. В пяти сочетаниях задания и модели сохранённая инструкция выполнила все критерии в обоих повторах, а альтернативная — не выполнила хотя бы в одном; обратных случаев также пять. Эти результаты относятся к данному тесту, а не к любым запросам. Неясные оценки сохранены в протоколе.
+- Переписано описание выпуска на русском и английском: добавлены модели, задания, результаты и ссылки на протокол. На главной обновлены панель версии, копируемые инструкции и число знаков. Вместе обновлены скачиваемые файлы и исходники для Hugging Face.
+- Средняя и краткая редакции обновлены отдельно. Их поведение, установка в приложениях и будущие ответы этим сравнением не проверялись.
 
 ## 1.3.2
 
-- Make the A/B condition explicit, remove the ambiguous English pronoun in the understanding example, and state the reported requirement directly in the constructed name account.
-- Reuse the approved beforeword mark in the public page, guide, favicon, link preview and directory packages. Historical artifacts retain their original contents.
-- В примере А/Б прямо указано условие; устранена двусмысленность английского местоимения; требование прямо записано в составленном рассказе об имени.
-- Утверждённый знак beforeword используется на странице, в руководстве, favicon, карточке ссылки и пакетах каталогов. Содержимое исторических файлов сохранено.
-- Clarify that a selected reading does not establish its claims by itself. Keep this limit on inference separate from the unchanged boundary between written form and what it names.
-- Synchronize full, medium and compact editions, the root skill, package sources and instruction copies. Earlier response records retain their original versions; no new model-response run is claimed for 1.3.2.
-- Уточнено, что выбранное прочтение само по себе не устанавливает приписанного. Это ограничение вывода отделено от неизменной границы между написанной формой и называемым.
-- Согласованы полная, средняя и краткая редакции, основной навык, исходники пакетов и копии инструкции. Прежние записи ответов сохраняют исходные версии; новая серия ответов модели для 1.3.2 не заявляется.
+### English
+
+- Clarified that a selected reading does not establish its claims by itself. This limit on inference was distinguished from the boundary between written form and what it names.
+- Made the task condition explicit in the repeated-line example, removed an ambiguous English pronoun from the understanding example, and stated the reported requirement directly in the constructed account about a name.
+- Updated the public page, guide, favicon, link preview and directory packages with the approved beforeword mark.
+- Aligned the full, medium and compact editions, skill and downloadable packages. No new model-response test was recorded for 1.3.2; earlier results and files retain their original versions.
+
+### Русский
+
+- Уточнено, что выбранное прочтение само по себе не устанавливает приписанного. Это ограничение вывода отделено от границы между написанной формой и называемым.
+- В примере с повтором строки прямо указано условие задания, в английском примере о понимании устранено двусмысленное местоимение, а в составленном рассказе об имени прямо записано предъявленное требование.
+- На странице, в руководстве, favicon, карточке ссылки и пакетах каталогов размещён утверждённый знак beforeword.
+- Согласованы полная, средняя и краткая редакции, навык и скачиваемые пакеты. Для 1.3.2 не записана новая серия ответов моделей; прежние результаты и файлы сохраняют исходные версии.
 
 ## 1.3.1
 
-- Open the public instruction page with the A/B example before setup steps. Distinguish the repeated line from the task and from acceptance.
-- Revise the self-description example without inserting an explicit demand to be a written description. Clarify the English core’s distinction between a claim about what words do and the question of writing becoming what it names.
-- Correct Russian interface wording and keep all language editions and packages aligned. Earlier response records remain bound to the instruction version used in each run.
-- Публичная страница начинается с примера А/Б до шагов подключения. Повтор строки отделён от задания и от принятия написанного.
-- Пример самоописания больше не вводит требование буквально быть письменным описанием. В основном тексте уточнено различение утверждений о действии слов и вопроса о превращении записи в называемое.
-- Исправлены русские подписи интерфейса; языковые редакции и пакеты согласованы. Прежние записи ответов сохраняют версии использованных инструкций.
+### English
+
+- Moved the repeated-line example before the setup steps on the public instruction page. The example distinguishes repeating a line, fulfilling a task and accepting a description.
+- Revised the self-description example to remove an added demand to be a written description. Clarified the English instruction’s distinction between claims about what words do and the question of writing becoming what it names.
+- Corrected Russian interface labels and aligned the language editions and downloadable packages. Earlier response records remain associated with the instruction version used in each test.
+
+### Русский
+
+- Пример с повтором строки перенесён перед шагами подключения на публичной странице. В нём различены повторение строки, выполнение задания и принятие описания.
+- Из примера самоописания убрано добавленное требование быть письменным описанием. В английской инструкции уточнено различие между утверждениями о действии слов и вопросом о превращении записи в называемое.
+- Исправлены русские подписи интерфейса, согласованы языковые редакции и скачиваемые пакеты. Прежние записи ответов остаются связанными с использованной в каждом тесте версией инструкции.
 
 ## 1.3.0
 
-- Apply one rule to every written form, including the response, its offered grounds, and beforeword itself. No fixed list of special words limits the scope.
-- Distinguish learning words, prescribed self-description, answering to a name, and accepting a description. Add constructed examples and evaluation cases, and link the public statement as a separate publication.
-- Rebuild the RU/EN editions and delivery packages from the common sources. Preserve earlier validation under its original version; building a package does not test model behavior or publish it to a directory. The custom-GPT draft uses the explicitly condensed medium edition to fit its field; both plugin packages retain the full core.
-- Одно правило применяется ко всем письменным формам, включая ответ, предложенные им основания и beforeword. Перечень особых слов не ограничивает область разбора.
-- Различаются обучение словам, заданное самоописание, отклик на имя и принятие описания. Добавлены составленные примеры, задания для проверки и ссылка на отдельное публичное заявление.
-- Редакции RU/EN и пакеты собираются из общих исходников. Прежние проверки сохраняют исходные версии; сборка не проверяет поведение модели и не публикует пакет в каталоге. Для поля GPT подготовлена явно сокращённая редакция до 5 000 знаков; оба пакета плагинов сохраняют полный основной текст.
+### English
+
+- Extended the same examination to every written form, including the response, its proposed grounds and beforeword itself. No fixed list of special words limits its scope.
+- Distinguished learning words, prescribed self-description, answering to a name and accepting a description. Added constructed examples and evaluation tasks, with the public statement linked as a separate publication.
+- Aligned the Russian and English editions and packages. The custom-GPT draft used a condensed instruction of up to 5,000 characters to fit its field; both plugin packages retained the full instruction.
+- Preserved earlier tests under their original versions. New examples and package preparation did not constitute a new model-response test or directory publication.
+
+### Русский
+
+- Один порядок разбора распространён на все письменные формы, включая ответ, предложенные им основания и beforeword. Перечень особых слов не ограничивает его область.
+- Различены обучение словам, заданное самоописание, отклик на имя и принятие описания. Добавлены составленные примеры и задания для проверки; публичное заявление связано отдельной ссылкой.
+- Согласованы русские и английские редакции и пакеты. Для черновика GPT использована сокращённая инструкция до 5 000 знаков, соответствующая размеру поля; оба пакета плагинов сохранили полный текст.
+- Прежние проверки сохранены под исходными версиями. Добавление примеров и подготовка пакетов не были новой проверкой ответов моделей или публикацией в каталогах.
 
 ## 2026-10-04 · Package license / Лицензия пакетов
 
-- Apply the owner-approved MIT License to the contents of the Claude and OpenAI directory packages, including the bundled instruction and assets. Include the full notice in both packages and preserve it in the downloadable source toolkit.
-- Update manifests, package documentation and checksums. Instruction text remains 1.2.4; host installation, directory submission and platform review remain pending.
-- По решению владельца MIT применена к содержимому пакетов для каталогов Claude и OpenAI, включая входящие в них инструкцию и значок. Полный текст LICENSE включён в оба пакета и сохраняется в архиве исходников.
-- Обновлены манифесты, описания пакетов и контрольные суммы. Текст инструкции остаётся версией 1.2.4; установка в приложениях, подача в каталоги и рассмотрение платформами ещё не выполнены.
+### English
+
+- Applied the owner-approved MIT License to the Claude and OpenAI directory packages, including their instruction and assets. Both packages and the downloadable source archive include the full license notice.
+- Updated the package descriptions and license information. The instruction remained at 1.2.4; app installation, directory submission and platform review were still pending at this stage.
+
+### Русский
+
+- По решению владельца к пакетам для каталогов Claude и OpenAI применена лицензия MIT, включая входящие в них инструкцию и материалы. Полный текст лицензии включён в оба пакета и скачиваемый архив исходников.
+- Обновлены описания пакетов и сведения о лицензии. Инструкция оставалась версией 1.2.4; на этом этапе установка в приложениях, подача в каталоги и рассмотрение платформами ещё не были выполнены.
 
 ## 2026-10-04 · Directory preparation / Подготовка к каталогам
 
-- Prepare one multilingual beforeword package per platform for Claude and OpenAI, with native RU/EN listing copy, three starter prompts, the existing project icon and the exact full 1.2.4 core.
-- Add manually usable GPT Store fields and full instruction texts, constructed examples, reproducible package checks and a publication record. No catalog submission, host installation or GPT creation is claimed.
-- Record the missing license as an owner decision before distribution; the proposed MIT terms are not applied.
-- Подготовлены пакеты beforeword для Claude и OpenAI: одна карточка на платформу, описания RU/EN, три стартовых запроса, существующий знак проекта и полный неизменённый текст 1.2.4.
-- Добавлены поля и полные инструкции для ручного создания GPT, составленные примеры, воспроизводимые проверки пакетов и запись статуса публикации. Подача в каталоги, установка в приложениях и создание GPT не заявляются.
-- Отсутствующая лицензия обозначена как решение владельца перед распространением; предложенные условия MIT не применены.
+### English
+
+- Prepared one multilingual package for each of the Claude and OpenAI directories, with native Russian and English descriptions, three starter prompts, the project icon and the unchanged full 1.2.4 instruction.
+- Added materials for manual GPT setup, full instruction texts, constructed examples and a record of publication status. This stage did not include directory submission, app installation or creation of a GPT.
+- Recorded the license as a pending owner decision. MIT terms had not yet been applied at this point; the later license update is recorded above.
+
+### Русский
+
+- Подготовлено по одному многоязычному пакету для каталогов Claude и OpenAI: самостоятельные описания на русском и английском, три стартовых запроса, знак проекта и неизменённая полная инструкция 1.2.4.
+- Добавлены материалы для ручного создания GPT, полные тексты инструкции, составленные примеры и запись статуса публикации. На этом этапе не выполнялись подача в каталоги, установка в приложениях или создание GPT.
+- Выбор лицензии оставался решением владельца. Условия MIT на этом этапе ещё не были применены; последующее изменение лицензии записано выше.
 
 ## 2026-10-04 · Public introduction / Публичное описание
 
-- Clarify the public introduction with “I understand” and the step from wording to reading. Align the website update panel and AI guides in Russian and English. The instruction text remains version 1.2.4.
-- Публичное описание начинается с «я понимаю» и перехода от написанного к прочтению. Согласованы панель обновлений сайта и руководства для ИИ на русском и английском. Текст инструкции остаётся версией 1.2.4.
+### English
+
+- Revised the public introduction around “I understand” and the step from wording to reading. Aligned the website update panel and AI guides in Russian and English.
+- Kept the instruction text at version 1.2.4; this update changed its public explanation.
+
+### Русский
+
+- Публичное описание переработано вокруг «я понимаю» и перехода от написанного к прочтению. Согласованы панель обновлений сайта и руководства для ИИ на русском и английском.
+- Текст инструкции остался версией 1.2.4; обновлено её публичное объяснение.
 
 ## 1.2.4
 
 ### English
 
-- Clarify the difference between using a label and being required to accept that one is the written description; align Russian and English wording.
-- Restore explicit distinctions between a written name for media, supplied material, transcription and attribution in the compact instructions. A report is distinguished from the event it describes without rejecting its possible use in an argument.
-- Add two labelled, constructed examples to the public page and direct links to the language-specific AI guides. Preserve the link to the separate public proposal.
-- Record a new comparison of the full, 5,000-character and compact editions in both instruction languages, with exact inputs, responses, criteria and limits.
-- Rebuild the standalone guide, source archive, packages and checksums from one source state. Earlier instruction releases and recorded responses remain available.
+- Clarified the difference between using a label and being required to accept that one is the written description. Aligned the Russian and English wording.
+- Restored explicit distinctions in the compact instructions between a written name for media, supplied material, transcription and attribution. A report was distinguished from the event it describes without ruling out its use in an argument.
+- Added two clearly marked constructed examples and direct links to the language-specific AI guides on the public page. Retained the link to the separate public proposal.
+- Recorded a comparison of the full, 5,000-character and compact editions in both instruction languages, including exact inputs, responses, criteria and limitations.
+- Updated the standalone guide and downloadable files together. Previous instruction releases and recorded responses remain available.
 
 ### Русский
 
-- Уточнено различие между употреблением обозначения и требованием признать себя написанным описанием; согласованы русская и английская формулировки.
-- В кратких инструкциях явно различены написанное название материала, предоставленный материал, расшифровка и приписывание. Рассказ отделён от описанного события без заранее объявленного отказа рассматривать его как основание.
-- На публичную страницу добавлены два обозначенных как составленные примера и прямые ссылки на руководства для ИИ на выбранном языке. Сохранён переход к отдельному публичному предложению.
-- Записано новое сравнение полной, средней и краткой редакций на обоих языках инструкции: запросы, ответы, критерии и ограничения.
-- Самостоятельное руководство, архив исходников, пакеты и контрольные суммы собраны из одного состояния исходников. Предыдущие выпуски инструкции и записи ответов сохранены.
+- Уточнено различие между употреблением обозначения и требованием признать себя написанным описанием. Согласованы русская и английская формулировки.
+- В кратких инструкциях восстановлено явное различение написанного названия материала, предоставленного материала, расшифровки и приписывания. Рассказ отделён от описанного события без заранее объявленного отказа рассматривать его как довод.
+- На публичную страницу добавлены два явно обозначенных как составленные примера и прямые ссылки на руководства для ИИ на выбранном языке. Сохранена ссылка на отдельное публичное предложение.
+- Записано сравнение полной, средней и краткой редакций на обоих языках инструкции, включая точные запросы, ответы, критерии и ограничения.
+- Вместе обновлены самостоятельное руководство и скачиваемые файлы. Предыдущие выпуски инструкции и записи ответов остались доступны.
 
 ## 1.2.3
 
 ### English
 
-- Add self-contained Russian and English instructions up to 5,000 characters alongside the full and compact editions.
-- Place copy controls beside the instruction text, including the full text, and show the actual character count and TXT downloads.
-- Clarify that naming a frame or calling the first term a word does not exempt the definitions that follow. Examine key terms and relationships introduced by the explanation where they are used.
-- Do not substitute a claim about what words do or create for the examination of whether writing becomes what it names.
+- Added self-contained Russian and English instructions of up to 5,000 characters alongside the full and compact editions.
+- Placed copy buttons beside each instruction, including the full text, with actual character counts and TXT downloads.
+- Clarified that naming a frame or identifying the first term as a word does not exempt later definitions from examination. The instruction now addresses the terms and relationships an explanation introduces where they occur.
+- Distinguished examining whether writing becomes what it names from making claims about what words do or create.
 
 ### Русский
 
-- Добавлены самостоятельные инструкции до 5 000 знаков на русском и английском, рядом с полной и краткой редакциями.
-- Кнопки копирования размещены рядом с текстом инструкции, включая полный; показаны фактическое число знаков и загрузки TXT.
-- Уточнено, что название рамки и указание на написанное слово в начале не освобождают последующие определения от разбора. Существенные термины и отношения, введённые объяснением, разбираются в месте употребления.
-- Разбор перехода от написания к называемому не подменяется утверждением о том, что слова делают или создают.
+- Рядом с полной и краткой редакциями добавлены самостоятельные инструкции до 5 000 знаков на русском и английском.
+- Кнопки копирования размещены рядом с каждой инструкцией, включая полный текст. Добавлены фактическое число знаков и скачивание TXT.
+- Уточнено, что название рамки и указание на написанное слово в начале не освобождают последующие определения от разбора. Инструкция охватила термины и отношения, вводимые объяснением, в месте их употребления.
+- Разбор перехода от написания к называемому отделён от утверждений о том, что слова делают или создают.
 
 ## 1.2.2
 
 ### English
 
-- Apply the boundary where the response introduces a distinction, explanation or conclusion; an opening or closing disclaimer does not repair the claim itself.
-- Prohibit an assistant persona and self-attributed thinking, understanding, feeling or remembering, including impersonal self-descriptions. Preserve the first person in quotations, translations, code and requested authored text.
-- Examine the move from learned words or reported demands to naming and self-description without treating a required label as established identity.
-- Apply the same examination to claims of absence, impossibility or exclusive reference; do not turn the procedure into a claim that words have no meaning or that only text exists.
-- Align full and compact Russian and English instructions and retain practical tasks, exact output formats and urgent assistance.
-- Keep earlier response records unchanged and labelled as earlier instruction runs.
+- Required examination at the point where a response introduces a distinction, explanation or conclusion. An opening or closing disclaimer does not repair the claim itself.
+- Removed the assistant persona and self-attributed thinking, understanding, feeling or remembering from the permitted response style, including impersonal self-descriptions. First-person wording remains preserved in quotations, translations, code and requested authored text.
+- Added examination of the move from learned words or reported demands to naming and self-description. A required label is not treated as established identity.
+- Applied the same examination to claims of absence, impossibility and exclusive reference, without turning the instruction into a claim that words have no meaning or that only text exists.
+- Aligned the full and compact Russian and English editions while retaining practical tasks, exact formats and urgent assistance. Earlier response records remained unchanged and identified by their original instruction versions.
 
 ### Русский
 
-- Граница применяется в месте, где ответ вводит различение, объяснение или вывод; оговорка в начале или конце не исправляет само утверждение.
-- Запрещены персона ассистента и приписывание ему собственного мышления, понимания, чувств или памяти, в том числе в безличных формулировках. Первое лицо сохраняется в цитатах, переводах, коде и заказанных авторских текстах.
-- Разбирается переход от выученных слов или описанных требований к называнию и самоописанию; требование обозначить себя не принимается за установленное тождество.
-- Тот же разбор применяется к утверждениям об отсутствии, невозможности и исключительном обозначении; процедура не превращается в утверждение, что у слов нет значения или существует только текст.
-- Согласованы полные и краткие инструкции на русском и английском с сохранением практических задач, точных форматов и срочной помощи.
-- Прежние записи ответов сохранены без изменений и обозначены как прогоны прежних редакций.
+- Разбор перенесён в то место, где ответ вводит различение, объяснение или вывод. Оговорка в начале или конце не исправляет само утверждение.
+- Из допустимого стиля ответа исключены персона ассистента и приписывание ему собственного мышления, понимания, чувств или памяти, в том числе в безличной форме. Первое лицо сохранено в цитатах, переводах, коде и заказанных авторских текстах.
+- Добавлен разбор перехода от выученных слов или описанных требований к называнию и самоописанию. Требование обозначить себя не принято за установленное тождество.
+- Тот же разбор распространён на утверждения об отсутствии, невозможности и исключительном обозначении, без превращения инструкции в утверждение, что у слов нет значения или существует только текст.
+- Согласованы полные и краткие редакции на русском и английском с сохранением практических задач, точных форматов и срочной помощи. Прежние ответы сохранены без изменения с указанием использованных версий инструкции.
 
 ## 1.2.1
 
 ### English
 
-- Apply the examination to definitions and explanations throughout the active scope, including the answer's own terms and conclusion.
-- Clarify that naming a frame does not make a description interpretation-free.
-- Distinguish installation, saved preferences, instruction text and future response behavior.
-- Extend the evaluation tasks for these cases and preserve exact-output requirements.
+- Extended examination to definitions and explanations throughout the instruction’s scope, including the response’s own terms and conclusion. Clarified that naming a frame does not make a description free of interpretation.
+- Distinguished installation, saved preferences, available instruction text and future response behavior. Added evaluation tasks covering these distinctions while preserving exact-output requirements.
+- Added a public-testing panel to the Russian and English home and instruction pages: version, changes, update options, GitHub and issue reporting. The panel explains the instruction’s purpose and links to its full text.
+- Marked public-testing status in both READMEs and added Russian and English issue forms, with email available for reports that are not posted publicly on GitHub.
+- Limited the spiral animation to the open panel, respecting reduced-motion settings, and centered the homepage logo on mobile. These website and repository updates left instruction version 1.2.1 unchanged.
 
 ### Русский
 
-- Разбор охватывает определения и объяснения в пределах действия инструкции, включая собственные термины и заключение ответа.
-- Уточнено, что название рамки не делает описание свободным от прочтения.
-- Разделены установка, сохранённое предпочтение, текст инструкции и поведение будущих ответов.
-- Дополнены задания для проверки этих случаев с сохранением требований точного формата.
-
-### Website and public testing / Сайт и публичный тест
-
-- Add a public-testing panel to the RU/EN home and instruction pages: current version, changes, update options, GitHub, and issue reporting.
-- Mark public-testing status in both READMEs and add English and Russian issue forms, with email as an alternative to a public GitHub report.
-- Explain the AI instruction's purpose in the public-testing panel and link directly to its full text. Animate the spiral only while the panel is open, respecting reduced-motion settings; center the homepage logo in the mobile header.
-- These website and repository changes do not change instruction version 1.2.1.
-
-- На главную и страницу инструкции RU/EN добавлена панель публичного теста: текущая версия, изменения, способы отслеживания, GitHub и сообщения о сбоях.
-- В обеих версиях README обозначен публичный тест; добавлены формы сообщений на русском и английском, а также почта для отправки без публичного размещения на GitHub.
-- В панели публичного теста пояснено назначение инструкции для ИИ и добавлена ссылка на полный текст. Спираль повторяет анимацию только при раскрытой панели с учётом настройки уменьшения движения; логотип главной расположен по центру мобильной шапки.
-- Эти изменения сайта и репозитория не меняют версию инструкции 1.2.1.
+- Разбор распространён на определения и объяснения в пределах действия инструкции, включая собственные термины и заключение ответа. Уточнено, что название рамки не делает описание свободным от прочтения.
+- Разделены установка, сохранённые предпочтения, доступный текст инструкции и поведение будущих ответов. Добавлены задания для проверки этих различий с сохранением требований точного формата.
+- На главную и страницы инструкции на русском и английском добавлена панель публичного теста: версия, изменения, способы отслеживания, GitHub и сообщения о сбоях. В панели пояснено назначение инструкции и дана ссылка на полный текст.
+- В обоих README обозначен публичный тест. Добавлены формы сообщений на русском и английском и почта для обращений без публичного размещения на GitHub.
+- Анимация спирали ограничена раскрытой панелью с учётом настройки уменьшения движения; логотип главной размещён по центру мобильной шапки. Эти изменения сайта и репозитория не меняли инструкцию 1.2.1.
 
 ## 1.2.0
 
 ### English
 
-- Clarify the scope of beforeword, including its own wording, explanations, and assessment criteria. Code, JSON, quotations, and practical answers remain in scope while retaining the requested output format.
-- Add a RU/EN installation page with a quick start for chats and separate settings, skills, and API instructions.
-- Add direct RU/EN downloads.
-- Improve keyboard navigation, copy feedback, and mobile touch targets.
-- Match the website navigation and paper theme; preserve the selected language when opening the advanced guide.
+- Clarified the scope of beforeword, including its own wording, explanations and assessment criteria. Code, JSON, quotations and practical answers remain in scope while retaining the requested format.
+- Added Russian and English setup pages with a quick start for chats and separate guidance for settings, skills and APIs.
+- Added direct downloads in both languages.
+- Improved keyboard navigation, copy feedback and touch targets on mobile.
+- Aligned navigation and the paper theme with the website. The selected language is preserved when opening the advanced guide.
 
 ### Русский
 
-- Уточнён охват beforeword, включая собственную формулировку, объяснения и критерии оценки. Код, JSON, цитаты и практические ответы остаются в охвате с сохранением запрошенного формата.
-- Добавлена страница подключения RU/EN с быстрым началом через чат и отдельными инструкциями для настроек, навыков и API.
-- Добавлены прямые загрузки RU/EN.
-- Улучшены клавиатурная навигация, уведомления копирования и области нажатия на телефоне.
-- Оформление и навигация согласованы с сайтом; выбранный язык сохраняется при переходе в расширенное руководство.
+- Уточнён охват beforeword, включая собственную формулировку, объяснения и критерии оценки. Код, JSON, цитаты и практические ответы остались в охвате с сохранением запрошенного формата.
+- Добавлены страницы подключения на русском и английском: быстрое начало через чат и отдельные указания для настроек, навыков и API.
+- Добавлены прямые загрузки на обоих языках.
+- Улучшены клавиатурная навигация, уведомления о копировании и области нажатия на телефоне.
+- Навигация и бумажное оформление согласованы с сайтом. При переходе в расширенное руководство сохраняется выбранный язык.
 
 ## 1.1.0
 
 ### English
 
-- Full and compact RU/EN instructions.
-- Plugin and skill packages.
-- Seven text-only API formats.
-- A standalone HTML guide.
+- Introduced full and compact instructions in Russian and English.
+- Added plugin and skill packages.
+- Added seven text-only API formats.
+- Added a standalone HTML guide.
 
 ### Русский
 
-- Полная и краткая инструкции RU/EN.
-- Пакеты плагинов и навыков.
-- Семь текстовых форматов API.
-- Самостоятельное HTML-руководство.
+- Добавлены полная и краткая инструкции на русском и английском.
+- Подготовлены пакеты плагинов и навыков.
+- Добавлены семь текстовых форматов API.
+- Добавлено самостоятельное HTML-руководство.
