@@ -1,6 +1,6 @@
 # Privacy policy — beforeword instruction packages
 
-Updated: 4 October 2026. Applies to the beforeword 1.2.4 instruction packages for OpenAI and Claude in this repository.
+Updated: 13 October 2026. Applies to the beforeword 1.3.4 skills-only instruction packages for OpenAI and Claude in this repository.
 
 These packages contain a text instruction, package metadata, documentation, a license, and an icon. They include no executable code, server, account connection, or telemetry. The packages have no mechanism of their own to collect, store, or transmit your conversations to beforeword.
 
@@ -12,7 +12,7 @@ For questions about these packages, use the [public issue tracker](https://githu
 
 ## Русский
 
-Обновлено: 4 октября 2026 года. Относится к пакетам инструкции beforeword 1.2.4 для OpenAI и Claude в этом репозитории.
+Обновлено: 13 октября 2026 года. Относится к пакетам инструкции beforeword 1.3.4 для OpenAI и Claude в этом репозитории, содержащим только навык и сопровождающие файлы.
 
 Пакеты содержат текст инструкции, метаданные, документацию, лицензию и значок. В них нет исполняемого кода, сервера, подключения аккаунта или телеметрии. В самих пакетах нет механизма сбора, хранения или передачи ваших разговоров в beforeword.
 

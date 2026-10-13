@@ -73,9 +73,9 @@
     "assets/updates.css": "9fc64ac09619eb9c5331a430e97b3a54816be0bbfb87404d89011ab4d1e8f7e7",
     "assets/updates.js": "b6f1ef519f7c5c615caaa789f8de97c6896733cd0094695c63023f0bf7393c75",
     "catalog/LICENSING.md": "df66d51a3eaa081fbdfe617d4603ad939dd5150405c90fadf75de91c6cab2ae2",
-    "catalog/PRIVACY.md": "05e49e86b5cffd43869a46e4742cbc8430de59252ea16353ead8dac401579052",
-    "catalog/README.md": "2251393049da67cc186f369ec24b490f20fa6c65c2a492a52fc8cd66540f7774",
-    "catalog/README.ru.md": "3340286a6fe0bd05ef9e1c930a4b6af9843bd8b5e2baa2daeea9e4c4e5c855f9",
+    "catalog/PRIVACY.md": "652b2c5ac239fca236710710051bf840bb1de06d89c7108ab81a543a02de0bc7",
+    "catalog/README.md": "62dca01a386ef8f09ca45ec751ac69bc20295f02ac9a27c22954741945be5f10",
+    "catalog/README.ru.md": "06c6a0a2d9364ba6f1f5579cb83d4365154b80244dde5b730949e63183460f40",
     "catalog/SUBMISSION.md": "b81664740a36ad0ece1833e868ffac86dff8dd9798d9c8559315cfd8a4521691",
     "catalog/approved-LICENSE.txt": "68884273ea3f9546fb710f2c1f2035a7d5b23f94c1d0458e94513f97bc9de4ef",
     "catalog/assets/logo.png": "19060387d95ba7e46f079af0f7cdd9a9ab77c8e5fbad7b530b2f6c86e2bfed9e",
@@ -91,7 +91,7 @@
     "catalog/listing.json": "d8d13c56d57d70c96353b1053037d77105374ec9066d06d5f2e970b42275a646",
     "catalog/plugin-readme.en.md": "440f04949e4998d2b2cd889ac565496dc46c8bacfa270e0828b05733d10ca20f",
     "catalog/plugin-readme.ru.md": "94064c12c23b41ef0ce6608f3627d4bc79d69a870aa57384db2ceffcff27d187",
-    "catalog/submission-status.json": "7b8029b14cdd4e99a4398c2b8209c162d06cf27e465e469b7312921ac2773222",
+    "catalog/submission-status.json": "1ac26b3e591d628a82c417f5cc8f444fa68905b0817b4e227e0b1417fba2dd3d",
     "catalog/validation/README.md": "76d07991bd491071d7cac3ba7c8b08d8db3160952a94e80899e1c885f8bcd5bc",
     "catalog/validation/package-task-runs-2026-10-03.json": "350d4efa7670e75cfdd92f698adde79f7f1974306dfd24e8c00aeb5a639df749",
     "catalog/validation/task-runs.json": "0c5c6364c4dfd52eacc360e1a8d82a74f5463ed915d8cff2050189a476f092c7",
@@ -172,8 +172,8 @@
       "bytes": 9104
     },
     "beforeword_AI_1.3.4.html": {
-      "sha256": "08b6fb32bcc32874d0f70dc1078c4d63b3235159ea418b3f5dee56c1f8f5119f",
-      "bytes": 3783095
+      "sha256": "e8582bf3711387bf062a4e85796f7060a004e68b96d1509e074f82d1d744d1d3",
+      "bytes": 3784823
     },
     "beforeword_claude_plugin_EN_1.3.4.zip": {
       "sha256": "14c1aaed0e42f7189fee7115c4d2d27050b56109e6648e9134548669d583da7c",
@@ -216,8 +216,8 @@
       "bytes": 7910
     },
     "beforeword_toolkit_1.3.4.zip": {
-      "sha256": "211f9788356122f971310ccc3bf9310559752c252b2b0d447af5210df8345a43",
-      "bytes": 2457249
+      "sha256": "7364f965b22b18ae94d4d26b59d585f54ede4ec87ca2ada7de2b9f29d3b6cc31",
+      "bytes": 2458543
     }
   }
 }

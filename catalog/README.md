@@ -12,13 +12,20 @@ The catalog build packages the complete beforeword 1.3.4 core. Their English ins
 
 **Release source: 1.3.4.** Directory acceptance and publication are recorded separately in [submission-status.json](submission-status.json); rebuilding the source does not update a submission.
 
-The recorded portal read on 9 October 2026 showed **Claude 1.2.4 serving**, a pending publication request for 1.3.1 at `c8954c5`, and 1.3.2 at `dfacdd2` marked Approved. The newer publication button was disabled; the icon was waiting for review. OpenAI required sign-in. These observations do not establish submission or publication of 1.3.4.
+**Portal observations on 13 October 2026:**
+
+| Platform | Prepared package | Directory review | Published version |
+| --- | --- | --- | --- |
+| Claude | 1.3.4 | The portal detected `e950835`, passed its security scan and marked it Approved. It is waiting for an Anthropic reviewer. | 1.2.4 remains live; 1.3.4 is not live. |
+| OpenAI | 1.3.4 | The previous 1.3.3 review was cancelled to replace the package. The portal shows Changes required. The 1.3.4 upload did not transfer a file and has not been submitted. | Not published. |
+
+Claude 1.3.4 passed its security scan and is waiting for publication. OpenAI 1.3.4 is prepared; its upload was not completed. Installation and responses inside either host application have not been tested. The [dated record](submission-status.json) preserves earlier states and the limits of this update.
 
 ### Earlier submission: 1.2.4
 
-**OpenAI version 1.2.4 was submitted for review on 4 October 2026.** The recorded portal observation was **In review** and **Not published**. Claude version 1.2.4 was also submitted on 4 October 2026. Its security scan passed, and publication was requested. The request is waiting for an Anthropic reviewer; the same record lists Claude as **Nothing published yet**. Automatic publication in Claude is disabled. No GPT Store listing has been created.
+Both 1.2.4 packages were submitted on 4 October 2026. The [status history](submission-status.json) preserves those submission and review records. No GPT Store listing has been created.
 
-The instruction remains under public testing. Package checks and small task runs are recorded separately from installation in Claude or ChatGPT. OpenAI's metadata and skill checks passed before submission; review and publication remain pending.
+The instruction remains under public testing. Package checks and small task runs are recorded separately from installation in Claude or ChatGPT. The earlier OpenAI metadata and skill checks belong to the submission recorded at that time; they are not checks of the prepared 1.3.4 package in the portal.
 
 [Eight recorded task outputs](validation/README.md) include five fresh tasks using the instruction extracted from the MIT-licensed ZIPs. The earlier unsupported addition remains in the record. Those runs used the 1.2.4 instruction; they are not results for 1.3.4. See the [submission status](submission-status.json) and [package privacy policy](PRIVACY.md).
 
