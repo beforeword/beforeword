@@ -1,0 +1,42 @@
+{
+  "contract": "beforeword-dictionary-wiktionary-1",
+  "serialization": "UTF-8 JSON; recursively sorted object keys; compact separators; Unicode unescaped",
+  "cases": {
+    "en-I.json": {
+      "fixture_sha256": "9bed26dfc9d1a9a558f29e7a13f8cce6a09ad7e5cbb1b4b650d4b41f62058296",
+      "result_sha256": "72a0b90cfd2f1d7c9160fc6901c1eb0dcbb438205d93f3ffb9d7e4e66746d896"
+    },
+    "en-bank.json": {
+      "fixture_sha256": "15e6b9b110738fef5483dbdb96a2832d20fab3e92704cf03d2ad59f816a68423",
+      "result_sha256": "566f182dc5ae152647dcddf6625b6b667076e28452cf5eaa3e1e6ea43cdcabbf"
+    },
+    "en-dogs.json": {
+      "fixture_sha256": "bd28c39779357e0625a9329ce5a668308e2afae9be8ad19262685167937ba030",
+      "result_sha256": "95a32c4abaf249c237e68fd97300dc60a93c4f8c0624129a538014728436964b"
+    },
+    "en-if.json": {
+      "fixture_sha256": "d0bd47e2b90816f76877206e784c064d9857ef2af235126d4788fd59fb274064",
+      "result_sha256": "41dce0814539705474d38eaa0fb473d375aeb877f540ef09240f512432245271"
+    },
+    "ru-если.json": {
+      "fixture_sha256": "a1e21637e5e1b919323b1b5b84e0af6089683ea67ade6db70213c70c9f275953",
+      "result_sha256": "d803533a50782145be4fedd5bea2034abafe02ef2fb3d46f41a8a6ad5ffacfa2"
+    },
+    "ru-жизни.json": {
+      "fixture_sha256": "91289110b4c3a0ea88912ae176c0ec8987b960131dcb3f0e3cd39c53a294de10",
+      "result_sha256": "3616c027a5bc97c537b197af0cc1af2c0498b15a5afa700ce0c84d594edbaa39"
+    },
+    "ru-словами.json": {
+      "fixture_sha256": "797c1bb54d869bc9040bdb0d8b90ae3306558e22c0ab77136e25976c2ae005ec",
+      "result_sha256": "515ee0a8573595494b1b59808a2a779ec6e5ff6fddc19d2595d6eefa2ca18b8e"
+    },
+    "ru-условие.json": {
+      "fixture_sha256": "877fa7a49d40f5213b907960367541195aa77e8bba4c2835986b366e73974895",
+      "result_sha256": "c28972cb69126937404d23d78dbe3151029512de7e23f6b08d8ef49ccc3107dc"
+    },
+    "ru-я.json": {
+      "fixture_sha256": "7b2de1f24798b6124cd3c0744f467e0081c216d981f4daa35546950948d3886f",
+      "result_sha256": "5ef005f8cc025ef5e44a95b93c1098e0ce2dd6693b14a266b3e69dfd0c6f998f"
+    }
+  }
+}

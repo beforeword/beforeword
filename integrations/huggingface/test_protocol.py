@@ -51,9 +51,9 @@ def content_text(content: list) -> str:
     return content[0].text
 
 
-async def check(url: str) -> dict:
+async def check(url: str, fixture_dictionary: bool = False, live_dictionary: bool = False) -> dict:
     instruction_version, expected = expected_instructions()
-    counts = {"exact_retrievals": 0, "invalid_language_checks": 0}
+    counts = {"exact_retrievals": 0, "invalid_language_checks": 0, "dictionary_lookups": 0, "invalid_dictionary_checks": 0}
     local = urlsplit(url).hostname in {"127.0.0.1", "localhost", "::1"}
     # Ignore proxy configuration only for loopback, where no network service is used.
     async with httpx.AsyncClient(trust_env=not local, timeout=20.0) as client:
@@ -61,11 +61,13 @@ async def check(url: str) -> dict:
             async with ClientSession(read, write) as session:
                 initialized = await session.initialize()
                 tools = (await session.list_tools()).tools
-                assert len(tools) == 1, [tool.name for tool in tools]
-                tool = tools[0]
-                assert tool.name.endswith("get_beforeword_instruction"), tool.name
+                assert len(tools) == 2, [tool.name for tool in tools]
+                tool = next(t for t in tools if t.name.endswith("get_beforeword_instruction"))
+                dictionary_tool = next(t for t in tools if t.name.endswith("lookup_dictionary_entry"))
                 assert set(tool.inputSchema["properties"]) == {"language"}, tool.inputSchema
                 assert set(tool.inputSchema["properties"]["language"]["enum"]) == {"en", "ru"}
+                assert set(dictionary_tool.inputSchema["properties"]) == {"word", "language"}
+                assert set(dictionary_tool.inputSchema["properties"]["language"]["enum"]) == {"en", "ru"}
                 prompts = (await session.list_prompts()).prompts
                 assert len(prompts) == 1, prompts
                 prompt_name = prompts[0].name
@@ -119,9 +121,31 @@ async def check(url: str) -> dict:
                 else:
                     assert content_text(extra.content).encode("utf-8") == expected["en"]
                     extra_behavior = "ignored by framework; unchanged instruction returned"
+                for arguments in [
+                    {"word": "", "language": "en"}, {"word": "if", "language": "fr"},
+                    {"word": "https://example.com", "language": "en"},
+                    {"word": "Special:Random", "language": "en"},
+                    {"word": "a" * 121, "language": "en"},
+                    {"word": "one\ntwo", "language": "en"},
+                ]:
+                    result = await session.call_tool(dictionary_tool.name, arguments)
+                    assert result.isError, "Invalid dictionary input accepted"
+                    counts["invalid_dictionary_checks"] += 1
+                if fixture_dictionary or live_dictionary:
+                    selections = [("if", "en"), ("я", "ru")] if fixture_dictionary else [("if", "en")]
+                    for word, language in selections:
+                        result = await session.call_tool(dictionary_tool.name, {"word": word, "language": language})
+                        assert not result.isError, result
+                        record = json.loads(content_text(result.content))
+                        assert record["query"] == word and record["status"] == "found", record
+                        assert record["entries"] and record["source"]["revision"] > 0
+                        assert record["source"]["url"].startswith(f"https://{language}.wiktionary.org/w/index.php?title=")
+                        assert "&oldid=" in record["source"]["url"]
+                        counts["dictionary_lookups"] += 1
                 return {
                     "ok": True,
-                    "scope": "MCP HTTP protocol and exact instruction delivery; no model behavior tested",
+                    "scope": "MCP HTTP protocol, exact instruction delivery and dictionary contract; no model behavior tested",
+                    "dictionary_source": "local recorded Wikimedia responses" if fixture_dictionary else "live Wiktionary" if live_dictionary else "not requested; schema and invalid inputs only",
                     "instruction_version": instruction_version,
                     "client_environment": {
                         "python": sys.version.split()[0],
@@ -130,7 +154,7 @@ async def check(url: str) -> dict:
                     },
                     "server_reported": initialized.serverInfo.model_dump(exclude_none=True),
                     "protocol_version": initialized.protocolVersion,
-                    "tool": tool.name,
+                    "tools": [t.name for t in tools],
                     "prompt": prompts[0].name,
                     "resource_template": templates[0].uriTemplate,
                     **counts,
@@ -142,9 +166,10 @@ async def check(url: str) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", help="Existing MCP Streamable HTTP endpoint; otherwise starts localhost")
+    parser.add_argument("--live-dictionary", action="store_true", help="Send one explicit 'if' lookup to Wiktionary; local default uses recorded fixtures")
     args = parser.parse_args()
     if args.url:
-        print(json.dumps(asyncio.run(check(args.url)), ensure_ascii=False, indent=2))
+        print(json.dumps(asyncio.run(check(args.url, live_dictionary=args.live_dictionary)), ensure_ascii=False, indent=2))
         return
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
@@ -155,7 +180,15 @@ def main() -> None:
     for key in ("NO_PROXY", "no_proxy"):
         env[key] = ",".join(filter(None, [env.get(key, ""), "127.0.0.1", "localhost"]))
     with tempfile.TemporaryFile(mode="w+") as log:
-        process = subprocess.Popen([sys.executable, "app.py"], cwd=ROOT, env=env, stdout=log, stderr=log)
+        # Override transport only inside this test child process. Production app
+        # has no fixture mode, no fixture parameter and no alternate host setting.
+        fixture_launcher = (
+            "import dictionary,json,runpy; from pathlib import Path; "
+            "dictionary.fetch_response=lambda word,language: json.loads((Path('fixtures')/(language+'-'+word+'.json')).read_text()); "
+            "runpy.run_path('app.py',run_name='__main__')"
+        )
+        command = [sys.executable, "app.py"] if args.live_dictionary else [sys.executable, "-c", fixture_launcher]
+        process = subprocess.Popen(command, cwd=ROOT, env=env, stdout=log, stderr=log)
         try:
             deadline = time.monotonic() + 25
             with httpx.Client(trust_env=False, timeout=1) as probe:
@@ -170,7 +203,7 @@ def main() -> None:
                     time.sleep(0.15)
                 else:
                     raise TimeoutError("Local server did not become ready within 25 seconds")
-            result = asyncio.run(check(f"http://127.0.0.1:{port}/gradio_api/mcp/"))
+            result = asyncio.run(check(f"http://127.0.0.1:{port}/gradio_api/mcp/", fixture_dictionary=not args.live_dictionary, live_dictionary=args.live_dictionary))
             print(json.dumps(result, ensure_ascii=False, indent=2))
         except BaseException:
             log.seek(0)

@@ -1,0 +1,17 @@
+{
+  "parse": {
+    "title": "жизни",
+    "pageid": 147002,
+    "revid": 13379158,
+    "text": "<div class=\"mw-parser-output\"><div class=\"mw-heading mw-heading1\"><h1 id=\"Русский\"><span id=\".D0.A0.D1.83.D1.81.D1.81.D0.BA.D0.B8.D0.B9\"></span>Русский</h1></div>\n<ul><li>форма родительного, дательного или предложного падежа единственного числа существительного <i><a href=\"/wiki/%D0%B6%D0%B8%D0%B7%D0%BD%D1%8C#Русский\" title=\"жизнь\">жизнь</a></i> </li></ul>\n<ul><li>форма именительного или винительного падежа множественного числа существительного <i><a href=\"/wiki/%D0%B6%D0%B8%D0%B7%D0%BD%D1%8C#Русский\" title=\"жизнь\">жизнь</a></i></li></ul></div>"
+  },
+  "_retrieval": {
+    "url": "https://ru.wiktionary.org/w/api.php?action=parse&format=json&formatversion=2&origin=%2A&page=%D0%B6%D0%B8%D0%B7%D0%BD%D0%B8&prop=text%7Crevid&disableeditsection=1&disabletoc=1",
+    "date": "Tue, 13 Oct 2026 13:22:10 GMT",
+    "cors": "*"
+  },
+  "_fixture": {
+    "derivation": "Public definition and heading extracts only; examples, quotations, translation tables and navigation omitted. Exact source text is not paraphrased.",
+    "rawResponseSha256": "b49d565e092ec1e2c7349ee22582f2eb8b4b7b16de756bcb6aa892a604442da1"
+  }
+}
