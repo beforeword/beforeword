@@ -74,24 +74,25 @@
     "assets/updates.js": "b6f1ef519f7c5c615caaa789f8de97c6896733cd0094695c63023f0bf7393c75",
     "catalog/LICENSING.md": "df66d51a3eaa081fbdfe617d4603ad939dd5150405c90fadf75de91c6cab2ae2",
     "catalog/PRIVACY.md": "652b2c5ac239fca236710710051bf840bb1de06d89c7108ab81a543a02de0bc7",
-    "catalog/README.md": "62dca01a386ef8f09ca45ec751ac69bc20295f02ac9a27c22954741945be5f10",
-    "catalog/README.ru.md": "06c6a0a2d9364ba6f1f5579cb83d4365154b80244dde5b730949e63183460f40",
-    "catalog/SUBMISSION.md": "b81664740a36ad0ece1833e868ffac86dff8dd9798d9c8559315cfd8a4521691",
+    "catalog/README.md": "98642fbc99019bd371704f9757e8de64870a998b7b7dbb0b9932a69417f676ba",
+    "catalog/README.ru.md": "40aa9fe2c911872665e84dd40283c8d6ccad12acafad002d4cdda41df19415c5",
+    "catalog/SUBMISSION.md": "6a8a6c9b484f1759d8f53972df9168b297c3e0f207f346074ad1d33bc8aa4f6f",
+    "catalog/TERMS.md": "2c1cd27849369e05c4fd6e4ab416c88428a845ea64ac52751a3775eeb31ad9de",
     "catalog/approved-LICENSE.txt": "68884273ea3f9546fb710f2c1f2035a7d5b23f94c1d0458e94513f97bc9de4ef",
     "catalog/assets/logo.png": "19060387d95ba7e46f079af0f7cdd9a9ab77c8e5fbad7b530b2f6c86e2bfed9e",
     "catalog/assets/logo.svg": "b0dc232dd31d26e9328089df74989a08d1ef5b276226a7b29408be6809d73ac7",
-    "catalog/build.py": "bdc87f92d1052742d341fdde46c28513b3c5aed4469c8b1287e38cc9a84439c9",
-    "catalog/check.py": "7aa519869e6a0329a06460bea3d3b466d0c0cb8a45551eccae0e571aa6508c7e",
+    "catalog/build.py": "85f49ee9f9f42a7d684047c3cc1c553f2c1647ab0113811c4af5d1f39e7dd1aa",
+    "catalog/check.py": "d035c6393cf1cbc330d23647694d5e2fef15accea4a778aeecb49f4085e0825a",
     "catalog/examples.md": "2c1c1a778c91919d575a761445349768e9d91a68259f8d9a016cba76296a338b",
     "catalog/gpt-store/README.md": "ac4abd0ff510180ed0b880c3b43f05f56e5a31b7c216fea98684976856e5ce8d",
     "catalog/gpt-store/README.ru.md": "b9df04d72ad05e4b5b7f8260d7f23c2c28e96e67c2c755f350e9aeedd3cb681e",
     "catalog/gpt-store/draft.json": "3747f479fab974f59ab201dbdf857ff1788dfdc44d9c04affdd341ec0df7bff9",
     "catalog/gpt-store/instructions.en.txt": "8b13d4cfa468613e7ec8c19ba517ab7229721a3a9951d288b3168310b8a9efdb",
     "catalog/gpt-store/instructions.ru.txt": "d467feca6d2a357c491a2af180c2d77492d6473e32004c41807ee9fbb5cf092e",
-    "catalog/listing.json": "d8d13c56d57d70c96353b1053037d77105374ec9066d06d5f2e970b42275a646",
+    "catalog/listing.json": "6ffd90989f2377754c8d52122ec8436dbf02ee4b1761da1cc00665e5edc6ad6c",
     "catalog/plugin-readme.en.md": "440f04949e4998d2b2cd889ac565496dc46c8bacfa270e0828b05733d10ca20f",
     "catalog/plugin-readme.ru.md": "94064c12c23b41ef0ce6608f3627d4bc79d69a870aa57384db2ceffcff27d187",
-    "catalog/submission-status.json": "1ac26b3e591d628a82c417f5cc8f444fa68905b0817b4e227e0b1417fba2dd3d",
+    "catalog/submission-status.json": "ed2851d8143a9b430ff83ac128a771ad7e883f62777a06efdaf4cceb87e5ff39",
     "catalog/validation/README.md": "76d07991bd491071d7cac3ba7c8b08d8db3160952a94e80899e1c885f8bcd5bc",
     "catalog/validation/package-task-runs-2026-10-03.json": "350d4efa7670e75cfdd92f698adde79f7f1974306dfd24e8c00aeb5a639df749",
     "catalog/validation/task-runs.json": "0c5c6364c4dfd52eacc360e1a8d82a74f5463ed915d8cff2050189a476f092c7",
@@ -110,7 +111,7 @@
     "plugins/openai/beforeword/README.md": "440f04949e4998d2b2cd889ac565496dc46c8bacfa270e0828b05733d10ca20f",
     "plugins/openai/beforeword/README.ru.md": "94064c12c23b41ef0ce6608f3627d4bc79d69a870aa57384db2ceffcff27d187",
     "plugins/openai/beforeword/assets/logo.svg": "b0dc232dd31d26e9328089df74989a08d1ef5b276226a7b29408be6809d73ac7",
-    "plugins/openai/beforeword/plugin.json": "2c31df92f0bc444c2c9392705cda3a1a446133e59b0ee71a46e5c874d6188cba",
+    "plugins/openai/beforeword/plugin.json": "46eacfeb04c8475eff89853c67fec706fb303ebb9143c1c0998abdd99ef8c61c",
     "plugins/openai/beforeword/skills/read/SKILL.md": "f9ba4fa608a09951a2199b41ad47901df94663a348cd834486c9bca189d2c725",
     "references/api-use.md": "b33ee0b4ee43266cf0e0e563ce1fc453c1e3183995c02eaa69566048cf8b9d50",
     "references/api-use.ru.md": "e8767a5b54d8e32afa531d816f7e2820933cf31c10bc54c6c93001da8981e611",
@@ -172,8 +173,8 @@
       "bytes": 9104
     },
     "beforeword_AI_1.3.4.html": {
-      "sha256": "e8582bf3711387bf062a4e85796f7060a004e68b96d1509e074f82d1d744d1d3",
-      "bytes": 3784823
+      "sha256": "d90a0cb6d781508c62f69ca321185597c6759680ee15e141adbf6e949dddfe09",
+      "bytes": 3791259
     },
     "beforeword_claude_plugin_EN_1.3.4.zip": {
       "sha256": "14c1aaed0e42f7189fee7115c4d2d27050b56109e6648e9134548669d583da7c",
@@ -216,8 +217,8 @@
       "bytes": 7910
     },
     "beforeword_toolkit_1.3.4.zip": {
-      "sha256": "7364f965b22b18ae94d4d26b59d585f54ede4ec87ca2ada7de2b9f29d3b6cc31",
-      "bytes": 2458543
+      "sha256": "63edcf9d8bbed9d40397d84168041ec53fd44dfbaa9616686255e7b282087e38",
+      "bytes": 2463355
     }
   }
 }

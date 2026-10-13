@@ -4,6 +4,18 @@ Source release: 1.3.4. The earlier portal observations below concern 1.2.4 and w
 
 The OpenAI upload path for this release is `catalog/packages/beforeword_openai_directory_1.3.4.zip`; the current Claude source is `plugins/claude/beforeword` on `main`. A source rebuild and a directory submission are separate actions.
 
+## Current OpenAI blocker — 13 October 2026
+
+After a manual upload, the owner supplied a screenshot showing two findings: “Terms of service URL is required.” and “We are not accepting more skills-only submissions at this time.” It also shows the skill as Checking, with 0 of 1 skills checked. The screenshot does not display the package version or completed submission.
+
+The prepared 1.3.4 ZIP now includes `extensions.com.openai.interface.termsOfServiceURL`, pointing to the public [terms of use](TERMS.md). This is a metadata correction; the instruction is unchanged. The corrected archive has not been uploaded. Its digest is recorded in [submission-status.json](submission-status.json).
+
+The terms correction does not resolve the intake restriction. Ask OpenAI support about this existing submission, using plugin ID `plugins_6ac15b773ab88191bb97750bed560c86`. Do not add a placeholder MCP server. The submission guide says adding MCP to an existing skills-only plugin is not currently supported. A useful remote service would require its own implementation, data disclosures, tests, and supported submission path.
+
+The records below describe earlier states, not current eligibility to submit.
+
+## Earlier portal observations
+
 OpenAI version 1.2.4 was submitted for review on 4 October 2026 (Asia/Bangkok). After submission, the portal listed beforeword as **In review**, with Publication marked **Not published**. Claude version 1.2.4 was also submitted on 4 October 2026. Its security scan passed and publication was requested; the request is waiting for an Anthropic reviewer. Claude shows **Nothing published yet**. See the [status record](submission-status.json) and [recorded trials](validation/README.md).
 
 A separate portal read on 9 October 2026 showed Claude serving 1.2.4, a pending publication request for 1.3.1 at `c8954c5`, and 1.3.2 at `dfacdd2` marked Approved. The newer publication button was disabled and the icon was waiting for review. OpenAI required sign-in. These observations do not establish submission or publication of 1.3.4.
@@ -46,7 +58,7 @@ The developer name shown in the directory follows the selected publishing identi
 
 Russian translations are included, but the documentation currently says imported translations do not yet change Directory display. The Russian README is included separately.
 
-Skills-only uploads do not require an MCP server, MCP review cases or a demo recording. Screenshots are not included in this skills-only archive.
+The skills-only package format omits an MCP server, MCP review cases and a demo recording. That format does not establish current intake eligibility; the later portal restriction is recorded above. Screenshots are not included in this archive.
 
 ## GPT Store
 

@@ -70,7 +70,7 @@ def load_listing() -> dict:
     publisher = listing.get("publisher", {})
     text_field(publisher.get("name"), "publisher.name")
     https_url(publisher.get("url"), "publisher.url")
-    for key in ("website", "support", "privacyPolicy", "documentation", "repository"):
+    for key in ("website", "support", "privacyPolicy", "termsOfService", "documentation", "repository"):
         https_url(listing.get(key), key)
     for language in ("en", "ru"):
         local = listing.get("locales", {}).get(language)
@@ -164,6 +164,7 @@ def expected_outputs() -> tuple[dict[str, bytes], dict]:
                     "category": "Productivity", "capabilities": english["capabilities"],
                     "websiteURL": listing["website"], "supportURL": listing["support"],
                     "privacyPolicyURL": listing["privacyPolicy"],
+                    "termsOfServiceURL": listing["termsOfService"],
                     "defaultPrompt": english["starters"],
                     "logo": "./assets/logo.svg", "composerIcon": "./assets/logo.svg",
                 },

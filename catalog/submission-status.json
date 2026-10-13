@@ -1,20 +1,22 @@
 {
   "recorded_on": "2026-10-13",
-  "observed_at_utc": "2026-10-13T11:30:00Z",
-  "observation_time_precision": "approximate",
+  "observed_at_utc": "2026-10-13T12:15:00Z",
+  "observation_time_precision": "Approximate: supplied screenshot filename 13 October 2026 19:15, Asia/Bangkok.",
   "timezone": "UTC",
   "instruction_version": "1.3.4",
-  "record_scope": "Current package and portal states are separate. Earlier observations are preserved below; no new host-installation trial is claimed.",
+  "record_scope": "The latest OpenAI findings come from an owner-supplied screenshot after manual upload. Its version label is not visible. The corrected ZIP is prepared, not uploaded. Earlier direct portal observations remain separate.",
   "host_installation": "not-run",
-  "status": "claude-1.3.4-scanned-reviewer-pending-openai-1.3.4-not-uploaded",
+  "status": "claude-1.3.4-scanned-reviewer-pending-openai-intake-blocked-terms-correction-prepared",
   "prepared_update": {
     "instruction_version": "1.3.4",
     "prepared_on": "2026-10-13",
-    "status": "prepared",
+    "status": "terms-link-correction-prepared-not-uploaded",
     "openai_package": "catalog/packages/beforeword_openai_directory_1.3.4.zip",
     "claude_source_path": "plugins/claude/beforeword",
     "claude_source_branch": "main",
-    "record_scope": "Preparation of the source and packages does not establish upload, submission or publication."
+    "record_scope": "Preparation of the source and packages does not establish upload, submission or publication.",
+    "correction": "Add a public termsOfServiceURL to OpenAI listing metadata; preserve the 1.3.4 instruction bytes.",
+    "openai_package_sha256": "d9f737edb112953b655d7828482ecf9a29be23f546beda4e9d4130ea359c9d10"
   },
   "platforms": {
     "claude": {
@@ -43,34 +45,50 @@
     },
     "openai": {
       "entry_url": "https://platform.openai.com/plugins",
+      "plugin_id": "plugins_6ac15b773ab88191bb97750bed560c86",
       "archive": "catalog/packages/beforeword_openai_directory_1.3.4.zip",
-      "package_sha256": "e6de6cd990a39c6fd19f9db9c2412785758d4561fbb8d2aef0049b23cf928644",
+      "package_sha256": "d9f737edb112953b655d7828482ecf9a29be23f546beda4e9d4130ea359c9d10",
+      "previous_prepared_package_sha256": "e6de6cd990a39c6fd19f9db9c2412785758d4561fbb8d2aef0049b23cf928644",
       "phases": {
-        "package": "1.3.4 prepared",
-        "directory_review": "1.3.4 not uploaded or submitted; previous 1.3.3 review cancelled",
-        "publication": "Not published"
+        "package": "1.3.4 terms-link correction prepared; instruction unchanged",
+        "directory_review": "Manual upload followed by two portal findings in supplied screenshot; corrected ZIP not uploaded or submitted",
+        "publication": "Last directly observed status: Not published; no later publication is shown"
       },
-      "authentication": "completed",
-      "previous_version_observed": "1.3.3",
-      "previous_review_status_observed": "In review",
-      "previous_publication_status_observed": "Not published",
-      "action_this_session": "Cancelled the existing 1.3.3 review through its update flow to replace it with 1.3.4. The portal then displayed Changes required.",
-      "review_status_observed": "Changes required",
-      "uploaded": false,
+      "evidence_source": "Owner-supplied portal screenshot received 13 October 2026 after manual-upload instructions",
+      "version_visible_in_screenshot": false,
+      "intended_instruction_version": "1.3.4",
+      "upload_evidence": "The screenshot follows instructions to upload the prepared 1.3.4 ZIP and shows imported listing fields and one skill. It does not expose a version number or archive digest.",
+      "manual_upload_reported": true,
+      "corrected_archive_uploaded": false,
       "submitted_for_review": false,
       "published": false,
-      "upload_attempt": {
-        "version": "1.3.4",
-        "file_transferred": false,
-        "result": "The browser tool restricted interaction before the file chooser opened because of a retained credential restriction. One documented reset did not restore interaction. No 1.3.4 file was transferred; this was not a provider rejection."
+      "skill_check_observed": {
+        "status": "Checking",
+        "completed": 0,
+        "total": 1
       },
-      "observed": "Sign-in succeeded. The existing submission initially showed 1.3.3 In review and Not published. After cancellation it showed Changes required. Version 1.3.4 has not been uploaded or submitted."
+      "portal_findings": [
+        {
+          "message": "Terms of service URL is required.",
+          "scope": "Uploaded listing metadata",
+          "local_correction": "termsOfServiceURL added to prepared ZIP; live portal result not tested"
+        },
+        {
+          "message": "We are not accepting more skills-only submissions at this time.",
+          "scope": "Observed portal intake restriction",
+          "status": "unresolved; adding the terms URL does not resolve this finding"
+        }
+      ],
+      "terms_url": "https://github.com/beforeword/beforeword/blob/main/catalog/TERMS.md",
+      "previous_review": "The 1.3.3 review was cancelled to replace the package. The earlier automated 1.3.4 upload failed before file transfer; see portal_observation_history.",
+      "next_step": "Clarify eligibility of this existing skills-only submission with OpenAI support. The corrected draft can be re-uploaded if supported; no successful submission is claimed."
     }
   },
   "limits": [
-    "The directory ZIPs remain prepared files. Their existence does not establish a completed portal update.",
+    "The corrected OpenAI ZIP is a prepared file; its terms URL has not been rechecked by the portal.",
+    "The supplied screenshot does not show the uploaded version, an archive digest, a completed skill check, or a completed review submission.",
+    "The intake restriction is recorded from this portal screenshot; no global scope, duration, or reopening date is inferred.",
     "Claude scan approval and a pending publication request are not live publication of 1.3.4.",
-    "OpenAI 1.3.3 is no longer recorded as in review after the cancellation; 1.3.4 was not transferred to the portal.",
     "No installation or response test inside either host application was performed in this update."
   ],
   "initial_submission_record": {
@@ -255,6 +273,37 @@
         "observation": "The 2026-10-09 10:57 UTC portal read showed 1.2.4 Serving, a pending publication request for 1.3.1 and 1.3.2 Approved. The newer publish button was disabled and the icon was waiting for review. This is not a submission or serving record for 1.3.3.",
         "published_version_observed": "1.2.4",
         "published_commit_observed": "6df13fef64a039466918b8d3ef9e6ee1a3c52968"
+      }
+    }
+  ],
+  "portal_observation_history": [
+    {
+      "observed_at_utc": "2026-10-13T11:30:00Z",
+      "platform": "openai",
+      "record": {
+        "entry_url": "https://platform.openai.com/plugins",
+        "archive": "catalog/packages/beforeword_openai_directory_1.3.4.zip",
+        "package_sha256": "e6de6cd990a39c6fd19f9db9c2412785758d4561fbb8d2aef0049b23cf928644",
+        "phases": {
+          "package": "1.3.4 prepared",
+          "directory_review": "1.3.4 not uploaded or submitted; previous 1.3.3 review cancelled",
+          "publication": "Not published"
+        },
+        "authentication": "completed",
+        "previous_version_observed": "1.3.3",
+        "previous_review_status_observed": "In review",
+        "previous_publication_status_observed": "Not published",
+        "action_this_session": "Cancelled the existing 1.3.3 review through its update flow to replace it with 1.3.4. The portal then displayed Changes required.",
+        "review_status_observed": "Changes required",
+        "uploaded": false,
+        "submitted_for_review": false,
+        "published": false,
+        "upload_attempt": {
+          "version": "1.3.4",
+          "file_transferred": false,
+          "result": "The browser tool restricted interaction before the file chooser opened because of a retained credential restriction. One documented reset did not restore interaction. No 1.3.4 file was transferred; this was not a provider rejection."
+        },
+        "observed": "Sign-in succeeded. The existing submission initially showed 1.3.3 In review and Not published. After cancellation it showed Changes required. Version 1.3.4 has not been uploaded or submitted."
       }
     }
   ]

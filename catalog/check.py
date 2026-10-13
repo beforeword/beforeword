@@ -111,6 +111,11 @@ def run() -> dict:
             build.require(interface["privacyPolicyURL"] == listing["privacyPolicy"],
                           "OpenAI privacy policy differs from the reviewed listing")
             build.require((build.CATALOG / "PRIVACY.md").is_file(), "Privacy policy source is missing")
+            build.https_url(interface["termsOfServiceURL"], "OpenAI termsOfServiceURL")
+            build.text_field(interface["termsOfServiceURL"], "OpenAI termsOfServiceURL", 1024)
+            build.require(interface["termsOfServiceURL"] == listing["termsOfService"],
+                          "OpenAI terms of use differ from the listing")
+            build.require((build.CATALOG / "TERMS.md").is_file(), "Terms of use source is missing")
             build.require(interface["capabilities"] == listing["locales"]["en"]["capabilities"],
                           "OpenAI displayed capabilities differ from the reviewed listing")
             build.require(interface["defaultPrompt"] == listing["locales"]["en"]["starters"],
