@@ -20,6 +20,7 @@ import build_guide
 from package_plugins import build_bundles, skill_text
 from render_report import parse_report
 import public_updates
+import site_wrapper
 
 ROOT = Path(__file__).resolve().parents[1]
 SHELL_STYLES = ('site-reader-20260920.css', 'paper-theme-20260920.css', 'paper-layout-20260920.css')
@@ -59,7 +60,7 @@ COPY = {
   'paste_note':'Отправь инструкцию первым сообщением. Следующим сообщением задай свой вопрос или пришли текст для разбора.',
   'chat_scope':'Инструкция передаётся в этот разговор, пока она доступна в его контексте. Для нового разговора вставь её снова или используй настройку приложения ниже. Согласие модели и сообщение «режим включён» не заменяют чтение ответа.',
   'read_instruction':'Прочитать полную инструкцию','read_medium':'Инструкция до 5\u202f000 знаков','characters':'знаков',
-  'medium_note':'Самостоятельная редакция для поля с ограничением длины. Скопируй весь текст целиком. Эта сокращённая редакция не проверялась в сравнении 1.3.3; результаты полной инструкции к ней не переносятся.',
+  'medium_note':'Самостоятельная редакция для поля с ограничением длины. Скопируй весь текст целиком. Проверки каждой редакции описаны отдельно в методике. Прежнее сравнение 1.3.3 не относится к этому обновлённому тексту.',
   'medium_settings_link':'Для поля с лимитом 5\u202f000 знаков — открыть инструкцию',
   'example_label':'СОСТАВЛЕННЫЕ ПРИМЕРЫ','example_title':'Что добавляет ответ?',
   'example_note':'Примеры составлены для этой страницы. Это пояснения способа чтения, а не результаты испытаний моделей.',
@@ -127,7 +128,7 @@ COPY = {
   'paste_note':'Send the instructions as the first message. Send your question or the text to examine in the next message.',
   'chat_scope':'The instructions are supplied to this conversation while they remain available in its context. Paste them again in a new conversation, or use the app settings below. Model agreement or a “mode activated” message does not replace examining its response.',
   'read_instruction':'Read the full instructions','read_medium':'Instructions · up to 5,000 characters','characters':'characters',
-  'medium_note':'A self-contained edition for a field with a character limit. Copy the complete text. This shorter edition was not tested in the 1.3.3 comparison; full-text results do not transfer to it.',
+  'medium_note':'A self-contained edition for a field with a character limit. Copy the complete text. The method page distinguishes the checks for each edition. The earlier 1.3.3 comparison does not evaluate this revised text.',
   'medium_settings_link':'For a 5,000-character field — open the instructions',
   'example_label':'CONSTRUCTED EXAMPLES','example_title':'What does a response add?',
   'example_note':'These examples were written for this page to explain the reading method. They are not model test results.',
@@ -335,7 +336,7 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
     result = re.sub(r'__([A-Z][A-Z0-9_]+)__',lambda m:values[m.group(1)],template)
     if re.search(r'__[A-Z][A-Z0-9_]+__',result):
         raise ValueError('unresolved public template placeholder')
-    return result
+    return site_wrapper.apply(result, language, evaluation=evaluation)
 
 def build(output: Path, repo_url: str | None = None, home_source: Path | None = None) -> Path:
     build_guide.require_selected(ROOT)
@@ -376,7 +377,7 @@ def build(output: Path, repo_url: str | None = None, home_source: Path | None = 
         report_directory = model/'evaluation'/('en' if language == 'en' else '')
         report_directory.mkdir(parents=True,exist_ok=True)
         (report_directory/'index.html').write_text(render(language,bundles,connectors,repo_url,evaluation=True),encoding='utf-8')
-    for name in ('comparison-1.3.3.json','evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md'):
+    for name in ('development-review-1.3.4.json','comparison-1.3.3.json','evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md'):
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))
@@ -388,6 +389,8 @@ def build(output: Path, repo_url: str | None = None, home_source: Path | None = 
     shutil.copytree(ROOT/'assets'/'history',model/'history',dirs_exist_ok=True)
     manifest={'version':build_guide.VERSION,'date_utc':build_guide.DATE,'public_paths':['/model/','/model/en/','/model/evaluation/','/model/evaluation/en/'],
         'github_url':repo_url,'aliases':aliases,'micro_alias_note':'Legacy micro URLs serve the current compact instruction, not a separate edition.',
+        'external_site_assets':site_wrapper.load()['external_assets'],
+        'site_wrapper_snapshot':'assets/site-wrapper/published-20261013.json',
         'historical_pages':['/model/history/2026-09-28/','/model/history/2026-09-28/en/'],
         'history_manifest':'history/2026-09-28/snapshot.json',
         'artifact_checksums':'SHA256SUMS.txt','guide_manifest':'toolkit/beforeword_release.json'}

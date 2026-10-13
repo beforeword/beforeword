@@ -243,6 +243,7 @@ def render(language: str) -> str:
 <section class="bw-update-release" aria-labelledby="bw-update-release-title">
 <h2 id="bw-update-release-title">{escape(text['changes'].format(version=version))}</h2>
 <ul>{changes}</ul>
+<p><a href="{escape(release['current_check_url'], quote=True)}">{escape(release['current_check_label'])}</a></p>
 {_comparison(data, language)}
 <section class="bw-update-github" aria-labelledby="bw-update-github-title">
 <h3 id="bw-update-github-title">{escape(text['github'])}</h3>

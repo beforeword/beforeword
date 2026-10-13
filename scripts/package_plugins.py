@@ -15,7 +15,7 @@ import json
 from pathlib import Path
 import re
 import zipfile
-from release_contract import VERSION, require_selected
+from release_contract import VERSION, DATE, require_selected
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_VERSION = VERSION
@@ -60,7 +60,7 @@ def _zip(files: dict[str, str]) -> bytes:
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         for path, content in sorted(files.items()):
-            info = zipfile.ZipInfo(path, (2026, 10, 2, 0, 0, 0))
+            info = zipfile.ZipInfo(path, (*map(int, DATE.split("-")), 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o644 << 16
             archive.writestr(info, content.encode("utf-8"))

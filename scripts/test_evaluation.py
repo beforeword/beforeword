@@ -99,9 +99,23 @@ class EvaluationDelivery(unittest.TestCase):
                 for lang, url in [('ru', '/model/evaluation/'), ('en', '/model/evaluation/en/')]:
                     self.assertEqual(doc.find('link', rel='alternate', hreflang=lang)[0].attrs['href'], 'https://beforeword.xyz'+url)
                 other = '/model/evaluation/en/' if language == 'ru' else '/model/evaluation/'
-                self.assertEqual(len(doc.find('nav', **{'class': 'bw-language'})[0].find('a', href=other)), 1)
+                other_language = 'en' if language == 'ru' else 'ru'
+                headers = doc.find('header', **{'class': 'bw-site-header'})
+                self.assertEqual(len(headers), 1)
+                header = headers[0]
+                for tag, klass in (('span', 'bw-site-language-wide'), ('div', 'bw-site-menu-end')):
+                    scope = header.find(tag, **{'class': klass})
+                    self.assertEqual(len(scope), 1, 'Desktop and menu language controls have distinct scopes')
+                    links = scope[0].find('a', **{'class': 'bw-site-language'})
+                    self.assertEqual(len(links), 1)
+                    self.assertEqual(links[0].attrs['href'], other, 'Language switch stays on the evaluation route')
+                    self.assertEqual(links[0].attrs['hreflang'], other_language)
+                    self.assertEqual(links[0].attrs['lang'], other_language)
+                    self.assertEqual(links[0].text(), other_language.upper())
                 self.assertTrue(doc.find('a', href='/model/'+suffix+'#checks'))
-                self.assertTrue(doc.find('a', href='/model/'+suffix, **{'aria-current': 'location'}))
+                for scope in (header, doc.find('footer', **{'class': 'bw-site-footer'})[0]):
+                    self.assertEqual(len(scope.find('a', href='/model/'+suffix)), 1,
+                                     'Both navigation areas retain the instruction-section route')
                 self.assertFalse(doc.find('a', **{'aria-current': 'page'}))
                 source = ROOT / 'references' / ('evaluation.ru.md' if language == 'ru' else 'evaluation.md')
                 article = doc.find('article', id='evaluation-content')[0]
@@ -150,7 +164,7 @@ class EvaluationDelivery(unittest.TestCase):
                 self.assertEqual(len(update_css), 1, 'The landing page includes its optional updates component style')
                 self.assertEqual(css(doc), [url for url in landing_css if url not in update_css],
                                  'Reader and landing pages retain the same shared shell and public styles')
-                for klass in ('bw-home', 'bw-links', 'bw-menu'):
+                for klass in ('bw-site-brand', 'bw-site-quick', 'bw-site-menu'):
                     self.assertEqual(doc.find(**{'class': klass})[0].text(), landing.find(**{'class': klass})[0].text())
 
     def test_escaping_and_unsupported_input(self):

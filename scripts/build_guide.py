@@ -43,7 +43,7 @@ def source_bundle():
     out = io.BytesIO()
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as archive:
         for path, content in sorted(files.items()):
-            info = zipfile.ZipInfo('beforeword/' + path, (2026, 10, 1, 0, 0, 0))
+            info = zipfile.ZipInfo('beforeword/' + path, (*map(int, DATE.split('-')), 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.create_system = 3
             info.external_attr = (stat.S_IFREG | 0o644) << 16
@@ -117,6 +117,9 @@ def build(output):
     smoke = json.loads(read('references/development-smoke-1.3.0.json'))
     previous_smoke = json.loads(read('references/development-smoke-1.3.1.json'))
     comparison = json.loads(read('references/comparison-1.3.3.json'))
+    current_review_path = 'references/development-review-1.3.4.json'
+    current_review_text = read(current_review_path)
+    json.loads(current_review_text)  # A malformed review must not enter a release.
     manifest = {'version':VERSION, 'date_utc':DATE, 'families':[c['id'] for c in data['connectors']],
       'core_sha256':{k:sha(v) for k,v in data['core'].items()},
       'compact_characters':{k:len(v) for k,v in data['compact'].items()},
@@ -125,10 +128,13 @@ def build(output):
       'native_bundles':{lang:{key:{k:v for k,v in record.items() if k!='data'} for key,record in bundles.items()} for lang,bundles in data['bundles'].items()},
       'developer_bundle':{k:v for k,v in data['developer'].items() if k!='data'},
       'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
-      'evaluation_scope':'The frozen 1.3.3 full-text comparison planned 504 requests across 12 fresh tasks, 7 routes, 3 arms and 2 repetitions; it received 500 final answers and retained 4 collection gaps. The prospective release rule retained exact B. This does not establish general superiority over no instruction. Short editions, wrappers, installations and future chats were not tested. The build runs no model; earlier records retain their original versions.',
+      'evaluation_scope':'The 1.3.4 development review records a bounded qualitative comparison of full instructions: four fresh Codex sessions with six tasks each, plus two separate sessions for a clarified count task. The original ambiguous case and both failures are retained. It is separate from the historical seven-route 1.3.3 comparison and is not a new multi-model or provider-API evaluation. Short editions and installed wrappers have no model-response results in this review. The build runs no model; earlier records retain their original instruction versions.',
       'runtime_validation':'not-run-by-build', 'evaluation':report['method'], 'evaluation_case_count':len(data['eval'].strip().splitlines()),
       'evaluation_runs':[
-        {'report':'references/comparison-1.3.3.json', 'instruction_version':'1.3.3', 'selected_arm':comparison['selection']['selected_arm'], 'decision':comparison['selection']['decision'], 'answers':len(comparison['responses']), 'method':comparison['study']},
+        {'report':current_review_path, 'instruction_version':'1.3.4', 'historical':False,
+         'scope':'Bounded qualitative full-core development review; consult the record for exact inputs, outputs and limitations.',
+         'report_sha256':sha(current_review_text)},
+        {'report':'references/comparison-1.3.3.json', 'instruction_version':'1.3.3', 'historical':True, 'selected_arm':comparison['selection']['selected_arm'], 'decision':comparison['selection']['decision'], 'answers':len(comparison['responses']), 'method':comparison['study']},
         {'report':'references/development-smoke-1.3.1.json', 'instruction_version':'1.3.1', 'historical':True, 'answers':previous_smoke['method']['responses'], 'method':previous_smoke['method']},
         {'report':'references/development-smoke-1.3.0.json', 'instruction_version':'1.3.0', 'answers':smoke['method']['responses'], 'method':smoke['method']},
         {'report':'references/evaluation-results.json', 'condition':'authored fixtures and targeted follow-up', 'method':report['method']},

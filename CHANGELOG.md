@@ -4,7 +4,45 @@ Each entry describes that release or dated update. Test results apply to the ins
 
 Каждая запись относится к указанному выпуску или дате. Результаты проверок относятся к использованной тогда инструкции и условиям.
 
-## 1.3.3
+## 1.3.4 · 2026-10-13
+
+### English
+
+This revision asks for a shorter, more specific account of the step from wording to a conclusion.
+
+- **Show the connection.** Identify the words and the relation proposed when they are read. A topic summary or a grammatical label does not by itself show that step.
+- **Put the limit beside the conclusion.** Retain the supplied conditions and explain how far the proposed grounds reach. Include the missing information that matters to that conclusion, without listing every detail the text omits.
+- **Separate a reading from an account of model behaviour.** Learned word usage may support a proposed reading. It does not reveal the training examples or internal computations behind a particular answer, and the response must not invent them.
+
+Constructed example: **“He did not reply. Therefore, he agrees.”** The wording “did not reply” is used as grounds for “he agrees”. The record does not supply grounds for that step. The analysis is further writing; it does not establish either a reply’s absence or agreement.
+
+The revision keeps practical tasks and their requested formats in scope: calculations, code, translation and exact copying do not require an added commentary when the task excludes it. The same boundary applies to the explanation’s own words, including “rule”, “grounds” and “learning”.
+
+The full, 5,000-character and compact Russian and English instructions now include these changes. The skill and downloadable packages use the corresponding instruction texts. A [public beta](https://beforeword.xyz/beta/en/) offers worked examples and text analysis without installing an extension. Its app version is separate from the instruction version.
+
+**What was checked:** 12 Russian and English tasks compared the full 1.3.3 and 1.3.4 instructions in four fresh Codex sessions. They covered concrete readings, ambiguity, reported pressure, explanations of model answers, exact copying into JSON, translation, code and counting. Both versions met the criteria on 11 of 12 tasks. In one counting task, both assumed that eight records referred to eight different meetings, although the task did not say the meetings were distinct. Those original answers remain in the report. Two further sessions used the clarified condition; both returned only `8`.
+
+The [record of all 26 responses, assessments and limits](references/development-review-1.3.4.json) preserves this distinction. The main sessions received six tasks each; this was a limited local comparison, not a new multi-model study or evidence of general superiority. The response comparison did not include the shorter instructions. Their content, length and packaging are checked separately. The seven-model results published on 9 October 2026 remain results for 1.3.3.
+
+### Русский
+
+Редакция уточняет, как кратко показать переход от написанного к выводу.
+
+- **Показать конкретную связь.** Назвать слова и отношение, которое предлагают при их чтении. Пересказ темы или грамматическое обозначение сами по себе не показывают этот переход.
+- **Поставить предел рядом с выводом.** Сохранить исходные условия и пояснить, что позволяет предложенное основание. Указать недостающие сведения, существенные для этого вывода, без перечня всего, чего нет в тексте.
+- **Отделить прочтение от объяснения работы модели.** Выученное употребление слов может поддерживать предложенное чтение. Оно не открывает обучающие примеры или внутренние вычисления, приведшие к конкретному ответу; ответ не должен их выдумывать.
+
+Составленный пример: **«Он не ответил. Значит, он согласен.»** Запись «не ответил» используют как основание для «он согласен». Основание такого перехода в записи не указано. Разбор остаётся дополнительной записью; он не устанавливает ни отсутствия ответа, ни согласия.
+
+Практические задачи и их формат сохраняются: расчёт, код, перевод и точное копирование не требуют добавленного комментария, когда задание его исключает. Та же граница действует для слов самого объяснения, включая «правило», «основание» и «обучение».
+
+Изменения внесены в полную, среднюю и краткую инструкции на русском и английском. Навык и скачиваемые пакеты используют соответствующие тексты инструкции. [Публичная бета на сайте](https://beforeword.xyz/beta/) предлагает готовые примеры и разбор текста без установки расширения. Версия приложения учитывается отдельно от версии инструкции.
+
+**Что проверялось:** полные инструкции 1.3.3 и 1.3.4 сравнили на 12 русских и английских заданиях в четырёх новых сессиях Codex. Задания охватывали конкретные прочтения, неоднозначность, сообщённое давление, объяснение ответов модели, точное копирование в JSON, перевод, код и подсчёт. Обе версии выполнили критерии в 11 из 12 случаев. В одном задании обе приняли восемь записей за восемь разных встреч, хотя различие встреч не было указано. Эти первоначальные ответы сохранены. В двух дополнительных сессиях условие уточнили; обе версии вернули только `8`.
+
+В [отчёте с 26 ответами, оценками и ограничениями](references/development-review-1.3.4.json) эти случаи разделены. В основных сессиях задания выдавались по шесть; это ограниченное локальное сравнение, а не новый тест нескольких моделей или основание для общего превосходства. Сокращённые инструкции не участвовали в сравнении ответов. Их содержание, длина и упаковка проверяются отдельно. Результаты семи моделей от 9 октября 2026 остаются результатами 1.3.3.
+
+## 1.3.3 · 2026-10-09
 
 ### English
 

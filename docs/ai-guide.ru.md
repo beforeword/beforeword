@@ -2,7 +2,7 @@
 
 [English](ai-guide.en.md) · [О проекте](../README.ru.md) · [Сайт](https://beforeword.xyz/model/)
 
-**Публичный тест · версия инструкции 1.3.3**
+**Публичный тест · версия инструкции 1.3.4**
 
 Это не финальная версия. Инструкция и её применение в разных приложениях открыты для испытаний и дальнейших изменений.
 
@@ -12,34 +12,50 @@
 
 beforeword задаёт ИИ разбор написанного, добавленного при чтении и предложенных оснований для вывода. Одно правило охватывает все письменные формы, включая ответ ИИ, это объяснение и саму инструкцию.
 
+## Что изменилось в 1.3.4
+
+- **Конкретная связь в тексте.** Разбор должен показать, какие слова с чем связывают при чтении. Название темы или грамматической категории само по себе этого не объясняет.
+- **Предел рядом с выводом.** Ответ сохраняет исходные условия и указывает, что позволяет предложенное основание. Это помогает сопоставить вывод с записью, не проходя через повторяющиеся оговорки.
+- **Без выдуманной истории ответа ИИ.** Пояснение употребления слов отделено от утверждений о конкретных обучающих примерах и внутренних вычислениях модели.
+
+Составленный пример: **«Он не ответил. Значит, он согласен.»** Запись «не ответил» здесь используют как основание для «он согласен». Основание такого перехода в записи не указано. Этот разбор тоже остаётся дополнительной записью.
+
+13 октября 2026 полные инструкции 1.3.3 и 1.3.4 сравнили на 12 русских и английских заданиях в Codex: прочтение и неоднозначность, сообщённое давление, объяснение ответа модели, точное копирование в JSON, перевод, код и подсчёт. Обе выполнили критерии в 11 из 12 случаев. В одном задании на подсчёт обе добавили неуказанное условие; первоначальные ответы сохранены. После явного добавления этого условия обе дали предусмотренный задачей результат. [Задания, 26 ответов и ограничения проверки](../references/development-review-1.3.4.json).
+
+Это ограниченная проверка в сессиях Codex; она не устанавливает общего превосходства 1.3.4. [Предыдущий тест семи моделей от 9 октября 2026](../references/evaluation.ru.md) относится к 1.3.3.
+
+## Попробовать на сайте
+
+[Открыть публичную бету](https://beforeword.xyz/beta/): три готовых примера и разбор собственного текста. Установка не нужна. Готовые примеры можно просмотреть без запроса к модели; отправка собственного текста отмечена отдельно. Бета приложения и инструкция для своего ИИ — разные способы применения beforeword, с отдельными номерами версий.
+
 ## Начать в чате
 
-1. Открой [полную русскую инструкцию](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_core_RU.txt) или [полную английскую](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_core_EN.txt) и скопируй текст целиком.
+1. Открой [полную русскую инструкцию](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_core_RU.txt) или [полную английскую](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_core_EN.txt) и скопируй текст целиком.
 2. Вставь его первым сообщением нового чата.
 3. Отправь задачу. Например: `Примени beforeword к фразе «Я понимаю».`
 
 Установка и ключ API не нужны. В каждом новом чате повтори эти шаги. Настройки приложения, навыки, обновление и отключение описаны в [руководстве по установке](installation.ru.md).
 
-## Готовые загрузки · 1.3.3
+## Готовые загрузки · 1.3.4
 
 Выбери один способ подключения и один язык инструкции. Для использования этих файлов Python не нужен.
 
 | Для чего | Русский | English |
 |---|---|---|
-| Полная инструкция для нового чата | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_core_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_core_EN.txt) |
-| Инструкция до 5 000 знаков | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_5000_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_5000_EN.txt) |
-| Краткая инструкция для ограниченного поля настроек | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_compact_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_compact_EN.txt) |
-| Плагин Claude / Claude Code | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_claude_plugin_RU_1.3.3.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_claude_plugin_EN_1.3.3.zip) |
-| Локальный каталог Codex · desktop / CLI | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_openai_local_marketplace_RU_1.3.3.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_openai_local_marketplace_EN_1.3.3.zip) |
-| Отдельный навык | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_skill_RU_1.3.3.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword-SKILL-ru.md) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_skill_EN_1.3.3.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword-SKILL-en.md) |
+| Полная инструкция для нового чата | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_core_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_core_EN.txt) |
+| Инструкция до 5 000 знаков | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_5000_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_5000_EN.txt) |
+| Краткая инструкция для ограниченного поля настроек | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_compact_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_compact_EN.txt) |
+| Плагин Claude / Claude Code | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_claude_plugin_RU_1.3.4.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_claude_plugin_EN_1.3.4.zip) |
+| Локальный каталог Codex · desktop / CLI | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_openai_local_marketplace_RU_1.3.4.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_openai_local_marketplace_EN_1.3.4.zip) |
+| Отдельный навык | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_skill_RU_1.3.4.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword-SKILL-ru.md) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_skill_EN_1.3.4.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword-SKILL-en.md) |
 
-[Скачать самостоятельное руководство · RU/EN](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_AI_1.3.3.html). Сохрани HTML-файл и открой его в браузере: в нём есть кнопки копирования, шаги установки, загрузки пакетов и локальная подготовка API-запросов. Язык переключается вверху страницы. На телефоне предварительный просмотр файла может показывать текст без работающих кнопок; тогда используй TXT-ссылки выше или [страницу сайта](https://beforeword.xyz/model/).
+[Скачать самостоятельное руководство · RU/EN](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_AI_1.3.4.html). Сохрани HTML-файл и открой его в браузере: в нём есть кнопки копирования, шаги установки, загрузки пакетов и локальная подготовка API-запросов. Язык переключается вверху страницы. На телефоне предварительный просмотр файла может показывать текст без работающих кнопок; тогда используй TXT-ссылки выше или [страницу сайта](https://beforeword.xyz/model/).
 
 В каждом пакете есть шаги установки, обновления и удаления. Наличие импорта зависит от приложения и аккаунта; отправка архива в разговор не устанавливает навык. Полные TXT точно сохраняют текст ядра. Пояснения о применении показаны отдельно и не добавляются к копируемой или скачиваемой инструкции. Пакет навыка содержит неизменное ядро и отдельное описание его подключения.
 
-Краткая редакция и вариант до 5 000 знаков — отдельно отредактированные инструкции. Результаты испытаний этих редакций 1.3.3 на ответах моделей здесь не заявляются. Результаты полного текста к ним не относятся и не устанавливают поведение навыка в конкретной среде.
+Краткая редакция и вариант до 5 000 знаков — отдельно отредактированные инструкции. Сверка их содержания, длины и файлов не является проверкой ответов модели. Сравнение 1.3.4 охватывает только полные инструкции; его результаты не переносятся на сокращённые редакции или навык в конкретном приложении.
 
-[Инструменты для разработчиков · ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/beforeword_toolkit_1.3.3.zip) · [Контрольные суммы](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/SHA256SUMS.txt) · [Состав файлов](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.3/manifest.json)
+[Инструменты для разработчиков · ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/beforeword_toolkit_1.3.4.zip) · [Контрольные суммы](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/SHA256SUMS.txt) · [Состав файлов](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.3.4/manifest.json)
 
 ## API
 
@@ -70,7 +86,7 @@ python3 scripts/build_payload.py openai \
 
 ## Сообщить о сбое
 
-[Открыть публичное сообщение на GitHub](https://github.com/beforeword/beforeword/issues/new?template=report_ru.yml) · [Написать по почте](mailto:mail@beforeword.xyz?subject=beforeword%201.3.3%20report)
+[Открыть публичное сообщение на GitHub](https://github.com/beforeword/beforeword/issues/new?template=report_ru.yml) · [Написать по почте](mailto:mail@beforeword.xyz?subject=beforeword%201.3.4%20report)
 
 Можно сообщить о сбое в ответе ИИ, установке, копировании, загрузке файлов или работе сайта. Для ответа ИИ нужны точный запрос и ответ, конкретный фрагмент сбоя, а также версия инструкции и приложение, если они известны. Для сайта — адрес страницы и шаги, при которых возникла проблема.
 

@@ -24,6 +24,8 @@ jobs:
         run: python3 scripts/test_payload.py
       - name: Check release selection and exact core packaging boundaries
         run: python3 -B scripts/test_release_contract.py
+      - name: Check published navigation and theme wrapper preservation
+        run: python3 -B scripts/test_site_wrapper.py
       - name: Check current evaluation records and instruction hashes
         run: python3 -B scripts/test_validation.py
       - name: Build standalone guide

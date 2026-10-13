@@ -15,7 +15,7 @@ from pathlib import Path
 import re
 
 import public_updates
-from release_contract import ROOT, require_selected
+from release_contract import ROOT, VERSION, require_selected
 
 
 def replace_one(source: str, pattern: str, replacement: str, label: str) -> str:
@@ -74,14 +74,19 @@ def update(source: str, language: str) -> tuple[str, dict]:
         edits.append(f'exact {edition} text and character count')
 
     # This note is outside both copy targets and does not change either edition.
-    old_note = ('Выбери одну редакцию. Число знаков включает весь копируемый текст.' if language == 'ru'
-                else 'Choose one edition. The count includes the entire copied text.')
-    new_note = ('Полная инструкция ниже сохранена в версии 1.3.3 по результатам сравнения. Редакция до 5 000 знаков подготовлена отдельно и в этом тесте не проверялась. Число знаков включает весь копируемый текст.' if language == 'ru'
-                else 'The full instructions below were retained in version 1.3.3 after the comparison. The 5,000-character edition was prepared separately and was not evaluated in that test. Character counts include the complete text copied.')
-    if source.count(old_note) == 1:
-        source = source.replace(old_note, new_note, 1)
-    elif source.count(new_note) != 1:
+    old_notes = (
+        'Выбери одну редакцию. Число знаков включает весь копируемый текст.',
+        'Полная инструкция ниже сохранена в версии 1.3.3 по результатам сравнения. Редакция до 5 000 знаков подготовлена отдельно и в этом тесте не проверялась. Число знаков включает весь копируемый текст.',
+    ) if language == 'ru' else (
+        'Choose one edition. The count includes the entire copied text.',
+        'The full instructions below were retained in version 1.3.3 after the comparison. The 5,000-character edition was prepared separately and was not evaluated in that test. Character counts include the complete text copied.',
+    )
+    new_note = (f'Выбери одну редакцию {VERSION} и скопируй её целиком. Проверки текущих текстов описаны в методике отдельно от прежних испытаний. Число знаков включает весь копируемый текст.' if language == 'ru'
+                else f'Choose one {VERSION} edition and copy it in full. The method distinguishes checks of these texts from earlier evaluations. Character counts include the complete text copied.')
+    candidates = [note for note in (*old_notes, new_note) if note in source]
+    if len(candidates) != 1 or source.count(candidates[0]) != 1:
         raise ValueError('Expected one current homepage edition note')
+    source = source.replace(candidates[0], new_note, 1)
     edits.append('edition scope note outside copied text')
     if re.search(r'\b1\.2\.[34]\b', source):
         raise ValueError('An old instruction version remains on the homepage')

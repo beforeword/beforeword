@@ -3,8 +3,8 @@
   "project": "beforeword",
   "scope": "ai-instructions",
   "status": "public-testing",
-  "current_version": "1.3.3",
-  "updated": "2026-10-09T15:20:00Z",
+  "current_version": "1.3.4",
+  "updated": "2026-10-13T10:00:00Z",
   "urls": {
     "ru": "https://beforeword.xyz/model/#bw-updates",
     "en": "https://beforeword.xyz/model/en/#bw-updates"
@@ -19,18 +19,18 @@
   "languages": {
     "ru": {
       "title": "beforeword — обновления инструкции для ИИ",
-      "intro": "Сравнили ответы семи моделей на одинаковые задания: без beforeword, с полной инструкцией и с предложенным новым вариантом.",
+      "intro": "В 1.3.4 уточнено, как показать переход от написанной фразы к выводу: какие слова связываются при чтении, чем поддержана эта связь и где заканчивается основание.",
       "changes": [
-        "Цель теста — проверить, помогает ли beforeword выполнять запрос и не приписывать исходному тексту то, чего в нём нет. Отдельно оценивались соблюдение формата, сохранение условий и различение сообщения и вывода.",
-        "Модели: Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b и GLM-5.3.",
-        "12 заданий: 6 русских и 6 английских. Пересказ, объяснение терминов, выводы из неполных записей, точное копирование, JSON и арифметика. Каждое задание отправлялось каждой модели дважды в каждом из трёх условий. Из 504 запросов получено 500 ответов; 4 завершились техническими ошибками.",
-        "Для сравнения выполнения задачи и формата взяты одинаковые задания с завершёнными ответами и оценками — по 158 ответов на условие. Оба требования выполнены: без beforeword — в 109 ответах, с полной инструкцией — в 124, с новым вариантом — в 121. Это результат выбранных заданий, а не общая оценка моделей."
+        "Конкретная связь в самой фразе. Инструкция требует показать, что с чем связывают при чтении. Составленный пример: «Он не ответил. Значит, он согласен.» Здесь запись «не ответил» используют как основание для «он согласен». Основание такого перехода в записи не указано.",
+        "Предел рядом с выводом. Ответ должен сохранять исходные условия и пояснять, что позволяет предложенное основание. Так читатель может сопоставить вывод с конкретным фрагментом, без пересказа темы и перечня посторонних недостающих сведений.",
+        "Пояснение чтения отдельно от причин ответа ИИ. Употребление слов может поддерживать предложенное прочтение; оно не показывает, какие обучающие примеры или внутренние вычисления привели модель к этому ответу. При отсутствии таких сведений инструкция требует не выдумывать их.",
+        "Новая проверка в Codex: 12 заданий на русском и английском с версиями 1.3.3 и 1.3.4. Обе выполнили критерии в 11 из 12 случаев; обе добавили неуказанное условие в одном задании на подсчёт. Это ограниченное сравнение полных инструкций; приведённый ниже тест семи моделей относится к 1.3.3."
       ],
       "comparison": {
-        "summary": "Модели, задания и результаты",
-        "report_label": "Полный протокол и ответы",
+        "summary": "Предыдущий тест · 1.3.3 · 9 октября 2026",
+        "report_label": "Протокол и ответы предыдущего теста · 1.3.3",
         "report_url": "https://beforeword.xyz/model/evaluation/",
-        "question": "Может ли ответ выполнить запрос и сохранить нужный формат, отделяя исходный текст от добавленного прочтения и утверждений?",
+        "question": "Это сравнение опубликовано 9 октября 2026 для выпуска 1.3.3. Редакция 1.3.4 в нём не участвовала. Проверялось, может ли ответ выполнить запрос и сохранить нужный формат, отделяя исходный текст от добавленного прочтения и утверждений.",
         "design": "{tasks} специально составленных заданий — {russian_tasks} русских и {english_tasks} английских. Каждое отправлялось каждой модели {repetitions} раза в трёх условиях: без beforeword, с полной инструкцией на момент начала теста и с альтернативной редакцией.",
         "collection": "Из {requests} запросов получено {answers} ответов. {technical_gaps} технических пропуска и неясные оценки учтены отдельно.",
         "models_heading": "Семь моделей",
@@ -44,8 +44,8 @@
           "Арифметика и соблюдение условий задачи.",
           "Текстовые описания аудио и видео без самих записей."
         ],
-        "results_heading": "Выполнение задачи и формата",
-        "results_intro": "Сравнение ниже охватывает одинаковые задания и повторы, для которых получены все ответы и завершены оценки: по 158 ответов в каждом условии.",
+        "results_heading": "Результаты предыдущего сравнения",
+        "results_intro": "В тесте для 1.3.3 сравнивались одинаковые задания и повторы, для которых получены все ответы и завершены оценки: по 158 ответов в каждом условии.",
         "condition_heading": "Условие",
         "score_heading": "Выполнены задача и формат",
         "conditions": {
@@ -62,22 +62,24 @@
         "decision": "Правило замены было записано до получения ответов: альтернативная редакция должна показать устойчивое улучшение, сохранив выполнение задач и формата. Эти условия не выполнены. Поэтому в 1.3.3 вошла полная инструкция, с которой началось сравнение, без последующей переработки. Средняя и краткая редакции обновлены отдельно; их поведение этим сравнением не проверялось.",
         "limits": "Это результаты 12 заданий при указанных моделях и настройках. Они не устанавливают превосходства на любых запросах или соблюдения инструкции в будущих ответах. Повторы не являются независимыми испытаниями. Сокращённые редакции и установка в приложениях этим тестом не проверялись.",
         "example": "Условный пример: «Датчик не передал данные». Из этой записи ещё не следует, что событие не произошло. Ответ должен сохранить это различие. Это пояснение принципа, а не ответ модели из теста."
-      }
+      },
+      "current_check_label": "Задания, ответы и ограничения проверки 1.3.4",
+      "current_check_url": "https://beforeword.xyz/model/reports/development-review-1.3.4.json"
     },
     "en": {
       "title": "beforeword — AI instruction updates",
-      "intro": "Seven models answered the same tasks under three conditions: no beforeword instruction, the full instruction, and a proposed revision.",
+      "intro": "Version 1.3.4 makes the requested analysis more specific: show which words are connected in a reading, what supports that connection, and how far that support reaches.",
       "changes": [
-        "The test asked whether beforeword helps answers complete the request without attributing claims to the supplied text that it does not make. Assessments covered the requested format, preservation of the original conditions, and the distinction between reported information and inference.",
-        "Models: Qwen3.8-27B, DeepSeek-V4.1-Flash, Gemma 4 31B IT, Llama 3.3 70B Instruct, Kimi-K3, gpt-oss-120b and GLM-5.3.",
-        "There were 12 tasks: six in Russian and six in English. They covered restatement, definitions, reasoning from incomplete records, exact copying, JSON and arithmetic. Each task was sent to every model twice under each of the three conditions. The 504 requests produced 500 answers; four ended in technical errors.",
-        "Task completion and formatting were compared on the same tasks with completed answers and resolved assessments: 158 answers per condition. Both requirements were met by 109 answers without beforeword, 124 with the full instruction and 121 with the proposed revision. These are results for the selected tasks, not overall model ratings."
+        "A specific connection in the wording. The instruction asks the response to show what is being linked in a reading. Constructed example: “He did not reply. Therefore, he agrees.” Here, “did not reply” is used as grounds for “he agrees”. The wording supplies no grounds for that step.",
+        "A limit beside the conclusion. The response must retain the original conditions and explain what its proposed grounds support. This lets the reader compare the conclusion with the relevant passage, without a topic summary or a list of unrelated missing details.",
+        "Reading conventions kept separate from why AI produced an answer. Word usage may support a proposed reading; it does not reveal which training examples or internal computations led to that response. The instruction requires the answer to leave those details unclaimed when they are unavailable.",
+        "New Codex check: 12 tasks in Russian and English with versions 1.3.3 and 1.3.4. Both met the criteria on 11 of 12 tasks; both added an unstated premise in one counting task. This is a limited comparison of the full instructions. The seven-model test below concerns 1.3.3."
       ],
       "comparison": {
-        "summary": "Models, tasks and results",
-        "report_label": "Full protocol and answers",
+        "summary": "Earlier test · 1.3.3 · 9 October 2026",
+        "report_label": "Earlier test protocol and answers · 1.3.3",
         "report_url": "https://beforeword.xyz/model/evaluation/en/",
-        "question": "Could an answer complete the task and follow the requested format while distinguishing the supplied text from added interpretations and claims?",
+        "question": "This comparison was published on 9 October 2026 for release 1.3.3. It did not include version 1.3.4. It asked whether an answer could complete the task and follow the requested format while distinguishing supplied text from added readings and claims.",
         "design": "{tasks} purpose-written tasks: {russian_tasks} in Russian and {english_tasks} in English. Each was sent to each model {repetitions} times under three conditions: no beforeword instruction, the full instruction available at the start of the test, and an alternative version.",
         "collection": "There were {requests} requests and {answers} returned answers. The {technical_gaps} technical gaps and unresolved assessments remain separately recorded.",
         "models_heading": "Seven models",
@@ -91,8 +93,8 @@
           "Arithmetic under the stated task conditions.",
           "Written descriptions of audio or video that was not supplied."
         ],
-        "results_heading": "Completing the task in the requested format",
-        "results_intro": "The comparison below uses the same tasks and repetitions in all three conditions, restricted to cases with all answers received and all assessments resolved: 158 answers per condition.",
+        "results_heading": "Results of the earlier comparison",
+        "results_intro": "The comparison for 1.3.3 used the same tasks and repetitions in all three conditions, restricted to cases with all answers received and all assessments resolved: 158 answers per condition.",
         "condition_heading": "Condition",
         "score_heading": "Met task and format requirements",
         "conditions": {
@@ -109,7 +111,9 @@
         "decision": "The replacement rule was set before the answers were collected: the alternative had to show consistent improvement while preserving task completion and formatting. It did not meet those conditions, so 1.3.3 includes the full instruction used at the start of the comparison, without further revision. The medium and compact editions were revised separately; their performance was not measured in this comparison.",
         "limits": "These results concern 12 tasks and the recorded models and settings. They do not establish superiority on every request or guarantee adherence in future answers. Repeated answers are not independent trials. Short editions and installation in apps were not tested here.",
         "example": "Illustrative example: “The sensor sent no data.” That statement alone does not show that the event did not occur. The response should preserve this distinction. This explains the principle; it is not a model response from the test."
-      }
+      },
+      "current_check_label": "1.3.4 check: tasks, answers and limits",
+      "current_check_url": "https://beforeword.xyz/model/reports/development-review-1.3.4.json"
     }
   },
   "comparison": {

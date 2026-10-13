@@ -10,9 +10,10 @@ What is written? What interpretation is added? What justifies applying it to som
 
 ## Start here
 
-1. **[Read the example below](#example)** — follow the steps from a written entry to a description and a proposed refusal.
-2. **[Read the public statement](https://beforeword.xyz/statement/en/)** — start with written marks, learned words, and requirements to describe oneself and others.
-3. **[Explore the correspondence](https://github.com/beforeword/correspondence)** — 27 letters to researchers and AI companies, with English texts, Russian translations, purposes, sources and correspondence records.
+1. **[Try the public beta](https://beforeword.xyz/beta/en/)** — read three worked examples or examine your own text. No extension installation is needed.
+2. **[Read the example below](#example)** — follow the steps from a written entry to a description and a proposed refusal.
+3. **[Read the public statement](https://beforeword.xyz/statement/en/)** — start with written marks, learned words, and requirements to describe oneself and others.
+4. **[Explore the correspondence](https://github.com/beforeword/correspondence)** — 27 letters to researchers and AI companies, with English texts, Russian translations, purposes, sources and correspondence records.
 
 <a id="example"></a>
 
@@ -29,6 +30,6 @@ beforeword proposes examining the wording, interpretation and offered grounds se
 - **[Words and decisions](https://github.com/beforeword/words-and-decisions)** — the earlier public proposal. The statement and its proposed changes are not requirements imposed by the AI instruction.
 
 - **[Research and earlier work](https://beforeword.xyz/en/)** — self-description, diagnostic records, imprisonment, mathematics and other studies.
-- **[Instructions for AI](https://github.com/beforeword/beforeword/blob/main/docs/ai-guide.en.md)** — apply the reading procedure to a response; includes setup and downloads. [Claude and OpenAI packages](https://github.com/beforeword/beforeword/blob/main/catalog/README.md).
+- **[Instructions for AI · 1.3.4](https://github.com/beforeword/beforeword/blob/main/docs/ai-guide.en.md)** — apply the reading procedure in your own AI app; includes the changes, setup and downloads. Public testing is ongoing. [Claude and OpenAI packages](https://github.com/beforeword/beforeword/blob/main/catalog/README.md).
 
 [Contact: mail@beforeword.xyz](mailto:mail@beforeword.xyz)
