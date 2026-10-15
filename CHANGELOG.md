@@ -4,6 +4,40 @@ Each entry describes that release or dated update. Test results apply to the ins
 
 Каждая запись относится к указанному выпуску или дате. Результаты проверок относятся к использованной тогда инструкции и условиям.
 
+## 1.3.5 · 2026-10-15
+
+### English
+
+A learned written form remains writing. This revision makes a sufficient stop part of the instruction: once the distinction from what is named is shown, do not add a definition, a demand for grounds, or a follow-up question merely to continue.
+
+- An unframed “What is X?” no longer requires choosing a definition to analyze. Explain a specifically requested usage within its stated frame; otherwise retain the supplied form and stop at the distinction.
+- Where the supplied text proposes a transition, show the actual wording and added relation. “Grounds”, “criterion” and the explanation's own words remain written forms; their names do not replace the connection being examined.
+- Preserve reported requirements and conditions with attribution, without turning their written names into what they name or inventing compliance, acceptance or voluntariness.
+- Preserve requested calculations, practical work, code, translations, authored texts and exact output formats. The stopping instruction does not require a fixed response template or an added theory of writing's effects.
+
+The full, 5,000-character and compact RU/EN sources and current authored examples are aligned with this revision. Full-core hashes are pinned in the release contract. Historical releases and test records remain unchanged. Earlier 1.3.4 comparisons and website-adapter tests are not evaluations of this new core, its shorter editions or installed skills.
+
+### Русский
+
+Выученная письменная форма остаётся записью. Эта редакция прямо допускает достаточную остановку: показав различие с называемым, не добавлять определение, требование оснований или следующий вопрос только ради продолжения.
+
+- «Что такое X?» без заданной рамки больше не требует выбрать определение для разбора. Прямо запрошенное употребление поясняется в указанной рамке; иначе сохраняется данная форма и остановка на различии.
+- Если переход предложен в исходном тексте, показываются конкретные слова и добавленная связь. «Основание», «критерий» и слова собственного пояснения остаются письменными формами; названия не заменяют разбираемой связи.
+- Сообщённые требования и условия сохраняются с атрибуцией. Их написанные названия не выдаются за называемое; выполнение, принятие и добровольность не добавляются.
+- Сохраняются запрошенные вычисления, практическая работа, код, переводы, авторские тексты и точные форматы. Остановка не требует единого шаблона ответа или добавленной теории действия письма.
+
+Полные, 5 000-знаковые и краткие RU/EN исходники и текущие авторские примеры согласованы с этой редакцией. Хэши полного текста закреплены в контракте выпуска. Исторические версии и записи испытаний сохранены. Прежние сравнения 1.3.4 и тесты адаптера главной не являются проверкой нового core, сокращённых редакций или установленных навыков.
+
+### Checks for this revision / Проверки этой редакции
+
+A limited live run on gpt-6.1-sol checked 37 current-candidate cases in RU/EN: full and short instructions, the structured extension adapter and the existing homepage adapter. It included new questions, explicit practical requests, exact formats, learned written forms and literal markup. Earlier candidate failures led to changes before the final selected runs. These results do not certify other models, provider accounts or every possible question. [Inputs, outputs, source hashes, assessments and limits](references/development-review-1.3.5.json).
+
+В ограниченном живом прогоне gpt-6.1-sol проверены 37 случаев RU/EN для текущих редакций: полная и короткие инструкции, структурированный разбор расширения и действующий адаптер главной. В набор входят новые вопросы, практические задачи, точные форматы, выученные письменные формы и буквальные теги. Неудачи ранних кандидатов привели к правкам до итоговых прогонов. Эти результаты не подтверждают работу других моделей и аккаунтов и не гарантируют любой ответ. [Входы, ответы, хэши, оценки и ограничения](references/development-review-1.3.5.json).
+
+A separate Hugging Face Playground check recorded 12 answers: six synthetic RU/EN inputs on each of Qwen3.8-27B and DeepSeek-V4.1-Flash. No material instruction failure was found in this sample; repetition, emphasis length and quotation-mark differences remain in the notes. The report's `HuggingFacePlayground12` section preserves the inputs, visible final answers and capture limits. These UI observations do not verify direct provider APIs, privacy settings or installed-extension behavior.
+
+Отдельная проверка через Hugging Face Playground сохранила 12 ответов: по шесть синтетических входов RU/EN для Qwen3.8-27B и DeepSeek-V4.1-Flash. Существенного нарушения инструкции в этой выборке не обнаружено; повторения, длина выделения и различия кавычек отмечены в отчёте. Раздел `HuggingFacePlayground12` сохраняет входы, видимые финальные ответы и ограничения записи. Этот прогон интерфейса не проверяет прямые API провайдеров, настройки конфиденциальности или работу установленного расширения.
+
 ## 1.3.4 · 2026-10-13
 
 ### English

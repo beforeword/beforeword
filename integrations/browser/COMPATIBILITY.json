@@ -1,0 +1,8 @@
+{
+  "version": "0.5.6",
+  "coreVersion": "1.3.5",
+  "reportVersion": 3,
+  "legacyReports": "Versions 1 and 2 remain supported; legacy fields are preserved when present. New v3 reports contain quote and reading only.",
+  "providerModeVersion": "2026-10-15.1",
+  "limitations": "Account checkboxes record user declarations, not a provider-account audit. Direct DeepSeek text submission is unavailable pending a documented processing mode. Fixtures do not certify live API accounts."
+}

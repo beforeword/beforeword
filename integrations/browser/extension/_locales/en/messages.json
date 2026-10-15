@@ -1,0 +1,11 @@
+{
+  "extensionName": {
+    "message": "beforeword — BETA"
+  },
+  "extensionDescription": {
+    "message": "An exact excerpt with a short proposed reading beside it. The writing remains writing."
+  },
+  "actionTitle": {
+    "message": "Open selected text in beforeword"
+  }
+}

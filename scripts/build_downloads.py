@@ -18,6 +18,9 @@ from build_guide import ROOT, VERSION, build as build_guide, source_bundle
 from package_plugins import DEFAULT_VERSION, build_bundles, skill_text
 
 REPOSITORY = "https://github.com/beforeword/beforeword"
+# These reproducible outputs are distributed by the website, not stored in Git.
+# Their complete bytes and source provenance remain pinned by the tracked manifest.
+DEFERRED_FILES = frozenset((f"beforeword_AI_{VERSION}.html", f"beforeword_toolkit_{VERSION}.zip"))
 
 
 def digest(raw: bytes) -> str:
@@ -62,7 +65,10 @@ def build_files() -> dict[str, bytes]:
     return files
 
 
-def write_files(output: Path, files: dict[str, bytes], *, replace: bool = False, check: bool = False) -> None:
+def write_files(output: Path, files: dict[str, bytes], *, replace: bool = False, check: bool = False,
+                hydrate: bool = False) -> None:
+    if sum((replace, check, hydrate)) > 1:
+        raise ValueError("Choose only one download write/check mode")
     output = Path(output)
     if output.is_symlink() or any(parent.is_symlink() for parent in output.parents):
         raise ValueError("Output directory must not use symlinks")
@@ -80,6 +86,20 @@ def write_files(output: Path, files: dict[str, bytes], *, replace: bool = False,
             if path.is_symlink() or not path.is_file():
                 raise ValueError("Output must contain only regular release files")
             existing[path.name] = path.read_bytes()
+    if hydrate:
+        missing = set(files) - set(existing)
+        if (set(existing) - set(files) or not DEFERRED_FILES.issubset(files) or
+                not missing.issubset(DEFERRED_FILES)):
+            raise ValueError("Hydration permits only the two declared generated files to be missing")
+        # This includes the full manifest and SHA256SUMS, and every tracked
+        # release file. Validate all of them before creating either output.
+        differences = sorted(name for name, raw in existing.items() if files.get(name) != raw)
+        if differences:
+            raise ValueError("Tracked downloads differ from the current source: " + ", ".join(differences))
+        for name in sorted(missing):
+            with (output / name).open("xb") as destination:
+                destination.write(files[name])
+        return
     if check:
         if existing != files:
             differences = sorted(name for name in set(files) | set(existing)
@@ -101,10 +121,11 @@ def main() -> None:
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--replace", action="store_true", help="Replace generated downloads with the current source build")
     mode.add_argument("--check", action="store_true", help="Compare existing downloads with the current source without writing")
+    mode.add_argument("--hydrate", action="store_true", help="Rebuild only the two omitted large files after verifying all tracked release bytes and provenance")
     args = parser.parse_args()
     files = build_files()
-    write_files(args.output, files, replace=args.replace, check=args.check)
-    action = "Checked" if args.check else "Prepared"
+    write_files(args.output, files, replace=args.replace, check=args.check, hydrate=args.hydrate)
+    action = "Checked" if args.check else "Hydrated" if args.hydrate else "Prepared"
     print(f"{action} {len(files)} files ({sum(map(len, files.values())):,} bytes): {args.output}")
 
 

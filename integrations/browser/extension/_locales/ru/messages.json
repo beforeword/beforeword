@@ -1,0 +1,11 @@
+{
+  "extensionName": {
+    "message": "beforeword — BETA"
+  },
+  "extensionDescription": {
+    "message": "Точная цитата и короткое прочтение рядом. Написанное остаётся написанным."
+  },
+  "actionTitle": {
+    "message": "Открыть выделенный текст в beforeword"
+  }
+}

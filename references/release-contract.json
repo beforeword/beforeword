@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "1.3.4",
-  "date_utc": "2026-10-13",
+  "version": "1.3.5",
+  "date_utc": "2026-10-15",
   "status": "selected",
   "core_sha256": {
-    "ru": "cf251874b11357c795fbd55d19758ed3eac80d741036b99a286b617cd00ae21f",
-    "en": "dba61a3dc17f2aaba2356dc5526eacb8067718b278c13d62e6880ea3559b4104"
+    "ru": "a815d441047d34aa087624b5dcda9d1c9b782b5cbdec2ce7af31d30b650904b2",
+    "en": "e7490db9bb8ddd967f7d0818553eec2a424910015fcac74f80929fb2a1f2ae23"
   }
 }

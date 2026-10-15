@@ -2,6 +2,14 @@
 
 This page explains which text was included in the release, why it was chosen, and what the model responses showed.
 
+## 1.3.5 · Current development checks
+
+The [1.3.5 review](development-review-1.3.5.json) preserves 37 selected current-candidate RU/EN cases on one model, covering the full and shorter instructions, the structured extension task and the homepage adapter. Earlier failures, subsequent changes, final outputs and source hashes remain in the record. This is a bounded development check, not a guarantee for every answer.
+
+A separate `HuggingFacePlayground12` section records six synthetic inputs on each of Qwen3.8-27B and DeepSeek-V4.1-Flash: RU/EN naming questions, arithmetic, translation and selected-text analysis. No material instruction failure was found in those 12 final answers. Minor repetition, emphasis length and translation quotation marks are recorded. DeepSeek used the displayed novita route; Qwen's upstream provider was not established.
+
+The full English core and, for analysis, the v3 task were entered in separate custom Persona fields. Results were captured from the rendered final UI; raw response bytes and the platform's final instruction composition were not inspected. The four transcribed analysis objects passed local schema checks, which is not a raw-transport JSON test. This does not verify direct provider APIs, account privacy settings, the installed extension or the beforeword Hugging Face Space protocol. Mistral was unavailable in the observed Playground model picker and was not tested. Historical comparisons below retain their original scope.
+
 ## 1.3.3 · What the release includes
 
 The release includes the full text chosen after comparison with an alternative, plus separately revised medium and compact editions. The results are published alongside the tasks, responses and assessments.

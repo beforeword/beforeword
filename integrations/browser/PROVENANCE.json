@@ -1,0 +1,187 @@
+{
+  "kind": "verified recovered extension source",
+  "sourceVersion": "0.5.5",
+  "intendedVersion": "0.5.6",
+  "source": "Browser source recovered from the 0.5.5 release, matched to its reconstructed Chrome ZIP, then revised for 0.5.6. This file records the baseline rather than certifying final release content.",
+  "chromeZipSHA256": "560d56e1b59c92602d1ada8a92ee6fdccf0f6338aabfa5c3872e53de9018c096",
+  "canonicalGitRepositoryConfirmed": true,
+  "baselineFiles": [
+    {
+      "path": "_locales/en/messages.json",
+      "sha256": "e3feb4c5cc54332aa9c2e8d04389e210f7703d907a1b097c0e2d509a1da4b614",
+      "bytes": 287
+    },
+    {
+      "path": "_locales/ru/messages.json",
+      "sha256": "1cdbce75bef38f84b0faf969ad4c8b229a161f34c7c8f8e4a98abde5682ba15c",
+      "bytes": 402
+    },
+    {
+      "path": "analysis-core.js",
+      "sha256": "5d0a5cb063f90e1890dfbd3a8cfdeeb39c44ce625c905bd1ad7f1ea1ffdfe25e",
+      "bytes": 18844
+    },
+    {
+      "path": "analysis-examples.js",
+      "sha256": "ca03badec79bc59e1e3335c4f46c7e55568434b58d7f34644825d186f1f716d8",
+      "bytes": 13301
+    },
+    {
+      "path": "analysis-model.js",
+      "sha256": "fc621d493da34c28977b02e9379eda9e59755268f71aad8e5ad848bc8b22adbc",
+      "bytes": 31385
+    },
+    {
+      "path": "assets/brand.svg",
+      "sha256": "36de52033e4caf6735ddec19093275afebd36bd72536cf2e7e25d02a030eff89",
+      "bytes": 5022
+    },
+    {
+      "path": "assets/icon-source.svg",
+      "sha256": "b0dc232dd31d26e9328089df74989a08d1ef5b276226a7b29408be6809d73ac7",
+      "bytes": 5143
+    },
+    {
+      "path": "background.js",
+      "sha256": "fe461879a2344934c03bc5fa894e0aa487965eec3aaee41194307e015729cdba",
+      "bytes": 35106
+    },
+    {
+      "path": "dictionary-core.js",
+      "sha256": "a6af224d9b04d551b39c68c797eaa133c0e8298c72f5f0af7604540f3693dd4b",
+      "bytes": 13202
+    },
+    {
+      "path": "dictionary-ui.js",
+      "sha256": "795ea1c7d3f6da1462d7a04e0042eaf30cb2b96c2c89ab437687b0060c361855",
+      "bytes": 28570
+    },
+    {
+      "path": "dictionary.css",
+      "sha256": "7d6afd935e67ad371ba5e19422c96c7dde5b9f2e0138626eff11c9d446e147fe",
+      "bytes": 8409
+    },
+    {
+      "path": "form-core.js",
+      "sha256": "9bcf77fc461d3fee7612794158d21f639f4c21a096c1a22cfd9b87a894efac92",
+      "bytes": 3159
+    },
+    {
+      "path": "icons/icon-128.png",
+      "sha256": "63a3e2b9c4f8495c4bd04880aa829bed5ec94caafcea3ca87950a325f151af1d",
+      "bytes": 2256
+    },
+    {
+      "path": "icons/icon-16.png",
+      "sha256": "9f4f638bcc09235c9781b360a8b70f5877d5ef8b2c969bf5aa137532a1d25869",
+      "bytes": 389
+    },
+    {
+      "path": "icons/icon-32.png",
+      "sha256": "1ba3ad2c3ce2774ec10ed2131efca95a052e080d7799684f22fc0bcd88cefe67",
+      "bytes": 627
+    },
+    {
+      "path": "icons/icon-48.png",
+      "sha256": "add2227c4e705c12ae1df97ee3bc458782fc080cf69b1759c055276b11c83972",
+      "bytes": 889
+    },
+    {
+      "path": "instructions.js",
+      "sha256": "f3f4f87b6fa41e47cd885da58c3755cf330a1f9630b930bd0b657de2a5bc85c2",
+      "bytes": 10146
+    },
+    {
+      "path": "manifest.chromium.json",
+      "sha256": "cbbbc8349adc41f00bef4235a3e5574f1e99f7308972dd9c6442664dcdf98ed5",
+      "bytes": 1443
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "cbbbc8349adc41f00bef4235a3e5574f1e99f7308972dd9c6442664dcdf98ed5",
+      "bytes": 1443
+    },
+    {
+      "path": "manifest.safari.json",
+      "sha256": "e020ab66cc1c499ac7f853584ec4e1dbcd11fef1a78285dd4f8e1857519b39d3",
+      "bytes": 1340
+    },
+    {
+      "path": "pages.css",
+      "sha256": "463a3a06180b26dd40b1b736ea6e62bc05f18c2fe1c39dad961278d98e5da5b4",
+      "bytes": 7927
+    },
+    {
+      "path": "pages.js",
+      "sha256": "623f90f5e32f3d3f9d5e6cc84e72526e1761fc47b5bf071b2ba03f146f2ba9d4",
+      "bytes": 37727
+    },
+    {
+      "path": "panel.css",
+      "sha256": "7662d63f68b063b68b7910d3583690c8b27162193c37746562a5d3b3e8699ccf",
+      "bytes": 37657
+    },
+    {
+      "path": "panel.html",
+      "sha256": "c60c9d47ade69eb1443c0cd201535874688ff4235abd999b83c6790194f2a10f",
+      "bytes": 20800
+    },
+    {
+      "path": "panel.js",
+      "sha256": "8e623e7ba0013f4d7813ac015add5f15151764effcd8fb20d9d077a2a7cab048",
+      "bytes": 138257
+    },
+    {
+      "path": "platform.js",
+      "sha256": "c8f027e9aae527d5fafd474c8bb1cd1410629747d833e9d3d906fffce2526dc8",
+      "bytes": 4733
+    },
+    {
+      "path": "privacy.html",
+      "sha256": "b94160436770d4250699308af200b3f6031d5f23dad5bf629092f2c9865cd858",
+      "bytes": 9085
+    },
+    {
+      "path": "provider-auth.js",
+      "sha256": "3d27846dc93ec7dc7340f121edf04820336ac471c0823ab3c03423e54d5a15c8",
+      "bytes": 6300
+    },
+    {
+      "path": "providers.js",
+      "sha256": "a973530bb2fbfd20c9cfe795e94c20adbf566a17f9e94aabc89ffb7b1fed61a9",
+      "bytes": 11802
+    },
+    {
+      "path": "reading-guide.css",
+      "sha256": "ccfd8e27c4015592cbf21efe380ba5472ef62e9a81ec415f0f88206179ff4857",
+      "bytes": 9761
+    },
+    {
+      "path": "reading-guide.js",
+      "sha256": "01b62779ae0e390aac831e2c6210ebe7d6c1ac90358b20ae0c3d84595b6fc19c",
+      "bytes": 15054
+    },
+    {
+      "path": "reading-surface.js",
+      "sha256": "8df57052d8f73fc2bdb9588db768a0758da1888fae4c227e579395a234a24d1a",
+      "bytes": 5174
+    },
+    {
+      "path": "selection.js",
+      "sha256": "f7df21db8340cf6d9ba8a75d2a98798a32b7d575e29435326cbd74c9f3b31738",
+      "bytes": 53491
+    },
+    {
+      "path": "service-config.js",
+      "sha256": "6f939f50e9cc827aab16ec89ee5aae15e6fef3de04a6a96f0634883b489d4a64",
+      "bytes": 240
+    },
+    {
+      "path": "welcome.html",
+      "sha256": "0c70b41c608266ddc346999294ccb16bb19457984fa1b02cb8396ee6d5534c62",
+      "bytes": 10572
+    }
+  ],
+  "repository": "https://github.com/beforeword/beforeword",
+  "location": "integrations/browser"
+}
