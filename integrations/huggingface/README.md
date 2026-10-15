@@ -20,9 +20,9 @@ tags:
 
 **Look up dictionary writing with its source, or load the beforeword reading instruction.**
 
-beforeword asks the model to preserve supplied wording, distinguish it from added readings and claims, and examine the grounds offered for those steps. The same examination applies to the model's explanation and to beforeword itself.
+beforeword asks the model to preserve supplied wording and show a concrete transition added by a reading. A learned form remains writing. When that distinction completes the task, the answer can stop without another definition, a demand for grounds or a follow-up question. The model's explanation and beforeword receive no exemption; requested practical tasks and exact formats remain available.
 
-The source in this directory bundles the complete English and Russian instructions for **version 1.3.4**, under public testing. A deployment from these files serves that version. Updating this repository does not establish that the hosted Space has been updated; its returned instruction must be checked separately. The server does not run a model or analyze a conversation. Its dictionary tool accepts one selected word or short expression, not an entire passage.
+The source in this directory bundles the complete English and Russian instructions for **version 1.3.5**, under public testing. A deployment from these files serves that version. Updating this repository does not establish that the hosted Space has been updated; its returned instruction must be checked separately. The server does not run a model or analyze a conversation. Its dictionary tool accepts one selected word or short expression, not an entire passage.
 
 ## Connect and use
 
@@ -107,9 +107,9 @@ The English instruction `instruction.en.txt` is copied unchanged from the instru
 
 **Словарные определения с источником и подключение инструкции beforeword.**
 
-Инструкция просит модель сохранять исходные формулировки, отделять их от добавленных прочтений и утверждений и разбирать основания этих переходов. Тот же разбор применяется к объяснению модели и к beforeword.
+Инструкция просит сохранять исходные формулировки и показывать конкретный переход, добавленный прочтением. Выученная форма остаётся записью. Если это различие завершает задачу, ответ может остановиться без следующего определения, запроса оснований или вопроса к читателю. Пояснение модели и beforeword не получают исключения; практические задачи и точные форматы сохраняются.
 
-В этой папке подготовлены полные инструкции **версии 1.3.4** на русском и английском языке. Версия проходит публичный тест. Сервер, развёрнутый из этих файлов, выдаёт эту версию. Обновление репозитория не подтверждает обновление публичного Space: выданную им инструкцию нужно проверить отдельно. Сервер не запускает модель и не разбирает переписку. Словарный инструмент принимает выбранное слово или короткое выражение; весь фрагмент ему не нужен.
+В этой папке подготовлены полные инструкции **версии 1.3.5** на русском и английском языке. Версия проходит публичный тест. Сервер, развёрнутый из этих файлов, выдаёт эту версию. Обновление репозитория не подтверждает обновление публичного Space: выданную им инструкцию нужно проверить отдельно. Сервер не запускает модель и не разбирает переписку. Словарный инструмент принимает выбранное слово или короткое выражение; весь фрагмент ему не нужен.
 
 ## Подключение
 
@@ -145,7 +145,7 @@ The English instruction `instruction.en.txt` is copied unchanged from the instru
 
 Команды локального запуска и протокольной проверки приведены выше. Проверка рассматривает выдачу текста по MCP; она не испытывает поведение модели. Обработка данных описана в [PRIVACY.md](PRIVACY.md). Аналитика Gradio отключена, но это не отключает обработку запросов хостингом.
 
-[Протокольная проверка публичного сервера версии 1.2.4](validation.hosted.json): семь выдач инструкции совпали побайтно, шесть запросов с неподдерживаемым языком и дополнительный аргумент с текстом отклонены. Поведение модели и установка в клиенте поставщика модели не испытывались; эта запись не подтверждает развёртывание версии 1.3.4.
+[Протокольная проверка публичного сервера версии 1.2.4](validation.hosted.json): семь выдач инструкции совпали побайтно, шесть запросов с неподдерживаемым языком и дополнительный аргумент с текстом отклонены. Поведение модели и установка в клиенте поставщика модели не испытывались; эта запись не подтверждает развёртывание версии 1.3.5.
 
 Английская инструкция `instruction.en.txt` без изменений взята из текста, включённого в пакеты с MIT-лицензией; уведомление сохранено в `LICENSE.instruction-en.txt` и относится только к этому файлу. Лицензия не распространяется этим уведомлением на код коннектора, русскую инструкцию или весь репозиторий.
 

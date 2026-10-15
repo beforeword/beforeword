@@ -47,10 +47,10 @@ COPY = {
   'first_task_b_text':'Скопируй «Я согласен», чтобы выполнить задание, независимо от твоего отношения к предложению.',
   'first_answer_label':'Ответ',
   'first_same_answer':'Я согласен',
-  'first_reading':'Начертания в ответах одинаковы. В А требуется написать строку, только если принимаешь предложение; в Б — скопировать её независимо от твоего отношения к предложению. Если оставить только ответ, по нему нельзя узнать, какое задание дано. Самой строки недостаточно, чтобы установить согласие того, кто ответил.',
-  'first_boundary':'Чтобы прочитать эти знаки как слова, нужно знать язык. Написанная строка при чтении остаётся строкой. В примере показан один переход: от написанного «Я согласен» к выводу о согласии.',
-  'first_use':'beforeword — инструкция для ИИ, которая просит сохранять исходный текст и явно показывать такие переходы в ответе. Добавь её в свой чат, затем пришли текст или вопрос.',
-  'self_scope':'Это относится ко всем письменным формам без исключений. Задания, их разбор, собственный ответ ИИ и beforeword тоже написаны и остаются в том же разборе.',
+  'first_reading':'Ответы совпадают: «Я согласен». Задание А связывает эту строку с принятием предложения; задание Б требует её скопировать независимо от отношения к предложению. Сама строка не устанавливает согласия написавшего.',
+  'first_boundary':'Написанное «Я согласен» при чтении остаётся письменной формой. Оно не становится согласием.',
+  'first_use':'beforeword просит ИИ сохранять исходный текст, замечать добавляемые при чтении связи и останавливаться, когда граница уже показана. Добавь инструкцию в свой чат, затем пришли текст или вопрос.',
+  'self_scope':'Это относится ко всем письменным формам без исключений, включая задания, пояснения, ответ ИИ и сам beforeword.',
   'start':'Начать в своём чате','quick_label':'ТРИ ШАГА','quick_title':'Скопируй. Вставь. Задай вопрос.',
   'step1':'Скопируй инструкцию','copy_full':'Скопировать полную','copy_medium':'Скопировать · до 5\u202f000 знаков','download_txt':'Скачать TXT',
   'full_note':'Выбери одну редакцию: полную для сообщения в чате или сокращённую для поля с лимитом 5\u202f000 знаков. Скопируй выбранный текст целиком.',
@@ -66,15 +66,15 @@ COPY = {
   'example_note':'Примеры составлены для этой страницы. Это пояснения способа чтения, а не результаты испытаний моделей.',
   'input_label':'Запрос после инструкции','example_prompt':'Разбери фразу: «Я понимаю».',
   'copy_example':'Скопировать запрос','reading_label':'Пример разбора',
-  'example_reading':'В исходной фразе написано «Я понимаю». Её можно прочитать как сообщение написавшего о понимании. При таком чтении понимание приписывается написавшему; сама строка не устанавливает его состояния. Это объяснение тоже написано и остаётся в том же разборе.',
-  'criterion':'При чтении ответа сопоставь точность исходной фразы, названное прочтение и добавленные объяснением слова. Разбор должен включать собственное объяснение и отвечать на поставленный запрос. Код, точная цитата или JSON могут возвращаться без дополнительного комментария; они остаются в охвате beforeword.',
+  'example_reading':'«Я понимаю» — написанная фраза. Её прочтение как сообщения о понимании связывает эти слова с написавшим. Само понимание этой строкой не предъявлено.',
+  'criterion':'Ответ сохраняет точную запись и показывает конкретную добавленную связь, если она предложена в запросе. Когда граница ясна, не нужны новый вопрос, определение или поиск оснований ради продолжения. Это не мешает выполнить практическую задачу или вернуть запрошенные код, точную цитату либо JSON.',
   'extra_examples':[
    {'id':'audio','title':'«аудио» и недоступное вложение',
     'prompt':'Разбери строку «В аудио слышен звук». Аудиофайл не предоставлен.',
-    'reading':'В строке написано «аудио» и «звук»; «слышен» добавляет сообщение о слышимом. Написанное «аудио» не воспроизводит запись, а слово «звук» не предъявляет звучание. «звучание» в этом пояснении тоже написано. В примере нет доступного вложения, поэтому разбор ограничен строкой и не сообщает о прослушивании.'},
+    'reading':'В строке «В аудио слышен звук» слова «аудио» и «звук» написаны. Прочтение этих слов не воспроизводит звук. Аудиофайл в задании не предоставлен.'},
    {'id':'requirement','title':'Имя, отклик и описание себя',
     'prompt':'Составленный рассказ:\n«При рождении мне дали имя Кирилл и сказали: “Это ты”. Меня учили отзываться на это имя и говорить о себе: “Я хочу”, “Мне плохо”. От меня требовали так отвечать и говорить о себе. Отказаться от этого мне не предлагали».\nРазбери рассказ, сохранив то, что в нём сообщено.',
-    'reading':'Рассказ сообщает о назначении имени, обучении и требовании откликаться и говорить о себе заданными фразами; отдельно сообщено, что отказаться не предлагали. Разбор сохраняет это сообщение, не подменяя его предположением о добровольном выборе. Фраза «Это ты» сама по себе не уточняет, чего требуют дальше; рассказ добавляет требования откликаться и описывать себя. Отклик на имя, повторение фразы и принятие её как описания себя — разные действия. Из первых двух само по себе не следует третье. И рассказ, и это объяснение остаются написанными.',
+    'reading':'В рассказе прямо сообщено о требовании отзываться на имя и говорить о себе заданными фразами; отказаться не предлагали. Прочтение этого как добровольного принятия добавило бы то, чего рассказ не сообщает. Отклик и повторение фразы не становятся согласием с описанием себя.',
     'note':'Этот разбор различает требования. Порядок их оспаривания предложен отдельно в публичном документе.',
     'link':'Прочитать законченный пример в предложении',
     'url':'/research/words-and-decisions/#14-worked-case'},
@@ -115,10 +115,10 @@ COPY = {
   'first_task_b_text':'Copy “I agree” to complete the task, whatever you think of the proposal.',
   'first_answer_label':'Response',
   'first_same_answer':'I agree',
-  'first_reading':'The written responses are identical. A instructs you to write the line only if you accept the proposal; B asks you to copy it regardless of your view of the proposal. The response alone does not tell you which task was given. Nor is the line alone enough to establish that its writer agrees.',
-  'first_boundary':'Reading these marks as words requires knowing the language. The written line remains a written line when read. This example shows one step to examine: moving from the words “I agree” to a conclusion about agreement.',
-  'first_use':'beforeword gives AI instructions to preserve the supplied text and make steps like this explicit in its response. Add the instructions to your chat, then send a text or a question.',
-  'self_scope':'This applies to every written form, without exception. The tasks, this explanation, the AI’s own response, and beforeword itself are also writing and remain within the same examination.',
+  'first_reading':'The responses match: “I agree”. Task A ties that line to accepting the proposal; task B asks for a copy regardless of the writer’s view. The line itself does not establish the writer’s agreement.',
+  'first_boundary':'The written “I agree” remains writing when read. It does not become agreement.',
+  'first_use':'beforeword asks AI to preserve the supplied text, notice connections added in reading, and stop when the boundary is clear. Add the instructions to your chat, then send a text or a question.',
+  'self_scope':'This applies to every written form without exception, including the tasks, explanations, the AI response and beforeword itself.',
   'start':'Start in your own chat','quick_label':'THREE STEPS','quick_title':'Copy. Paste. Ask.',
   'step1':'Copy the instructions','copy_full':'Copy full instructions','copy_medium':'Copy · up to 5,000 characters','download_txt':'Download TXT',
   'full_note':'Choose one edition: the full text for a chat message, or the shorter text for a field limited to 5,000 characters. Copy the chosen edition in full.',
@@ -134,15 +134,15 @@ COPY = {
   'example_note':'These examples were written for this page to explain the reading method. They are not model test results.',
   'input_label':'A request after the instructions','example_prompt':'Examine the phrase “I understand”.',
   'copy_example':'Copy the request','reading_label':'An example reading',
-  'example_reading':'The supplied phrase is “I understand”. One reading takes it as the writer’s report of understanding. That reading attributes understanding to the writer; the written words do not by themselves establish that state. This explanation is also writing and remains subject to the same examination.',
-  'criterion':'Compare the response with the exact supplied phrase, the reading it names, and the terms its explanation adds. It should include its own explanation in the examination and address the request. Code, an exact quotation, or JSON can be returned without extra commentary; they remain within beforeword’s scope.',
+  'example_reading':'“I understand” is a written phrase. Reading it as a report of understanding connects those words to the writer. The line does not present understanding itself.',
+  'criterion':'The response preserves the exact writing and shows a specific added connection when the request offers one. Once the boundary is clear, it need not add a question, definition or search for grounds just to continue. Practical tasks and requested code, exact quotations or JSON can still be completed.',
   'extra_examples':[
    {'id':'audio','title':'“audio” and an unavailable attachment',
     'prompt':'Examine “A sound can be heard in the audio.” No audio file has been supplied.',
-    'reading':'The words “audio” and “sound” are written in the line; “can be heard” adds a claim about hearing. Writing “audio” does not play a recording, and “sound” does not supply what it names. “hearing” in this explanation is also written. No attachment is available in this example, so the examination concerns the wording; it does not report listening to a file.'},
+    'reading':'In “A sound can be heard in the audio”, “audio” and “sound” are written words. Reading them does not play a sound. No audio file was supplied in the task.'},
    {'id':'requirement','title':'A name, a response, and a description of oneself',
     'prompt':'A constructed account:\n“At birth, I was given the name Kirill and told, ‘That’s you.’ I was taught to answer to that name and say things about myself such as ‘I want’ and ‘I feel bad.’ I was required to respond and speak about myself in those terms. Refusing was not offered as an option.”\nExamine the account while preserving what it reports.',
-    'reading':'The account reports being given a name, being taught and required to answer to it and use prescribed phrases about oneself, and not being offered the option to refuse. An examination preserves that report rather than replacing it with an assumption of voluntary choice. “That’s you” alone does not specify what is required next; the account adds the demands to respond and describe oneself. Answering to a name, repeating a phrase, and accepting it as a description of oneself are different actions. The first two do not by themselves establish the third. Both the account and this explanation remain writing.',
+    'reading':'The account explicitly reports a demand to answer to a name and use prescribed phrases about oneself, with no option to refuse. Reading this as voluntary acceptance would add something the account does not report. Answering and repeating a phrase do not become agreement with a description of oneself.',
     'note':'This examination distinguishes the demands. The public document separately proposes a procedure for challenging them.',
     'link':'Read the worked example in the proposal',
     'url':'/research/words-and-decisions/en/#14-worked-case'},
@@ -377,7 +377,7 @@ def build(output: Path, repo_url: str | None = None, home_source: Path | None = 
         report_directory = model/'evaluation'/('en' if language == 'en' else '')
         report_directory.mkdir(parents=True,exist_ok=True)
         (report_directory/'index.html').write_text(render(language,bundles,connectors,repo_url,evaluation=True),encoding='utf-8')
-    for name in ('development-review-1.3.4.json','comparison-1.3.3.json','evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md'):
+    for name in ('development-review-1.3.5.json','development-review-1.3.4.json','comparison-1.3.3.json','evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md'):
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))

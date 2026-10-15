@@ -40,6 +40,7 @@ jobs:
           python3 -B catalog/check.py
       - name: Check versioned downloads and bilingual guide links
         run: |
+          python3 -B scripts/build_downloads.py --hydrate
           python3 -B scripts/test_downloads.py
           python3 -B scripts/build_downloads.py --check
       - name: Build site files locally
@@ -63,5 +64,33 @@ jobs:
           path: |
             build/toolkit/
             build/site/
+          if-no-files-found: error
+          retention-days: 14
+
+  browser-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - name: Install pinned DOM test dependencies
+        working-directory: integrations/browser
+        run: npm ci --ignore-scripts
+      - name: Check browser and service contracts
+        working-directory: integrations/browser
+        run: npm test
+      - name: Build and verify the Chrome package
+        working-directory: integrations/browser
+        run: python3 -B tools/build-chrome.py --output build
+      - name: Upload browser artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: beforeword-chrome
+          path: integrations/browser/build/
           if-no-files-found: error
           retention-days: 14

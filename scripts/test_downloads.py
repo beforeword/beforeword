@@ -10,7 +10,7 @@ import tempfile
 import unittest
 import zipfile
 
-from build_downloads import ROOT, VERSION, build_files, write_files
+from build_downloads import DEFERRED_FILES, ROOT, VERSION, build_files, write_files
 from build_public import settings
 
 
@@ -74,12 +74,70 @@ class DownloadTests(unittest.TestCase):
 
     def test_guide_download_links_resolve_and_start_with_complete_text(self):
         prefix = f"https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/{VERSION}/"
+        hosted = {
+            "https://beforeword.xyz/model/toolkit/beforeword_AI.html": f"beforeword_AI_{VERSION}.html",
+            "https://beforeword.xyz/model/downloads/beforeword_toolkit.zip": f"beforeword_toolkit_{VERSION}.zip",
+        }
+        self.assertEqual(set(hosted.values()), DEFERRED_FILES)
         for filename in ("docs/ai-guide.en.md", "docs/ai-guide.ru.md"):
             text = (ROOT / filename).read_text(encoding="utf-8")
             targets = re.findall(re.escape(prefix) + r"([^\s)]+)", text)
-            self.assertEqual(set(targets), set(self.files))
+            self.assertEqual(set(targets), set(self.files) - DEFERRED_FILES)
+            for url, name in hosted.items():
+                self.assertEqual(text.count(f"]({url})"), 1)
+                self.assertNotIn(prefix + name, text)
             self.assertIn(targets[0], ("beforeword_core_RU.txt", "beforeword_core_EN.txt"))
             self.assertIn(targets[1], ("beforeword_core_RU.txt", "beforeword_core_EN.txt"))
+
+    def test_hydration_restores_only_declared_files_then_strict_check_passes(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            target = Path(temporary).resolve() / "release"
+            tracked = {name: raw for name, raw in self.files.items() if name not in DEFERRED_FILES}
+            write_files(target, tracked)
+            timestamps = {name: (target / name).stat().st_mtime_ns for name in tracked}
+            with self.assertRaises(ValueError):
+                write_files(target, self.files, check=True)
+            write_files(target, self.files, hydrate=True)
+            write_files(target, self.files, check=True)
+            self.assertEqual(timestamps, {name: (target / name).stat().st_mtime_ns for name in tracked})
+            # Rehydration is a verified no-op, including an already present large file.
+            timestamps = {name: (target / name).stat().st_mtime_ns for name in self.files}
+            write_files(target, self.files, hydrate=True)
+            self.assertEqual(timestamps, {name: (target / name).stat().st_mtime_ns for name in self.files})
+            one = sorted(DEFERRED_FILES)[0]
+            (target / one).unlink()
+            write_files(target, self.files, hydrate=True)
+            write_files(target, self.files, check=True)
+
+    def test_hydration_checks_all_tracked_provenance_before_any_write(self):
+        for damaged in ("manifest.json", "SHA256SUMS.txt", "beforeword_core_EN.txt",
+                        f"beforeword_toolkit_{VERSION}.zip"):
+            with self.subTest(damaged=damaged), tempfile.TemporaryDirectory() as temporary:
+                target = Path(temporary).resolve() / "release"
+                tracked = {name: raw for name, raw in self.files.items() if name not in DEFERRED_FILES}
+                tracked[damaged] = b"changed bytes"
+                write_files(target, tracked)
+                before = {p.name: p.read_bytes() for p in target.iterdir()}
+                with self.assertRaisesRegex(ValueError, "Tracked downloads differ"):
+                    write_files(target, self.files, hydrate=True)
+                self.assertEqual(before, {p.name: p.read_bytes() for p in target.iterdir()})
+
+    def test_hydration_refuses_other_missing_or_extra_files_and_changed_source_manifest(self):
+        tracked = {name: raw for name, raw in self.files.items() if name not in DEFERRED_FILES}
+        variants = [
+            ({name: raw for name, raw in tracked.items() if name != "beforeword_core_EN.txt"}, self.files),
+            (dict(tracked, **{"unexpected.txt": b"keep"}), self.files),
+            (tracked, dict(self.files, **{"manifest.json": b"rebuilt from different source"})),
+            ({}, self.files),
+        ]
+        for present, built in variants:
+            with self.subTest(present=list(present)), tempfile.TemporaryDirectory() as temporary:
+                target = Path(temporary).resolve() / "release"
+                write_files(target, present)
+                before = {p.name: p.read_bytes() for p in target.iterdir()}
+                with self.assertRaises(ValueError):
+                    write_files(target, built, hydrate=True)
+                self.assertEqual(before, {p.name: p.read_bytes() for p in target.iterdir()})
 
     def test_source_archive_extracts_with_readable_file_permissions(self):
         raw = self.files[f"beforeword_toolkit_{VERSION}.zip"]
@@ -98,9 +156,33 @@ class DownloadTests(unittest.TestCase):
                 if path.is_file():
                     self.assertEqual(stat.S_IMODE(path.stat().st_mode), 0o644, str(path))
 
+    def test_toolkit_contains_a_complete_reproducible_browser_package_without_local_state(self):
+        raw = self.files[f"beforeword_toolkit_{VERSION}.zip"]
+        prefix = "beforeword/integrations/browser/"
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            names = archive.namelist()
+            self.assertFalse(any(set(Path(name).parts) & {"node_modules", "build", "__pycache__", ".git"} for name in names))
+            self.assertFalse(any(Path(name).name in {".env", "quotas.sqlite", "quotas.sqlite-wal", "quotas.sqlite-shm"} for name in names))
+            for name in ("extension/manifest.json", "extension/privacy.html", "extension/providers.js", "tools/build-chrome.py", "tools/test-panel-privacy.cjs", "server/index.cjs", "server/store.cjs", "server/answer.cjs", "app.js", "package.json", "package-lock.json", "README.md"):
+                self.assertEqual(archive.read(prefix + name), (ROOT / "integrations/browser" / name).read_bytes())
+            manifest = json.loads(archive.read(prefix + "extension/manifest.json"))
+            package = json.loads(archive.read(prefix + "package.json"))
+            lock = json.loads(archive.read(prefix + "package-lock.json"))
+            self.assertEqual(package["version"], manifest["version"])
+            self.assertEqual(lock["packages"][""]["devDependencies"], package["devDependencies"])
+            with tempfile.TemporaryDirectory() as temporary:
+                output = Path(temporary).resolve()
+                archive.extractall(output)
+                browser = output / "beforeword/integrations/browser"
+                # A user can build the downloaded source without any of this checkout's dependencies.
+                subprocess.run(["python3", "-B", str(browser / "tools/build-chrome.py"), "--output", str(output / "one")], check=True, capture_output=True)
+                subprocess.run(["python3", "-B", str(ROOT / "integrations/browser/tools/build-chrome.py"), "--output", str(output / "two")], check=True, capture_output=True)
+                filename = "beforeword-0.5.6-chrome.zip"
+                self.assertEqual((output / "one" / filename).read_bytes(), (output / "two" / filename).read_bytes())
+
     def test_refresh_refuses_undeclared_overwrites_and_check_is_read_only(self):
         with tempfile.TemporaryDirectory() as temporary:
-            target = Path(temporary) / "release"
+            target = Path(temporary).resolve() / "release"
             write_files(target, self.files)
             write_files(target, self.files, check=True)
             changed = dict(self.files, **{"beforeword_core_EN.txt": b"modified"})

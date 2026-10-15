@@ -2,6 +2,9 @@
 /build/
 /out/
 /dist/
+# Large reproducible downloads: source and complete manifest stay in Git.
+/downloads/1.3.5/beforeword_AI_1.3.5.html
+/downloads/1.3.5/beforeword_toolkit_1.3.5.zip
 __pycache__/
 *.py[cod]
 .pytest_cache/

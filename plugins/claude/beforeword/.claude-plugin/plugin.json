@@ -1,7 +1,7 @@
 {
   "name": "beforeword",
-  "version": "1.3.4",
-  "description": "Examine a phrase, a claim, or an AI response: what is written, what a reading adds, and what supports that step.",
+  "version": "1.3.5",
+  "description": "Examine written forms and added readings; stop where an explanation would present writing as what it names.",
   "author": {
     "name": "beforeword",
     "url": "https://beforeword.xyz"

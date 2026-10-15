@@ -18,7 +18,7 @@ class ReleaseContractTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
-        self.root = Path(self.temporary.name)
+        self.root = Path(self.temporary.name).resolve()
         (self.root / "assets").mkdir()
         (self.root / "references").mkdir()
         self.cores = {"ru": "beforeword · инструкция\r\nы\u0301\t \r\n\r\n".encode(),

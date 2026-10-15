@@ -6,7 +6,7 @@
 
 beforeword is a research project by **Kirill Shebetov** examining how descriptions of people and AI are used to justify judgments, demands and decisions.
 
-What is written? What interpretation is added? What justifies applying it to someone—and acting on it?
+A learned written form remains writing. beforeword examines a proposed transition and stops where continuing would present that writing as what it names.
 
 ## Start here
 
@@ -21,15 +21,19 @@ What is written? What interpretation is added? What justifies applying it to som
 
 A form states **“Assignment not submitted.”** A response adds **“The applicant is unreliable,”** followed by **“Deny participation.”** This is a constructed example, not a reported incident.
 
-The first entry does not contain the added description or the refusal. What grounds support each step? What rule permits the refusal? Can the person challenge either step without first accepting “unreliable” as who they are?
+“Assignment not submitted.” is used to add the description “The applicant is unreliable,” then the proposal “Deny participation.” The added description is not contained in the first entry. Writing “unreliable” does not make that word the applicant.
 
-beforeword proposes examining the wording, interpretation and offered grounds separately. Every written form is included without exception, including this explanation and the grounds it offers. Naming a justification does not itself justify a conclusion.
+This explanation also remains writing. The distinction does not require another definition, a request for grounds or a follow-up question merely to continue. Explicit practical tasks and requested formats remain part of the instruction.
+
+## Browser integration
+
+[Browser integration source and build instructions](integrations/browser/README.md) — Chrome 0.5.6, with instruction 1.3.5.
 
 ## Further reading and use
 
 - **[Words and decisions](https://github.com/beforeword/words-and-decisions)** — the earlier public proposal. The statement and its proposed changes are not requirements imposed by the AI instruction.
 
 - **[Research and earlier work](https://beforeword.xyz/en/)** — self-description, diagnostic records, imprisonment, mathematics and other studies.
-- **[Instructions for AI · 1.3.4](https://github.com/beforeword/beforeword/blob/main/docs/ai-guide.en.md)** — apply the reading procedure in your own AI app; includes the changes, setup and downloads. Public testing is ongoing. [Claude and OpenAI packages](https://github.com/beforeword/beforeword/blob/main/catalog/README.md).
+- **[Instructions for AI · 1.3.5](https://github.com/beforeword/beforeword/blob/main/docs/ai-guide.en.md)** — apply the reading procedure in your own AI app; includes the changes, setup and downloads. Public testing is ongoing. [Claude and OpenAI packages](https://github.com/beforeword/beforeword/blob/main/catalog/README.md).
 
 [Contact: mail@beforeword.xyz](mailto:mail@beforeword.xyz)

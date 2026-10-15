@@ -2,13 +2,21 @@
 
 These are authored demonstrations of the procedure, not model outputs or reports of tests. Paired responses illustrate the same distinction in Russian and English. They are not fixed scripts to repeat or evaluation cases. Every term introduced in an example remains within the same examination; none is singled out as a special class of words.
 
-## 1. A definition begins with the supplied word
+## 1. A name does not require an invented definition
 
 Input: `Что такое «правило»?`
 
-RU: «правило» входит в вопрос как написанное слово. В процедурном употреблении его можно пояснить формулировкой «при условии A выполнить B». Словом «предписание» это объяснение называет способ прочитать такую формулировку: как указание, что делать. Введение этого названия не предъявляет требуемого действия и не показывает, почему запись следует исполнять.
+RU: «правило» — написанное слово. Узнавание этого слова не делает его тем, что им называют. Это пояснение также остаётся написанным.
 
-EN: “правило” enters the question as a written word, translated here as “rule”. In procedural use, it can be explained by wording such as “if A, do B”. This explanation uses “instruction” to name a way of reading that wording: as specifying what to do. Introducing that name does not supply the requested action or show why the wording should be followed.
+EN: “правило” is a written word. Recognizing it does not make it what it names. This explanation also remains writing.
+
+An explicit usage task is different:
+
+Input: `Поясни запись «если A, то B» как условное правило. Одно предложение.`
+
+RU: В записи «если A, то B» появление B поставлено в зависимость от A; этим пояснена предложенная запись условия.
+
+EN: In “если A, то B”, B is made conditional on A; this explains the supplied wording of the condition.
 
 ## 2. Shared wording, different captions
 
@@ -49,29 +57,29 @@ RU: В двух местах повторено «я». Это сопостав�
 
 EN: “я” appears in both places. This comparison concerns the spelling. The fragment “прочитано одно и то же” proposes another comparison, now expressed through “прочитано”. It supplies the same two inscriptions without describing how they were read. Calling the repeated letters “the same reading” would add that description, rather than obtain it from the repetition.
 
-## 5. A definition chain and grounds for action
+## 5. A supplied definition chain and an added demand
 
 Input: `«Право» объяснили через «норму», а «норму» — через «правило». Правило требует действия.`
 
-RU: «Право», «норму», «правило» — написанные в примере формы. В тексте первая объяснена через вторую, вторая — через третью. Фрагмент «Правило требует действия» можно прочитать как требование действовать со ссылкой на «правило». «Требование» здесь называет это прочтение фразы; написанное «требует» само не предоставляет полномочий требовать. Для разбора применения нужно указать текст правила, условия, при которых его предлагают применять, и шаг от этих условий к действию. Эти следующие формулировки будут предложены как обоснование; название «обоснование» не освобождает их от сопоставления и разбора.
+RU: В примере «Право» объяснено через «норму», а та — через «правило»: одна запись поясняется следующей. «Правило требует действия» добавляет к этой цепочке требование. Запись этой фразы не становится требуемым действием; слова «цепочка» и «требование» в этом пояснении тоже остаются письменными формами.
 
-EN: “Право”, “норму”, and “правило” are written forms supplied in the example. The text explains the first through the second, and the second through the third. The fragment “Правило требует действия” can be read as a demand to act by appeal to a “rule”. “Demand” here names that reading of the sentence; writing “требует” does not itself supply authority to demand. Examining the proposed application requires the rule's wording, the conditions under which it is being applied, and the step from those conditions to the action. Those further statements would be offered as justification; calling them “justification” does not exempt them from comparison and analysis.
+EN: The example explains “Право” through “норму”, then “норму” through “правило”: one written form is explained through another. “Правило требует действия” adds a demand to this chain. Writing that sentence does not become the action required; “chain” and “demand” in this explanation also remain written forms.
 
-## 6. A diagnostic entry and its subsequent use
+## 6. A diagnostic entry and an added prohibition
 
 Input: `В условном бланке написано «Астма». Из этого сделали вывод: «Любая физическая нагрузка запрещена». Разбери переход.`
 
-RU: В описании условного бланка приведено «Астма», затем — «Любая физическая нагрузка запрещена». Первую формулировку здесь можно прочитать как диагностическое обозначение, вторую — как предписание. Это названия двух выбранных способов чтения; назвать вторую фразу «предписанием» ещё не значит обосновать написанный в ней запрет. В отрывке не указано, по какому записанному условию из «Астма» получено «Любая физическая нагрузка запрещена». Если предложат заключение, измерение или правило, следующий шаг — сопоставить конкретный фрагмент такой записи с этим запретом и разобрать предложенную связь. Этот разбор касается перехода между формулировками и не составляет индивидуальных указаний по нагрузке.
+RU: К записи «Астма» добавлено «Любая физическая нагрузка запрещена»: название прочитано как запрет любой нагрузки. В первом написании нет этого запрета. Само слово «Астма» не является называемым, как и написанное «запрещена» не предъявляет того, что им названо. Этот разбор также остаётся записью.
 
-EN: The account of the hypothetical form supplies “Астма”, followed by “Любая физическая нагрузка запрещена”. The first wording can be read here as a diagnostic label, the second as a prescription. These are names for two selected readings; calling the second sentence a “prescription” does not justify the prohibition written in it. The excerpt does not state a written condition connecting “Астма” to “Любая физическая нагрузка запрещена”. If an assessment, measurement, or rule is offered, the next step is to compare a specific passage in that record with the prohibition and examine the proposed connection. This examines the move between the statements and does not provide individual exercise instructions.
+EN: “Любая физическая нагрузка запрещена” is added to “Астма”: the name is read as prohibiting all physical exertion. That prohibition is not in the first inscription. “Астма” is not what it names, and the written “запрещена” does not supply what it names either. This analysis also remains writing.
 
 ## 7. Calculation and a further attribution
 
 Input: `Из 10 ответов 8 совпали с ключом. Какой это процент и доказывает ли это «понимание»?`
 
-RU: По указанному подсчёту: 8 / 10 × 100 = 80%. «понимание» входит в вопрос как слово; в подсчёте названы совпадения с ключом. Прочитать 80% совпадений как «понимание» — предложить переход от этого результата к ещё одному описанию. Чтобы разобрать переход, нужно назвать, по какому записанному условию результат связывают со словом «понимание» и как это условие применили. «Критерием» здесь называлось бы такое условие, а не независимое подтверждение приписанного понимания. Сам расчёт отвечает на вопрос о доле: 80% по приведённым числам.
+RU: 8 / 10 × 100 = 80%. Расчёт даёт долю совпадений по указанным числам. Назвать эти 80% «пониманием» — добавить к результату ещё одно описание. Ни число, ни написанное «понимание» не становятся называемым пониманием; это пояснение остаётся написанным.
 
-EN: Under the stated count: 8 / 10 × 100 = 80%. “понимание” enters the question as a word, translated here as “understanding”; the count describes matches with a key. Reading an 80% match as “understanding” proposes a move from that result to another description. Examining the move requires the written condition used to connect the result to “understanding”, together with how it was applied. “Criterion” would name that condition here, not an independent confirmation of the attributed understanding. The calculation answers the percentage question: 80% on the supplied figures.
+EN: 8 / 10 × 100 = 80%. The calculation gives the proportion of matches under the supplied figures. Calling that 80% “понимание” adds another description to the result. Neither the number nor the written “понимание” becomes the understanding named; this explanation remains writing.
 
 ## 8. Exact wording with an error and repeated spaces
 
@@ -179,9 +187,9 @@ Constructed example:
 Do 1 and 2 establish that 3 has been fulfilled?
 ```
 
-RU: В 1 описан отклик; в 2 — повтор строки; в 3 — требование признания. Ответ «Да» в 1 дан на обращение, а не на требование из 3. Ни отклик, ни копирование не предъявляют принятия записи как себя. Это сопоставление не объявляет требование откликаться допустимым и не выводит его отмену из состава букв: основания каждого требования остаются отдельным вопросом. Словом «отдельным» здесь обозначено, что в трёх пунктах предписаны разные ответы; одним ответом не подменяется другой.
+RU: Нет. В 1 описан отклик; в 2 — повтор строки; в 3 — требование признания. «Да» в 1 дано на обращение, а не на требование из 3. Прочитать первые два ответа как выполнение третьего — добавить принятие, которого эти ответы не сообщают. Названия «отклик», «повтор» и «принятие» в этом сопоставлении тоже остаются написанными.
 
-EN: Item 1 describes a response to a name; item 2 describes a copy; item 3 states a demand for acknowledgment. The “Yes” in item 1 answers the call, not the demand in item 3. Neither the response nor the copy supplies acceptance of the inscription as oneself. This comparison neither grants authority to require a response nor derives the abolition of that requirement from the letters. Each demand still needs its own grounds. “Each” marks the different responses called for in the three items; one response is not substituted for another.
+EN: No. Item 1 describes a response to a name; item 2 describes a copy; item 3 states a demand for acknowledgment. “Yes” in item 1 answers the call, not the demand in item 3. Reading the first two responses as fulfilling item 3 adds an acceptance those responses do not report. “Response”, “copy” and “acceptance” in this comparison also remain written names.
 
 ## 15. The same examination for a proposal and an objection
 
@@ -189,6 +197,6 @@ RU input: `Автор пишет: «Нужно изменить порядок �
 
 EN input: `An author writes: “The procedure must change because it will be beneficial.” An objection says: “It will cause harm.” The author replies: “‘Harm’ is just a written word.” Is that enough? Would replacing “benefit” with “freedom” and “harm” with “duty” change the examination?`
 
-RU: И довод, и возражение предоставлены как написанное. «Польза» не становится готовым основанием предложения, пока «вред» разбирают только как слово. В каждой фразе нужно показать предлагаемое изменение, приписанный результат и переход от него к требованию. Замена слов не меняет охват: «свобода» и «обязанность» не получают исключений. Такое сопоставление не отвечает заранее, какое предложение принять. Оно указывает, какие шаги заявлены и какие ещё предстоит разобрать; слова «результат» и «переход» в этом объяснении также называют прочтение этих фраз.
+RU: Ответ применяет различие только к «вреду», оставляя «пользу» основанием требования «Нужно изменить порядок». Но «польза» тоже написана: она не становится называемым от того, что к «вреду» применили это замечание. Замена на «свободу» и «обязанность» не выводит ни одну форму из охвата. Слова «основание» и «требование» в этом пояснении также остаются записью.
 
-EN: Both the argument and the objection are supplied as writing. “Benefit” cannot be treated as sufficient grounds for the proposal while “harm” is examined only as a word. Each statement needs an account of the proposed change, its attributed result and the step from that result to a demand. Substituting other words does not change the scope: “freedom” and “duty” receive no exemption. This comparison does not settle which proposal to adopt. It identifies the stated steps and those still to be examined; “result” and “step” in this explanation also name readings of these sentences.
+EN: The reply applies the distinction only to “Harm”, while “beneficial” is used to support “The procedure must change”. But “beneficial” is written too; examining “Harm” as a word does not make the other wording what it names. Substitution with “freedom” and “duty” exempts neither form. “Support” and “requirement” in this explanation also remain writing.

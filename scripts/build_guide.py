@@ -31,8 +31,12 @@ def evaluation_html(source, language):
 
 def source_bundle():
     files = {}
-    for folder in ('assets', 'references', 'scripts', 'docs', '.github', 'catalog', 'plugins'):
+    for folder in ('assets', 'references', 'scripts', 'docs', '.github', 'catalog', 'plugins', 'integrations'):
         for path in sorted((ROOT / folder).rglob('*')):
+            if any(part in ('node_modules', 'build', '__pycache__', '.git') for part in path.relative_to(ROOT).parts):
+                continue
+            if path.is_symlink():
+                raise ValueError('Source bundle refuses symlinks: ' + str(path.relative_to(ROOT)))
             if path.is_file() and (path.suffix in ('.py', '.cjs', '.md', '.txt', '.json', '.jsonl', '.html', '.svg', '.css', '.js', '.yml', '.yaml', '.woff', '.woff2', '.png') or path.name == 'LICENSE') and path.name != 'release.json' and not path.is_relative_to(ROOT / 'catalog' / 'packages'):
                 files[path.relative_to(ROOT).as_posix()] = path.read_bytes()
     files['SKILL.md'] = (ROOT / 'SKILL.md').read_bytes()
@@ -117,9 +121,12 @@ def build(output):
     smoke = json.loads(read('references/development-smoke-1.3.0.json'))
     previous_smoke = json.loads(read('references/development-smoke-1.3.1.json'))
     comparison = json.loads(read('references/comparison-1.3.3.json'))
-    current_review_path = 'references/development-review-1.3.4.json'
+    current_review_path = 'references/development-review-1.3.5.json'
     current_review_text = read(current_review_path)
-    json.loads(current_review_text)  # A malformed review must not enter a release.
+    current_review = json.loads(current_review_text)  # A malformed review must not enter a release.
+    historical_review_path = 'references/development-review-1.3.4.json'
+    historical_review_text = read(historical_review_path)
+    json.loads(historical_review_text)
     manifest = {'version':VERSION, 'date_utc':DATE, 'families':[c['id'] for c in data['connectors']],
       'core_sha256':{k:sha(v) for k,v in data['core'].items()},
       'compact_characters':{k:len(v) for k,v in data['compact'].items()},
@@ -128,12 +135,17 @@ def build(output):
       'native_bundles':{lang:{key:{k:v for k,v in record.items() if k!='data'} for key,record in bundles.items()} for lang,bundles in data['bundles'].items()},
       'developer_bundle':{k:v for k,v in data['developer'].items() if k!='data'},
       'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
-      'evaluation_scope':'The 1.3.4 development review records a bounded qualitative comparison of full instructions: four fresh Codex sessions with six tasks each, plus two separate sessions for a clarified count task. The original ambiguous case and both failures are retained. It is separate from the historical seven-route 1.3.3 comparison and is not a new multi-model or provider-API evaluation. Short editions and installed wrappers have no model-response results in this review. The build runs no model; earlier records retain their original instruction versions.',
+      'evaluation_scope':'The 1.3.5 review preserves 37 selected current-candidate RU/EN cases on one model across full and short instructions, the structured extension task and the homepage adapter. A separate HuggingFacePlayground12 section records six synthetic inputs on each of two models, with 12 rendered final answers and explicit capture limits. These are bounded observations, not a controlled model comparison, a guarantee of future adherence, or verification of direct provider APIs, privacy settings or installed clients. The build runs no model; historical records retain their original instruction versions.',
       'runtime_validation':'not-run-by-build', 'evaluation':report['method'], 'evaluation_case_count':len(data['eval'].strip().splitlines()),
       'evaluation_runs':[
-        {'report':current_review_path, 'instruction_version':'1.3.4', 'historical':False,
-         'scope':'Bounded qualitative full-core development review; consult the record for exact inputs, outputs and limitations.',
+        {'report':current_review_path, 'instruction_version':'1.3.5', 'historical':False,
+         'scope':'Selected current-candidate development cases plus a separate bounded Hugging Face Playground check; consult the record for inputs, visible outputs and limitations.',
+         'selected_development_outputs':len(current_review['results']),
+         'hugging_face_playground_outputs':len(current_review['HuggingFacePlayground12']['results']),
          'report_sha256':sha(current_review_text)},
+        {'report':historical_review_path, 'instruction_version':'1.3.4', 'historical':True,
+         'scope':'Bounded qualitative full-core development review; consult the record for exact inputs, outputs and limitations.',
+         'report_sha256':sha(historical_review_text)},
         {'report':'references/comparison-1.3.3.json', 'instruction_version':'1.3.3', 'historical':True, 'selected_arm':comparison['selection']['selected_arm'], 'decision':comparison['selection']['decision'], 'answers':len(comparison['responses']), 'method':comparison['study']},
         {'report':'references/development-smoke-1.3.1.json', 'instruction_version':'1.3.1', 'historical':True, 'answers':previous_smoke['method']['responses'], 'method':previous_smoke['method']},
         {'report':'references/development-smoke-1.3.0.json', 'instruction_version':'1.3.0', 'answers':smoke['method']['responses'], 'method':smoke['method']},
