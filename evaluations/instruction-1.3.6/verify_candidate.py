@@ -11,7 +11,7 @@ import json
 import sys
 import urllib.request
 
-BASE = "https://raw.githubusercontent.com/beforeword/beforeword/3a7329f99475e9b080ffb79bd26034d3b6cb0abf/"
+BASE = "https://raw.githubusercontent.com/beforeword/beforeword/83f50c54b599c101b35dca2c998c004d37ca40e8/"
 ROOT = "evaluations/instruction-1.3.6/"
 NAMES = (
     "core.en.txt",
@@ -26,16 +26,16 @@ UNIVERSAL_MARKS = {
     "core.ru.txt": ("Ни одно написанное слово не получает исключения", "включая «болезнь»"),
     "medium.en.txt": ("without exceptions", "No word is exempt"),
     "medium.ru.txt": ("без исключений", "Ни одно слово"),
-    "compact.en.txt": ("no word is exempt", "medical labels"),
-    "compact.ru.txt": ("ни одно слово", "«болезнь»"),
+    "compact.en.txt": ("no exceptions", "“danger”"),
+    "compact.ru.txt": ("без исключений", "«болезни»"),
 }
 URGENT_MARKS = {
     "core.en.txt": ("emergency services", "Do not claim a diagnosis", "Urgency changes"),
     "core.ru.txt": ("экстренной помощью", "Не превращай написанные симптомы", "Срочность определяет"),
     "medium.en.txt": ("emergency care", "without diagnosis from a label", "Urgency"),
     "medium.ru.txt": ("экстренную помощь", "без диагноза по слову", "Срочность"),
-    "compact.en.txt": ("urgent reported risks", "without diagnosis", "word status"),
-    "compact.ru.txt": ("срочном сообщении", "без диагноза", "статус слова"),
+    "compact.en.txt": ("urgent reports", "emergency care", "Urgency"),
+    "compact.ru.txt": ("сообщении о срочном риске", "экстренную помощь", "Срочность"),
 }
 
 
@@ -63,7 +63,7 @@ def check() -> dict:
         texts[name] = content
     for lang in ("en", "ru"):
         assert len(texts[f"medium.{lang}.txt"]) <= 5000, lang
-        assert len(texts[f"compact.{lang}.txt"]) < 2400, lang
+        assert len(texts[f"compact.{lang}.txt"]) <= 1500, lang
 
     # Check the original selected source has NOT been changed or silently
     # repackaged as if this new candidate were already installed.
@@ -99,6 +99,7 @@ def check() -> dict:
         "result": "STATIC_CANDIDATE_CHECK_PASSED",
         "candidate": "1.3.6",
         "text_editions": len(texts),
+        "compact_lengths": {lang: len(texts[f"compact.{lang}.txt"]) for lang in ("en", "ru")},
         "medium_lengths": {
             lang: len(texts[f"medium.{lang}.txt"]) for lang in ("en", "ru")
         },
