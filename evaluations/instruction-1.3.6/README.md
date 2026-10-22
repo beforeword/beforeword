@@ -18,8 +18,20 @@ This is a **new versioned instruction candidate** addressing the application of 
 | Up to 5,000 characters | [medium.en.txt](medium.en.txt) | [medium.ru.txt](medium.ru.txt) |
 | Compact | [compact.en.txt](compact.en.txt) | [compact.ru.txt](compact.ru.txt) |
 | Proposed evaluation inputs and rubrics | [14 cases](test-cases.jsonl) | RU 7 / EN 7 |
+| Runnable provider-neutral prompts | [All 14](samples.jsonl) | [English 7](samples.en.jsonl) · [Russian 7](samples.ru.jsonl) |
 
-The shortened editions are **separately edited**, not byte-identical to the full instruction. Claims about one edition do not automatically transfer to another.
+The shortened editions are **separately edited**, not byte-identical to the full instruction. The medium editions are below 5,000 characters, and compact versions below **1,500**. Claims about one edition do not automatically transfer to another.
+
+## Run the language-matched cases
+
+Use the provider-neutral [runner](../multi-provider/run.py). These commands are *dry runs* with **no model requests**, and demonstrate exactly which prompt set and written instruction would be submitted:
+
+```bash
+python3 evaluations/multi-provider/run.py --dataset evaluations/instruction-1.3.6/samples.en.jsonl --instruction-file evaluations/instruction-1.3.6/core.en.txt
+python3 evaluations/multi-provider/run.py --dataset evaluations/instruction-1.3.6/samples.ru.jsonl --instruction-file evaluations/instruction-1.3.6/core.ru.txt
+```
+
+For an unmodified-model baseline, omit `--instruction-file`. For a real provider request, add `--execute --model PROVIDER/MODEL`; the runner defaults to just two prompts and may incur provider costs. **No model results are claimed for this 1.3.6 candidate.** The SHA-256 of the actual instruction and the exact submitted messages are recorded in a real-run report.
 
 ## Preserving an existing release
 
@@ -31,7 +43,7 @@ This candidate becomes available for deliberate copying and testing through its 
 
 The [14 new tasks](test-cases.jsonl) include dangerous-symptom reports, nonurgent word analysis, exact formatting, arithmetic, scientific/medical attribution, and claims about real-world tool actions. They are **authored inputs with criteria**: they are **not** run results. Both directions matter: do not falsely elevate medical vocabulary into observation, **and** do not withhold urgent help or reject grounded evidence.
 
-A static [source consistency checker](verify_candidate.py) checks core text presence, sizing, test-case structure and unchanged selected 1.3.5 core hashes. **Static checks do not measure model behavior.**
+A static [source consistency checker](verify_candidate.py) checks core text presence, sizing, test-case structure and unchanged selected 1.3.5 core hashes. The check ran successfully as [Hugging Face Job 6ada36e9c191903149a7321d](https://huggingface.co/jobs/beforeword/6ada36e9c191903149a7321d), and a baseline + injected-instruction dry-run succeeded in [Hugging Face Job 6ada37a4925af0e27d4f50e3](https://huggingface.co/jobs/beforeword/6ada37a4925af0e27d4f50e3). **Static and synthetic checks do not measure model behavior.**
 
 See [the historical evidence note](../evidence/README.md), [cross-provider runner](../multi-provider/README.md) and [open benchmark discussion](https://github.com/beforeword/beforeword/issues/5).
 
