@@ -4,6 +4,12 @@
 
 This is a **new versioned instruction candidate** addressing the application of the written-form boundary to *every* word, including words in urgent health and safety requests. It does **not** override host safety rules, replace medical advice, or certify a user's report as an independently observed event.
 
+## Portable archive
+
+**[Download the complete beforeword 1.3.6 RU/EN ZIP](beforeword_instructions_1.3.6.zip)** · 47,120 bytes · 15 files
+
+SHA-256: `ad767900f26b5529af04b3761589bda174664ad3d6bcb416a6f1dea7f095f00f`. The [archive was independently fetched and inspected](https://huggingface.co/jobs/beforeword/6ada3af5925af0e27d4f532f): ZIP CRC, file hashes and exact-core skill wrappers matched the recorded manifest. This is a portable **research candidate**, not proof of application installation or model adherence.
+
 ## Core rule
 
 **No written word receives an exception.** “Danger”, “pain”, “illness”, “help”, “safety”, “benefit”, “evidence”, “human”, “AI”, beforeword itself and every term in an explanation remain written forms. The word's status alone neither establishes nor refutes an event, condition, state or consequence.
