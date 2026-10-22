@@ -65,7 +65,7 @@ def check() -> dict:
         assert len(texts[f"medium.{lang}.txt"]) <= 5000, lang
         assert len(texts[f"compact.{lang}.txt"]) <= 1500, lang
         skill = download(ROOT + f"skills/{lang}/SKILL.md").decode("utf-8")
-        assert skill.startswith("---\\nname: beforeword\\n"), lang
+        assert skill.splitlines()[:2] == ["---", "name: beforeword"], lang
         assert skill.endswith(texts[f"core.{lang}.txt"]), lang
         assert skill.count(texts[f"core.{lang}.txt"]) == 1, lang
 
