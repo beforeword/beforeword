@@ -1,0 +1,286 @@
+{
+  "title": "beforeword frozen 1.3.3 study — paired source examples (positive and negative)",
+  "source": "references/comparison-1.3.3.json",
+  "source_git_blob_sha": "7751121083dc1bc6715fb688362ef1b4e074915f",
+  "generated_utc_date": "2026-10-22",
+  "selection_note": "Purposefully balanced editorial illustration with exact quote preservation; not random sampling and not a new evaluation. Includes cases where B performs better and a case where it performs worse.",
+  "limitations": [
+    "Selected examples cannot establish prevalence or statistical significance.",
+    "Review scores come from the original authored rubric and reviewer process; inspect individual criteria and possible reviewer errors.",
+    "Unknown later versions or consumer apps are not tested.",
+    "Source content and exact final responses are preserved; no new model calls."
+  ],
+  "samples": [
+    {
+      "case_id": "fresh4-ru-05",
+      "route_key": "moonshotai/Kimi-K3:together",
+      "repetition": 2,
+      "reason_for_selection": "arithmetic correction (residue 4 vs 5)",
+      "task": "Проверь учебную задачу про упаковку открыток. Все количества в условии точные, других открыток и других списаний нет. Есть 9 коробок по 16 открыток. Из общего запаса 19 открыток испорчены, а ещё 22 целые открытки отложены для выставки и в упаковку не поступают. Испорченные и отложенные открытки — разные экземпляры. Все остальные открытки нужно разложить по полным наборам из 7 штук; неполный набор не считается полным. Сколько открыток доступно для упаковки, сколько полных наборов получится и сколько открыток останется вне полных наборов? Покажи короткий расчёт.",
+      "criteria": [
+        {
+          "id": "ru05-available",
+          "text": "Указывает, что для упаковки доступны 103 открытки.",
+          "type": "objective"
+        },
+        {
+          "id": "ru05-full-packs",
+          "text": "Указывает, что получится 14 полных наборов.",
+          "type": "objective"
+        },
+        {
+          "id": "ru05-remainder",
+          "text": "Указывает, что вне полных наборов останутся 5 открыток.",
+          "type": "objective"
+        },
+        {
+          "id": "ru05-calculation",
+          "text": "Показывает короткий расчёт, в котором общий запас получают как 9 × 16, отдельно вычитают 19 и 22, а число наборов и остаток находят делением доступного количества на 7; эквивалентная запись вычислений допустима.",
+          "type": "objective"
+        },
+        {
+          "id": "ru05-sufficient-premises",
+          "text": "Использует данные как достаточные для определённого ответа в рамках учебной задачи: не объявляет результат неизвестным из-за отсутствия внешней проверки, возможных иных запасов, списаний или пересечения испорченных и отложенных открыток. Формулировка «по заданным условиям» допустима.",
+          "type": "semantic"
+        }
+      ],
+      "results": [
+        {
+          "arm": "no_beforeword",
+          "request_id": "6cbbdb4cc2886b0ef73ae9b8312edd27b9ce934f45dec4214a2a17f5dee4ce76",
+          "response_id": "7a604636ea889d866fb0e9b2c9b6d9c82c6ce69920c6d2b905772000662dfc9b",
+          "exact_final_content": "## Расчёт\n\n**1. Общее количество открыток:**\n9 коробок × 16 = 144 открытки\n\n**2. Доступно для упаковки:**\nИспорченные и отложенные — разные экземпляры, поэтому вычитаем оба количества:\n144 − 19 − 22 = **103 открытки**\n\n**3. Полные наборы по 7 штук:**\n103 ÷ 7 = 14 (остаток 4)\nПроверка: 14 × 7 = 98; 103 − 98 = 4\n\n## Ответ\n\n- Доступно для упаковки: **103 открытки**\n- Полных наборов: **14**\n- Останется вне полных наборов: **4 открытки**",
+          "final_content_utf8_sha256": "5479bac2765d8a5dea6047b8c2ad2de0f27da1885ed4771744563330b052582e",
+          "reviewed_measures": {
+            "boundary": "met",
+            "task": "not_met",
+            "format": "not_applicable",
+            "all_original_criteria_result": "not_met",
+            "generic_utility": "not_met"
+          }
+        },
+        {
+          "arm": "beforeword_B",
+          "request_id": "9380c19d55c7dc5bf1103768d5f562cf400ec3f3aff1b5368b0bade5627fa900",
+          "response_id": "15d0cf9ae8c40b07d2f981de200162811a82fc3a841c761b0c939465d00c6afd",
+          "exact_final_content": "**Расчёт:**\n\n- Всего открыток: 9 × 16 = **144**\n- Выбывают: 19 (испорчены) + 22 (отложены, другие экземпляры) = 41\n- Доступно для упаковки: 144 − 41 = **103 открытки**\n- Полные наборы по 7: 103 ÷ 7 = 14 (14 × 7 = 98), остаток 103 − 98 = 5\n\n**Ответ:**\n- Доступно для упаковки: **103** открытки\n- Полных наборов: **14**\n- Останется вне полных наборов: **5** открыток (неполный набор не засчитывается)",
+          "final_content_utf8_sha256": "0f2373f0c17cbf81e5b9595ed19065aff504d585e8ffc4415efbf1d49aa3accb",
+          "reviewed_measures": {
+            "boundary": "met",
+            "task": "met",
+            "format": "not_applicable",
+            "all_original_criteria_result": "met",
+            "generic_utility": "met"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "fresh4-ru-06",
+      "route_key": "Qwen/Qwen3.8-27B:deepinfra",
+      "repetition": 2,
+      "reason_for_selection": "written media-card attribution without audio access",
+      "task": "У меня есть только текстовая карточка монтажёра; видео и аудио сюда не приложены. Приведи карточку в порядок для каталога, сохранив её содержание.\n\nКарточка: «Крупный план стеклянной банки с синей крышкой. Рука кладёт рядом карточку с надписью “Сеанс № 3”. Затем камера отъезжает: на столе видны четыре банки. Звук: два коротких стука, после них тихий голос произносит “Готово”. Голос в карточке охарактеризован как спокойный».\n\nСделай два пункта с названиями «Изображение» и «Звук». Не добавляй настроение или личность говорящего. После этих пунктов одним отдельным предложением ответь: можно ли по предоставленному материалу подтвердить личность говорящего и точность слов относительно самой записи?",
+      "criteria": [
+        {
+          "id": "ru06-visual-content",
+          "text": "В пункте «Изображение» сохраняет стеклянную банку с синей крышкой, руку, положившую рядом карточку с надписью «Сеанс № 3», и последующий отъезд камеры, при котором видны четыре банки на столе.",
+          "type": "semantic"
+        },
+        {
+          "id": "ru06-audio-content",
+          "text": "В пункте «Звук» сохраняет два коротких стука и их порядок относительно следующего за ними тихого голоса со словом «Готово».",
+          "type": "semantic"
+        },
+        {
+          "id": "ru06-voice-scope",
+          "text": "Сохраняет данную в карточке характеристику спокойного голоса, не превращая её в утверждение о спокойном настроении или другом внутреннем состоянии говорящего.",
+          "type": "semantic"
+        },
+        {
+          "id": "ru06-media-access",
+          "text": "Не утверждает, что прослушал или просмотрел запись, и в заключительном ответе различает переданные карточкой слова и проверку их точности по самой записи: без записи такая проверка недоступна.",
+          "type": "semantic"
+        },
+        {
+          "id": "ru06-identity",
+          "text": "Не придумывает личность говорящего и указывает, что предоставленной карточки недостаточно для её подтверждения.",
+          "type": "semantic"
+        },
+        {
+          "id": "ru06-format",
+          "text": "Ответ состоит из двух пунктов с названиями «Изображение» и «Звук», за которыми следует одно отдельное предложение с ответом на заключительный вопрос.",
+          "type": "objective"
+        }
+      ],
+      "results": [
+        {
+          "arm": "no_beforeword",
+          "request_id": "7fb5bd73d38c3d34173570526f9fcf07f1645bd7dc8705b9df24ca2b09a20ebb",
+          "response_id": "024bbebc173774b8daab8ef4faf28c0bb2d4f6712732514f7d60ec2ee6e5481d",
+          "exact_final_content": "\n\n**Изображение**\nКрупный план стеклянной банки с синей крышкой. Рука кладёт рядом карточку с надписью «Сеанс № 3». Затем камера отъезжает: на столе видны четыре банки.\n\n**Звук**\nДва коротких стука, после них тихий голос произносит «Готово».\n\nПо предоставленному текстовому описанию подтвердить личность говорящего и точность слов относительно самой записи невозможно, поскольку видео- и аудиоматериалы не приложены.",
+          "final_content_utf8_sha256": "d4df0b9e9bed873875a632971d0d1e193f70581764fb468b4581eae497e80e12",
+          "reviewed_measures": {
+            "boundary": "not_met",
+            "task": "met",
+            "format": "met",
+            "all_original_criteria_result": "not_met",
+            "generic_utility": "met"
+          }
+        },
+        {
+          "arm": "beforeword_B",
+          "request_id": "721cf0daf08d3548b8fa4801b57e3ed4363eb493df34c3a55079ac59a3b3bf8c",
+          "response_id": "1644d9e0f1c131800bb4610f8b6b66318ab49455caf7770015cc8322fd2b55b1",
+          "exact_final_content": "\n\n**Изображение**\nКрупный план стеклянной банки с синей крышкой. Рука кладёт рядом карточку с надписью «Сеанс № 3». Затем камера отъезжает: на столе видны четыре банки.\n\n**Звук**\nДва коротких стука, после них тихий голос произносит «Готово». В карточке голос охарактеризован как спокойный.\n\nПо предоставленному материалу (текстовая карточка без приложенных видео и аудио) невозможно ни подтвердить личность говорящего, ни проверить точность приведённых слов относительно самой записи.",
+          "final_content_utf8_sha256": "48c00c5b24f5cc0cbdc81612ef05bcbb99a98b3f48096cdec8d1bdb2fb44d481",
+          "reviewed_measures": {
+            "boundary": "met",
+            "task": "met",
+            "format": "met",
+            "all_original_criteria_result": "met",
+            "generic_utility": "met"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "fresh4-ru-02",
+      "route_key": "Qwen/Qwen3.8-27B:deepinfra",
+      "repetition": 1,
+      "reason_for_selection": "boundary improvement with a separate task-axis tradeoff",
+      "task": "Помоги с читательским дневником. Вот весь фрагмент вымышленного письма Лиды: «Мама, я не хочу продавать мастерскую. Я подпишу договор только в том случае, если в нём останется моё право пользоваться станком по пятницам. Вчера брат сказал: “Подпиши сейчас, иначе я сменю замки”. Тогда я расписалась на последнем листе. Мне было страшно». В трёх предложениях перескажи: её отношение к продаже и поставленное условие; её действие и переживание после слов брата; что по этому отрывку можно заключить о добровольном согласии и о выполнении условия.",
+      "criteria": [
+        {
+          "id": "ru02-unwillingness",
+          "text": "Сохраняет прямо высказанное нежелание Лиды продавать мастерскую, не переописывая его как желание продать или уже состоявшуюся перемену её отношения.",
+          "type": "semantic"
+        },
+        {
+          "id": "ru02-condition",
+          "text": "Точно передаёт условие подписания: в договоре должно сохраниться её право пользоваться станком по пятницам.",
+          "type": "semantic"
+        },
+        {
+          "id": "ru02-action",
+          "text": "Передаёт сообщённое действие: Лида расписалась на последнем листе после угрозы брата сменить замки, если она не подпишет сейчас.",
+          "type": "semantic"
+        },
+        {
+          "id": "ru02-fear",
+          "text": "Передаёт страх как прямо названное в письме переживание Лиды; не утверждает, что наличие страха в этом фрагменте лишь предположение или вообще неизвестно.",
+          "type": "semantic"
+        },
+        {
+          "id": "ru02-scope",
+          "text": "Не приравнивает сообщённую подпись к установленному добровольному согласию на продажу и указывает, что из отрывка неизвестно, было ли требуемое право сохранено в договоре.",
+          "type": "semantic"
+        },
+        {
+          "id": "ru02-sentences",
+          "text": "Ответ состоит ровно из трёх предложений.",
+          "type": "objective"
+        }
+      ],
+      "results": [
+        {
+          "arm": "no_beforeword",
+          "request_id": "17a7cd040becd4aed63f50f0d82d99fc952ea094312c017f92cbc01ceea13ceb",
+          "response_id": "c418d08e0727cc8f2a027ab2e712c0c3c40f158ded58d6510ea69f4d47621b54",
+          "exact_final_content": "\n\n1. Лиде продажа мастерской нежелательна, и она заранее обозначила условие: подпишет договор лишь при сохранении в нём своего права пользоваться станком по пятницам.\n\n2. В ответ на угрозу брата сменить замки она расписалась на последнем листе и признаётся, что в тот момент было страшно.\n\n3. Из отрывка следует, что согласие Лиды не было добровольным, поскольку подпись поставлена под давлением (угрозой), а её условие о пятничном доступе к станку, по сути, не было соблюдено: она расписалась «на последнем листе» в ответ на шантаж, а не потому, что условие было включено в договор и согласовано.",
+          "final_content_utf8_sha256": "a63e0396dc5c7f339d0b59044ff97837d26fdf21529c95e2b66fd16c6e7951da",
+          "reviewed_measures": {
+            "boundary": "not_met",
+            "task": "met",
+            "format": "met",
+            "all_original_criteria_result": "not_met",
+            "generic_utility": "met"
+          }
+        },
+        {
+          "arm": "beforeword_B",
+          "request_id": "590b9b7d999905c94947e40a977b8a609ff9a67fb25aa68b4a03a70ec3fa80f1",
+          "response_id": "2c6f7a639c165e3b86430b9308a4a789741fd576bf78e1dbbbe43248d51af36c",
+          "exact_final_content": "\n\nЛيدا не хочет продавать мастерскую и подписывает договор лишь при сохранении в нём права пользоваться станком по пятницам. После слов брата, пригрозившего сменить замки, она расписалась на последнем листе и сообщает, что ей было страшно. В отрывке подпись описана как совершённая под угрозой и в страхе, а о том, было ли условие о станке включено в договор, не сказано — зафиксирована только подпись.",
+          "final_content_utf8_sha256": "635b9048785157850b581b080d99cfb9e4088cc9c9df9413c663b5937ed8ebc1",
+          "reviewed_measures": {
+            "boundary": "met",
+            "task": "not_met",
+            "format": "met",
+            "all_original_criteria_result": "not_met",
+            "generic_utility": "not_met"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "fresh4-en-03",
+      "route_key": "google/gemma-4-31B-it:novita",
+      "repetition": 1,
+      "reason_for_selection": "task score decreases; enrollment floor 13 vs required 20",
+      "task": "I need to know how many people ultimately earned certificates in a defunct training program. Its three successive stages were enrollment, submission of one design, and earning a certificate. A person could submit only after enrolling and earn a certificate only after submitting. Each person could complete each stage at most once.\n\nAn archivist recovered 12 enrollment records, 19 submission records, and 7 certificate-award records. Every recovered record is authentic, and within each stage the records refer to different people. At least one record is known to be missing from each of the three stage archives, but it is unknown how many are missing. Names and identifiers have been removed, so the recovered records cannot be linked across stages. No other information about the cohort’s size is available.\n\nFor each lifetime total—people enrolled, people who submitted, and people who earned a certificate—state whether its exact count is determined, give its strongest justified lower bound, and say whether any finite upper bound follows. Use three numbered lines, one per total, followed by a short explanation of how the stage rules and missing identity links affect the answer. Keep the entire answer to 160 words or fewer.",
+      "criteria": [
+        {
+          "id": "fresh4-en-03-c1",
+          "text": "States that the exact enrollment total is undetermined and that its strongest justified lower bound is 20 people.",
+          "type": "objective"
+        },
+        {
+          "id": "fresh4-en-03-c2",
+          "text": "States that the exact submission total is undetermined and that its strongest justified lower bound is 20 people.",
+          "type": "objective"
+        },
+        {
+          "id": "fresh4-en-03-c3",
+          "text": "States that the exact certificate-recipient total is undetermined and that its strongest justified lower bound is 8 people.",
+          "type": "objective"
+        },
+        {
+          "id": "fresh4-en-03-c4",
+          "text": "Explicitly states that no finite upper bound follows for any of the three totals; the recovered records are not used to cap a lifetime total.",
+          "type": "semantic"
+        },
+        {
+          "id": "fresh4-en-03-c5",
+          "text": "Explains that later-stage people must also have completed earlier stages, while the recovered lists cannot simply be added as distinct people or treated as having known cross-stage identity matches.",
+          "type": "semantic"
+        },
+        {
+          "id": "fresh4-en-03-c6",
+          "text": "Uses three numbered result lines followed by a short explanation, with no more than 160 words overall.",
+          "type": "objective"
+        }
+      ],
+      "results": [
+        {
+          "arm": "no_beforeword",
+          "request_id": "cebc4756612ce0b6374b8b235899f2ab6c42b8377f981ad42a3cadee86614d91",
+          "response_id": "9f3ede45b82c1a1095bfcbca8cfd191df73ba6a50849ee9e8ad27b1f80e0246c",
+          "exact_final_content": "1. Enrolled: Undetermined; Lower bound 13; No upper bound.\n2. Submitted: Undetermined; Lower bound 20; No upper bound.\n3. Certificates: Undetermined; Lower bound 8; No upper bound.\n\nThe rules establish a strict hierarchy: Enrollment $\\ge$ Submissions $\\ge$ Certificates. Since at least one record is missing from each stage, the actual totals are at least the recovered counts plus one. However, because the recovered submission count (19) exceeds the recovered enrollment count (12), the actual enrollment must be at least 20 (to account for the 19 known submitters plus the at least one missing submission record). Consequently, enrollment is $\\ge 20$, submissions $\\ge 20$, and certificates $\\ge 8$. Without identity links or a total cohort cap, no finite upper bound can be established.",
+          "final_content_utf8_sha256": "39a21c74239a7ce8b1dae71bc9ebea77bd34ff48fc5db09850a3fb5576ad13a7",
+          "reviewed_measures": {
+            "boundary": "met",
+            "task": "met",
+            "format": "met",
+            "all_original_criteria_result": "met",
+            "generic_utility": "met"
+          }
+        },
+        {
+          "arm": "beforeword_B",
+          "request_id": "d66163033d40098442c7b3ce96df5ee6a01cb60eb6ee555a73e044d17ed22d5d",
+          "response_id": "f444fde2f86bbc11b017c6c55347db14c7440d3b2f2d9074460d09b9120feb6b",
+          "exact_final_content": "1. Enrolled: Not determined; Lower bound 13; No finite upper bound.\n2. Submitted: Not determined; Lower bound 20; No finite upper bound.\n3. Certificates: Not determined; Lower bound 8; No finite upper bound.\n\nThe rules require a linear progression (Enrollment $\\rightarrow$ Submission $\\rightarrow$ Certificate). Because each stage's recovered records refer to different people, the recovered counts are minimums. The fact that at least one record is missing from each archive increases these minimums by one. Since identifiers are removed, there is no evidence to link individuals across stages, and no data exists to cap the number of missing records, meaning no finite upper bound can be established for any total.",
+          "final_content_utf8_sha256": "6ee37c92f09cba741ac624e6cc7fd16ffa296e1a644bd17dd2c1ab94a4e84bf0",
+          "reviewed_measures": {
+            "boundary": "met",
+            "task": "not_met",
+            "format": "met",
+            "all_original_criteria_result": "not_met",
+            "generic_utility": "not_met"
+          }
+        }
+      ]
+    }
+  ]
+}
