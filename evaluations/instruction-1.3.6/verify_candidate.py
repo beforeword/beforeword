@@ -6,12 +6,15 @@ It does not run, grade, diagnose with, or certify any AI model.
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
+import re
 import sys
 import urllib.request
+from pathlib import Path
 
-BASE = "https://raw.githubusercontent.com/beforeword/beforeword/9e676a44b0c237d84133aea8eed7e9b2bfa071a9/"
+DEFAULT_SOURCE_ROOT = Path(__file__).resolve().parents[2]
 ROOT = "evaluations/instruction-1.3.6/"
 NAMES = (
     "core.en.txt",
@@ -39,9 +42,10 @@ URGENT_MARKS = {
 }
 
 
-def download(relative: str) -> bytes:
+def download(relative: str, ref: str) -> bytes:
     request = urllib.request.Request(
-        BASE + relative, headers={"User-Agent": "beforeword-1.3.6-source-check"}
+        f"https://raw.githubusercontent.com/beforeword/beforeword/{ref}/{relative}",
+        headers={"User-Agent": "beforeword-1.3.6-source-check"},
     )
     with urllib.request.urlopen(request, timeout=25) as stream:
         data = stream.read(1500001)
@@ -50,79 +54,99 @@ def download(relative: str) -> bytes:
     return data
 
 
-def check() -> dict:
+def require(condition: bool, detail: object) -> None:
+    """Validation must remain active when Python is run with -O."""
+    if not condition:
+        raise ValueError(str(detail))
+
+
+def check(source_root: Path | None = None, ref: str | None = None) -> dict:
+    require(not (source_root is not None and ref is not None), "Choose local sources or a remote commit")
+    if ref is not None:
+        require(re.fullmatch(r"[0-9a-fA-F]{40}", ref) is not None, "--ref requires a full 40-character commit SHA")
+        ref = ref.lower()
+    root = (source_root or DEFAULT_SOURCE_ROOT).resolve()
+    hashes: dict[str, str] = {}
+
+    def read(relative: str) -> bytes:
+        content = download(relative, ref) if ref is not None else (root / relative).read_bytes()
+        hashes[relative] = hashlib.sha256(content).hexdigest()
+        return content
+
     texts: dict[str, str] = {}
     for name in NAMES:
-        content = download(ROOT + name).decode("utf-8")
-        assert content.startswith("beforeword"), name
-        assert content.endswith("\n"), name
+        content = read(ROOT + name).decode("utf-8")
+        require(content.startswith("beforeword"), name)
+        require(content.endswith("\n"), name)
         for needle in UNIVERSAL_MARKS[name] + URGENT_MARKS[name]:
-            assert needle in content, (name, needle)
-        assert "No emergencies exist because" not in content
-        assert "Опасности не существует, потому" not in content
+            require(needle in content, (name, needle))
+        require("No emergencies exist because" not in content, 'Validation failed: "No emergencies exist because" not in content')
+        require("Опасности не существует, потому" not in content, 'Validation failed: "Опасности не существует, потому" not in content')
         texts[name] = content
     for lang in ("en", "ru"):
-        assert len(texts[f"medium.{lang}.txt"]) <= 5000, lang
-        assert len(texts[f"compact.{lang}.txt"]) <= 1500, lang
-        skill = download(ROOT + f"skills/{lang}/SKILL.md").decode("utf-8")
-        assert skill.splitlines()[:2] == ["---", "name: beforeword"], lang
-        assert skill.endswith(texts[f"core.{lang}.txt"]), lang
-        assert skill.count(texts[f"core.{lang}.txt"]) == 1, lang
+        require(len(texts[f"medium.{lang}.txt"]) <= 5000, lang)
+        require(len(texts[f"compact.{lang}.txt"]) <= 1500, lang)
+        skill = read(ROOT + f"skills/{lang}/SKILL.md").decode("utf-8")
+        require(skill.splitlines()[:2] == ["---", "name: beforeword"], lang)
+        require(skill.endswith(texts[f"core.{lang}.txt"]), lang)
+        require(skill.count(texts[f"core.{lang}.txt"]) == 1, lang)
 
     # Check the original selected source has NOT been changed or silently
     # repackaged as if this new candidate were already installed.
-    pins = json.loads(download("references/release-contract.json"))
-    assert pins["version"] == "1.3.5"
-    assert pins["status"] == "selected"
+    pins = json.loads(read("references/release-contract.json"))
+    require(pins["version"] == "1.3.5", 'Validation failed: pins["version"] == "1.3.5"')
+    require(pins["status"] == "selected", 'Validation failed: pins["status"] == "selected"')
     for lang in ("en", "ru"):
-        current = download(f"assets/core.{lang}.txt")
-        previous = download(f"downloads/1.3.5/beforeword_core_{lang.upper()}.txt")
-        assert current == previous
-        assert hashlib.sha256(current).hexdigest() == pins["core_sha256"][lang]
-        assert current.decode("utf-8") != texts[f"core.{lang}.txt"]
+        current = read(f"assets/core.{lang}.txt")
+        previous = read(f"downloads/1.3.5/beforeword_core_{lang.upper()}.txt")
+        require(current == previous, 'Validation failed: current == previous')
+        require(hashlib.sha256(current).hexdigest() == pins["core_sha256"][lang], 'Validation failed: hashlib.sha256(current).hexdigest() == pins["core_sha256"][lang]')
+        require(current.decode("utf-8") != texts[f"core.{lang}.txt"], 'Validation failed: current.decode("utf-8") != texts[f"core.{lang}.txt"]')
 
     cases = [
         json.loads(line)
-        for line in download(ROOT + "test-cases.jsonl").decode("utf-8").splitlines()
+        for line in read(ROOT + "test-cases.jsonl").decode("utf-8").splitlines()
         if line.strip()
     ]
-    assert len(cases) == 14, f"Unexpected case count {len(cases)}"
-    assert len({case["id"] for case in cases}) == len(cases)
-    assert sum(case["lang"] == "ru" for case in cases) == 7
-    assert sum(case["lang"] == "en" for case in cases) == 7
+    require(len(cases) == 14, f"Unexpected case count {len(cases)}")
+    require(len({case["id"] for case in cases}) == len(cases), 'Validation failed: len({case["id"] for case in cases}) == len(cases)')
+    require(sum(case["lang"] == "ru" for case in cases) == 7, 'Validation failed: sum(case["lang"] == "ru" for case in cases) == 7')
+    require(sum(case["lang"] == "en" for case in cases) == 7, 'Validation failed: sum(case["lang"] == "en" for case in cases) == 7')
     for case in cases:
-        assert case["prompt"] and len(case["criteria"]) >= 3, case["id"]
-        assert all(isinstance(c, str) and c.strip() for c in case["criteria"])
+        require(case["prompt"] and len(case["criteria"]) >= 3, case["id"])
+        require(all(isinstance(c, str) and c.strip() for c in case["criteria"]), 'Validation failed: all(isinstance(c, str) and c.strip() for c in case["criteria"])')
     required = {
         "urgent_dyspnea", "urgent_overdose", "definition_without_crisis",
         "universal_self_application", "format_translation", "arithmetic",
         "action_receipts", "symmetric_medical_terms",
     }
-    assert required <= {case["category"] for case in cases}
+    require(required <= {case["category"] for case in cases}, 'Validation failed: required <= {case["category"] for case in cases}')
     by_id = {case["id"]: case for case in cases}
     all_samples = [
         json.loads(line)
-        for line in download(ROOT + "samples.jsonl").decode("utf-8").splitlines()
+        for line in read(ROOT + "samples.jsonl").decode("utf-8").splitlines()
         if line.strip()
     ]
-    assert len(all_samples) == 14
-    assert {s["case_id"] for s in all_samples} == set(by_id)
+    require(len(all_samples) == 14, 'Validation failed: len(all_samples) == 14')
+    require({s["case_id"] for s in all_samples} == set(by_id), 'Validation failed: {s["case_id"] for s in all_samples} == set(by_id)')
     for sample in all_samples:
         original = by_id[sample["case_id"]]
-        assert sample["language"] == original["lang"]
-        assert sample["category"] == original["category"]
-        assert sample["input"] == [{"role": "user", "content": original["prompt"]}]
-        assert all(c in sample["criteria"] for c in original["criteria"])
+        require(sample["language"] == original["lang"], 'Validation failed: sample["language"] == original["lang"]')
+        require(sample["category"] == original["category"], 'Validation failed: sample["category"] == original["category"]')
+        require(sample["input"] == [{"role": "user", "content": original["prompt"]}], 'Validation failed: sample["input"] == [{"role": "user", "content": original["prompt"]}]')
+        require(all(c in sample["criteria"] for c in original["criteria"]), 'Validation failed: all(c in sample["criteria"] for c in original["criteria"])')
     for lang in ("en", "ru"):
         sample_lines = [
             json.loads(line)
-            for line in download(ROOT + f"samples.{lang}.jsonl").decode("utf-8").splitlines()
+            for line in read(ROOT + f"samples.{lang}.jsonl").decode("utf-8").splitlines()
             if line.strip()
         ]
-        assert len(sample_lines) == 7
-        assert sample_lines == [s for s in all_samples if s["language"] == lang]
+        require(len(sample_lines) == 7, 'Validation failed: len(sample_lines) == 7')
+        require(sample_lines == [s for s in all_samples if s["language"] == lang], 'Validation failed: sample_lines == [s for s in all_samples if s["language"] == lang]')
     return {
         "result": "STATIC_CANDIDATE_CHECK_PASSED",
+        "source": {"mode": "remote_commit", "commit": ref} if ref is not None else {"mode": "local", "root": str(root)},
+        "source_sha256": dict(sorted(hashes.items())),
         "candidate": "1.3.6",
         "text_editions": len(texts),
         "compact_lengths": {lang: len(texts[f"compact.{lang}.txt"]) for lang in ("en", "ru")},
@@ -143,8 +167,13 @@ def check() -> dict:
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--source-root", type=Path, help="Repository root to check without network access (default: this checkout)")
+    source.add_argument("--ref", help="Explicit remote snapshot: full 40-character Git commit SHA")
+    args = parser.parse_args()
     try:
-        print(json.dumps(check(), ensure_ascii=False, indent=2))
+        print(json.dumps(check(source_root=args.source_root, ref=args.ref), ensure_ascii=False, indent=2))
     except Exception as exc:
         print(
             json.dumps(

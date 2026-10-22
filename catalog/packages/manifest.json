@@ -24,7 +24,7 @@
     "claude": {
       "source": "plugins/claude/beforeword",
       "archive": "catalog/packages/beforeword_claude_directory_1.3.5.zip",
-      "sha256": "035c25dcf6cf075b75b6ae3f2c39ed86b883d9f8dc9e671a5ccce221fba0759f",
+      "sha256": "2ad9b7b10070fd83a83d88760c365c59133f56948dd19a90c0ae11f86cb0a05d",
       "files": [
         ".claude-plugin/plugin.json",
         "LICENSE",
@@ -39,7 +39,7 @@
     "openai": {
       "source": "plugins/openai/beforeword",
       "archive": "catalog/packages/beforeword_openai_directory_1.3.5.zip",
-      "sha256": "b9301ceaafd57785d7277b342c3725e032d14225d06e63afcbeb1b61d3032f0e",
+      "sha256": "ebcf13fabd14659890af5d5b9b676edc8f1707c0590dc8dadf61da291c58b72a",
       "files": [
         "LICENSE",
         "README.md",
@@ -66,12 +66,12 @@
       "bytes": 9102
     },
     "catalog/packages/beforeword_claude_directory_1.3.5.zip": {
-      "sha256": "035c25dcf6cf075b75b6ae3f2c39ed86b883d9f8dc9e671a5ccce221fba0759f",
-      "bytes": 11619
+      "sha256": "2ad9b7b10070fd83a83d88760c365c59133f56948dd19a90c0ae11f86cb0a05d",
+      "bytes": 11620
     },
     "catalog/packages/beforeword_openai_directory_1.3.5.zip": {
-      "sha256": "b9301ceaafd57785d7277b342c3725e032d14225d06e63afcbeb1b61d3032f0e",
-      "bytes": 13117
+      "sha256": "ebcf13fabd14659890af5d5b9b676edc8f1707c0590dc8dadf61da291c58b72a",
+      "bytes": 13118
     },
     "plugins/claude/beforeword/.claude-plugin/plugin.json": {
       "sha256": "23f12e23198e9a44c777a0ecce1a2c317efe981da5ce7c8217f5dd2dbb3cdeb1",
@@ -82,11 +82,11 @@
       "bytes": 1067
     },
     "plugins/claude/beforeword/README.md": {
-      "sha256": "440f04949e4998d2b2cd889ac565496dc46c8bacfa270e0828b05733d10ca20f",
+      "sha256": "843434f884559f3761ac0d3b78307603d0f91f94585534a80ee4b105f7cd9679",
       "bytes": 3104
     },
     "plugins/claude/beforeword/README.ru.md": {
-      "sha256": "94064c12c23b41ef0ce6608f3627d4bc79d69a870aa57384db2ceffcff27d187",
+      "sha256": "5f4046a84a8830105f12547e3aacd14944397bc0b66086f3c93580f493727ddb",
       "bytes": 5246
     },
     "plugins/claude/beforeword/assets/logo.svg": {
@@ -102,11 +102,11 @@
       "bytes": 1067
     },
     "plugins/openai/beforeword/README.md": {
-      "sha256": "440f04949e4998d2b2cd889ac565496dc46c8bacfa270e0828b05733d10ca20f",
+      "sha256": "843434f884559f3761ac0d3b78307603d0f91f94585534a80ee4b105f7cd9679",
       "bytes": 3104
     },
     "plugins/openai/beforeword/README.ru.md": {
-      "sha256": "94064c12c23b41ef0ce6608f3627d4bc79d69a870aa57384db2ceffcff27d187",
+      "sha256": "5f4046a84a8830105f12547e3aacd14944397bc0b66086f3c93580f493727ddb",
       "bytes": 5246
     },
     "plugins/openai/beforeword/assets/logo.svg": {

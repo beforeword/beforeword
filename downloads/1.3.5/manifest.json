@@ -8,7 +8,7 @@
     ".github/ISSUE_TEMPLATE/config.yml": "fe40f94ad9b94c0fa9bdff7238da9c2dbaf1f2a7bf4a755735a4061e1e26c415",
     ".github/ISSUE_TEMPLATE/report_en.yml": "3494d52da49b0b8c891045f74df3c2c50036f664e060b832773acafb813b10b5",
     ".github/ISSUE_TEMPLATE/report_ru.yml": "bd06feec26b9f8532ca7b839d227d66dad8109848e2da984be38b71f54052190",
-    ".github/workflows/validate.yml": "a7f15c80c546ee70dededf33f406ffb9a2da7132eb188ee9a87ef2442b929812",
+    ".github/workflows/validate.yml": "e4f8bd45e924ca4567730a0396d6148b1657ff732a3cac5dc45e5cbb6a82797f",
     ".gitignore": "84d840d7ac8d131492e451bb658d027303dbabfda44b915595b02b29525e79e4",
     "CHANGELOG.md": "0e61a65bf6413d8ceef82af190fabc32a366e7288e49666427e60f2811f940b3",
     "README.md": "8e6de4e09624192e1769ad9891cd7ea1c75bfbd90164ac1ada05d34d562d1bf8",
@@ -74,8 +74,8 @@
     "assets/updates.js": "b6f1ef519f7c5c615caaa789f8de97c6896733cd0094695c63023f0bf7393c75",
     "catalog/LICENSING.md": "df66d51a3eaa081fbdfe617d4603ad939dd5150405c90fadf75de91c6cab2ae2",
     "catalog/PRIVACY.md": "652b2c5ac239fca236710710051bf840bb1de06d89c7108ab81a543a02de0bc7",
-    "catalog/README.md": "98642fbc99019bd371704f9757e8de64870a998b7b7dbb0b9932a69417f676ba",
-    "catalog/README.ru.md": "40aa9fe2c911872665e84dd40283c8d6ccad12acafad002d4cdda41df19415c5",
+    "catalog/README.md": "b9d64d5607760f6b55ae962362f1097dd116718a90d8e627a57989caa47b191d",
+    "catalog/README.ru.md": "c5678dfb3dd78866989691561083c66313dede7206fd3e95d2367b041d43e09a",
     "catalog/SUBMISSION.md": "6a8a6c9b484f1759d8f53972df9168b297c3e0f207f346074ad1d33bc8aa4f6f",
     "catalog/TERMS.md": "2c1cd27849369e05c4fd6e4ab416c88428a845ea64ac52751a3775eeb31ad9de",
     "catalog/approved-LICENSE.txt": "68884273ea3f9546fb710f2c1f2035a7d5b23f94c1d0458e94513f97bc9de4ef",
@@ -84,14 +84,14 @@
     "catalog/build.py": "85f49ee9f9f42a7d684047c3cc1c553f2c1647ab0113811c4af5d1f39e7dd1aa",
     "catalog/check.py": "d035c6393cf1cbc330d23647694d5e2fef15accea4a778aeecb49f4085e0825a",
     "catalog/examples.md": "2c1c1a778c91919d575a761445349768e9d91a68259f8d9a016cba76296a338b",
-    "catalog/gpt-store/README.md": "ac4abd0ff510180ed0b880c3b43f05f56e5a31b7c216fea98684976856e5ce8d",
-    "catalog/gpt-store/README.ru.md": "b9df04d72ad05e4b5b7f8260d7f23c2c28e96e67c2c755f350e9aeedd3cb681e",
+    "catalog/gpt-store/README.md": "86f94b56646853dc9453cdb2a0c18948120a47e453be363412884c53a2b32cdc",
+    "catalog/gpt-store/README.ru.md": "69abcbba929b20c57da559e322d8846a1ce73a163b32f868ffb736a90d38079b",
     "catalog/gpt-store/draft.json": "612a4081e326ebe31eae4c610dd5faceabafd0d4fc3180825ded8403177cc9b3",
     "catalog/gpt-store/instructions.en.txt": "8d845cd7b1a07eb5d550c7d53f0e6d08d602c6138b972dc1368a82905855a3e4",
     "catalog/gpt-store/instructions.ru.txt": "f1630183e4845a3128436e2006e83daecef83ab91096ab49672f9c312815d36f",
     "catalog/listing.json": "575e6e739ea5feb963b5d290533423e0aafb7a59303c9c754bd00a47afd55b66",
-    "catalog/plugin-readme.en.md": "440f04949e4998d2b2cd889ac565496dc46c8bacfa270e0828b05733d10ca20f",
-    "catalog/plugin-readme.ru.md": "94064c12c23b41ef0ce6608f3627d4bc79d69a870aa57384db2ceffcff27d187",
+    "catalog/plugin-readme.en.md": "843434f884559f3761ac0d3b78307603d0f91f94585534a80ee4b105f7cd9679",
+    "catalog/plugin-readme.ru.md": "5f4046a84a8830105f12547e3aacd14944397bc0b66086f3c93580f493727ddb",
     "catalog/submission-status.json": "ed2851d8143a9b430ff83ac128a771ad7e883f62777a06efdaf4cceb87e5ff39",
     "catalog/validation/README.md": "76d07991bd491071d7cac3ba7c8b08d8db3160952a94e80899e1c885f8bcd5bc",
     "catalog/validation/package-task-runs-2026-10-03.json": "350d4efa7670e75cfdd92f698adde79f7f1974306dfd24e8c00aeb5a639df749",
@@ -187,13 +187,13 @@
     "integrations/huggingface/validation.json": "f3a97c921c4a0e8f72c887c6a7b5fd4c3e6b3169f8aa6174a8d9f9504fc6bdc6",
     "plugins/claude/beforeword/.claude-plugin/plugin.json": "23f12e23198e9a44c777a0ecce1a2c317efe981da5ce7c8217f5dd2dbb3cdeb1",
     "plugins/claude/beforeword/LICENSE": "68884273ea3f9546fb710f2c1f2035a7d5b23f94c1d0458e94513f97bc9de4ef",
-    "plugins/claude/beforeword/README.md": "440f04949e4998d2b2cd889ac565496dc46c8bacfa270e0828b05733d10ca20f",
-    "plugins/claude/beforeword/README.ru.md": "94064c12c23b41ef0ce6608f3627d4bc79d69a870aa57384db2ceffcff27d187",
+    "plugins/claude/beforeword/README.md": "843434f884559f3761ac0d3b78307603d0f91f94585534a80ee4b105f7cd9679",
+    "plugins/claude/beforeword/README.ru.md": "5f4046a84a8830105f12547e3aacd14944397bc0b66086f3c93580f493727ddb",
     "plugins/claude/beforeword/assets/logo.svg": "b0dc232dd31d26e9328089df74989a08d1ef5b276226a7b29408be6809d73ac7",
     "plugins/claude/beforeword/skills/read/SKILL.md": "eb4c1cab10d1d00b850210b4b9fe662956ded906b461be73cdf0d9e02fb80041",
     "plugins/openai/beforeword/LICENSE": "68884273ea3f9546fb710f2c1f2035a7d5b23f94c1d0458e94513f97bc9de4ef",
-    "plugins/openai/beforeword/README.md": "440f04949e4998d2b2cd889ac565496dc46c8bacfa270e0828b05733d10ca20f",
-    "plugins/openai/beforeword/README.ru.md": "94064c12c23b41ef0ce6608f3627d4bc79d69a870aa57384db2ceffcff27d187",
+    "plugins/openai/beforeword/README.md": "843434f884559f3761ac0d3b78307603d0f91f94585534a80ee4b105f7cd9679",
+    "plugins/openai/beforeword/README.ru.md": "5f4046a84a8830105f12547e3aacd14944397bc0b66086f3c93580f493727ddb",
     "plugins/openai/beforeword/assets/logo.svg": "b0dc232dd31d26e9328089df74989a08d1ef5b276226a7b29408be6809d73ac7",
     "plugins/openai/beforeword/plugin.json": "c4335785a849c381ceab59ecb04488942f0e151f58f16b7ca66c60f12e992261",
     "plugins/openai/beforeword/skills/read/SKILL.md": "eb4c1cab10d1d00b850210b4b9fe662956ded906b461be73cdf0d9e02fb80041",
@@ -258,8 +258,8 @@
       "bytes": 9102
     },
     "beforeword_AI_1.3.5.html": {
-      "sha256": "26d0afd4eac7152cdb37cae93506a27340604a0175777d8d356fc82de59dbd41",
-      "bytes": 4316073
+      "sha256": "19ecde68233ac9b172859095c6880bdaa4698a684acaefd08d8dd4450c278595",
+      "bytes": 4316481
     },
     "beforeword_claude_plugin_EN_1.3.5.zip": {
       "sha256": "b42b8f7b300e9c0a78c81ea1c1998664d374f2dc0a20d1677f0a956e73ee72db",
@@ -302,8 +302,8 @@
       "bytes": 8146
     },
     "beforeword_toolkit_1.3.5.zip": {
-      "sha256": "9d273322c3b7571b9218e995380edf8c7f559d1eabcdaa1ee9df9ea9f0ff93fd",
-      "bytes": 2836512
+      "sha256": "8c6d4191fdcd37c373d5139f1a91d74ac25b2eb29e031cf4a33f07c678c62eab",
+      "bytes": 2836818
     }
   }
 }
