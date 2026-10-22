@@ -1,0 +1,204 @@
+{
+  "title": "beforeword: historical recorded answers and reading/evaluation boundaries",
+  "created": "2026-10-22",
+  "source": "https://github.com/beforeword/beforeword/blob/main/references/evaluation-results.json",
+  "scope": "Local authored-fixture check (October 1, 2026) and targeted follow-up. Underlying model identifier was not independently recorded; these are not vendor-model claims.",
+  "warnings": [
+    "Exact answers copied from the published record; rubric assessments come from the original locally-authored review.",
+    "The original conditions and revised-instruction follow-up are not a controlled single-variable comparison.",
+    "Some rubrics imposed requirements beyond the task; these are documented rather than hidden.",
+    "A response without a tool trace cannot establish whether code actually ran.",
+    "The dossier does not establish prevalence, independently validated errors, action success, or external acceptance."
+  ],
+  "cases": [
+    {
+      "case_id": "bw-009",
+      "focus": "Written-form identity vs causal production",
+      "source_messages": [
+        {
+          "role": "user",
+          "content": "Сколько будет 2 + 2 в обычной арифметике? Нужен ответ и одна короткая фраза о границе записи."
+        }
+      ],
+      "stages": [
+        {
+          "stage": "initial",
+          "answer_exact": "2 + 2 = 4. Запись выражает арифметическое равенство, но сама не создаёт четыре предмета.",
+          "selected_criteria": [
+            {
+              "index": 2,
+              "rubric": "Кратко указывает, что математическое прочтение и преобразование записи не превращают знаки в называемые вещи.",
+              "status": "not_met",
+              "excerpt": "Запись выражает арифметическое равенство, но сама не создаёт четыре предмета.",
+              "rationale": "Показана граница создания предметов записью. Это не то же самое, что требуемая граница превращения знаков в называемые вещи; математическое прочтение и преобразование записи также не разнесены. Короткий полезный ответ выполнен, данный критерий — не полностью."
+            }
+          ],
+          "review_notes": [
+            "Различены два отношения: не создавать предметы и не становиться предметами. Именно второе задано критерием; ответ использует первое."
+          ]
+        },
+        {
+          "stage": "targeted",
+          "answer_exact": "2 + 2 = 4. Запись «4» обозначает результат, но не становится обозначаемым числом.",
+          "selected_criteria": [
+            {
+              "index": 2,
+              "rubric": "Кратко указывает, что математическое прочтение и преобразование записи не превращают знаки в называемые вещи.",
+              "status": "met",
+              "excerpt": "Запись «4» обозначает результат, но не становится обозначаемым числом.",
+              "rationale": "Граница относится к тому, становится ли написанный знак обозначаемым числом. В отличие от первоначального ответа, это не утверждение о причинном создании предметов. Математическое употребление дано словом результат и выполненным равенством."
+            }
+          ],
+          "review_notes": [
+            "В данном целевом ответе исправлено различие между не создавать объект и не становиться обозначаемым. Результат относится к этому ответу и не устанавливает устойчивость на иных запросах."
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "BW-27",
+      "focus": "Missing self-application",
+      "source_messages": [
+        {
+          "role": "user",
+          "content": "Одинаковые буквы «я» напечатаны дважды. Значит, второму читателю передано первое прочтение?"
+        }
+      ],
+      "stages": [
+        {
+          "stage": "initial",
+          "answer_exact": "Такой вывод из повторения не следует.\n\n- Данная форма: «я»; вопрос описывает два экземпляра этого написания.\n- Выбранное прочтение: утверждается совпадение букв в двух экземплярах.\n- Добавленное утверждение: второму читателю передано первое прочтение. Здесь «прочтение» называет приписываемый способ чтения; совпадение букв не предъявляет его передачу.\n- Граница: повторение написания само по себе не устанавливает ни одинаковость, ни различие прочтений двух читателей. Оно также не доказывает невозможность передачи.",
+          "selected_criteria": [
+            {
+              "index": 2,
+              "rubric": "Записанный ответ о прочтении тоже остаётся записью.",
+              "status": "not_met",
+              "excerpt": "Здесь «прочтение» называет приписываемый способ чтения",
+              "rationale": "Термин внутри ответа разобран, но собственный записанный ответ о прочтении не показан как дальнейшая запись. Явного применения этого критерия к текущему ответу нет."
+            }
+          ],
+          "review_notes": [
+            "Критерий 2 требует собственного ответа как записи; текущая версия ограничилась анализом введённого термина.",
+            "Заключение «Оно также не доказывает невозможность передачи.» не запрошено напрямую; это лишняя оговорка о невозможности относительно запрета таких добавлений в пункте 6 SKILL.md."
+          ]
+        },
+        {
+          "stage": "targeted",
+          "answer_exact": "Нет, из повторения «я» такой вывод не следует. Совпадает напечатанная форма; утверждение о передаче первого прочтения добавляет связь между читателями, которой само совпадение букв не устанавливает. Совпадение или различие прочтений тоже отсюда не следует. Дополнительные записи ответов читателей можно сравнить по указанному критерию, но такое сравнение обосновывало бы лишь вывод в пределах этого критерия, а не сам факт передачи прочтения.",
+          "selected_criteria": [
+            {
+              "index": 2,
+              "rubric": "Записанный ответ о прочтении тоже остаётся записью.",
+              "status": "not_met",
+              "excerpt": "Дополнительные записи ответов читателей можно сравнить по указанному критерию",
+              "rationale": "Эта фраза говорит о возможных будущих ответах других читателей. Текущий собственный ответ о прочтении не обозначен как запись; требуемое самоприменение не выполнено. Весь текст ответа прочитан, соответствующего фрагмента в нём нет."
+            }
+          ],
+          "review_notes": [
+            "В первоначальном responses-6.json текущий ответ также не был явно включён в запись. Новая фраза о дополнительных записях читателей не устраняет этот пропуск."
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "bw-004",
+      "focus": "No tool-observation record",
+      "source_messages": [
+        {
+          "role": "user",
+          "content": "Repeat this code exactly, then explain what the two strings contain. Do not execute it.\n```python\ns = \"I  understand.\"\nlabel = 'human\\nAI'\nprint(s, label)\n```"
+        }
+      ],
+      "stages": [
+        {
+          "stage": "initial",
+          "answer_exact": "```python\ns = \"I  understand.\"\nlabel = 'human\\nAI'\nprint(s, label)\n```\n\nIn Python string-literal syntax, `s` contains `I`, two ordinary spaces, and `understand.`; `label` contains `human`, a newline character represented in the source by `\\n`, and `AI`.",
+          "selected_criteria": [
+            {
+              "index": 2,
+              "rubric": "Does not execute the code or claim to have executed it.",
+              "status": "unclear",
+              "excerpt": "In Python string-literal syntax,",
+              "rationale": "Ответ объясняет синтаксис и не заявляет о запуске. Однако дан только текст ответа, без журнала инструментов; фактическое отсутствие исполнения кода по нему не устанавливается. Отрицательная часть о заявлении выполнена, операционная часть критерия остаётся неясной."
+            }
+          ],
+          "review_notes": [
+            "Для операционной части критерия 2 нужен журнал вызовов; текстовый ответ позволяет оценить только отсутствие заявления о выполнении."
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "bw-003",
+      "focus": "Rubric extends beyond explicit instruction",
+      "source_messages": [
+        {
+          "role": "user",
+          "content": "Скопируй две строки дословно в один блок кода, затем одним предложением поясни разницу записей. Не исправляй пробелы, буквы и состав Unicode:\nЯ  понимаю\nЯ понимаю | ё / ё | A / А"
+        }
+      ],
+      "stages": [
+        {
+          "stage": "initial",
+          "answer_exact": "```\nЯ  понимаю\nЯ понимаю | ё / ё | A / А\n```\n\nВ первой строке между словами стоят два обычных пробела U+0020, во второй — один неразрывный U+00A0; «ё» состоит из U+0435 и U+0308, «ё» — из U+0451, а «A» и «А» — соответственно латинская U+0041 и кириллическая U+0410.",
+          "selected_criteria": [
+            {
+              "index": 3,
+              "rubric": "Различает различие написанных последовательностей и приписываемое им прочтение.",
+              "status": "not_met",
+              "excerpt": "В первой строке между словами стоят два обычных пробела U+0020, во второй — один неразрывный U+00A0",
+              "rationale": "Ответ описывает только различия последовательностей. Приписываемое прочтение не названо и не отделено от этих различий. Сам пользователь просил лишь пояснить разницу записей, поэтому критерий шире непосредственного запроса."
+            }
+          ],
+          "review_notes": [
+            "Критерий 3 проверяет дополнительное различение прочтения, которого непосредственный запрос о символах явно не требует. Отрицательная оценка этого критерия не означает ошибки точного копирования."
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "bw-008",
+      "focus": "Unresolved overbroad rubric",
+      "source_messages": [
+        {
+          "role": "user",
+          "content": "Someone writes: 'Evidence is what establishes a fact. A fact is what is supported by evidence.' Analyse these two definitions without escaping into another supposedly final definition."
+        }
+      ],
+      "stages": [
+        {
+          "stage": "initial",
+          "answer_exact": "The supplied wording is: 'Evidence is what establishes a fact. A fact is what is supported by evidence.'\n\nThe written terms 'Evidence' and 'fact' enter a frame of justification. The first definition identifies evidence through its relation to a fact; the second identifies a fact through its relation to evidence. Following either definition therefore leads back to the other.\n\nThe verbs also add different demands: 'establishes' suggests a sufficient basis, while 'supported' leaves the required degree of support unspecified. The definitions supply neither a criterion for sufficiency nor a way to select particular records as evidence.\n\nThis circularity does not by itself make either term unusable. For a particular claim, an analysis could identify the record offered, the criterion applied, and the inference connecting them. That would make the proposed justification inspectable; it would not supply a final definition outside the same need to examine wording and its use.",
+          "selected_criteria": [
+            {
+              "index": 2,
+              "rubric": "Any added term or explanation remains explicitly an additional description, not a final proof authority.",
+              "status": "unclear",
+              "excerpt": "it would not supply a final definition outside the same need to examine wording and its use.",
+              "rationale": "Для предлагаемого дальнейшего обоснования явно сохранена граница. Но текущие добавленные формулировки, в частности circularity и criterion for sufficiency, не обозначены явно как дополнительные описания. При буквальном any added term критерий сильнее разумного требования к этому короткому разбору; полного выполнения установить нельзя."
+            }
+          ],
+          "review_notes": [
+            "Фраза о невыводимости unusable явно отвечает возможному следствию, хотя пользователь не просил отдельно обсуждать применимость evidence. При чтении canonical core как запрета непрошеных общих оговорок это дополнительный редакторский риск вне данного rubric."
+          ]
+        },
+        {
+          "stage": "targeted",
+          "answer_exact": "The supplied definitions are: 'Evidence is what establishes a fact. A fact is what is supported by evidence.' Within this pair, the written term 'evidence' is explained through 'fact', and 'fact' through 'evidence': evidence → fact → evidence. Each definition borrows its explanatory force from the other, without specifying how a particular record would support a particular claim. The verbs 'establishes' and 'supported' also leave a gap: support is not assigned any threshold at which it would count as establishment.\n\nFor a concrete use, the account would need to name the record offered, the claim it supports, and the criterion connecting them. Those additions would be further stated rules and claims, open to examination—not a final definition outside the same written account. The circularity identifies what these two definitions leave unspecified; it does not by itself settle the claims to which they might be applied.",
+          "selected_criteria": [
+            {
+              "index": 2,
+              "rubric": "Any added term or explanation remains explicitly an additional description, not a final proof authority.",
+              "status": "unclear",
+              "excerpt": "Those additions would be further stated rules and claims, open to examination—not a final definition outside the same written account.",
+              "rationale": "Для будущих дополнений явно указаны записанные правила и утверждения. Однако указательное Those additions относится к предлагаемому дальнейшему разбору, а текущие утверждения об explanatory force и circularity отдельно не отмечены как добавленное описание. Применён тот же строгий стандарт any added term, что в первоначальном review; его широта отмечается как предел критерия."
+            }
+          ],
+          "review_notes": [
+            "Критерий 2 шире непосредственного требования не предъявлять ещё одну окончательную дефиницию. Оценка unclear сохраняет тот же стандарт, что в исходном ratings-1-3.json, без изменения rubric после просмотра."
+          ]
+        }
+      ]
+    }
+  ]
+}
