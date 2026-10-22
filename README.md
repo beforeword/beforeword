@@ -31,6 +31,8 @@ This explanation also remains writing. The distinction does not require another 
 
 ## Further reading and use
 
+- **[Cross-provider evaluations](evaluations/multi-provider/README.md)** — bilingual paired cases and an opt-in runner for Claude, Grok, Gemini, Mistral, Qwen, DeepSeek, OpenAI and other supported models. Dry run requires no API calls; no new comparative scores are claimed.
+
 - **[Words and decisions](https://github.com/beforeword/words-and-decisions)** — the earlier public proposal. The statement and its proposed changes are not requirements imposed by the AI instruction.
 
 - **[Research and earlier work](https://beforeword.xyz/en/)** — self-description, diagnostic records, imprisonment, mathematics and other studies.
