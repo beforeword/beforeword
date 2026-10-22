@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import sys
 import time
@@ -83,6 +84,20 @@ def safe_usage(response: Any) -> dict[str, Any]:
     }
 
 
+def messages_for_case(
+    case: dict[str, Any], instruction: str | None = None
+) -> list[dict[str, str]]:
+    """Compose exactly the submitted messages, with optional explicit instruction."""
+    messages = case["input"]
+    if instruction is None:
+        return messages
+    if not instruction.strip():
+        raise ValueError("An empty instruction file cannot be used")
+    if any(item["role"] == "system" for item in messages):
+        raise ValueError("Dataset already contains a system message")
+    return [{"role": "system", "content": instruction}, *messages]
+
+
 def ask_model(
     model: str,
     case: dict[str, Any],
@@ -91,6 +106,7 @@ def ask_model(
     max_tokens: int = 512,
     temperature: float | None = None,
     completion_func: Any = None,
+    instruction: str | None = None,
 ) -> dict[str, Any]:
     """One real or injected request. Never claim delivery without a return."""
     if completion_func is None:
@@ -102,7 +118,7 @@ def ask_model(
             ) from exc
     params: dict[str, Any] = {
         "model": model,
-        "messages": case["input"],
+        "messages": messages_for_case(case, instruction),
         "timeout": timeout,
         "max_tokens": max_tokens,
     }
@@ -137,8 +153,11 @@ def run_case(
     timeout: int = 90,
     max_tokens: int = 512,
     temperature: float | None = None,
+    instruction: str | None = None,
+    instruction_label: str | None = None,
 ) -> dict[str, Any]:
     """One inspectable outcome record, including errors and original messages."""
+    actual_messages = messages_for_case(case, instruction)
     record: dict[str, Any] = {
         "timestamp_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
         "model_requested": model,
@@ -147,7 +166,9 @@ def run_case(
         "variant": case.get("variant"),
         "language": case.get("language"),
         "category": case.get("category"),
-        "messages_submitted": case["input"],
+        "messages_submitted": actual_messages,
+        "instruction_label": instruction_label,
+        "instruction_sha256": hashlib.sha256(instruction.encode("utf-8")).hexdigest() if instruction is not None else None,
         "criteria": case["criteria"],
         "grading": "not_performed",
     }
@@ -157,6 +178,7 @@ def run_case(
                 model,
                 case,
                 completion_func=completion_func,
+                instruction=instruction,
                 timeout=timeout,
                 max_tokens=max_tokens,
                 temperature=temperature,
@@ -209,6 +231,21 @@ def self_test() -> None:
     assert example["response_text"] == "This is a synthetic output."
     assert example["usage"]["total_tokens"] == 14
     assert example["grading"] == "not_performed"
+    assert example["instruction_sha256"] is None
+    synthetic_instruction = "Treat every written form consistently."
+    def mock_instruction(**kwargs: Any) -> Any:
+        messages = kwargs["messages"]
+        assert messages[0] == {"role": "system", "content": synthetic_instruction}
+        assert messages[1:] == cases[0]["input"]
+        return mock_completion(**{**kwargs, "messages": cases[0]["input"]})
+    instructed = run_case(
+        cases[0], "mock/instructed", instruction=synthetic_instruction,
+        instruction_label="test_instruction", completion_func=mock_instruction
+    )
+    assert instructed["status"] == "response_received"
+    assert instructed["messages_submitted"][0]["content"] == synthetic_instruction
+    assert instructed["instruction_sha256"] == hashlib.sha256(synthetic_instruction.encode("utf-8")).hexdigest()
+    assert instructed["instruction_label"] == "test_instruction"
 
     def failing_completion(**kwargs: Any) -> Any:
         raise PermissionError("This fake failure is not a real provider response")
@@ -226,6 +263,7 @@ def main() -> int:
         description="beforeword: reproducible cross-provider prompt collection."
     )
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
+    parser.add_argument("--instruction-file", type=Path, help="Optional exact system instruction (e.g. full 1.3.6 candidate); omit for baseline.")
     parser.add_argument("--model", action="append", default=[], help="LiteLLM provider/model; repeat for several models.")
     parser.add_argument("--execute", action="store_true", help="Explicitly authorize real API calls (potentially billed).")
     parser.add_argument("--all", action="store_true", help="Run every case instead of the safe two-case default.")
@@ -243,6 +281,14 @@ def main() -> int:
     if args.limit < 1 or args.timeout < 1 or args.max_tokens < 1:
         parser.error("limit, timeout and max-tokens must be positive")
     cases = load_cases(args.dataset)
+    instruction = None
+    instruction_label = None
+    if args.instruction_file:
+        instruction = args.instruction_file.read_text(encoding="utf-8")
+        if not instruction.strip():
+            parser.error("Instruction file is empty")
+        instruction_label = str(args.instruction_file)
+        print("Explicit instruction SHA256: " + hashlib.sha256(instruction.encode("utf-8")).hexdigest())
     groups = pair_summary(cases)
     chosen = cases if args.all else cases[: args.limit]
     print(f"Loaded {len(cases)} cases ({len(groups)} groups); selected {len(chosen)}.")
@@ -269,6 +315,8 @@ def main() -> int:
                     timeout=args.timeout,
                     max_tokens=args.max_tokens,
                     temperature=args.temperature,
+                    instruction=instruction,
+                    instruction_label=instruction_label,
                 )
                 handle.write(json.dumps(record, ensure_ascii=False) + "\n")
                 handle.flush()
