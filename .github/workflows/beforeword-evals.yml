@@ -5,6 +5,10 @@ on:
     paths:
       - "evaluations/multi-provider/**"
       - "evaluations/openai-evals/**"
+      - "evaluations/evidence/**"
+      - "references/comparison-1.3.3.json"
+      - "evaluations/evidence/**"
+      - "references/comparison-1.3.3.json"
       - ".github/workflows/beforeword-evals.yml"
   pull_request:
     paths:
@@ -31,6 +35,8 @@ jobs:
         run: python evaluations/multi-provider/score.py --self-test
       - name: Dry run (no external calls)
         run: python evaluations/multi-provider/run.py
+      - name: Audit 500 archived responses and matched scores without API calls
+        run: python evaluations/evidence/audit_comparison.py --out /tmp/beforeword-comparison-audit.json
       - name: JSONL syntax and case uniqueness
         shell: bash
         run: |
