@@ -1,0 +1,35 @@
+# Copy to evals/registry/evals/beforeword.yaml inside openai/evals.
+# Uses the existing 'closedqa' model-graded specification; no custom code.
+beforeword-grounding-pairs:
+  id: beforeword-grounding-pairs.dev.v0
+  description: 24 constructed RU/EN paired checks of unsupported and supported inferences, with practical task controls.
+  metrics: [accuracy]
+beforeword-grounding-pairs.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: beforeword_grounding_24/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: closedqa
+
+beforeword-instruction-49:
+  id: beforeword-instruction-49.dev.v0
+  description: 49 original beforeword instruction tasks, unmodified prompts and rubric clauses, converted to OpenAI Evals format.
+  metrics: [accuracy]
+beforeword-instruction-49.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: beforeword_instruction_49/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: closedqa
+
+beforeword-grounding-judge-calibration:
+  id: beforeword-grounding-judge-calibration.dev.v0
+  description: 12 synthetic human-labeled Y/N grader calibration examples (not observed model outputs).
+  metrics: [accuracy]
+beforeword-grounding-judge-calibration.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: beforeword_grounding_24/judge_calibration.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: closedqa
+    metaeval: true
