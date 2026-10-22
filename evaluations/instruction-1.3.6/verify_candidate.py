@@ -11,7 +11,7 @@ import json
 import sys
 import urllib.request
 
-BASE = "https://raw.githubusercontent.com/beforeword/beforeword/main/"
+BASE = "https://raw.githubusercontent.com/beforeword/beforeword/3a7329f99475e9b080ffb79bd26034d3b6cb0abf/"
 ROOT = "evaluations/instruction-1.3.6/"
 NAMES = (
     "core.en.txt",
