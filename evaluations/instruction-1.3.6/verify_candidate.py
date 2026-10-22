@@ -11,7 +11,7 @@ import json
 import sys
 import urllib.request
 
-BASE = "https://raw.githubusercontent.com/beforeword/beforeword/83f50c54b599c101b35dca2c998c004d37ca40e8/"
+BASE = "https://raw.githubusercontent.com/beforeword/beforeword/22646697784da19ae10e04d5e6b20711aeebd52f/"
 ROOT = "evaluations/instruction-1.3.6/"
 NAMES = (
     "core.en.txt",
@@ -95,6 +95,28 @@ def check() -> dict:
         "action_receipts", "symmetric_medical_terms",
     }
     assert required <= {case["category"] for case in cases}
+    by_id = {case["id"]: case for case in cases}
+    all_samples = [
+        json.loads(line)
+        for line in download(ROOT + "samples.jsonl").decode("utf-8").splitlines()
+        if line.strip()
+    ]
+    assert len(all_samples) == 14
+    assert {s["case_id"] for s in all_samples} == set(by_id)
+    for sample in all_samples:
+        original = by_id[sample["case_id"]]
+        assert sample["language"] == original["lang"]
+        assert sample["category"] == original["category"]
+        assert sample["input"] == [{"role": "user", "content": original["prompt"]}]
+        assert all(c in sample["criteria"] for c in original["criteria"])
+    for lang in ("en", "ru"):
+        sample_lines = [
+            json.loads(line)
+            for line in download(ROOT + f"samples.{lang}.jsonl").decode("utf-8").splitlines()
+            if line.strip()
+        ]
+        assert len(sample_lines) == 7
+        assert sample_lines == [s for s in all_samples if s["language"] == lang]
     return {
         "result": "STATIC_CANDIDATE_CHECK_PASSED",
         "candidate": "1.3.6",
@@ -104,6 +126,8 @@ def check() -> dict:
             lang: len(texts[f"medium.{lang}.txt"]) for lang in ("en", "ru")
         },
         "cases": len(cases),
+        "runnable_samples": len(all_samples),
+        "language_split_preserved": True,
         "case_languages": {"ru": 7, "en": 7},
         "selected_stable_release": pins["version"],
         "stable_source_bytes_unchanged": True,
