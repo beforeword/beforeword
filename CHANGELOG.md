@@ -4,6 +4,26 @@ Each entry describes that release or dated update. Test results apply to the ins
 
 Каждая запись относится к указанному выпуску или дате. Результаты проверок относятся к использованной тогда инструкции и условиям.
 
+## 1.3.6 · 2026-10-22
+
+### English — all written forms, without exceptions
+
+**No word gains an exception by being used in medicine, emergencies, safety, law, science, AI policy or beforeword.** The words "danger", "diagnosis", "life", "death", "evidence", "help", and these very words remain written forms. Written wording alone does not become what it names or independently establish a situation or an action.
+
+An urgent report is still a report to which a practical response may be needed: prioritize timely protective guidance without treating the label itself as a diagnosis or requiring an analysis of letters before help. Neither denying a report because its wording is conventional nor treating a written label as conclusive is the intended response.
+
+The complete RU/EN cores, 5,000-character editions, compact editions and embedded SKILL text were edited together. The original 1.3.5 artifacts and evaluations are historical and must not be relabeled as checks of 1.3.6. [Ten authored RU/EN evaluation prompts](references/eval-cases-1.3.6.jsonl) cover medical reports, urgent help, legal labels, actual tool outcomes, copying, and lawful evidence-grounded conclusions. They are **test definitions, not recorded model responses**.
+
+### Русский — все написанные формы без исключений
+
+**Ни одно написанное слово не получает исключения из-за применения в медицине, экстренной помощи, безопасности, праве, науке, описаниях ИИ или beforeword.** «Опасность», «диагноз», «жизнь», «смерть», «доказательство», «помощь» и слова самого пояснения остаются написанными формами. Написание само не становится называемым и не устанавливает событие либо действие.
+
+При сообщении о непосредственной угрозе практическая помощь не откладывается из-за разбора письма. Сообщение не превращается в диагноз; условность написанного не даёт основания объявлять описанную ситуацию безопасной.
+
+Полные RU/EN ядра, редакции до 5 000 знаков, краткие редакции и встроенный текст SKILL изменены вместе. Исторические результаты версии 1.3.5 не переносятся на 1.3.6. [Десять составленных RU/EN заданий](references/eval-cases-1.3.6.jsonl) охватывают названия в медицине и праве, срочную помощь, операции инструментов и точные форматы. Это **задания, не результаты новых испытаний моделей**.
+
+---
+
 ## 1.3.5 · 2026-10-15
 
 ### English
