@@ -38,3 +38,7 @@ Outputs are local JSONL and include exact submitted prompts, response text, prov
 - These are authored cases, not evidence that any provider has a specific defect.
 - An actual comparison must document exact model identifiers, API routes, generation parameters, judge agreement, any unavailable responses, and the date of testing.
 - All model responses remain further text. Neither an answer nor an evaluator's label becomes the event it describes.
+
+## Independent review and corrections
+
+[Share a reproduced pair, a counterexample, or an evaluation-method objection](https://github.com/beforeword/beforeword/issues/5). Include exact model ID, route, input and full output, stated test conditions, and the specific scoring clause. Do not post API keys or sensitive data. A proposed case is not a measured failure.
