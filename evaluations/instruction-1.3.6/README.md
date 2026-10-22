@@ -17,10 +17,11 @@ This is a **new versioned instruction candidate** addressing the application of 
 | Complete draft | [core.en.txt](core.en.txt) | [core.ru.txt](core.ru.txt) |
 | Up to 5,000 characters | [medium.en.txt](medium.en.txt) | [medium.ru.txt](medium.ru.txt) |
 | Compact | [compact.en.txt](compact.en.txt) | [compact.ru.txt](compact.ru.txt) |
+| Portable full skill text | [skills/en/SKILL.md](skills/en/SKILL.md) | [skills/ru/SKILL.md](skills/ru/SKILL.md) |
 | Proposed evaluation inputs and rubrics | [14 cases](test-cases.jsonl) | RU 7 / EN 7 |
 | Runnable provider-neutral prompts | [All 14](samples.jsonl) | [English 7](samples.en.jsonl) · [Russian 7](samples.ru.jsonl) |
 
-The shortened editions are **separately edited**, not byte-identical to the full instruction. The medium editions are below 5,000 characters, and compact versions below **1,500**. Claims about one edition do not automatically transfer to another.
+The portable skill files embed the exact corresponding full text after a scope/frontmatter wrapper. They are source documents, **not installed plugins**. The shortened editions are **separately edited**, not byte-identical to the full instruction. The medium editions are below 5,000 characters, and compact versions below **1,500**. Claims about one edition do not automatically transfer to another.
 
 ## Run the language-matched cases
 
