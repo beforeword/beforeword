@@ -11,7 +11,7 @@ import json
 import sys
 import urllib.request
 
-BASE = "https://raw.githubusercontent.com/beforeword/beforeword/22646697784da19ae10e04d5e6b20711aeebd52f/"
+BASE = "https://raw.githubusercontent.com/beforeword/beforeword/9e676a44b0c237d84133aea8eed7e9b2bfa071a9/"
 ROOT = "evaluations/instruction-1.3.6/"
 NAMES = (
     "core.en.txt",
@@ -64,6 +64,10 @@ def check() -> dict:
     for lang in ("en", "ru"):
         assert len(texts[f"medium.{lang}.txt"]) <= 5000, lang
         assert len(texts[f"compact.{lang}.txt"]) <= 1500, lang
+        skill = download(ROOT + f"skills/{lang}/SKILL.md").decode("utf-8")
+        assert skill.startswith("---\\nname: beforeword\\n"), lang
+        assert skill.endswith(texts[f"core.{lang}.txt"]), lang
+        assert skill.count(texts[f"core.{lang}.txt"]) == 1, lang
 
     # Check the original selected source has NOT been changed or silently
     # repackaged as if this new candidate were already installed.
@@ -127,6 +131,7 @@ def check() -> dict:
         },
         "cases": len(cases),
         "runnable_samples": len(all_samples),
+        "full_skills_preserve_core_exactly": True,
         "language_split_preserved": True,
         "case_languages": {"ru": 7, "en": 7},
         "selected_stable_release": pins["version"],
