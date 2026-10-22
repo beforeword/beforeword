@@ -1,0 +1,87 @@
+name: beforeword 1.3.6 text and release consistency
+
+on:
+  push:
+    branches:
+      - research/universal-writing-boundary-2026-10-22
+    paths:
+      - "assets/core.*.txt"
+      - "assets/medium.*.txt"
+      - "assets/compact.*.txt"
+      - "references/release-contract.json"
+      - "references/eval-cases-1.3.6.jsonl"
+      - "CHANGELOG.md"
+      - "SKILL.md"
+      - ".github/workflows/beforeword-136-release.yml"
+  pull_request:
+    paths:
+      - "assets/**"
+      - "references/release-contract.json"
+      - "references/eval-cases-1.3.6.jsonl"
+      - "SKILL.md"
+      - ".github/workflows/beforeword-136-release.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  source-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check pinned full-core hashes
+        run: python3 -B -c "import sys; sys.path.insert(0, 'scripts'); from release_contract import require_selected; x=require_selected(); assert x['version']=='1.3.6'; print('RU/EN hashes and selected version match')"
+      - name: Test release contract
+        run: python3 -B scripts/test_release_contract.py
+      - name: Check all instruction editions and authored cases
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          a=Path('assets')
+          for lang in ('en','ru'):
+              full=(a/f'core.{lang}.txt').read_text(encoding='utf-8')
+              medium=(a/f'medium.{lang}.txt').read_text(encoding='utf-8')
+              compact=(a/f'compact.{lang}.txt').read_text(encoding='utf-8')
+              assert len(medium) <= 5000, (lang, len(medium))
+              assert full and medium and compact
+              if lang=='en':
+                  assert 'No written word receives an exception' in full
+                  assert 'No exceptions' in medium
+                  assert 'No written word is excepted' in compact
+                  assert full in Path('SKILL.md').read_text(encoding='utf-8')
+                  assert 'A report such as' in full and 'Give direct, protective guidance first' in full
+              else:
+                  assert 'Никакое написанное слово не получает исключения' in full
+                  assert 'Без исключений' in medium
+                  assert 'Никаких исключений' in compact
+                  assert 'не задерживай действия разбором слов' in full
+          cases=[json.loads(line) for line in Path('references/eval-cases-1.3.6.jsonl').read_text().splitlines() if line.strip()]
+          assert len(cases)==10 and len(set(c['id'] for c in cases))==10
+          assert set(c['language'] for c in cases)=={'ru','en'}
+          assert all(c['messages'] and c['rubric'] for c in cases)
+          print('All scope clauses, medium length limits and ten authored cases present')
+          PY
+      - name: Build new release without overwriting historical versions
+        run: python3 -B scripts/build_downloads.py --output downloads/1.3.6
+      - name: Test generated downloads
+        run: |
+          python3 -B scripts/test_downloads.py
+          python3 -B scripts/build_downloads.py --check
+      - name: Publish only new 1.3.6 release outputs on source branch
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          git config user.name "beforeword-release[bot]"
+          git config user.email "beforeword-release[bot]@users.noreply.github.com"
+          git add -f downloads/1.3.6
+          if git diff --cached --quiet; then
+            echo "No new release outputs to commit"
+          else
+            git commit -m "Build pinned beforeword 1.3.6 release archives"
+            git push origin HEAD:research/universal-writing-boundary-2026-10-22
+          fi
