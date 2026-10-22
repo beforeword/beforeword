@@ -8,6 +8,10 @@ This workspace studies a *testable operational question*: whether a model silent
 
 The same standard applies to the model's own reports. A sentence saying “sent” is not a send-tool receipt. But this distinction must **not** lead to denying valid evidence, refusing ordinary tasks, or treating all descriptions as false.
 
+## New instruction candidate (no lexical exceptions)
+
+[beforeword instruction 1.3.6 RU/EN](instruction-1.3.6/README.md) is a **published research candidate** with six full/medium/compact text editions and 14 authored regression cases. It applies exactly the same writing boundary to medical and all other labels while preserving immediate protective guidance for urgent reported risks. The selected and downloaded 1.3.5 release **remains unchanged**, and model responses under 1.3.6 have **not** been tested.
+
 ## What can be used now
 
 | Material | Status | Role |
