@@ -6,30 +6,30 @@
 
 AI writes “I understand.” These words are read as understanding. On what grounds?
 
-The catalog build packages the complete beforeword 1.3.4 core. Their English instruction text accepts an explicit response-language request; Russian copy and examples are included. Each platform gets one beforeword listing.
+The catalog build packages the complete beforeword 1.3.5 core. Their English instruction text accepts an explicit response-language request; Russian copy and examples are included. Each platform gets one beforeword listing.
 
 ## Release and directory status
 
-**Release source: 1.3.4.** Directory acceptance and publication are recorded separately in [submission-status.json](submission-status.json); rebuilding the source does not update a submission.
+**Selected release source and prepared packages: 1.3.5.** Download the current packages below, or use the [installation guide](../docs/ai-guide.en.md) for full Russian and English instructions and local marketplace packages. Directory acceptance and publication are recorded separately in [submission-status.json](submission-status.json); no submission or directory publication of 1.3.5 is recorded there.
 
-**Portal observations on 13 October 2026:**
+**Historical portal observations on 13 October 2026 — earlier versions:**
 
 | Platform | Prepared package | Directory review | Published version |
 | --- | --- | --- | --- |
-| Claude | 1.3.4 | The portal detected `e950835`, passed its security scan and marked it Approved. It is waiting for an Anthropic reviewer. | 1.2.4 remains live; 1.3.4 is not live. |
-| OpenAI | 1.3.4, terms-link correction | After a manual upload, the supplied screenshot shows a missing terms URL and a pause on skills-only submissions. The terms URL is now included in the prepared ZIP; the intake restriction is unresolved. | Not published. |
+| Claude | 1.3.4 | The portal detected `e950835`, passed its security scan and marked it Approved; it was waiting for an Anthropic reviewer. | 1.2.4 was live; 1.3.4 was not live. |
+| OpenAI | 1.3.4, terms-link correction | After a manual upload, the supplied screenshot showed a missing terms URL and a pause on skills-only submissions. A corrected ZIP was prepared; the recorded intake restriction was unresolved. | Not published at that observation. |
 
-Claude 1.3.4 passed its security scan and is waiting for publication. For OpenAI, the corrected ZIP has not been uploaded or submitted. The supplied screenshot does not show a version number and still shows the skill as Checking; it does not establish a completed skill check. Installation and responses inside either host application have not been tested. The [dated record](submission-status.json) preserves earlier states and the limits of this update.
+At that observation, Claude 1.3.4 had passed its security scan and was waiting for publication. The corrected OpenAI ZIP had not been uploaded or submitted. The supplied screenshot does not show a version number and shows the skill as Checking; it does not establish a completed skill check. The [dated record](submission-status.json) preserves those observations. They do not establish the current portal state, installation or responses inside either host application.
 
-The correction adds a public [terms of use](TERMS.md) URL without changing the 1.3.4 instruction. It does not remove the portal message “We are not accepting more skills-only submissions at this time.” Public-directory intake must be clarified with OpenAI; adding a placeholder server is not a remedy.
+The recorded correction added a public [terms of use](TERMS.md) URL without changing the 1.3.4 instruction. Adding that URL did not resolve the observed message “We are not accepting more skills-only submissions at this time.” Preparing the 1.3.5 packages likewise does not establish that intake has reopened.
 
 ### Earlier submission: 1.2.4
 
 Both 1.2.4 packages were submitted on 4 October 2026. The [status history](submission-status.json) preserves those submission and review records. No GPT Store listing has been created.
 
-The instruction remains under public testing. Package checks and small task runs are recorded separately from installation in Claude or ChatGPT. The earlier OpenAI metadata and skill checks belong to the submission recorded at that time; they are not checks of the prepared 1.3.4 package in the portal.
+The instruction remains under public testing. Package checks and small task runs are recorded separately from installation in Claude or ChatGPT. The earlier OpenAI metadata and skill checks belong to the submission recorded at that time; they are not portal checks of the prepared 1.3.5 package.
 
-[Eight recorded task outputs](validation/README.md) include five fresh tasks using the instruction extracted from the MIT-licensed ZIPs. The earlier unsupported addition remains in the record. Those runs used the 1.2.4 instruction; they are not results for 1.3.4. See the [submission status](submission-status.json), [package privacy policy](PRIVACY.md), and [terms of use](TERMS.md).
+[Eight recorded task outputs](validation/README.md) include five fresh tasks using the instruction extracted from the MIT-licensed ZIPs. The earlier unsupported addition remains in the record. Those runs used the 1.2.4 instruction; they are not results for 1.3.5. See the [submission status](submission-status.json), [package privacy policy](PRIVACY.md), and [terms of use](TERMS.md).
 
 The owner approved MIT for the contents of both plugin packages on 4 October 2026. Each package includes its LICENSE notice. See the [license scope](LICENSING.md).
 
@@ -38,13 +38,13 @@ The owner approved MIT for the contents of both plugin packages on 4 October 202
 | Destination | Source or file | Use |
 | --- | --- | --- |
 | Claude directory | [plugins/claude/beforeword](../plugins/claude/beforeword/) | GitHub source folder for the submission form |
-| Claude upload | [beforeword_claude_directory_1.3.4.zip](packages/beforeword_claude_directory_1.3.4.zip) | 1.3.4 package for supported plugin upload and local testing |
-| OpenAI directory | [beforeword_openai_directory_1.3.4.zip](packages/beforeword_openai_directory_1.3.4.zip) | Skills-only 1.3.4 package for upload; includes the portable manifest and listing metadata |
+| Claude upload | [beforeword_claude_directory_1.3.5.zip](packages/beforeword_claude_directory_1.3.5.zip) | Prepared 1.3.5 package for supported plugin upload and local testing |
+| OpenAI directory | [beforeword_openai_directory_1.3.5.zip](packages/beforeword_openai_directory_1.3.5.zip) | Prepared skills-only 1.3.5 package; includes the portable manifest and listing metadata; directory intake is separate |
 | GPT Store | [gpt-store](gpt-store/) | Prepared fields and the explicitly condensed medium instruction for a manually created custom GPT |
 
 The earlier `downloads/1.2.4` archives remain available for their documented installation routes. In particular, the OpenAI **local marketplace** archive is a different format from this directory upload.
 
-The full TXT and primary copy controls use the exact core. Skill packages add frontmatter and activation guidance around it. The compact, 5,000-character and GPT-medium texts are separately edited editions; no model-response evaluation is reported here for those 1.3.4 editions. Full-core results do not transfer to them or to a host installation.
+The full TXT and primary copy controls use the exact core. Skill packages add frontmatter and activation guidance around it. The compact, 5,000-character and GPT-medium texts are separately edited editions; no model-response evaluation is reported here for those 1.3.5 editions. Full-core results do not transfer to them or to a host installation.
 
 The [public statement](https://beforeword.xyz/statement/en/) is a separate publication. Its proposed changes are not additional binding rules for the plugin.
 

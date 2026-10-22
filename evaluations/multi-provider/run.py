@@ -98,6 +98,16 @@ def messages_for_case(
     return [{"role": "system", "content": instruction}, *messages]
 
 
+def request_parameters(
+    timeout: int, max_tokens: int, temperature: float | None
+) -> dict[str, Any]:
+    """Keep recorded options identical to the explicit provider-call options."""
+    params: dict[str, Any] = {"timeout": timeout, "max_tokens": max_tokens}
+    if temperature is not None:
+        params["temperature"] = temperature
+    return params
+
+
 def ask_model(
     model: str,
     case: dict[str, Any],
@@ -119,11 +129,8 @@ def ask_model(
     params: dict[str, Any] = {
         "model": model,
         "messages": messages_for_case(case, instruction),
-        "timeout": timeout,
-        "max_tokens": max_tokens,
+        **request_parameters(timeout, max_tokens, temperature),
     }
-    if temperature is not None:
-        params["temperature"] = temperature
     started = time.monotonic()
     response = completion_func(**params)
     elapsed = time.monotonic() - started
@@ -132,8 +139,10 @@ def ask_model(
         raise ValueError("Provider returned no choices")
     message = getattr(choices[0], "message", None)
     answer = getattr(message, "content", None)
-    if answer is not None and not isinstance(answer, str):
-        answer = json.dumps(answer, ensure_ascii=False)
+    if not isinstance(answer, str):
+        raise TypeError("Provider did not return supported text content")
+    if not answer.strip():
+        raise ValueError("Provider returned no non-whitespace text")
     return {
         "status": "response_received",
         "response_text": answer,
@@ -167,6 +176,7 @@ def run_case(
         "language": case.get("language"),
         "category": case.get("category"),
         "messages_submitted": actual_messages,
+        "request_parameters": request_parameters(timeout, max_tokens, temperature),
         "instruction_label": instruction_label,
         "instruction_sha256": hashlib.sha256(instruction.encode("utf-8")).hexdigest() if instruction is not None else None,
         "criteria": case["criteria"],
@@ -199,6 +209,7 @@ def run_case(
 
 def self_test() -> None:
     """Offline structural and mock-response checks; no API keys or network."""
+    import runpy
     from types import SimpleNamespace
 
     cases = load_cases(DEFAULT_DATASET)
@@ -212,8 +223,11 @@ def self_test() -> None:
         if {member.get("variant") for member in members} != {"a", "b"}:
             raise AssertionError(f"Invalid a/b pair: {pair}")
 
+    submitted: list[dict[str, Any]] = []
+
     def mock_completion(**kwargs: Any) -> Any:
         assert kwargs["messages"] == cases[0]["input"]
+        submitted.append(kwargs)
         return SimpleNamespace(
             id="synthetic-response",
             model="mock/not-a-real-model",
@@ -232,6 +246,22 @@ def self_test() -> None:
     assert example["usage"]["total_tokens"] == 14
     assert example["grading"] == "not_performed"
     assert example["instruction_sha256"] is None
+    assert example["request_parameters"] == {"timeout": 90, "max_tokens": 512}
+    assert example["request_parameters"] == {
+        key: value for key, value in submitted[-1].items()
+        if key not in {"model", "messages"}
+    }
+    configured = run_case(
+        cases[0], "mock/configured", completion_func=mock_completion,
+        timeout=12, max_tokens=123, temperature=0.0,
+    )
+    assert configured["request_parameters"] == {
+        "timeout": 12, "max_tokens": 123, "temperature": 0.0,
+    }
+    assert configured["request_parameters"] == {
+        key: value for key, value in submitted[-1].items()
+        if key not in {"model", "messages"}
+    }
     synthetic_instruction = "Treat every written form consistently."
     def mock_instruction(**kwargs: Any) -> Any:
         messages = kwargs["messages"]
@@ -250,11 +280,46 @@ def self_test() -> None:
     def failing_completion(**kwargs: Any) -> Any:
         raise PermissionError("This fake failure is not a real provider response")
 
-    failure = run_case(cases[0], "mock/fail", completion_func=failing_completion)
+    failure = run_case(
+        cases[0], "mock/fail", completion_func=failing_completion,
+        timeout=8, max_tokens=42, temperature=0.25,
+    )
     assert failure["status"] == "request_failed"
     assert failure["error_type"] == "PermissionError"
     assert failure["response_text"] is None
-    print("PASS: 24 prompts, 12 complete pairs, successful/failed synthetic calls.")
+    assert failure["request_parameters"] == {
+        "timeout": 8, "max_tokens": 42, "temperature": 0.25,
+    }
+
+    # Responses unsuitable for this text-only evaluation must remain failures
+    # that the existing scorer can read, not JSON strings presented as answers.
+    scorer = runpy.run_path(str(Path(__file__).with_name("score.py")))
+    for invalid in (None, "", " \t\r\n", [], [{"type": "text", "text": "structured"}], {"text": "structured"}, 42):
+        def invalid_completion(**kwargs: Any) -> Any:
+            response = mock_completion(**kwargs)
+            response.choices[0].message.content = invalid
+            return response
+
+        rejected = run_case(cases[0], "mock/invalid", completion_func=invalid_completion)
+        assert rejected["status"] == "request_failed", invalid
+        assert rejected["response_text"] is None, invalid
+        assert rejected["error_type"] == ("ValueError" if isinstance(invalid, str) else "TypeError")
+        scorer["validate_results"]([rejected])
+        assert scorer["review_template"]([rejected]) == []
+
+    exact_text = "  Я\r\n👩\u200d💻 e\u0301\t"
+
+    def exact_completion(**kwargs: Any) -> Any:
+        response = mock_completion(**kwargs)
+        response.choices[0].message.content = exact_text
+        return response
+
+    preserved = run_case(cases[0], "mock/exact", completion_func=exact_completion)
+    assert preserved["status"] == "response_received"
+    assert preserved["response_text"] == exact_text
+    scorer["validate_results"]([preserved])
+    assert scorer["review_template"]([preserved])[0]["response_text"] == exact_text
+    print("PASS: 24 prompts, 12 pairs, synthetic calls, recorded parameters, text-only responses and scorer compatibility.")
     print("No provider request, model score, or real-world delivery was performed.")
 
 

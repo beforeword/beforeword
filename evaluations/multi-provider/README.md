@@ -13,7 +13,7 @@ python3 evaluations/multi-provider/run.py --self-test
 python3 evaluations/multi-provider/run.py
 ~~~
 
-The first validates the 24-case set, 12 complete a/b pairs, and two **synthetic** response-handling examples. It is only a unit/format check. The second lists the first two prompts in dry-run mode; it makes **no requests**.
+The first validates the 24-case set, 12 complete a/b pairs, and **synthetic** response handling: recorded request parameters, preserved text, rejected empty or unsupported content, and compatibility with the review scorer. It is only a unit/format check. The second lists the first two prompts in dry-run mode; it makes **no requests**.
 
 ## Run a real model (may incur provider charges)
 
@@ -28,6 +28,10 @@ python3 evaluations/multi-provider/run.py --execute --model PROVIDER/MODEL --all
 Replace PROVIDER/MODEL with a valid LiteLLM identifier from the official supported-provider documentation. To compare multiple routes, repeat --model. The safe default is **two** prompts per route. This script never buys credits or discovers private credentials; no paid calls occur without --execute.
 
 Outputs are local JSONL and include exact submitted prompts, response text, provider model/response identifier (when returned), elapsed time, token usage (when returned), and distinct request-failure records. The dataset criterion is preserved alongside each response. API credentials are not logged. If a provider fails, the full error string is deliberately excluded from the public-report structure to reduce accidental secret disclosure.
+
+Every record, including a failure, preserves the explicitly requested `timeout` and `max_tokens` in `request_parameters`. It includes `temperature` only when specified; an absent temperature means the runner left it to the provider. These are requested options, not a claim that every provider honored them.
+
+This runner accepts only nonblank string content as a text response and preserves that string unchanged. Missing, empty, whitespace-only, or structured content is recorded as `request_failed` with a null `response_text`, and is excluded from the scorer's review template. Here `request_failed` includes a returned response with no supported text; it does not imply that no request reached the provider. Structured content is not converted into a fabricated text answer.
 
 **No automatic model scoring is performed.** Human review or an independently calibrated grader must compare responses to the per-case criteria, including the paired counterexample. Counts of received responses are *not* passing scores; a model's statement that something occurred is *not* evidence that an external action occurred.
 

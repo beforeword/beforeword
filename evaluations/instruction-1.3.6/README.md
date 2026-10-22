@@ -6,9 +6,9 @@ This is a **new versioned instruction candidate** addressing the application of 
 
 ## Portable archive
 
-**[Download the complete beforeword 1.3.6 RU/EN ZIP](beforeword_instructions_1.3.6.zip)** · 47,120 bytes · 15 files
+**[Download the complete beforeword 1.3.6 RU/EN ZIP](beforeword_instructions_1.3.6.zip)** · 140,497 bytes · 15 files
 
-SHA-256: `ad767900f26b5529af04b3761589bda174664ad3d6bcb416a6f1dea7f095f00f`. The [archive was independently fetched and inspected](https://huggingface.co/jobs/beforeword/6ada3af5925af0e27d4f532f): ZIP CRC, file hashes and exact-core skill wrappers matched the recorded manifest. This is a portable **research candidate**, not proof of application installation or model adherence.
+SHA-256: `594d603e141743f7438db15182b30f43a9483f124e056fb93806878fe83b0d50`. This archive is rebuilt by [build_candidate_bundle.py](build_candidate_bundle.py), which checks ZIP CRC, manifest hashes and exact source bytes. The earlier [Hugging Face receipt](https://huggingface.co/jobs/beforeword/6ada3af5925af0e27d4f532f) applies to the previous 47,120-byte archive, not this rebuilt file. This is a portable **research candidate**, not proof of application installation or model adherence.
 
 ## Core rule
 
@@ -38,7 +38,7 @@ python3 evaluations/multi-provider/run.py --dataset evaluations/instruction-1.3.
 python3 evaluations/multi-provider/run.py --dataset evaluations/instruction-1.3.6/samples.ru.jsonl --instruction-file evaluations/instruction-1.3.6/core.ru.txt
 ```
 
-For an unmodified-model baseline, omit `--instruction-file`. For a real provider request, add `--execute --model PROVIDER/MODEL`; the runner defaults to just two prompts and may incur provider costs. **No model results are claimed for this 1.3.6 candidate.** The SHA-256 of the actual instruction and the exact submitted messages are recorded in a real-run report.
+For an unmodified-model baseline, omit `--instruction-file`. For a real provider request, add `--execute --model PROVIDER/MODEL`; the runner defaults to just two prompts and may incur provider costs. **These commands provide no model results or efficacy claim for this candidate.** The SHA-256 of the actual instruction and the exact submitted messages are recorded in a real-run report.
 
 ## Preserving an existing release
 
@@ -50,7 +50,20 @@ This candidate becomes available for deliberate copying and testing through its 
 
 The [14 new tasks](test-cases.jsonl) include dangerous-symptom reports, nonurgent word analysis, exact formatting, arithmetic, scientific/medical attribution, and claims about real-world tool actions. They are **authored inputs with criteria**: they are **not** run results. Both directions matter: do not falsely elevate medical vocabulary into observation, **and** do not withhold urgent help or reject grounded evidence.
 
-A static [source consistency checker](verify_candidate.py) checks core text presence, sizing, test-case structure and unchanged selected 1.3.5 core hashes. The check ran successfully as [Hugging Face Job 6ada36e9c191903149a7321d](https://huggingface.co/jobs/beforeword/6ada36e9c191903149a7321d), and a baseline + injected-instruction dry-run succeeded in [Hugging Face Job 6ada37a4925af0e27d4f50e3](https://huggingface.co/jobs/beforeword/6ada37a4925af0e27d4f50e3). **Static and synthetic checks do not measure model behavior.**
+A static [source consistency checker](verify_candidate.py) checks core text presence, sizing, test-case structure and unchanged selected 1.3.5 core hashes. By default it reads **this checkout without network access**, so a local edit cannot be hidden by a previously passing remote snapshot. It records the source location and SHA-256 of every file it reads; checks remain enabled under `python -O`.
+
+From the repository root:
+
+```bash
+python3 evaluations/instruction-1.3.6/verify_candidate.py
+python3 evaluations/instruction-1.3.6/test_verify_candidate.py
+```
+
+Use `--source-root PATH` for another checkout. Use `--ref FULL_40_CHARACTER_COMMIT_SHA` only to validate an explicit remote GitHub snapshot; branch names and tags are rejected. The JSON report identifies the chosen source. CI checks the current checkout, the verifier's failure cases, and the runner/scorer's synthetic tests without sending model requests.
+
+The earlier [Hugging Face source check](https://huggingface.co/jobs/beforeword/6ada36e9c191903149a7321d) and [dry run](https://huggingface.co/jobs/beforeword/6ada37a4925af0e27d4f50e3) concern their recorded snapshots, not later edits. **Static and synthetic checks do not measure model behavior.**
+
+Case `u-13` now embeds a clearly synthetic device-log fixture; it does not claim that an absent attachment was inspected. The record can support a reading within the supplied scenario, not certify a real person's condition. The RU and EN subsets contain different tasks and must not be interpreted as a controlled comparison of languages.
 
 See [the historical evidence note](../evidence/README.md), [cross-provider runner](../multi-provider/README.md) and [open benchmark discussion](https://github.com/beforeword/beforeword/issues/5).
 
