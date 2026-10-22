@@ -15,6 +15,9 @@
 | Полное | [core.ru.txt](core.ru.txt) | [core.en.txt](core.en.txt) |
 | До 5 000 знаков | [medium.ru.txt](medium.ru.txt) | [medium.en.txt](medium.en.txt) |
 | Краткое | [compact.ru.txt](compact.ru.txt) | [compact.en.txt](compact.en.txt) |
+| Полный текст навыка | [skills/ru/SKILL.md](skills/ru/SKILL.md) | [skills/en/SKILL.md](skills/en/SKILL.md) |
+
+Файлы навыков содержат полную инструкцию без изменения её текста, но их публикация **не устанавливает и не включает** навык в приложениях.
 
 [14 новых проверочных заданий с критериями](test-cases.jsonl) — 7 RU и 7 EN. [Совместимый набор](samples.jsonl) можно использовать с [универсальным запускатором](../multi-provider/README.md); доступны отдельные [русские](samples.ru.jsonl) и [английские](samples.en.jsonl) задания. Это **запланированные проверки**, не результаты работы моделей.
 
