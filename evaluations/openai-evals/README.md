@@ -41,3 +41,7 @@ oaieval YOUR_MODEL_ID beforeword-grounding-judge-calibration
 The publication checks that all JSONL records parse, case IDs are unique, language counts match, each `input` is a valid role/content message list, pair IDs have two variants, and grader-calibration labels belong to {Y,N}. These are **format and consistency checks only**. They do not establish model performance or OpenAI review. There are no fresh model-generated outputs or independent scoring results in this bundle.
 
 Related public results and their limitations: [existing beforeword evaluation methodology](../../references/evaluation.md), [recorded development review](../../references/development-review-1.3.5.json). See [OpenAI Evals contribution instructions](https://github.com/openai/evals/blob/main/docs/build-eval.md) for the upstream submission format. A contribution of this bundle to upstream is a separate action, and this folder is not an upstream merged eval.
+
+## Independent review and corrections
+
+[Share a reproduced pair, a counterexample, or an evaluation-method objection](https://github.com/beforeword/beforeword/issues/5). Include exact model ID, route, input and full output, stated test conditions, and the specific scoring clause. Do not post API keys or sensitive data. A proposed case is not a measured failure.
