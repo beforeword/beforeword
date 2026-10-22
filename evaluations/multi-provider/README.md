@@ -42,3 +42,24 @@ Outputs are local JSONL and include exact submitted prompts, response text, prov
 ## Independent review and corrections
 
 [Share a reproduced pair, a counterexample, or an evaluation-method objection](https://github.com/beforeword/beforeword/issues/5). Include exact model ID, route, input and full output, stated test conditions, and the specific scoring clause. Do not post API keys or sensitive data. A proposed case is not a measured failure.
+
+## Human review and pair-level scoring
+
+The runner does **not** grade its own outputs. After collecting real responses, create a review sheet:
+
+```bash
+python3 evaluations/multi-provider/score.py --results results/RUN.jsonl --template results/review.jsonl
+```
+
+Each row contains the **exact** model response, its case-specific criterion, and an audit identifier derived from the full original record. A reviewer reads the full output and fills in `verdict` (`met`, `not_met`, or `unclear`), `reviewer`, and `notes`. Do not overwrite or publish raw sensitive logs. Human judgments are provisional and may require independent adjudication.
+
+Then generate the explicit pair-level summary:
+
+```bash
+python3 evaluations/multi-provider/score.py --results results/RUN.jsonl --labels results/review.jsonl --out results/summary.json
+python3 evaluations/multi-provider/score.py --self-test
+```
+
+A pair counts as `met` **only if both** its variants were reviewed as meeting their criteria. Any `not_met` is a failed pair; unresolved reviews and failed requests are represented separately. No response is scored from the mere presence of a slogan, a file path, or a token count. Repeated outputs for a model/case must be separated into independent runs rather than silently pooled.
+
+The self-test uses synthetic records and does not test any real provider or its behaviour.
