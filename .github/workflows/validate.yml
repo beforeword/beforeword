@@ -50,10 +50,26 @@ jobs:
           python3 -B catalog/build.py --check
           python3 -B catalog/check.py
       - name: Check versioned downloads and bilingual guide links
+        id: downloads
         run: |
           python3 -B scripts/build_downloads.py --hydrate
           python3 -B scripts/test_downloads.py
           python3 -B scripts/build_downloads.py --check
+      - name: Show download metadata drift without changing tracked files
+        if: failure() && steps.downloads.outcome == 'failure'
+        run: |
+          python3 -B - <<'PYCODE'
+          import difflib
+          import sys
+          sys.path.insert(0, "scripts")
+          from build_downloads import ROOT, VERSION, build_files
+          files = build_files()
+          for name in ("manifest.json", "SHA256SUMS.txt"):
+              old = (ROOT / "downloads" / VERSION / name).read_text(encoding="utf-8")
+              new = files[name].decode("utf-8")
+              print("".join(difflib.unified_diff(old.splitlines(True), new.splitlines(True),
+                    fromfile="tracked/" + name, tofile="generated/" + name)), end="")
+          PYCODE
       - name: Build site files locally
         run: python3 scripts/build_public.py --output build/site --github-url https://github.com/beforeword/beforeword
       - name: Check selected core and generated adapter relationships
