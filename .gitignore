@@ -31,3 +31,10 @@ input.txt
 next-input.txt
 /work/
 /private/
+
+# Private evaluation outputs and crash-recovery journals
+/results/
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm

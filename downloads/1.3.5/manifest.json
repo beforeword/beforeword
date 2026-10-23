@@ -8,8 +8,8 @@
     ".github/ISSUE_TEMPLATE/config.yml": "fe40f94ad9b94c0fa9bdff7238da9c2dbaf1f2a7bf4a755735a4061e1e26c415",
     ".github/ISSUE_TEMPLATE/report_en.yml": "3494d52da49b0b8c891045f74df3c2c50036f664e060b832773acafb813b10b5",
     ".github/ISSUE_TEMPLATE/report_ru.yml": "bd06feec26b9f8532ca7b839d227d66dad8109848e2da984be38b71f54052190",
-    ".github/workflows/validate.yml": "e4f8bd45e924ca4567730a0396d6148b1657ff732a3cac5dc45e5cbb6a82797f",
-    ".gitignore": "84d840d7ac8d131492e451bb658d027303dbabfda44b915595b02b29525e79e4",
+    ".github/workflows/validate.yml": "e6d847528ddaabd77a7e21ae84630ed7896d3b0d12fe160969b08acffb4cc89c",
+    ".gitignore": "882ab56c456295fd35087eaf27c5d83a2b175c2756ca0617e7e1215d54221074",
     "CHANGELOG.md": "0e61a65bf6413d8ceef82af190fabc32a366e7288e49666427e60f2811f940b3",
     "README.md": "8e6de4e09624192e1769ad9891cd7ea1c75bfbd90164ac1ada05d34d562d1bf8",
     "README.ru.md": "04ef2ffb02b81745d26f5daf6cf947062fc2d22602022fcdcb670b81b11da309",
@@ -258,8 +258,8 @@
       "bytes": 9102
     },
     "beforeword_AI_1.3.5.html": {
-      "sha256": "19ecde68233ac9b172859095c6880bdaa4698a684acaefd08d8dd4450c278595",
-      "bytes": 4316481
+      "sha256": "a515351f2b78b2f2adcb3c9cf06faae49ea2dde8b4c9d78c4ec213022a8c10f2",
+      "bytes": 4317041
     },
     "beforeword_claude_plugin_EN_1.3.5.zip": {
       "sha256": "b42b8f7b300e9c0a78c81ea1c1998664d374f2dc0a20d1677f0a956e73ee72db",
@@ -302,8 +302,8 @@
       "bytes": 8146
     },
     "beforeword_toolkit_1.3.5.zip": {
-      "sha256": "8c6d4191fdcd37c373d5139f1a91d74ac25b2eb29e031cf4a33f07c678c62eab",
-      "bytes": 2836818
+      "sha256": "5d6167d7dfe1a8b5d2b77f9fc6e88efb773f5a5b3ad6943835fcec0c3d2c3648",
+      "bytes": 2837237
     }
   }
 }
