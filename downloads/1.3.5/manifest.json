@@ -141,21 +141,26 @@
     "integrations/browser/extension/service-config.js": "6f939f50e9cc827aab16ec89ee5aae15e6fef3de04a6a96f0634883b489d4a64",
     "integrations/browser/extension/welcome.html": "3480dfb0d779dbae470668879b16c9c0c79a9b245c7bb1df25019447e2e666e6",
     "integrations/browser/package-lock.json": "191bf9ab14b7132563b511bcafce6eb03ab24ee8320d8563695259eba5a7c76c",
-    "integrations/browser/package.json": "c0a402bb593ead538fb51e703fab584f97d33bd7d25edae5dedba3bfec3615f8",
-    "integrations/browser/server/HOMEPAGE.md": "2d3cdf82831fd3abfd6466fbcd56b780eee0e9f83332e99f313886d844e0526d",
-    "integrations/browser/server/answer.cjs": "5b36f71818aa83acb09eb3e8b6a0f8dbedf6b4d2b58d56ef305f76c62ebc6948",
+    "integrations/browser/package.json": "666efef1e9b4eee74694ac94ce321570c7f5c993010ca7081fe588ed765d00a4",
+    "integrations/browser/server/HOMEPAGE.md": "976dad0c7a0120d82ca0c1707d660426a306d9acb9d9f3561362b61b21a1ac0d",
+    "integrations/browser/server/answer-profile.cjs": "f6996cc580d0503ffdf2df5a93f366e2a78c7a461daa7c24c21d06c00df07609",
+    "integrations/browser/server/answer.cjs": "e837d80ae83035fe5d122c658c27fd0db82dbac8df2891fb3480de158c0abdca",
     "integrations/browser/server/app.js": "ea8cc92ffe202ec8b36d97dda699433b7ca2e53546ff1bbdfcdf6c2f1d99bfff",
-    "integrations/browser/server/check-config.cjs": "7b51ac9a3b7cfbb7bab6dd8235c2398f788d3d98c0af3d18666054ed986930b7",
-    "integrations/browser/server/config.cjs": "ad7adfb962f37770e46be2cde65cc53dd704a048c5db3c8b80edf8310d9c99cf",
-    "integrations/browser/server/index.cjs": "a371b85993f6fbe210bdf366f10f4cb426377a7e32df0ff65d6acd437a8bbffe",
+    "integrations/browser/server/check-config.cjs": "da7b5aad771e3301dc89211dbd7f51b01ba493d352ea20af80deeac920e58631",
+    "integrations/browser/server/config.cjs": "bc60b98ba0e5dfc66955d47ec7bc5e0cc9325a3bf2d257bb8447f8efff2af5e9",
+    "integrations/browser/server/index.cjs": "9add1f1faec12936e6983e67a4628abc09bcd88a82f64354730d0b64e254b24c",
+    "integrations/browser/server/instruction-candidate.json": "56794090ceaa03a6301cc460a8ee0f44876c4393549bc3ab226c46db538d5305",
     "integrations/browser/server/network.cjs": "3a4b6e5eefc53451a5a8a6f2adfb95da8e7023d69c63c65643fd63b3a3ddefc4",
     "integrations/browser/server/package.json": "d408659d34cb28a1df58ba5da7ec9ece3e1b95ba991c65b02d51483f6ffcc617",
     "integrations/browser/server/store.cjs": "a3291ff2a8f3079fe1ee8de0625d9cbaee7ce5ca97fa30b2ccda7bf17fd28ef4",
+    "integrations/browser/tools/build-answer-profile.cjs": "e4670495968e08cc5c64bd9b2a9fba74e5fa2232dbc2b876e624a83060e5a651",
     "integrations/browser/tools/build-chrome.py": "ae137826d929557047cf2f8313066e05d47f7225854738cef31045b6de83fe70",
     "integrations/browser/tools/reset-allowance.cjs": "2ca6e4c709625eccb48620bf6027db325928f8997bc9d1d691137cde1a538693",
     "integrations/browser/tools/test-analysis-core.cjs": "de792a62b3bb02e7869055fb029872079d9c349550d359b943d88f0c63fd05db",
     "integrations/browser/tools/test-analysis-server.cjs": "66cb59fae3fde6dd4293793e20071b15f5c0600ab198eb36327fe02d0ab639c8",
     "integrations/browser/tools/test-analysis-transport.cjs": "d37b85851ec005e294580804d2e01dff553a197817914cbf8ae5ce19b7fe4aa8",
+    "integrations/browser/tools/test-answer-profile-http.cjs": "3c809cc985dcaab404587f27e8f4c3e530378cd7572d5133204b33d284b11479",
+    "integrations/browser/tools/test-answer-profile.cjs": "a2ee09566aa8bb9d8cb3e97dbdc5fc78fcf834bf19f5ff517ae2de4e9b5cebb7",
     "integrations/browser/tools/test-home-answer.cjs": "310ad3a8b3f77a676068beaec5a0e97c1bcb162eb3ba350644a05d373cb57744",
     "integrations/browser/tools/test-panel-compact.cjs": "7f63d2ccdfbf780f0876698c0c5530fdde342fdb6de0cfc3908699881aaa8c41",
     "integrations/browser/tools/test-panel-privacy.cjs": "9ba82b7426151268a4e59bffe8dc2204e99d04bf0c176f7ff3196a7142ad1b27",
@@ -258,8 +263,8 @@
       "bytes": 9102
     },
     "beforeword_AI_1.3.5.html": {
-      "sha256": "a515351f2b78b2f2adcb3c9cf06faae49ea2dde8b4c9d78c4ec213022a8c10f2",
-      "bytes": 4317041
+      "sha256": "0c0c6b592c6b3652388ae62cae363b9a340b5b0911437368a0f186fb26992087",
+      "bytes": 4338893
     },
     "beforeword_claude_plugin_EN_1.3.5.zip": {
       "sha256": "b42b8f7b300e9c0a78c81ea1c1998664d374f2dc0a20d1677f0a956e73ee72db",
@@ -302,8 +307,8 @@
       "bytes": 8146
     },
     "beforeword_toolkit_1.3.5.zip": {
-      "sha256": "5d6167d7dfe1a8b5d2b77f9fc6e88efb773f5a5b3ad6943835fcec0c3d2c3648",
-      "bytes": 2837237
+      "sha256": "bfb0af843f5df4e99c172162c4c8780cd463221ead26511beef16a21d3311515",
+      "bytes": 2853418
     }
   }
 }
