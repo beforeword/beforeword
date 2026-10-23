@@ -4,6 +4,8 @@
 
 This is a provider-neutral companion to the [OpenAI Evals-format source bundle](../openai-evals/README.md). It calls providers using the maintained [LiteLLM Python SDK](https://docs.litellm.ai/docs/python_sdk), so the same prompt set may be submitted to Claude, Grok, Gemini, Mistral, DeepSeek, Qwen, OpenAI, local models, and any other LiteLLM-supported endpoint. **Compatibility and performance have not been measured for every route.**
 
+**Interrupted run?** The optional [checkpoint collector](CHECKPOINTS.md) ([русский](CHECKPOINTS.ru.md)) resumes only never-started requests, preserves uncertain outcomes, and stops its queue on the first failure. It does not reset platform limits or claim exactly-once provider execution.
+
 ## Local, zero-cost checks
 
 Requires Python 3.10+; no dependency or network is needed for the two commands below:
@@ -29,7 +31,7 @@ Replace PROVIDER/MODEL with a valid LiteLLM identifier from the official support
 
 Outputs are local JSONL and include exact submitted prompts, response text, provider model/response identifier (when returned), elapsed time, token usage (when returned), and distinct request-failure records. The dataset criterion is preserved alongside each response. API credentials are not logged. If a provider fails, the full error string is deliberately excluded from the public-report structure to reduce accidental secret disclosure.
 
-Every record, including a failure, preserves the explicitly requested `timeout` and `max_tokens` in `request_parameters`. It includes `temperature` only when specified; an absent temperature means the runner left it to the provider. These are requested options, not a claim that every provider honored them.
+Every record, including a failure, preserves the explicitly requested `timeout`, `max_tokens`, and `num_retries=0` in `request_parameters`. It includes `temperature` only when specified; an absent temperature means the runner left it to the provider. These are requested options, not a claim that every provider honored them or that no gateway-level retry occurred. Instruction files are decoded as UTF-8 without normalizing CRLF/CR line endings; the recorded hash covers that exact text. Independent copies keep provider-side mutation of a request object from rewriting the recorded input.
 
 This runner accepts only nonblank string content as a text response and preserves that string unchanged. Missing, empty, whitespace-only, or structured content is recorded as `request_failed` with a null `response_text`, and is excluded from the scorer's review template. Here `request_failed` includes a returned response with no supported text; it does not imply that no request reached the provider. Structured content is not converted into a fabricated text answer.
 

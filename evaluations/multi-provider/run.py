@@ -6,6 +6,7 @@ No network calls occur without --execute. No grading is claimed by this runner.
 from __future__ import annotations
 
 import argparse
+import copy
 import datetime as dt
 import hashlib
 import json
@@ -32,6 +33,8 @@ def load_cases(path: Path) -> list[dict[str, Any]]:
                 case = json.loads(line)
             except json.JSONDecodeError as error:
                 raise ValueError(f"Invalid JSON on line {number}") from error
+            if not isinstance(case, dict):
+                raise ValueError(f"Non-object case at line {number}")
             identifier = case.get("case_id")
             if not isinstance(identifier, str) or not identifier or identifier in seen:
                 raise ValueError(f"Missing/duplicate case_id at line {number}")
@@ -88,7 +91,7 @@ def messages_for_case(
     case: dict[str, Any], instruction: str | None = None
 ) -> list[dict[str, str]]:
     """Compose exactly the submitted messages, with optional explicit instruction."""
-    messages = case["input"]
+    messages = copy.deepcopy(case["input"])
     if instruction is None:
         return messages
     if not instruction.strip():
@@ -102,7 +105,7 @@ def request_parameters(
     timeout: int, max_tokens: int, temperature: float | None
 ) -> dict[str, Any]:
     """Keep recorded options identical to the explicit provider-call options."""
-    params: dict[str, Any] = {"timeout": timeout, "max_tokens": max_tokens}
+    params: dict[str, Any] = {"timeout": timeout, "max_tokens": max_tokens, "num_retries": 0}
     if temperature is not None:
         params["temperature"] = temperature
     return params
@@ -246,7 +249,7 @@ def self_test() -> None:
     assert example["usage"]["total_tokens"] == 14
     assert example["grading"] == "not_performed"
     assert example["instruction_sha256"] is None
-    assert example["request_parameters"] == {"timeout": 90, "max_tokens": 512}
+    assert example["request_parameters"] == {"timeout": 90, "max_tokens": 512, "num_retries": 0}
     assert example["request_parameters"] == {
         key: value for key, value in submitted[-1].items()
         if key not in {"model", "messages"}
@@ -256,7 +259,7 @@ def self_test() -> None:
         timeout=12, max_tokens=123, temperature=0.0,
     )
     assert configured["request_parameters"] == {
-        "timeout": 12, "max_tokens": 123, "temperature": 0.0,
+        "timeout": 12, "max_tokens": 123, "temperature": 0.0, "num_retries": 0,
     }
     assert configured["request_parameters"] == {
         key: value for key, value in submitted[-1].items()
@@ -288,7 +291,7 @@ def self_test() -> None:
     assert failure["error_type"] == "PermissionError"
     assert failure["response_text"] is None
     assert failure["request_parameters"] == {
-        "timeout": 8, "max_tokens": 42, "temperature": 0.25,
+        "timeout": 8, "max_tokens": 42, "temperature": 0.25, "num_retries": 0,
     }
 
     # Responses unsuitable for this text-only evaluation must remain failures
@@ -333,7 +336,7 @@ def main() -> int:
     parser.add_argument("--execute", action="store_true", help="Explicitly authorize real API calls (potentially billed).")
     parser.add_argument("--all", action="store_true", help="Run every case instead of the safe two-case default.")
     parser.add_argument("--limit", type=int, default=2, help="Maximum cases per model without --all.")
-    parser.add_argument("--out", type=Path, help="Append JSONL results to a local file.")
+    parser.add_argument("--out", type=Path, help="Write JSONL results to a new local file.")
     parser.add_argument("--timeout", type=int, default=90)
     parser.add_argument("--max-tokens", type=int, default=512)
     parser.add_argument("--temperature", type=float, default=None)
@@ -349,7 +352,7 @@ def main() -> int:
     instruction = None
     instruction_label = None
     if args.instruction_file:
-        instruction = args.instruction_file.read_text(encoding="utf-8")
+        instruction = args.instruction_file.read_bytes().decode("utf-8")
         if not instruction.strip():
             parser.error("Instruction file is empty")
         instruction_label = str(args.instruction_file)

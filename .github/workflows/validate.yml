@@ -35,6 +35,10 @@ jobs:
           python3 -B evaluations/instruction-1.3.6/build_candidate_bundle.py --check
           python3 -B evaluations/multi-provider/run.py --self-test
           python3 -B evaluations/multi-provider/score.py --self-test
+          python3 -B evaluations/multi-provider/test_runner_contract.py
+          python3 -B evaluations/multi-provider/test_checkpoint.py
+          python3 -B -O evaluations/multi-provider/test_runner_contract.py
+          python3 -B -O evaluations/multi-provider/test_checkpoint.py
       - name: Build standalone guide
         run: python3 scripts/build_guide.py --output build/toolkit
       - name: Check guide behavior in a simulated DOM
