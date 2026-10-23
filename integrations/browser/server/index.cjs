@@ -6,6 +6,7 @@ const { readConfiguration, allowsOrigin } = require('./config.cjs');
 const { QuotaStore, TRIAL_LIMIT } = require('./store.cjs');
 const { networkIdentifier } = require('./network.cjs');
 const { parseAnswerInput, answerIdentity, answer, PROVIDERS, MAX_HISTORY, MAX_TOTAL_CHARS } = require('./answer.cjs');
+const { answerProfileMetadata } = require('./answer-profile.cjs');
 const MODEL = 'gpt-6.1-sol';
 const UPSTREAM_URL = 'https://api.openai.com/v1/chat/completions';
 const INPUT_BYTES = 64 * 1024;
@@ -256,8 +257,10 @@ function createAnalysisServer({ fetchImpl = globalThis.fetch, now = Date.now,
       if (request.method !== allowedMethod) { response.setHeader('Allow', allowedMethod); throw failure('METHOD_NOT_ALLOWED', 405); }
       if (requestPath === '/health') { store.health(); writeJson(response, 200, { ready: Boolean(configuration.apiKey.trim()) }); return; }
       if (requestPath === '/api/capabilities') {
+        const instructionProfile = answerProfileMetadata(configuration.answerProfile);
         store.health(); writeJson(response, 200, { answer: true, personalProviders: Object.keys(PROVIDERS),
-          historyMessages: MAX_HISTORY, conversationChars: MAX_TOTAL_CHARS, trialLimit: TRIAL_LIMIT, idempotencyHours: 168 }); return;
+          historyMessages: MAX_HISTORY, conversationChars: MAX_TOTAL_CHARS, trialLimit: TRIAL_LIMIT, idempotencyHours: 168,
+          ...(instructionProfile ? { instructionProfile } : {}) }); return;
       }
       if (requestPath !== '/api/answer/personal' && !configuration.apiKey.trim()) throw failure('SERVICE_NOT_CONFIGURED', 503);
       if (shutdownSignal?.aborted) throw failure('SERVICE_UNAVAILABLE', 503);
@@ -327,7 +330,7 @@ function createAnalysisServer({ fetchImpl = globalThis.fetch, now = Date.now,
         'BODY_TOO_LARGE', 'BODY_TIMEOUT', 'INVALID_INPUT', 'INPUT_TOO_LONG', 'EMPTY_INPUT', 'INVALID_LANGUAGE',
         'REQUEST_ABORTED', 'UPSTREAM_TIMEOUT', 'UPSTREAM_RATE_LIMITED', 'UPSTREAM_UNAVAILABLE', 'UPSTREAM_RESPONSE_TOO_LARGE',
         'UPSTREAM_INVALID_RESPONSE', 'MODEL_REFUSAL', 'MODEL_OUTPUT_INCOMPLETE', 'INVALID_REPORT', 'INVALID_CITATION', 'RESPONSE_TOO_LARGE',
-        'INVALID_HISTORY', 'CONVERSATION_TOO_LONG', 'INVALID_MODEL', 'INVALID_API_KEY', 'UNSUPPORTED_PROVIDER', 'PROVIDER_AUTH',
+        'ANSWER_PROFILE_UNAVAILABLE', 'INVALID_ANSWER_PROFILE_CONFIGURATION', 'INVALID_HISTORY', 'CONVERSATION_TOO_LONG', 'INVALID_MODEL', 'INVALID_API_KEY', 'UNSUPPORTED_PROVIDER', 'PROVIDER_AUTH',
         'REQUEST_ID_CONFLICT', 'REQUEST_ALREADY_COMPLETED', 'REQUEST_IN_PROGRESS', 'REQUEST_INTERRUPTED', 'INSTRUCTIONS_UNAVAILABLE',
       ]);
       const mapped = timedOut ? failure('UPSTREAM_TIMEOUT', 504) :
@@ -370,7 +373,7 @@ function startServer() {
     process.once('SIGTERM', stop); process.once('SIGINT', stop);
     return server;
   } catch (error) {
-    const known = new Set(['NODE_24_REQUIRED', 'INVALID_API_KEY_CONFIGURATION', 'INVALID_BIND_CONFIGURATION', 'INVALID_PORT_CONFIGURATION',
+    const known = new Set(['NODE_24_REQUIRED', 'ANSWER_PROFILE_UNAVAILABLE', 'INVALID_ANSWER_PROFILE_CONFIGURATION', 'INVALID_API_KEY_CONFIGURATION', 'INVALID_BIND_CONFIGURATION', 'INVALID_PORT_CONFIGURATION',
       'FILE_ORIGIN_REQUIRES_LOOPBACK', 'INVALID_ORIGIN_CONFIGURATION', 'ALLOWED_ORIGINS_REQUIRED', 'PUBLIC_BIND_REQUIRES_HTTPS_ORIGINS',
       'PUBLIC_BIND_REQUIRES_TLS_PROXY', 'PRIVATE_DATABASE_PATH_REQUIRED', 'NETWORK_SALT_REQUIRED', 'INVALID_PROXY_CONFIGURATION', 'INVALID_LIMIT_CONFIGURATION', 'STORE_UNAVAILABLE']);
     process.stderr.write(`beforeword service could not start (${known.has(error?.code) ? error.code : 'CONFIGURATION_ERROR'}).\n`);

@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node app.js",
     "check": "node server/check-config.cjs",
-    "test": "node --test tools/test-analysis-core.cjs tools/test-panel-compact.cjs tools/test-panel-privacy.cjs tools/test-provider-privacy.cjs tools/test-home-answer.cjs tools/test-analysis-server.cjs && node tools/test-analysis-transport.cjs"
+    "test": "node tools/build-answer-profile.cjs --check && node --test tools/test-answer-profile.cjs tools/test-answer-profile-http.cjs tools/test-analysis-core.cjs tools/test-panel-compact.cjs tools/test-panel-privacy.cjs tools/test-provider-privacy.cjs tools/test-home-answer.cjs tools/test-analysis-server.cjs && node tools/test-analysis-transport.cjs"
   },
   "devDependencies": {
     "linkedom": "0.18.12"

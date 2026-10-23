@@ -2,6 +2,7 @@
 const net = require('node:net');
 const path = require('node:path');
 const { canonicalIP } = require('./network.cjs');
+const { resolveAnswerProfile } = require('./answer-profile.cjs');
 function configError(code) { const error = new Error(code); error.code = code; return error; }
 const MODEL_NAME = /^[A-Za-z0-9][A-Za-z0-9._:/-]{0,199}$/u;
 // Firefox and Safari may assign an origin per installation. These are syntax
@@ -29,6 +30,8 @@ function allowsOrigin(origin, configuration) {
 }
 function readConfiguration() {
   if (Number(process.versions.node.split('.')[0]) < 24) throw configError('NODE_24_REQUIRED');
+  // Operator-only selection. Unknown/missing candidate data stops startup, never falls back.
+  const answerProfile = resolveAnswerProfile(process.env.BEFOREWORD_ANSWER_PROFILE).profile;
   const apiKey = process.env.OPENAI_API_KEY || '';
   if (/[\r\n]/u.test(apiKey)) throw configError('INVALID_API_KEY_CONFIGURATION');
   const model = process.env.BEFOREWORD_MODEL ?? 'gpt-6.1-sol';
@@ -74,6 +77,6 @@ function readConfiguration() {
   }
   const dailyLimit = lowerLimit('BEFOREWORD_DAILY_LIMIT', 100);
   const monthlyLimit = lowerLimit('BEFOREWORD_MONTHLY_LIMIT', 1000);
-  return { apiKey, model, host, port, loopback, allowFile, allowWebExtensionOrigins, origins, databasePath, networkSalt, trustedProxyIPs, dailyLimit, monthlyLimit };
+  return { answerProfile, apiKey, model, host, port, loopback, allowFile, allowWebExtensionOrigins, origins, databasePath, networkSalt, trustedProxyIPs, dailyLimit, monthlyLimit };
 }
 module.exports = { readConfiguration, configuredOrigin, isWebExtensionOrigin, allowsOrigin };
