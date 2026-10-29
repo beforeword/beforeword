@@ -50,6 +50,6 @@ Unknown and expired capabilities both return `SOURCE_NOT_FOUND`. Tool errors inc
 
 `BEFOREWORD_MCP_TRUST_PROXY=1` trusts a single valid `X-Real-IP` only from a loopback peer. Use it only behind the local proxy that overwrites this header with the actual peer address. Forwarded address headers are ignored otherwise. The proxy must preserve `/mcp`, set `Host: beforeword.xyz`, and omit cookies/authorization not used by this unauthenticated service. Health probes in proxy mode also provide a valid X-Real-IP.
 
-The UI resource is `ui://beforeword/app.html`, MIME `text/html;profile=mcp-app`, with no allowed external connections, resources or frames. Official MCP Apps metadata is accompanied by OpenAI-compatible resource metadata. A real host installation remains a separate test; local protocol and synthetic UI tests do not establish portal acceptance.
+The UI resource is `ui://beforeword/1.4.1/app-c4d9c40552abff2447c774abc5cf463805b0084e75571fecdd91a46e157e74dc.html`, MIME `text/html;profile=mcp-app`, with no allowed external connections, resources or frames. Official MCP Apps metadata is accompanied by OpenAI-compatible resource metadata. A real host installation remains a separate test; local protocol and synthetic UI tests do not establish portal acceptance.
 
 SDK references: [HTTP serving](https://github.com/modelcontextprotocol/typescript-sdk/blob/main/docs/serving/http.md), [MCP Apps quickstart](https://github.com/modelcontextprotocol/ext-apps/blob/main/docs/quickstart.md). Versions are pinned in package.json and package-lock.json.

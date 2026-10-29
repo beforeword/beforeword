@@ -56,6 +56,8 @@
     "assets/public.css": "7fe920efa6e1e9d284710a610e45e93dee0ed4c2e817ad44f3f1460508dd2ddf",
     "assets/public.js": "9b2f0672a95e40e8b23465323e9ce5e9d04c63aa7dc7b1ee553bb71df7a13e32",
     "assets/public.template.html": "4294a8495a7712a4f2ee843041ee535dcbf94335867aae929323d4fdc410fa4c",
+    "assets/reader-brand-1.4.1.derivation.json": "2e6f4f0eb0127591b57b0f40c90a830442741617d3678f164fd319893e5f3dd3",
+    "assets/reader-brand-1.4.1.js": "8c40b426062e822285f07790ad43f7af543817bfa02a3bab76a1724341a10c4b",
     "assets/scope.en.txt": "2ee1c1796e980a992ea0592ebd10b4473b95f8b06c1bce5a9c66a36b989b5ebb",
     "assets/scope.ru.txt": "ab56e6ef9ce29a6df1241160752a768586b653f9e6802b9947bc1e423f1517e7",
     "assets/site-shell/apple-touch-20261005.png": "a97413fcb7bb579c3f22db0c99e5cd3f485915b1cd9b8c0bbc3613da1e086439",
@@ -211,7 +213,7 @@
     "integrations/huggingface/validation.json": "f3a97c921c4a0e8f72c887c6a7b5fd4c3e6b3169f8aa6174a8d9f9504fc6bdc6",
     "integrations/huggingface/validation.protocol-1.4.1.json": "b5547aa558c400c06f972123873cfda2dcfeb323f9520324f126c3ab18575a3f",
     "integrations/mcp/.gitignore": "790e3169bc19b046fe55ba1da6d13b976c28363c8c00462a2195fe5faf260910",
-    "integrations/mcp/README.md": "a0cf0eba4be42a716f3901d411e70bfc91045e644bd2da6864e573b4ab11ace2",
+    "integrations/mcp/README.md": "9a512205b56de981b9bf2e56e50c8236607290773722d9416fc9aa45a43efec3",
     "integrations/mcp/VALIDATOR-SOURCE.md": "639cb591260ebea86a7b8b32d32fe39cbe3350531e87b3756224102b7413055b",
     "integrations/mcp/build-ui.mjs": "355bd99cad236c0749c7bbcc09e5203f3961922540e1e724274d52589a40b279",
     "integrations/mcp/http.mjs": "5f6f896e72f592c5ffd7218cd4020382561937d7a6a5590280bdca4fe3500f1d",
@@ -231,10 +233,10 @@
     "integrations/mcp/public/preview.js": "cddc7d3215fbc6c37e2220c4ffc99294012e71fade0d1241dc9adf573d01259e",
     "integrations/mcp/public/tests/ui.test.mjs": "00619b8f3e1094f436d0c52d2ab94a1e3433a8dc75726c98871a4b6ac6fda289",
     "integrations/mcp/public/view.js": "9fe6599e49e4fd43c9748d7c395d1633c93436b9dd05f4cc65137533028530af",
-    "integrations/mcp/server.mjs": "9b97300507b5a6bc96a8f4e9dd1fbf6cbc5565fdc2aba371242cf562a7884872",
+    "integrations/mcp/server.mjs": "10e69dae085195e9f9598a2e4e8156a5bf875de0e8f52c07d77c5cb991070186",
     "integrations/mcp/tests/fixtures/analysis-core-pinned.cjs": "cdd7c1c70ae1e63a2ccdd90918bc99e556eb00d2d3c86cda59ff9ea4e603f822",
     "integrations/mcp/tests/protocol.test.mjs": "aa3b7b546402a53530707a74f6b41540c8009da822c452856d1c54be857afab4",
-    "integrations/mcp/tests/release141.test.mjs": "334e89cabb892bb76e3f731d1a9b9cfbfaddfbfe51ee233df10a45c60d92dad9",
+    "integrations/mcp/tests/release141.test.mjs": "b91fe188c2502642b2ce8f7bb8db2ca5dbd81b96219607cce17db9974a46a577",
     "integrations/mcp/tests/store.test.mjs": "c97d9fd4f7c9c955f1920763925176d480c6a2f3eae92fd160abacb4f03ab21f",
     "plugins/claude/beforeword/.claude-plugin/plugin.json": "723d66819eebb7f7aaf5c91bc56419239c104cbce0022669712117dae9a5e246",
     "plugins/claude/beforeword/LICENSE": "68884273ea3f9546fb710f2c1f2035a7d5b23f94c1d0458e94513f97bc9de4ef",
@@ -284,9 +286,9 @@
     "scripts/build_downloads.py": "2d8f288b757f2f00e8e0843677d6742674637ec61f1083582567a64ac8af73b7",
     "scripts/build_guide.py": "432838728369545ec278aa937d7e9d40772a60792c1b89d81c4f1a28c2cac29a",
     "scripts/build_payload.py": "6fee9e63cc69d74e15793589bd647eeba2fc0a4c6e5d066076ca2c9606818d3f",
-    "scripts/build_public.py": "e32510585a39df70e60049682c037efa8c94cce5ef2686edb0c32df7eea31eab",
+    "scripts/build_public.py": "03c83af4ea0467cac2bcb563de2c283e5a3ff9889b3c566bd9825f283feeb073",
     "scripts/check_release_sources.py": "4f3c70fd987bd86c9303f5acceadda78f99d3717c0b4a29e6b93cbed0cdb603f",
-    "scripts/current_model_wrapper.py": "15c8afd7516b2c3a8050357dc9c4499e4c6a7260adcb7b629edb47ecb9e86e0e",
+    "scripts/current_model_wrapper.py": "e2092485225dd106986749165a0317772b9bc5bbf929b5828e4714cc7117d377",
     "scripts/extract_response.py": "7bd870a055fbc4502362091649f2e93afaaae920138433d926ea83d1608b4835",
     "scripts/package_plugins.py": "38a064d18422c57bd081b8c5902800363f62ff99adcb290dade737ccd39ba0d8",
     "scripts/public_updates.py": "80d262fbb977fb759c3ed01be9b80c413e4284ecee174c49ebbc34f43fae69d6",
@@ -294,9 +296,9 @@
     "scripts/render_report.py": "c8b468a76078c9cde88926dfa7eb17032aa380e9103dcd4bcb2ad583f1074206",
     "scripts/site_wrapper.py": "aaf956fa79d698800fc4e6870c87d1e3a7457b1be49b16cffc6c5e067988e2f4",
     "scripts/sync_home.py": "b91fe833832d01b3ab742b1d81342ffb1f67c7b03aea1a7d1e0a849a47c23d2d",
-    "scripts/test_current_model_wrapper.py": "5311204940f7dc4c9cc1f53980019f3d386d0796568b545220069f0733370c37",
+    "scripts/test_current_model_wrapper.py": "cf3d903d49ebe809ce67d7767df770faea9e8d8121d35272a19838fca0fc7a0a",
     "scripts/test_downloads.py": "97e774e3937655ebc7b474ce0eda258051c6bda0c919da7275fb2631d38447dc",
-    "scripts/test_evaluation.py": "d2d76d0d06fad52f2e0ceb3548d1a7b5d483447a167268d65dc3b058709e3e2e",
+    "scripts/test_evaluation.py": "2a59a3ea9e30160e09efddfc9f5925c423de95f2a8d6f125a64721e5471e4dbb",
     "scripts/test_guide.cjs": "cf4fc392594223e73edea89508df5c11ad3a4787d940d14f467a8506f41b7588",
     "scripts/test_packages.py": "2477d9eaec4e951a7e438ff8b04771bec23f2e7acc1b44d4c9e30e31527a4339",
     "scripts/test_payload.py": "92dafc55926ebb03552f2fc87e552ea6f0158329dfe85f50fc59c43325eec030",
@@ -325,8 +327,8 @@
       "bytes": 9142
     },
     "beforeword_AI_1.4.1.html": {
-      "sha256": "800c2cf28fb975d5c4289603ed010d4da51e416e420f558491600e0189def61e",
-      "bytes": 4920079
+      "sha256": "90ff6a0f0c01bcf98d7e483b7952a06d5c1af2e1c482ce199a0169e34ada9262",
+      "bytes": 4949660
     },
     "beforeword_claude_plugin_EN_1.4.1.zip": {
       "sha256": "fbb896f1f9a2a4b1c923259a8869a386d848abcd182b1051d8bee76c412f0ce2",
@@ -369,8 +371,8 @@
       "bytes": 9265
     },
     "beforeword_toolkit_1.4.1.zip": {
-      "sha256": "8a660982d788ae16c98328cdc09186563c7d198c1f578da433bd1ca5bd0f11bc",
-      "bytes": 3239679
+      "sha256": "4e8ea5a23bc119ff66ebb8d6cbdc935a9533a1c042938f7c6a930a9cd8eed150",
+      "bytes": 3261807
     }
   }
 }

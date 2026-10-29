@@ -383,6 +383,8 @@ def build(output: Path, repo_url: str | None = None, home_source: Path | None = 
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))
     public_updates.write_assets(model)
+    # This derivative changes only branding in the existing evaluation embed.
+    shutil.copyfile(ROOT/'assets/reader-brand-1.4.1.js',model/'assets/reader-brand-1.4.1.js')
     branding=model/'assets'/('brand-'+build_guide.VERSION)
     branding.mkdir(parents=True,exist_ok=True)
     for filename in ('favicon.svg','avatar-paper-512.png','wordmark-light.svg','wordmark-dark.svg'):

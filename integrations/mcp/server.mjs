@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { DocumentStore, MAX_CHARS, SOURCE_ID, stateFor, validateReading } from './lib/store.mjs';
 
 export const VERSION = '1.4.1';
-export const RESOURCE_URI = 'ui://beforeword/app.html';
+export const RESOURCE_URI = 'ui://beforeword/1.4.1/app-c4d9c40552abff2447c774abc5cf463805b0084e75571fecdd91a46e157e74dc.html';
 export const FULL_CORE = readFileSync(new URL('./lib/core.en.txt', import.meta.url), 'utf8');
 export const REPORT_SCHEMA = z.object({
   language: z.enum(['ru', 'en']),

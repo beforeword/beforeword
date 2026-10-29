@@ -10,7 +10,7 @@ import unittest
 from urllib.parse import urlsplit
 
 from render_report import parse_report
-from current_model_wrapper import load as load_current_wrapper
+from current_model_wrapper import load as load_current_wrapper, LEGACY_READER, BRANDED_READER
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = None
@@ -179,7 +179,14 @@ class EvaluationDelivery(unittest.TestCase):
                 scripts = lambda tree: [n.attrs['src'] for n in tree.find('script') if 'src' in n.attrs]
                 normalize_css = lambda values: [re.sub(r'/public-\d+\.\d+\.\d+-', '/public-VERSION-', value) for value in values]
                 self.assertEqual(normalize_css(css(doc)), normalize_css(css(snapshot)), 'Reader preserves style payload hashes while refreshing the selected-version alias')
-                self.assertEqual(scripts(doc), scripts(snapshot), 'Reader preserves language/theme/navigation scripts')
+                self.assertEqual(scripts(doc), [BRANDED_READER if value == LEGACY_READER else value for value in scripts(snapshot)], 'Reader preserves scripts except the reviewed branding-only embed derivative')
+                self.assertEqual((SITE/BRANDED_READER.lstrip('/')).read_bytes(),(ROOT/'assets/reader-brand-1.4.1.js').read_bytes())
+                for obsolete in ('#story','#demo','#example'):
+                    self.assertFalse(doc.find('a',href=obsolete))
+                self.assertEqual(len(doc.find('a',href='#report-section-1')),1)
+                self.assertTrue(doc.find(id='report-section-1'))
+                self.assertTrue(doc.find('a',href='/text-mode/'+suffix+'#saved-comparisons'))
+                self.assertTrue(doc.find('a',href='/model/'+suffix+'#medium-details'))
                 landing_snapshot = Document(load_current_wrapper(language)).root
                 self.assertEqual(css(landing), css(landing_snapshot), 'Landing preserves its current styles')
                 for tag, klass in (('header', 'site-header'), ('footer', 'wrap sf-footer')):

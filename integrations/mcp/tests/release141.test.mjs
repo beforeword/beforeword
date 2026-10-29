@@ -34,6 +34,12 @@ test('1.4.1 wire contract exposes selected core, noauth, hosted widget domain an
   assert.equal(tools.find(tool => tool.name === 'submit_source')._meta['openai/visibility'], 'private');
   const resource = (await client.readResource({ uri: RESOURCE_URI })).contents[0];
   assert.equal(resource.text, html);
+  assert.equal(RESOURCE_URI, `ui://beforeword/1.4.1/app-${createHash('sha256').update(html).digest('hex')}.html`);
+  for (const name of ['open_beforeword', 'show_reading']) {
+    const tool = tools.find(tool => tool.name === name);
+    assert.equal(tool._meta.ui.resourceUri, RESOURCE_URI);
+    assert.equal(tool._meta['openai/outputTemplate'], RESOURCE_URI);
+  }
   assert.equal(resource._meta.ui.domain, 'https://beforeword.xyz');
   assert.equal(resource._meta['openai/widgetDomain'], 'https://beforeword.xyz');
   assert.deepEqual(resource._meta.ui.csp, { connectDomains: [], resourceDomains: [], frameDomains: [] });

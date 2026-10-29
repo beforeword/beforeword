@@ -8,6 +8,8 @@ from pathlib import Path
 import hashlib,html,json,re
 ROOT=Path(__file__).resolve().parents[1]
 SNAPSHOT=ROOT/'assets/site-wrapper/published-20261030'
+LEGACY_READER='/assets/beforeword/beforeword-reader.js?v=0.3.1'
+BRANDED_READER='/model/assets/reader-brand-1.4.1.js'
 
 def once(source,pattern,replace,label):
     matches=list(re.finditer(pattern,source,re.S))
@@ -31,12 +33,31 @@ def meta(source,name,value):
         raise ValueError('Meta field has no content: '+name)
     return re.sub(r'<meta\b[^>]*>',replace,source)
 
+EVALUATION_HELP={
+ 'ru':[
+ ('helpReadTitle','Прочитать текущую проверку','Версия {version}: задания, ответы, оценки и отмеченные ограничения.','#report-section-1','К проверке {version}'),
+ ('helpTryTitle','Сопоставить сохранённые ответы','Одинаковые запросы с инструкцией Beforeword и без неё. Просмотр сохранённых ответов не отправляет запрос модели.','/text-mode/#saved-comparisons','Открыть сохранённое сравнение'),
+ ('helpTextTitle','Прочитать полную инструкцию','Текст, который использовался в текущей проверке. На странице инструкции доступны полный текст и загрузки.','/model/#medium-details','Открыть инструкцию')],
+ 'en':[
+ ('helpReadTitle','Read the current evaluation','Version {version}: tasks, responses, scores and recorded limitations.','#report-section-1','Go to the {version} evaluation'),
+ ('helpTryTitle','Compare saved responses','The same requests with and without the Beforeword instruction. Viewing saved responses does not send a request to a model.','/text-mode/en/#saved-comparisons','Open the saved comparison'),
+ ('helpTextTitle','Read the full instruction','The text used in the current evaluation. The instruction page includes the full text and downloads.','/model/en/#medium-details','Open the instruction')]
+}
+
+def evaluation_help(source,language,version):
+    """Make inherited help entries describe their actual evaluation destinations."""
+    for key,title,body,href,label in EVALUATION_HELP[language]:
+        value='<li><h3>'+html.escape(title.format(version=version))+'</h3><p>'+html.escape(body.format(version=version))+'</p><a href="'+href+'">'+html.escape(label.format(version=version))+'</a></li>'
+        source=once(source,r'<li>\s*<h3 data-text="'+key+r'">.*?</li>',value,'evaluation help '+key)
+    return source
+
 def external_assets():
     refs=set()
     for language in ('ru','en'):
         for evaluation in (False,True):
             s=load(language,evaluation)
             refs.update(re.findall(r'(?:src|href)=["\'](/assets/[^"\']+)["\']',s))
+    refs.discard(LEGACY_READER)
     return sorted(refs)
 
 def apply(generated,language,*,evaluation,core,version,date,description):
@@ -65,6 +86,8 @@ def apply(generated,language,*,evaluation,core,version,date,description):
         if count!=2:raise ValueError('Expected two legacy evaluation brand fragments')
         current,count=re.subn(r'<span class="brand-mark" aria-hidden="true"></span>','',current)
         if count!=1:raise ValueError('Expected one decorative legacy help mark')
+        current=evaluation_help(current,language,version)
+        current=once(current,re.escape(LEGACY_READER),BRANDED_READER,'branded evaluation reader')
     else:
         current=once(current,r'(<textarea\b[^>]*id="instruction-text"[^>]*>).*?(</textarea>)',lambda m:m.group(1)+html.escape(core,quote=False)+m.group(2),'current full instruction')
         # Update only current-version package links, never historical reports.

@@ -1,5 +1,5 @@
 """Keep current public model content and shell while updating exact payloads."""
-import hashlib,html,re,unittest
+import hashlib,html,json,re,unittest
 from html.parser import HTMLParser
 import current_model_wrapper as wrapper
 
@@ -40,6 +40,36 @@ class CurrentModel(unittest.TestCase):
             self.assertEqual(after.count('style="width:9em;height:auto;max-width:100%"'),2)
             self.assertNotIn('style="color:#eeeae0"',after)
             for tag in re.findall(r'<link\b[^>]*(?:canonical|hreflang)[^>]*>',before):self.assertIn(tag,after)
+    def test_evaluation_help_matches_real_destinations(self):
+        for language in ('ru','en'):
+            after=self.apply(language,True)
+            for old in ('#story','#demo','#example'):
+                self.assertNotIn('href="'+old+'"',after)
+            for key,title,body,href,label in wrapper.EVALUATION_HELP[language]:
+                self.assertIn('href="'+href+'"',after)
+                self.assertIn(html.escape(title.format(version='1.4.1')),after)
+                self.assertNotIn('data-text="'+key+'"',after)
+            # No dynamic translation hook can restore the obsolete destinations.
+            self.assertNotIn('data-text="helpTryBody"',after)
+            self.assertNotIn('data-text="helpTextAction"',after)
+
+    def test_reader_derivative_only_changes_reviewed_brand_fragments(self):
+        receipt=json.loads((wrapper.ROOT/'assets/reader-brand-1.4.1.derivation.json').read_text())
+        raw=(wrapper.ROOT/'assets/reader-brand-1.4.1.js').read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),receipt['outputSha256'])
+        recovered=raw.decode()
+        self.assertEqual(len(receipt['patches']),5)
+        for patch in reversed(receipt['patches']):
+            self.assertEqual(recovered.count(patch['new']),1)
+            recovered=recovered.replace(patch['new'],patch['old'])
+        self.assertEqual(hashlib.sha256(recovered.encode()).hexdigest(),receipt['sourceSha256'])
+        self.assertEqual(hashlib.sha256((wrapper.ROOT/'brand/wordmark-dark.svg').read_bytes()).hexdigest(),receipt['wordmarkSourceSHA256'])
+        for language in ('ru','en'):
+            after=self.apply(language,True)
+            self.assertNotIn(wrapper.LEGACY_READER,after)
+            self.assertEqual(after.count(wrapper.BRANDED_READER),1)
+        self.assertNotIn(wrapper.LEGACY_READER,wrapper.external_assets())
+
     def test_invalid_generated_document_is_rejected(self):
         with self.assertRaises(ValueError):wrapper.apply('<html></html>','ru',evaluation=False,core='x',version='1.4.1',date='2026-10-30',description='x')
 
