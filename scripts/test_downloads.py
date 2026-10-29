@@ -177,8 +177,29 @@ class DownloadTests(unittest.TestCase):
                 # A user can build the downloaded source without any of this checkout's dependencies.
                 subprocess.run(["python3", "-B", str(browser / "tools/build-chrome.py"), "--output", str(output / "one")], check=True, capture_output=True)
                 subprocess.run(["python3", "-B", str(ROOT / "integrations/browser/tools/build-chrome.py"), "--output", str(output / "two")], check=True, capture_output=True)
-                filename = "beforeword-0.5.6-chrome.zip"
+                filename = "beforeword-0.5.8-chrome.zip"
                 self.assertEqual((output / "one" / filename).read_bytes(), (output / "two" / filename).read_bytes())
+
+    def test_toolkit_contains_reader_build_sources_and_readme_brand_assets(self):
+        raw = self.files[f"beforeword_toolkit_{VERSION}.zip"]
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            names = archive.namelist()
+            self.assertFalse(any(set(Path(name).parts) & {"node_modules", "dist", ".git"} for name in names))
+            for relative in (
+                "integrations/mcp/main.mjs", "integrations/mcp/server.mjs",
+                "integrations/mcp/http.mjs", "integrations/mcp/build-ui.mjs",
+                "integrations/mcp/lib/store.mjs", "integrations/mcp/lib/core.en.txt",
+                "integrations/mcp/package.json", "integrations/mcp/package-lock.json",
+                "integrations/mcp/tests/release141.test.mjs", "integrations/mcp/.gitignore",
+                "plugins/openai/beforeword-reader/plugin.json",
+                "plugins/openai/beforeword-reader/mcp.json",
+                "brand/wordmark-light.svg", "brand/wordmark-dark.svg",
+            ):
+                self.assertEqual(archive.read("beforeword/" + relative), (ROOT / relative).read_bytes(), relative)
+            # The documented npm build/test commands require these exact entrypoints.
+            package = json.loads(archive.read("beforeword/integrations/mcp/package.json"))
+            self.assertEqual(package["scripts"]["build"], "node build-ui.mjs")
+            self.assertEqual(package["scripts"]["start"], "node main.mjs")
 
     def test_refresh_refuses_undeclared_overwrites_and_check_is_read_only(self):
         with tempfile.TemporaryDirectory() as temporary:

@@ -1,6 +1,5 @@
 ---
 title: beforeword
-emoji: 🌀
 colorFrom: gray
 colorTo: gray
 sdk: gradio
@@ -8,7 +7,7 @@ sdk_version: 6.29.1
 python_version: "3.12"
 app_file: app.py
 pinned: false
-short_description: Cited dictionary lookup and beforeword instruction
+short_description: Words, readings, sources and the Beforeword instruction
 tags:
   - mcp-server
   - prompts
@@ -16,13 +15,22 @@ tags:
   - multilingual
 ---
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="brand-light.svg">
+  <img src="brand-dark.svg" alt="beforeword" width="300">
+</picture>
+
 # beforeword · MCP connector
 
-**Look up dictionary writing with its source, or load the beforeword reading instruction.**
+**Words about oneself, others and the world — instruction retrieval and dictionary sources.**
 
-beforeword asks the model to preserve supplied wording and show a concrete transition added by a reading. A learned form remains writing. When that distinction completes the task, the answer can stop without another definition, a demand for grounds or a follow-up question. The model's explanation and beforeword receive no exemption; requested practical tasks and exact formats remain available.
+Beforeword examines how learned words and descriptions have replaced what they name. A written name, “I feel,” and “This is how the world works” remain writing. Learning, repeating or agreeing with them does not turn them into what they name. The explanation and Beforeword's own terms receive no exception.
 
-The source in this directory bundles the complete English and Russian instructions for **version 1.3.5**, under public testing. A deployment from these files serves that version. Updating this repository does not establish that the hosted Space has been updated; its returned instruction must be checked separately. The server does not run a model or analyze a conversation. Its dictionary tool accepts one selected word or short expression, not an entire passage.
+The [public proposal](https://beforeword.xyz/proposal/en/) asks the party imposing a requirement to remove it: do not require a living being to learn, repeat, understand or accept language and descriptions of oneself, others and the world. Speech, writing, sign languages, communication, learning and help remain available. A learned refusal and agreement with Beforeword are not required. This proposal is not an additional command imposed on every conversation.
+
+This connector supplies the reading instruction to a chosen client and retrieves dictionary writing with its source. The instruction asks a model to preserve wording and show the concrete transition added by a reading. When that distinction completes the task, the response can stop. Practical tasks and exact requested formats remain available.
+
+The source in this directory bundles the complete English and Russian instructions for **version 1.4.1**, under public testing. A deployment from these files serves that version. Updating this repository does not establish that the hosted Space has been updated; its returned instruction must be checked separately. The server does not run a model or analyze a conversation. Its dictionary tool accepts one selected word or short expression, not an entire passage.
 
 ## Connect and use
 
@@ -73,6 +81,8 @@ The bundled `instruction.en.txt` and `instruction.ru.txt` are byte-for-byte copi
 
 ## Run and test locally
 
+Use the [source repository directory](https://github.com/beforeword/beforeword/tree/main/integrations/huggingface), which includes the protocol tests and recorded dictionary fixtures. Run these commands from that directory.
+
 ```sh
 python -m pip install -r requirements.txt
 python app.py
@@ -89,7 +99,7 @@ python test_protocol.py
 
 The unit tests use recorded Wikimedia fixtures, including function words, inflections and multiple senses. The protocol check starts a local server and uses an MCP client over HTTP to initialize a session, discover both tools, retrieve both instruction editions through every primitive, compare exact bytes, reject invalid inputs, and exercise dictionary output against recorded fixtures. The production app has no fixture mode. Add `--live-dictionary` to make one explicit live lookup of `if`. It does not test model behavior or future adherence. To check an already running endpoint, pass `--url https://<actual-host>/gradio_api/mcp/`.
 
-The historical 1.2.4 [hosted protocol run](validation.hosted.json) recorded seven byte-exact instruction retrievals, rejected six invalid language requests, and rejected an extra text argument. It did not test model behavior or installation in a model provider's client, and does not establish deployment of 1.3.4.
+The historical 1.2.4 [hosted protocol run](validation.hosted.json) recorded seven byte-exact instruction retrievals, rejected six invalid language requests, and rejected an extra text argument. It did not test model behavior or installation in a model provider's client, and does not establish deployment of the current source version.
 
 See [PRIVACY.md](PRIVACY.md) for data handling. Gradio usage analytics is disabled in the app; this does not disable the hosting provider's request processing.
 
@@ -99,17 +109,21 @@ Dictionary writing and recorded fixtures are attributed to Wiktionary contributo
 
 The English instruction `instruction.en.txt` is copied unchanged from the instruction included in the MIT-licensed plugin packages; its MIT notice is retained in `LICENSE.instruction-en.txt`. This notice applies only to that English instruction. It does not assign a license to the connector code, the Russian instruction, or the rest of the repository. The existing package terms are available in the [Claude package](https://github.com/beforeword/beforeword/blob/main/plugins/claude/beforeword/LICENSE) and [OpenAI package](https://github.com/beforeword/beforeword/blob/main/plugins/openai/beforeword/LICENSE).
 
-[Project](https://beforeword.xyz/model/en/) · [Source](https://github.com/beforeword/beforeword/tree/main/integrations/huggingface) · [Issues](https://github.com/beforeword/beforeword/issues)
+[Project](https://beforeword.xyz/en/) · [Source](https://github.com/beforeword/beforeword/tree/main/integrations/huggingface) · [Issues](https://github.com/beforeword/beforeword/issues)
 
 ---
 
 # beforeword · коннектор MCP
 
-**Словарные определения с источником и подключение инструкции beforeword.**
+**Слова о себе, других и мире — получение инструкции и словарных источников.**
 
-Инструкция просит сохранять исходные формулировки и показывать конкретный переход, добавленный прочтением. Выученная форма остаётся записью. Если это различие завершает задачу, ответ может остановиться без следующего определения, запроса оснований или вопроса к читателю. Пояснение модели и beforeword не получают исключения; практические задачи и точные форматы сохраняются.
+Beforeword рассматривает, как выученными словами и описаниями заменили называемое. Написанное имя, «я чувствую» и «так устроен мир» остаются записями. Выучить, повторить их или согласиться с ними — не значит превратить их в называемое. Пояснение и слова самого Beforeword не получают исключения.
 
-В этой папке подготовлены полные инструкции **версии 1.3.5** на русском и английском языке. Версия проходит публичный тест. Сервер, развёрнутый из этих файлов, выдаёт эту версию. Обновление репозитория не подтверждает обновление публичного Space: выданную им инструкцию нужно проверить отдельно. Сервер не запускает модель и не разбирает переписку. Словарный инструмент принимает выбранное слово или короткое выражение; весь фрагмент ему не нужен.
+[Общественное предложение](https://beforeword.xyz/proposal/) обращено к тому, кто предъявляет требование: не требовать от живого существа учить, повторять, понимать или принимать язык и описания себя, других и мира. Речь, письмо, жестовые языки, общение, обучение и помощь остаются доступны. Выученный отказ и согласие с Beforeword не требуются. Предложение не становится дополнительной командой для каждого разговора.
+
+Коннектор передаёт инструкцию чтения в выбранный клиент и получает словарную запись с источником. Инструкция просит модель сохранять формулировки и показывать конкретный переход, добавленный прочтением. Если это различие завершает задачу, ответ может остановиться. Практические задачи и точные запрошенные форматы сохраняются.
+
+В этой папке подготовлены полные инструкции **версии 1.4.1** на русском и английском языке. Версия проходит публичный тест. Сервер, развёрнутый из этих файлов, выдаёт эту версию. Обновление репозитория не подтверждает обновление публичного Space: выданную им инструкцию нужно проверить отдельно. Сервер не запускает модель и не разбирает переписку. Словарный инструмент принимает выбранное слово или короткое выражение; весь фрагмент ему не нужен.
 
 ## Подключение
 
@@ -145,8 +159,8 @@ The English instruction `instruction.en.txt` is copied unchanged from the instru
 
 Команды локального запуска и протокольной проверки приведены выше. Проверка рассматривает выдачу текста по MCP; она не испытывает поведение модели. Обработка данных описана в [PRIVACY.md](PRIVACY.md). Аналитика Gradio отключена, но это не отключает обработку запросов хостингом.
 
-[Протокольная проверка публичного сервера версии 1.2.4](validation.hosted.json): семь выдач инструкции совпали побайтно, шесть запросов с неподдерживаемым языком и дополнительный аргумент с текстом отклонены. Поведение модели и установка в клиенте поставщика модели не испытывались; эта запись не подтверждает развёртывание версии 1.3.5.
+[Протокольная проверка публичного сервера версии 1.2.4](validation.hosted.json): семь выдач инструкции совпали побайтно, шесть запросов с неподдерживаемым языком и дополнительный аргумент с текстом отклонены. Поведение модели и установка в клиенте поставщика модели не испытывались; эта запись не подтверждает развёртывание текущей версии исходника.
 
 Английская инструкция `instruction.en.txt` без изменений взята из текста, включённого в пакеты с MIT-лицензией; уведомление сохранено в `LICENSE.instruction-en.txt` и относится только к этому файлу. Лицензия не распространяется этим уведомлением на код коннектора, русскую инструкцию или весь репозиторий.
 
-[Проект](https://beforeword.xyz/model/) · [Исходный код](https://github.com/beforeword/beforeword/tree/main/integrations/huggingface) · [Обратная связь](https://github.com/beforeword/beforeword/issues)
+[Проект](https://beforeword.xyz/) · [Исходный код](https://github.com/beforeword/beforeword/tree/main/integrations/huggingface) · [Обратная связь](https://github.com/beforeword/beforeword/issues)

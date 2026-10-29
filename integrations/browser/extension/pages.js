@@ -9,7 +9,7 @@
     "intro": "Even when we have learned to read it.",
     "openPanel": "Open beforeword",
     "seeExample": "Examine an example",
-    "releaseStatus": "Chrome 0.5.6. Exact excerpts and a proposed reading. Prepared examples work without AI requests; dictionary lookup is available separately.",
+    "releaseStatus": "Chrome 0.5.8. Exact excerpts and a proposed reading. Prepared examples work without AI requests; dictionary lookup is available separately.",
     "platform": "This package is for Chrome on a computer, version 116 or newer. See the website for the current status of other browser packages.",
     "stepsTitle": "Open the text. Choose when to analyze.",
     "step1Title": "Enable it on this site",
@@ -37,7 +37,7 @@
     "demo": "Prepared examples work without a model. Dictionary lookup needs internet access. A page on an iPhone is not an installed Safari extension and cannot access other tabs.",
     "privacyLink": "Extension data and permissions",
     "privacyIntro": "beforeword helps you examine selected or pasted writing. Hovering and selecting alone send nothing to a model. The toolbar, context menu and beforeword symbol capture or display text without a model request. To send the displayed passage, choose “Examine writing” in the panel or press Ctrl/Cmd+Enter in its text field. A separate dictionary action sends the chosen word to Wiktionary.",
-    "privacyStatus": "Chrome extension 0.5.6 · Updated 15 October 2026. This policy covers the extension, including its optional AI and dictionary features. The main website has a separate data policy.",
+    "privacyStatus": "Chrome extension 0.5.8 · Updated 15 October 2026. This policy covers the extension, including its optional AI and dictionary features. The main website has a separate data policy.",
     "savedTitle": "In your browser",
     "savedSelection": "The latest captured passage, its site origin without the path or query, and tab and passage-position information use temporary extension storage until replaced, cleared or the browser session ends. Where session storage is unavailable, these data remain in memory and can disappear when their extension context closes.",
     "savedSession": "A temporary beforeword token is created for an explicit introductory analysis and expires on the server after 24 hours. A separate random installation identifier persists locally between sessions to count the 8 introductory analyses. It is not an account name.",
@@ -132,7 +132,7 @@
     "intro": "Даже когда мы умеем его читать.",
     "openPanel": "Открыть beforeword",
     "seeExample": "Рассмотреть пример",
-    "releaseStatus": "Chrome 0.5.6. Точные цитаты и предлагаемое прочтение. Готовые примеры работают без запроса к ИИ; словарь доступен отдельно.",
+    "releaseStatus": "Chrome 0.5.8. Точные цитаты и предлагаемое прочтение. Готовые примеры работают без запроса к ИИ; словарь доступен отдельно.",
     "platform": "Этот пакет предназначен для Chrome на компьютере версии 116 или новее. Текущее состояние пакетов для других браузеров указано на сайте.",
     "stepsTitle": "Откройте текст. Выберите, когда разобрать.",
     "step1Title": "Включите для сайта",
@@ -160,7 +160,7 @@
     "demo": "Готовые примеры доступны без модели. Словарь требует интернет. Открытая страница на iPhone не является установленным расширением Safari и не получает другие вкладки.",
     "privacyLink": "Данные и разрешения расширения",
     "privacyIntro": "beforeword помогает рассмотреть выделенную или вставленную запись. Наведение и выделение сами по себе ничего не отправляют модели. Панель браузера, контекстное меню и значок beforeword получают или показывают текст без запроса модели. Чтобы отправить показанный фрагмент, нажмите «Рассмотреть запись» в панели или Ctrl/Cmd+Enter в её поле текста. Отдельное действие словаря передаёт выбранное слово Викисловарю.",
-    "privacyStatus": "Расширение Chrome 0.5.6 · Обновлено 15 октября 2026 года. Эта политика относится к расширению, включая необязательные разборы ИИ и словарь. У главного сайта отдельная политика данных.",
+    "privacyStatus": "Расширение Chrome 0.5.8 · Обновлено 15 октября 2026 года. Эта политика относится к расширению, включая необязательные разборы ИИ и словарь. У главного сайта отдельная политика данных.",
     "savedTitle": "В браузере",
     "savedSelection": "Последний выбранный фрагмент, адрес его сайта без пути и параметров, сведения о вкладке и положении фрагмента находятся во временном хранилище расширения до замены, очистки или завершения сессии браузера. Если сессионное хранилище недоступно, данные остаются в памяти и могут исчезнуть при закрытии соответствующего контекста расширения.",
     "savedSession": "Временный токен beforeword создаётся для явно запрошенного вводного разбора и истекает на сервере через 24 часа. Отдельный случайный идентификатор установки сохраняется локально между сессиями для учёта 8 вводных разборов. Это не имя аккаунта.",
@@ -248,6 +248,8 @@
     "sampleReadingAfter": " Даже прочитанное как твоё, имя остаётся записью."
   }
 };
+  Object.assign(copy.ru,{"headline":"Слово не становится тем, что называет.","intro":"Сохраните исходный текст и сопоставьте его с добавленным пояснением. Выделение само по себе ничего не отправляет.","betaLink":"Открыть Text Mode без установки расширения","releaseStatus":"Chrome 0.5.8. Исходник и добавленная запись показаны отдельно. Шесть составленных примеров открываются без модели; словарь доступен отдельно.","stepsTitle":"От исходника — к двум записям рядом.","step1Title":"Откройте исходник","step1":"Выделите текст и откройте Beforeword с панели браузера или вставьте текст в панель. Кнопка рядом с выделением включается отдельно для выбранного сайта.","step2Title":"Проверьте и отправьте","step2":"В панели видны исходный текст, выбранная часть и получатель. «Рассмотреть запись» или Ctrl/Cmd+Enter отправляет только выбранную часть.","step3Title":"Сопоставьте записи","step3":"Точная цитата сохранена рядом с добавленным пояснением. Посмотрите, какие слова появились и какой переход они предлагают. Ответ модели и составленный пример имеют разные подписи.","sampleReadingTitle":"Добавленное пояснение","frameLabel":"Слова Beforeword тоже записаны","frame":"«Исходник», «пояснение», «запись» и «называет» состоят из начертаний. Они входят в тот же разбор.","limits":"Пояснение добавляет слова к выбранной записи. Оно не восстанавливает мысли или прочтение человека. Исходник остаётся отдельно; слова Beforeword рассматриваются так же."});
+  Object.assign(copy.en,{"headline":"A word does not become what it names.","intro":"Keep the source text and compare it with the added explanation. Selecting text alone sends nothing.","betaLink":"Open Text Mode without installing the extension","releaseStatus":"Chrome 0.5.8. The source and added writing are shown separately. Six constructed examples open without a model; the dictionary is separate.","stepsTitle":"From a source to two records side by side.","step1Title":"Open the source","step1":"Select text and open Beforeword from the browser toolbar, or paste text into the panel. The button beside a selection can be enabled separately for a chosen site.","step2Title":"Check, then send","step2":"The panel shows the source, selected passage and recipient. “Examine writing” or Ctrl/Cmd+Enter sends only the selected passage.","step3Title":"Compare the writing","step3":"An exact excerpt stays beside the added explanation. Look at the words that appeared and the connection they propose. Model responses and constructed examples have distinct labels.","sampleReadingTitle":"Added explanation","frameLabel":"Beforeword’s words are written too","frame":"“Source,” “explanation,” “writing” and “names” consist of written marks. They are examined in the same way.","limits":"The explanation adds words beside the selected writing. It does not reconstruct a person’s thoughts or reading. The source stays separate; Beforeword’s words are examined too."});
   function render(value) {
     const language = value === 'ru' ? 'ru' : 'en';
     document.documentElement.lang = language;
@@ -256,7 +258,7 @@
       const value = copy[language][element.dataset.copy];
       if (typeof value === 'string') element.textContent = value;
     });
-    document.querySelectorAll('[data-beta-link]').forEach(link => { link.href = language === 'ru' ? 'https://beforeword.xyz/beta/' : 'https://beforeword.xyz/beta/en/'; });
+    document.querySelectorAll('[data-beta-link]').forEach(link => { link.href = language === 'ru' ? 'https://beforeword.xyz/text-mode/' : 'https://beforeword.xyz/text-mode/en/'; });
     document.querySelectorAll('[data-language]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
     document.querySelector('.languages').setAttribute('aria-label', language === 'ru' ? 'Язык' : 'Language');
   }

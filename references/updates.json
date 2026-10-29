@@ -3,8 +3,8 @@
   "project": "beforeword",
   "scope": "ai-instructions",
   "status": "public-testing",
-  "current_version": "1.3.5",
-  "updated": "2026-10-15T14:33:55Z",
+  "current_version": "1.4.1",
+  "updated": "2026-10-29T22:04:48Z",
   "urls": {
     "ru": "https://beforeword.xyz/model/#bw-updates",
     "en": "https://beforeword.xyz/model/en/#bw-updates"
@@ -19,12 +19,12 @@
   "languages": {
     "ru": {
       "title": "beforeword — обновления инструкции для ИИ",
-      "intro": "В 1.3.5 выученная форма остаётся письменной формой. Инструкция прямо допускает остановку там, где продолжение выдавало бы запись за называемое.",
+      "intro": "В 1.4.1 вопрос без заданного определения — например, «ты можешь думать?» — не подменяется добавленным определением или перечнем задач. Ответ и его собственное пояснение остаются записью.",
       "changes": [
-        "Достаточная остановка. Если различие уже показано и задача выполнена, не нужно продолжать новым определением, требованием оснований или вопросом к читателю.",
-        "Конкретный переход. Если он предложен в тексте, ответ показывает исходные слова и добавленную связь. Без заданной рамки вопрос «Что такое X?» не требует придумывать определение для разбора.",
-        "Собственное пояснение остаётся записью. «Основание», «критерий» и названия сообщённых условий не становятся называемым. Требования и условия сохраняются с атрибуцией; выполнение, принятие и добровольность не добавляются.",
-        "Практические задачи и форматы сохранены. Обновлены полная, средняя и краткая RU/EN редакции. Приведённые ниже проверки 1.3.4 и 1.3.3 относятся к прежним текстам; они не являются испытанием 1.3.5."
+        "Сохранить заданный вопрос. Не делать «да» возможным через добавленное определение или переход к субъективному опыту. Явные определения, вычисления и запрошенные форматы сохраняются.",
+        "Сохранить направление различия: написанное не становится называемым. Сообщение остаётся сообщением источника в каждом утверждении; его запись сама не устанавливает сообщённое событие.",
+        "Требование описывать себя снимает тот, кто его предъявляет. Для этого не требуется выученный отказ, замена описания или принятие Beforeword.",
+        "Полное ядро совпадает в Text Mode и нативных пакетах; короткие редакции проверены отдельно в ограниченных наборах. Текущая запись сохраняет неудачные кандидаты и оставшиеся оговорки, без заявления безупречного или всеобщего следования."
       ],
       "comparison": {
         "summary": "Предыдущий тест · 1.3.3 · 9 октября 2026",
@@ -63,17 +63,17 @@
         "limits": "Это результаты 12 заданий при указанных моделях и настройках. Они не устанавливают превосходства на любых запросах или соблюдения инструкции в будущих ответах. Повторы не являются независимыми испытаниями. Сокращённые редакции и установка в приложениях этим тестом не проверялись.",
         "example": "Условный пример: «Датчик не передал данные». Из этой записи ещё не следует, что событие не произошло. Ответ должен сохранить это различие. Это пояснение принципа, а не ответ модели из теста."
       },
-      "current_check_label": "Предыдущая проверка 1.3.4: задания, ответы и ограничения",
-      "current_check_url": "https://beforeword.xyz/model/reports/development-review-1.3.4.json"
+      "current_check_label": "Текущая проверка 1.4.1: задачи, окончательные ответы, критерии и границы",
+      "current_check_url": "https://beforeword.xyz/model/reports/development-review-1.4.1.json"
     },
     "en": {
       "title": "beforeword — AI instruction updates",
-      "intro": "In 1.3.5 a learned form remains a written form. The instruction explicitly permits stopping where continuing would present writing as what it names.",
+      "intro": "In 1.4.1, an unframed question such as “can you think?” is not replaced with a supplied definition or a list of tasks. The answer and its own explanation remain writing.",
       "changes": [
-        "A sufficient stop. Once the distinction is shown and the task is complete, there is no need to continue with another definition, demand for grounds or question to the reader.",
-        "A concrete transition. Where one is proposed in the text, the answer shows the original words and added relation. An unframed “What is X?” does not require inventing a definition to analyze.",
-        "The explanation remains writing. “Grounds”, “criterion” and the names of reported conditions do not become what they name. Requirements and conditions retain their attribution; compliance, acceptance and voluntariness are not added.",
-        "Practical tasks and formats are preserved. The full, medium and compact RU/EN editions are updated. The 1.3.4 and 1.3.3 checks linked below concern earlier texts; they are not evaluations of 1.3.5."
+        "Keep the actual question. Do not make an affirmative answer possible by adding a definition or redirecting it to subjective experience. Explicit definitions, calculations and requested formats remain usable.",
+        "Preserve the direction of the distinction: writing does not become what it names. A quoted report remains an attributed report in every clause; its wording alone does not establish the reported event.",
+        "The person or organization imposing a description removes that requirement. This does not require a learned refusal, replacement description or acceptance of Beforeword.",
+        "One full core is shared across Text Mode and native packages; shorter editions have separate bounded checks. The current record preserves unsuccessful candidates and remaining qualifications, with no claim of perfect or universal adherence."
       ],
       "comparison": {
         "summary": "Earlier test · 1.3.3 · 9 October 2026",
@@ -112,8 +112,8 @@
         "limits": "These results concern 12 tasks and the recorded models and settings. They do not establish superiority on every request or guarantee adherence in future answers. Repeated answers are not independent trials. Short editions and installation in apps were not tested here.",
         "example": "Illustrative example: “The sensor sent no data.” That statement alone does not show that the event did not occur. The response should preserve this distinction. This explains the principle; it is not a model response from the test."
       },
-      "current_check_label": "Previous 1.3.4 check: tasks, answers and limits",
-      "current_check_url": "https://beforeword.xyz/model/reports/development-review-1.3.4.json"
+      "current_check_label": "Current 1.4.1 record: tasks, final answers, criteria and limits",
+      "current_check_url": "https://beforeword.xyz/model/reports/development-review-1.4.1.json"
     }
   },
   "comparison": {

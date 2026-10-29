@@ -1,18 +1,18 @@
 {
-  "version": "1.3.5",
+  "version": "1.4.1",
   "encoding": "UTF-8",
   "instructions": {
     "en": {
       "file": "instruction.en.txt",
       "source": "assets/core.en.txt",
-      "bytes": 10583,
-      "sha256": "e7490db9bb8ddd967f7d0818553eec2a424910015fcac74f80929fb2a1f2ae23"
+      "bytes": 11976,
+      "sha256": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2"
     },
     "ru": {
       "file": "instruction.ru.txt",
       "source": "assets/core.ru.txt",
-      "bytes": 19275,
-      "sha256": "a815d441047d34aa087624b5dcda9d1c9b782b5cbdec2ce7af31d30b650904b2"
+      "bytes": 21072,
+      "sha256": "a644e3f7e1d56b5949c07b04c7f6cbcf038dc26a0c010c6ae79f4b2adba8cc8f"
     }
   }
 }

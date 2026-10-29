@@ -29,7 +29,7 @@ def load_instruction(language: str) -> str:
 
 
 def get_beforeword_instruction(language: Language = "en") -> str:
-    """Retrieve the complete beforeword 1.3.4 instruction, unchanged.
+    """Retrieve the complete beforeword instruction from this release, unchanged.
 
     Use when the user requests beforeword or asks to load its reading instruction.
     This read-only tool returns instruction text, not an analysis of a conversation.
@@ -40,7 +40,7 @@ def get_beforeword_instruction(language: Language = "en") -> str:
     Args:
         language: Instruction edition: 'en' for English or 'ru' for Russian.
     Returns:
-        The exact UTF-8 instruction text for beforeword version 1.3.4.
+        The exact UTF-8 instruction text for the release recorded in instructions.json.
     """
     return load_instruction(language)
 
@@ -74,7 +74,7 @@ def lookup_dictionary_entry(word: str, language: Language = "en") -> str:
 
 @gr.mcp.prompt()
 def beforeword(language: Language = "en") -> str:
-    """Load the complete beforeword 1.3.4 instruction as a reusable prompt.
+    """Load the complete beforeword instruction from this release as a reusable prompt.
 
     Args:
         language: Instruction edition: 'en' for English or 'ru' for Russian.
@@ -84,7 +84,7 @@ def beforeword(language: Language = "en") -> str:
 
 @gr.mcp.resource("beforeword://instruction/{language}", mime_type="text/plain")
 def instruction_resource(language: Language) -> str:
-    """Read the unchanged beforeword 1.3.4 instruction; language is en or ru."""
+    """Read the unchanged beforeword instruction from this release; language is en or ru."""
     return load_instruction(language)
 
 
@@ -103,17 +103,30 @@ CONNECTION_CONFIG = json.dumps(
 )
 
 with gr.Blocks(title="beforeword · MCP", analytics_enabled=False) as demo:
+    wordmark = (ROOT / "brand-dark.svg").read_text(encoding="utf-8")
+    wordmark = wordmark.replace('width="2100" height="452"', 'width="300" height="65" style="display:block;width:100%;height:auto"')
+    gr.HTML('<div style="width:min(100%,320px);box-sizing:border-box;padding:12px;background:#f3efe6;border-radius:8px">' + wordmark + '</div>')
     gr.Markdown(
-        """# beforeword
-### MCP connector · коннектор MCP
+        f"""### MCP connector · коннектор MCP
 
-Look up dictionary definitions with their source, or load the reading instruction.
+Words about oneself, others and the world remain writing. Beforeword examines the transition from learned words to what they name, including the explanation itself.
 
-Словарные определения с источником и подключение инструкции.
+Слова о себе, других и мире остаются записями. Beforeword разбирает переход от выученных слов к называемому, включая само пояснение.
 
-**1.3.4 · public testing / публичный тест**
+**Here: retrieve the complete instruction or a dictionary entry with its source. No model is run.**
+
+**Здесь: получить полную инструкцию или словарную запись с источником. Модель не запускается.**
+
+**{MANIFEST['version']} · public testing / публичный тест**
 """
     )
+    with gr.Accordion("Beforeword · public proposal / общественное предложение", open=False):
+        gr.Markdown(
+            """Do not require a living being to learn, repeat, understand or accept language and descriptions of oneself, others and the world. The party imposing the requirement removes it. Speech, writing, sign languages, communication, learning and help remain available. No learned refusal or agreement with Beforeword is required. The [full proposal](https://beforeword.xyz/proposal/en/) is not an additional command imposed on every conversation.
+
+Не требовать от живого существа учить, повторять, понимать или принимать язык и описания себя, других и мира. Требование снимает тот, кто его предъявляет. Речь, письмо, жестовые языки, общение, обучение и помощь остаются доступны. Выученный отказ или согласие с Beforeword не требуются. [Полное предложение](https://beforeword.xyz/proposal/) не становится дополнительной командой для каждого разговора.
+"""
+        )
     gr.Markdown("## Connect / Подключить\n\n**Streamable HTTP · MCP URL**")
     gr.Textbox(value=ENDPOINT, show_label=False, interactive=False, buttons=["copy"])
     with gr.Accordion("English · connection and use", open=True):
@@ -173,7 +186,7 @@ For a dictionary lookup, explicitly request **lookup_dictionary_entry** with one
     )
     retrieve_button = gr.Button("Get instruction / Получить инструкцию", variant="primary")
     instruction_output = gr.Textbox(
-        label="Complete instruction · 1.3.4 / Полная инструкция · 1.3.4",
+        label=f"Complete instruction · {MANIFEST['version']} / Полная инструкция · {MANIFEST['version']}",
         interactive=False,
         lines=15,
         max_lines=30,
@@ -193,7 +206,7 @@ For a dictionary lookup, explicitly request **lookup_dictionary_entry** with one
 
 Получение инструкции отправляет выбор языка. Словарный поиск отправляет выбранное слово или короткое выражение и язык этому серверу и Викисловарю; весь текст не требуется. Файлы, переписка и API-ключи не запрашиваются. Hugging Face, Wikimedia и клиент могут обрабатывать запросы по своим правилам. Приложение не добавляет хранение переписки, обращения к моделям или аналитику; аналитика Gradio отключена.
 
-[beforeword.xyz](https://beforeword.xyz/model/en/) · [Source / Исходный код](https://github.com/beforeword/beforeword/tree/main/integrations/huggingface) · [Issues / Обратная связь](https://github.com/beforeword/beforeword/issues) · [Hugging Face privacy](https://huggingface.co/privacy) · [Wikimedia privacy](https://foundation.wikimedia.org/wiki/Policy:Privacy_policy)
+[beforeword.xyz](https://beforeword.xyz/en/) · [Source / Исходный код](https://github.com/beforeword/beforeword/tree/main/integrations/huggingface) · [Issues / Обратная связь](https://github.com/beforeword/beforeword/issues) · [Hugging Face privacy](https://huggingface.co/privacy) · [Wikimedia privacy](https://foundation.wikimedia.org/wiki/Policy:Privacy_policy)
 """
     )
 

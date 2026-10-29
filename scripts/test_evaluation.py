@@ -10,6 +10,7 @@ import unittest
 from urllib.parse import urlsplit
 
 from render_report import parse_report
+from current_model_wrapper import load as load_current_wrapper
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = None
@@ -51,6 +52,11 @@ class Document(HTMLParser):
     def handle_endtag(self, tag):
         assert len(self.stack) > 1 and self.stack[-1].tag == tag, 'Unbalanced HTML: '+tag
         self.stack.pop()
+
+    def handle_startendtag(self, tag, attrs):
+        self.handle_starttag(tag, attrs)
+        if tag not in VOID:
+            self.handle_endtag(tag)
 
     def handle_data(self, text):
         self.stack[-1].children.append(text)
@@ -100,22 +106,32 @@ class EvaluationDelivery(unittest.TestCase):
                     self.assertEqual(doc.find('link', rel='alternate', hreflang=lang)[0].attrs['href'], 'https://beforeword.xyz'+url)
                 other = '/model/evaluation/en/' if language == 'ru' else '/model/evaluation/'
                 other_language = 'en' if language == 'ru' else 'ru'
-                headers = doc.find('header', **{'class': 'bw-site-header'})
+                # Each route retains its own captured published shell. The current
+                # landing and reader have different navigation implementations.
+                snapshot = Document(load_current_wrapper(language, evaluation=True)).root
+                headers = doc.find('header', id='bw-site-top')
                 self.assertEqual(len(headers), 1)
                 header = headers[0]
-                for tag, klass in (('span', 'bw-site-language-wide'), ('div', 'bw-site-menu-end')):
-                    scope = header.find(tag, **{'class': klass})
-                    self.assertEqual(len(scope), 1, 'Desktop and menu language controls have distinct scopes')
-                    links = scope[0].find('a', **{'class': 'bw-site-language'})
-                    self.assertEqual(len(links), 1)
-                    self.assertEqual(links[0].attrs['href'], other, 'Language switch stays on the evaluation route')
-                    self.assertEqual(links[0].attrs['hreflang'], other_language)
-                    self.assertEqual(links[0].attrs['lang'], other_language)
-                    self.assertEqual(links[0].text(), other_language.upper())
-                self.assertTrue(doc.find('a', href='/model/'+suffix+'#checks'))
-                for scope in (header, doc.find('footer', **{'class': 'bw-site-footer'})[0]):
-                    self.assertEqual(len(scope.find('a', href='/model/'+suffix)), 1,
-                                     'Both navigation areas retain the instruction-section route')
+                original_header = snapshot.find('header', id='bw-site-top')[0]
+                def navigation_contract(scope):
+                    return [(a.attrs.get('href'), a.attrs.get('aria-label'), a.attrs.get('data-nav'))
+                            for a in scope.find('a')]
+                self.assertEqual(navigation_contract(header), navigation_contract(original_header))
+                self.assertTrue(header.find('nav'), 'Reader header retains accessible navigation')
+                switch = header.find('button', id='language')
+                self.assertEqual(len(switch), 1)
+                self.assertTrue(switch[0].attrs.get('aria-label'))
+                self.assertEqual(switch[0].attrs, original_header.find('button', id='language')[0].attrs)
+                self.assertEqual(switch[0].text(), other_language.upper())
+                footer = doc.find('footer', **{'class': 'site-footer'})
+                self.assertEqual(len(footer), 1)
+                self.assertEqual(navigation_contract(footer[0]), navigation_contract(snapshot.find('footer', **{'class': 'site-footer'})[0]))
+                self.assertEqual(len(footer[0].find('a', href='/model/'+suffix)), 1)
+                for scope in (header, footer[0]):
+                    brand = scope.find('a', **{'class': 'brand'})
+                    self.assertEqual(len(brand), 1)
+                    self.assertIn('beforeword', brand[0].attrs.get('aria-label', '').lower())
+                    self.assertTrue(brand[0].find('svg'), 'Approved complete wordmark is present')
                 self.assertFalse(doc.find('a', **{'aria-current': 'page'}))
                 source = ROOT / 'references' / ('evaluation.ru.md' if language == 'ru' else 'evaluation.md')
                 article = doc.find('article', id='evaluation-content')[0]
@@ -146,26 +162,32 @@ class EvaluationDelivery(unittest.TestCase):
                     self.assertEqual((SITE / path.lstrip('/')).read_bytes(), (ROOT / 'references' / Path(path).name).read_bytes())
 
                 landing = Document((SITE / 'model' / suffix / 'index.html').read_text(encoding='utf-8')).root
-                links = landing.find('ul', **{'class': 'report-links'})[0].find('a')
-                self.assertEqual(len(links), 1, 'Reader section has one clear destination')
-                self.assertEqual(links[0].attrs['href'], route)
+                links = landing.find('a', href=route)
+                self.assertEqual(len(links), 1, 'Current instruction section links once to the readable report')
                 self.assertNotIn('download', links[0].attrs)
-                advanced = landing.find('section', id='advanced')[0].find('details')[0]
-                self.assertNotIn('open', advanced.attrs)
-                files = advanced.find('ul', **{'class': 'data-links'})[0].find('a')
-                self.assertEqual(len(files), 3)
-                for link, kind in zip(files, ['JSON', 'JSON', 'TXT']):
-                    self.assertIn('download', link.attrs)
-                    self.assertIn(kind, link.text())
-                    self.assertIn('Скачать' if language == 'ru' else 'Download', link.text())
+                self.assertTrue(landing.find('section', id='medium-details'), 'Back link has an existing target')
+                language_links = landing.find('a', **{'class': 'lang-link'})
+                self.assertEqual(len(language_links), 1)
+                self.assertEqual(language_links[0].attrs['href'], '/model/'+('en/' if language == 'ru' else ''))
+                # Retain the current source/download routes even though the old
+                # generated "advanced" container no longer exists on this page.
+                for target in ('/model/release.json', '/model/SHA256SUMS.txt', '/model/reports/validation-1.2.4.json'):
+                    matches = [a for a in landing.find('a') if urlsplit(a.attrs.get('href', '')).path == target]
+                    self.assertEqual(len(matches), 1)
+                    self.assertTrue((SITE / target.lstrip('/')).is_file())
                 css = lambda tree: [n.attrs['href'] for n in tree.find('link', rel='stylesheet')]
-                landing_css = css(landing)
-                update_css = [url for url in landing_css if re.fullmatch(r'/model/assets/updates-[a-f0-9]{12}\.css', url)]
-                self.assertEqual(len(update_css), 1, 'The landing page includes its optional updates component style')
-                self.assertEqual(css(doc), [url for url in landing_css if url not in update_css],
-                                 'Reader and landing pages retain the same shared shell and public styles')
-                for klass in ('bw-site-brand', 'bw-site-quick', 'bw-site-menu'):
-                    self.assertEqual(doc.find(**{'class': klass})[0].text(), landing.find(**{'class': klass})[0].text())
+                scripts = lambda tree: [n.attrs['src'] for n in tree.find('script') if 'src' in n.attrs]
+                normalize_css = lambda values: [re.sub(r'/public-\d+\.\d+\.\d+-', '/public-VERSION-', value) for value in values]
+                self.assertEqual(normalize_css(css(doc)), normalize_css(css(snapshot)), 'Reader preserves style payload hashes while refreshing the selected-version alias')
+                self.assertEqual(scripts(doc), scripts(snapshot), 'Reader preserves language/theme/navigation scripts')
+                landing_snapshot = Document(load_current_wrapper(language)).root
+                self.assertEqual(css(landing), css(landing_snapshot), 'Landing preserves its current styles')
+                for tag, klass in (('header', 'site-header'), ('footer', 'wrap sf-footer')):
+                    current_scope = landing.find(tag, **{'class': klass})
+                    source_scope = landing_snapshot.find(tag, **{'class': klass})
+                    self.assertEqual(len(current_scope), 1)
+                    self.assertEqual(len(source_scope), 1)
+                    self.assertEqual(navigation_contract(current_scope[0]), navigation_contract(source_scope[0]))
 
     def test_escaping_and_unsupported_input(self):
         title, body = parse_report('# Текст 中文 🙂\n\n## Проверка\n\nСлово `<script>alert(1)</script>` и x < y & z.\n')

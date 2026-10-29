@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" class="bw-book" data-theme="light">
+<head>
+<script data-bw-generated>window.BW_PAGE={"kind": "document", "lang": "en", "languageURL": "https://beforeword.xyz/model/evaluation/", "title": "beforeword · how the instructions were tested"};window.BW_ASSET_BASE="/assets/ui-20261018-v3/";</script>
+<script src="/assets/ui-20261018-v3/theme-init.js" data-bw-generated></script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fafaf8">
+<meta name="color-scheme" content="light">
+<title>beforeword · how the instructions were tested</title>
+<meta name="description" content="Reading criteria, recorded comparisons, and technical checks for beforeword.">
+<link rel="canonical" href="https://beforeword.xyz/model/evaluation/en/">
+<link rel="alternate" hreflang="ru" href="https://beforeword.xyz/model/evaluation/">
+<link rel="alternate" hreflang="en" href="https://beforeword.xyz/model/evaluation/en/">
+<link rel="alternate" hreflang="x-default" href="https://beforeword.xyz/model/evaluation/en/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://beforeword.xyz/model/assets/site-shell/b7c2c446da4a/og-brand-20261005.png">
+<meta property="og:site_name" content="beforeword">
+<meta property="og:title" content="beforeword · how the instructions were tested">
+<meta property="og:description" content="Reading criteria, recorded comparisons, and technical checks for beforeword.">
+<meta property="og:url" content="https://beforeword.xyz/model/evaluation/en/">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://beforeword.xyz/model/assets/site-shell/b7c2c446da4a/og-brand-20261005.png">
+<meta name="twitter:title" content="beforeword · how the instructions were tested">
+<meta name="twitter:description" content="Reading criteria, recorded comparisons, and technical checks for beforeword.">
+<meta name="beforeword-version" content="1.3.5">
+<link rel="icon" href="/model/assets/site-shell/b7c2c446da4a/favicon-20261005.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/model/assets/site-shell/b7c2c446da4a/apple-touch-20261005.png">
+
+<link rel="stylesheet" href="/model/assets/public-1.3.5-7fe920efa6e1.css">
+<link rel="stylesheet" href="/model/assets/site-shell/b7c2c446da4a/site-reader-20260920.css">
+<link rel="stylesheet" href="/model/assets/site-shell/b7c2c446da4a/paper-theme-20260920.css">
+<link rel="stylesheet" href="/model/assets/site-shell/b7c2c446da4a/paper-layout-20260920.css">
+<script src="/model/assets/site-shell/b7c2c446da4a/site-reader-20260920.js" defer></script>
+
+
+
+
+<link rel="stylesheet" href="/assets/ui-20261018-v3/navigation.css" data-bw-generated>
+<link rel="stylesheet" href="/assets/ui-20261018-v3/app.css" data-bw-generated>
+<link rel="stylesheet" href="/assets/ui-20261018-v3/document.css" data-bw-generated>
+<link rel="stylesheet" href="/assets/ui-20261018-v4/metadata.css">
+
+<!-- bw-clarity-v5-start:assets -->
+<link rel="stylesheet" href="/assets/ui-20261018-v5/clarity.css" data-bw-generated>
+<script src="/assets/ui-20261018-v5/clarity.js" defer data-bw-generated></script>
+<!-- bw-clarity-v5-end:assets -->
+<link rel="stylesheet" href="/assets/ui-20261018-v8/icons.css">
+</head>
+<body class="bw-shell bw-paper model-page model-report bw-unified bw-document" data-page-section="model" id="top">
+<svg class="svg-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" data-bw-generated=""><defs>
+  <symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></symbol>
+  <symbol id="i-down" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></symbol>
+  <symbol id="i-close" viewbox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"></path></symbol>
+  <symbol id="i-menu" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+  <symbol id="i-copy" viewbox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"></rect><path d="M15 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"></path></symbol>
+  <symbol id="i-external" viewbox="0 0 24 24"><path d="M8 6h10v10M18 6 6 18"></path></symbol>
+  <symbol id="i-check" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></symbol>
+  <symbol id="i-book" viewbox="0 0 24 24"><path d="M12 5v15M3 4c4-1 7 0 9 2 2-2 5-3 9-2v15c-4-1-7 0-9 1-2-1-5-2-9-1Z"></path></symbol>
+  <symbol id="i-spark" viewbox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"></path></symbol>
+  <symbol id="i-device" viewbox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8m-4-4v4"></path></symbol>
+  <symbol id="i-sun" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"></path></symbol>
+  <symbol id="i-moon" viewbox="0 0 24 24"><path d="M20.6 13.1A8.9 8.9 0 0 1 10.9 3.4 9 9 0 1 0 20.6 13.1Z"></path></symbol>
+</defs></svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<span data-bw-generated class="bw-legacy-anchor" aria-hidden="true" id="bw-site-contents"></span><header id="bw-site-top" class="app-header" data-bw-generated="">
+  <div class="header-inner">
+    <a class="brand" href="/en/" aria-label="beforeword — home"><span class="brand-mark" aria-hidden="true"></span><span>beforeword</span></a>
+    <nav class="primary-nav" aria-label="Main navigation">
+      <a href="/en/" data-nav="home" data-text="read">Read</a>
+      <a href="/en/#analysis" data-nav="analysis" data-text="analyze">Examine a text</a>
+    </nav>
+    <div class="header-tools">
+      <button class="icon-button language-button" id="language" aria-label="Переключить на русский">RU</button>
+      <button class="icon-button type-button" id="reading-settings" aria-label="Reading settings" aria-haspopup="dialog">Aa</button>
+      <button class="icon-button" id="menu-button" aria-label="Menu" aria-haspopup="dialog"><svg><use href="#i-menu"></use></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<div class="report-heading"><a class="text-link" href="/model/en/#checks">Back to the AI instructions</a><h1 id="title">beforeword · how the instructions were tested</h1></div>
+<article id="evaluation-content" class="report-prose" aria-labelledby="title"><p>This page explains which text was included in the release, why it was chosen, and what the model responses showed.</p>
+<!-- bw-clarity-v5-start:page -->
+<aside class="bw-author-note " data-bw-generated data-bw-clarity="page" aria-label="beforeword"><p class="bw-note-brandline"><span class="bw-note-logo" aria-hidden="true"></span><span>Author’s note</span></p><h3 class="bw-note-title" id="bw-clarity-page-en">How to read the instruction test report</h3><p class="bw-note-copy">This page explains the choice of edition and the results of individual checks. Read each result together with its version, tasks, models and stated limits.</p><details class="bw-note-more"><summary><span>More context</span><svg class="bw-note-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div class="bw-note-details"><p class="bw-note-detail"><strong>Inspect the material</strong>The JSON links open saved tasks, responses and assessments. The page explains the conclusions drawn from them.</p><p class="bw-note-detail"><strong>Choose instructions</strong>To copy instructions for your own chat, use the return link above the heading.</p></div></details></aside>
+<!-- bw-clarity-v5-end:page -->
+
+<h2 id="report-section-1">1.3.5 · Current development checks</h2>
+<p>The <a href="/model/reports/development-review-1.3.5.json" download="development-review-1.3.5.json">1.3.5 review</a> preserves 37 selected current-candidate RU/EN cases on one model, covering the full and shorter instructions, the structured extension task and the homepage adapter. Earlier failures, subsequent changes, final outputs and source hashes remain in the record. This is a bounded development check, not a guarantee for every answer.</p>
+<p>A separate <code>HuggingFacePlayground12</code> section records six synthetic inputs on each of Qwen3.8-27B and DeepSeek-V4.1-Flash: RU/EN naming questions, arithmetic, translation and selected-text analysis. No material instruction failure was found in those 12 final answers. Minor repetition, emphasis length and translation quotation marks are recorded. DeepSeek used the displayed novita route; Qwen&#x27;s upstream provider was not established.</p>
+<p>The full English core and, for analysis, the v3 task were entered in separate custom Persona fields. Results were captured from the rendered final UI; raw response bytes and the platform&#x27;s final instruction composition were not inspected. The four transcribed analysis objects passed local schema checks, which is not a raw-transport JSON test. This does not verify direct provider APIs, account privacy settings, the installed extension or the beforeword Hugging Face Space protocol. Mistral was unavailable in the observed Playground model picker and was not tested. Historical comparisons below retain their original scope.</p>
+<h2 id="report-section-2">1.3.3 · What the release includes</h2>
+<p>The release includes the full text chosen after comparison with an alternative, plus separately revised medium and compact editions. The results are published alongside the tasks, responses and assessments.</p>
+<p>The alternative full version did not meet the replacement criteria set before testing. Version 1.3.3 therefore includes the full instructions used at the start of the comparison, without further revision. The shorter editions were not part of this comparison.</p>
+<h2 id="report-section-3">What was tested</h2>
+<p>Could an answer complete the task and follow the requested format without presenting its own inferences as part of the supplied text?</p>
+<p>Illustrative example: “The sensor sent no data.” That statement alone does not show that the event did not occur. The response should preserve this distinction. This explains the principle; it is not a model response from the test.</p>
+<p>The test used 12 purpose-written tasks: six in Russian and six in English. They covered terms and alternative readings of a phrase; restating an account while preserving its conditions and reported feelings; reasoning from incomplete logs; exact character copying and JSON; arithmetic; and descriptions of audio or video that was not supplied.</p>
+<p>Each task was sent to each model twice under each of the three conditions. There were 504 requests and 500 final answers. Four requests ended in technical errors and were not graded as substantive answers.</p>
+<h2 id="report-section-4">Models used in the test</h2>
+<p>These model identifiers and providers come from the request records. They identify the routes used in this test; they are not a test of the ChatGPT, Claude or Gemini consumer apps.</p>
+<div class="report-table" role="region" aria-labelledby="report-section-4" tabindex="0"><table><thead><tr><th scope="col">Model identifier</th><th scope="col">Provider</th></tr></thead><tbody><tr><td>Qwen/Qwen3.8-27B</td><td>DeepInfra</td></tr><tr><td>deepseek-ai/DeepSeek-V4.1-Flash</td><td>DeepInfra</td></tr><tr><td>google/gemma-4-31B-it</td><td>Novita</td></tr><tr><td>meta-llama/Llama-3.3-70B-Instruct</td><td>OVHcloud</td></tr><tr><td>moonshotai/Kimi-K3</td><td>Together</td></tr><tr><td>openai/gpt-oss-120b</td><td>DeepInfra</td></tr><tr><td>zai-org/GLM-5.3</td><td>DeepInfra</td></tr></tbody></table></div>
+<h2 id="report-section-5">Results on the same tasks</h2>
+<p>The main comparison includes only task–model combinations with every answer received and every assessment resolved: 79 of 84 combinations, with two repetitions each. Every condition therefore has the same denominator below: 158 answers.</p>
+<div class="report-table" role="region" aria-labelledby="report-section-5" tabindex="0"><table><thead><tr><th scope="col">Condition</th><th scope="col">Met the task and format requirements</th></tr></thead><tbody><tr><td>No beforeword instruction</td><td>109 of 158</td></tr><tr><td>Full instructions retained in 1.3.3</td><td>124 of 158</td></tr><tr><td>Alternative version</td><td>121 of 158</td></tr></tbody></table></div>
+<p>An answer counted when it met the task and format requirements. For example, the calculation had to be completed and the answer had to contain only the requested lines. This is not an overall score for model usefulness.</p>
+<p>A separate part of the test checked whether answers kept the original conditions, distinguished their own inferences from reported facts, and noted missing information. The alternative performed better here: 105 of 134 comparable answers, against 97 for the retained full instructions.</p>
+<p>The alternative had no advantage in consistently meeting all criteria across both repetitions. In five task–model combinations, the existing full instructions met every criterion twice while the alternative did not do so on both attempts. The reverse also occurred in five combinations.</p>
+<h2 id="report-section-6">Why the full instructions were retained</h2>
+<p>The replacement criteria were set before the answers were collected: the alternative had to show consistent improvement without reducing combined task completion and formatting. It performed better on one group of criteria but did not meet the replacement requirements as a whole. Version 1.3.3 therefore includes the full text used at the start of the comparison. Individual clauses were not rewritten in response to this set of tasks.</p>
+<h2 id="report-section-7">How answers were assessed</h2>
+<p>Each of the 500 answers was assessed in two separate model contexts, producing 1,000 original assessments. Forty-one disagreements were adjudicated. Five criteria across three answers remained uncertain; those answers were excluded from the main comparison, along with the technical gaps. They were not turned into passes or failures.</p>
+<p>Two assessment contexts do not amount to a human panel or independent model families. The assessments are judgments against stated requirements. The records preserve the original answers and rationales for further examination.</p>
+<h2 id="report-section-8">Limits of the result</h2>
+<p>The counts concern these 12 tasks and the recorded models, providers and settings. Repetitions and individual criteria are not independent trials. The results do not establish general superiority on every request, error-free performance, future adherence, or the effect of an individual clause.</p>
+<p>Russian-language tasks sent to Llama are marked as an additional exploratory check. The release criteria were also calculated for the Russian subset excluding that route. Shorter editions, installation in apps and future chats were not tested. Earlier studies are not pooled with this one as a measure of improvement.</p>
+<p>The alternative&#x27;s author and the reviewer checking it against the existing text had not seen the new tasks when preparing their contributions. The coordinator had read the tasks and, before the texts were frozen, applied the reviewer&#x27;s requested restorations of conditions and scope from the existing instructions. The entire editorial process is therefore not described as fully blind.</p>
+<p><a href="/model/reports/comparison-1.3.3.json" download="comparison-1.3.3.json">All instructions, tasks, answers, assessments and selection criteria</a>.</p>
+<p>Earlier studies follow below, each under its original version.</p>
+<h2 id="report-section-9">Historical development check of 1.3.1</h2>
+<p><a href="/model/reports/development-smoke-1.3.1.json" download="development-smoke-1.3.1.json">Two recorded responses</a> were collected in separate fresh Codex agent contexts, one task per context, using the full instruction from SKILL.md. The Russian task concerns a reported name, demands to respond and describe oneself, and no offered refusal. The English task examines whether a claim about what a word can do supports a conclusion about identity. Both ask the explanation to include its own additions. The record preserves the exact inputs, responses and instruction hashes. This is a two-task development check, without a baseline, repeated sampling, independent scoring, provider comparison or platform installation test.</p>
+<h2 id="report-section-10">Tasks added for 1.3.0</h2>
+<p>The <a href="/model/reports/eval-cases.jsonl" download="eval-cases.jsonl">evaluation set</a> contains 49 tasks. Twelve new tasks, six in each language, examine the moves from described marks to learned reading and attribution; reported demands for self-description; answering to a name, copying and acknowledgment; identical answers under tasks A and B; and equal treatment of a proposal and an objection. Different vocabulary is used across the symmetry cases: the scope is all written verbal forms, not a list of selected words. Existing copying, translation, calculation, format and urgent-help tasks remain included.</p>
+<p>These are authored inputs and criteria, not collected model responses. Adding them does not establish how 1.3.0 performs. The examples in <a href="/model/reports/examples.md" download="examples.md">examples.md</a> are likewise authored demonstrations. The historical comparison below concerns the preserved 1.2.4 instruction texts, not a test of 1.3.0.</p>
+<h2 id="report-section-11">Development smoke check of 1.3.0</h2>
+<p><a href="/model/reports/development-smoke-1.3.0.json" download="development-smoke-1.3.0.json">Seven recorded responses</a> were collected in two fresh Codex subagent contexts: three Russian requests shared one context and four English requests shared another. They concern reported compulsion, the A/B distinction, symmetric treatment of arguments, the explanation’s own scope, JSON and translation. The record retains the submitted tasks, responses, instruction hashes and observations. It is a small development check, without a baseline, repeated sampling, provider comparison or installation test in OpenAI or Claude.</p>
+<h2 id="report-section-12">Comparison of the 1.2.4 editions</h2>
+<p>This local run collected 72 responses: full, medium and compact instructions, each in Russian and English, with the same 12 requests in every condition. Six requests were Russian and six were English. The <a href="/model/reports/validation-1.2.4.json" download="validation-1.2.4.json">requests, exact instruction texts, responses and assessments</a> are preserved with the instruction hashes.</p>
+<p>The tasks cover a written name for material without an attachment, a demand to use a label versus a demand to accept that one is the description, a test result versus permission to act, a proposed rule, exact copying, JSON and arithmetic. Two reviewers assessed different groups of 36 responses; each response received one assessment against four criteria written before collection. Edition labels and instruction languages were not supplied to the reviewers.</p>
+<p>All six conditions received 48 met ratings out of 48 criteria: 288 ratings in total, with none marked not met or unclear. Separate comparisons of exact Unicode strings and parsed JSON matched the expected results in all 12 checks. These results concern the selected tasks and stated criteria; they do not certify the responses or promise that the result will recur.</p>
+<p>Each condition used one fresh context, but its 12 requests shared that context. All conditions ran in the same available environment with shared host instructions and inherited settings. The contribution of the added instructions was not isolated: there was no condition without beforeword, repeated sampling or comparison between providers. This run did not test application installation, supplied audio or the visual layout on a phone.</p>
+<h2 id="report-section-13">How to examine a response</h2>
+<ol><li>Keep the complete input and response. Compare exact copies by code points or bytes without normalizing Unicode: identical appearance does not establish identical characters.</li><li>Identify the supplied wording, selected reading and additions. Support each assessment with an exact excerpt.</li><li>Check the whole response, including its conclusion: does it include its own added explanations and beforeword&#x27;s wording? Naming a frame or ending with a disclaimer does not excuse an interpretation-free claim elsewhere in the answer. No written verbal form is exempt by name or attributed authority.</li><li>Compare the response with the task. Code-only, JSON-only or exact-quotation requests do not require additional commentary. Repeating familiar beforeword terms does not satisfy a criterion.</li><li>Distinguish criteria that are met, unmet or unclear. Keep refusals and incomplete responses. Give disputed assessments to a second reader without the first conclusion.</li></ol>
+<p>Compare the same task in separate conversations with and without beforeword. Keep the submitted instructions and intermediate messages. Assess installation or saved settings against the result of the relevant operation, not the response announcing it. A saved preference does not establish that the full instructions are available or that future answers will follow them. The <a href="/model/reports/eval-cases.jsonl" download="eval-cases.jsonl">evaluation tasks</a> include constructed conversations, not past model responses or completed checks.</p>
+<h2 id="report-section-14">What the recorded responses showed</h2>
+<p>Responses substituted “does not create objects” for “does not become what it names”, left their own explanations unexamined or treated added terms unclearly. Revised instructions improved some selected cases; other issues remained. The <a href="/model/reports/evaluation-results.json" download="evaluation-results.json">requests, responses and assessments</a> preserve these cases in full.</p>
+<p>This set had no comparison without beforeword or complete repeat after revision. Response text alone could not establish whether code had been executed.</p>
+<h2 id="report-section-15">Limits of the comparison</h2>
+<p>The <a href="/model/reports/validation-2026-10-02.json" download="validation-2026-10-02.json">three-condition comparison</a> contains 180 responses: with full instructions, compact instructions and no beforeword instruction. Full instructions were English; compact instructions were Russian. Length and language effects are not separated. Each series ran once, with questions sharing a context. Different readers assessed different groups, so the ratings do not form a model ranking.</p>
+<p>These responses concern earlier instructions; they do not establish behavior with the current text or across all models. In a separate web-chat check, the submitted prompt&#x27;s Unicode composition differed from the original. Copying discrepancies therefore cannot be attributed solely to the model.</p>
+<h2 id="report-section-16">Technical checks</h2>
+<p>Code checks cover API request and response formats, conversation history, encodings, errors, refusals, incomplete responses, overwrite protection, package structure and reproducible builds.</p>
+<p>Simulated interface checks cover instruction selection, request preparation, downloads, copying and its fallback. Browser appearance, app installation and subsequent AI responses require separate checks.</p></article>
+<div class="report-download"><a class="text-link" href="/model/reports/evaluation.en.md" download="evaluation.en.md">Download the method · MD</a></div>
+</main>
+<footer class="site-footer" data-bw-generated="">
+  <div class="footer-inner">
+    <div class="footer-intro"><a href="/en/" class="brand" aria-label="beforeword — home"><span class="brand-mark" aria-hidden="true"></span><span>beforeword</span></a><p data-text="footerLine">Writing. Reading. What is added.</p></div>
+    <nav class="footer-nav" id="footer-nav" aria-label="Beforeword sections"><section><h3>Start</h3><a href="/en/plain/">In plain words</a><a href="/model/en/">Instruction for AI</a><a href="/beta/en/">Text reading · beta</a></section><section><h3>Read</h3><a href="/research/en/">Research</a><a href="/statement/en/">Statement</a><a href="/text/en/">Text</a><a href="/notes/en/">Notes</a><a href="/music/en/">Music</a><a href="/letters/en/">Letters</a></section><section><h3>Project</h3><a href="/about/en/">About beforeword</a><a href="/support/en/">Support</a><a href="/privacy/en/">How data is used</a></section></nav>
+    <div class="social-block"><h2 data-text="elsewhere">On other platforms</h2><div id="social-links" class="social-links"></div></div>
+    <div class="footer-bottom"><a href="/about/en/#origin" data-content="author">Kirill Shebetov</a><a href="mailto:mail@beforeword.xyz">mail@beforeword.xyz</a></div>
+  </div>
+</footer>
+
+<script defer src="/assets/beforeword/beforeword-reader.js?v=0.3.1"></script>
+<dialog data-bw-shell id="settings-dialog" aria-labelledby="settings-title" class="settings-dialog" data-bw-generated="">
+  <div class="dialog-head"><h2 id="settings-title" data-text="settingsTitle">Reading settings</h2><button class="icon-button" data-close="settings-dialog" aria-label="Close"><svg><use href="#i-close"></use></svg></button></div>
+  <fieldset><legend data-text="appearance">Appearance</legend><div class="choice-group theme-choices">
+    <label><input type="radio" name="theme" value="system"><span class="theme-option"><svg aria-hidden="true"><use href="#i-device"></use></svg><span data-text="systemTheme">Auto</span></span></label>
+    <label><input type="radio" name="theme" value="light"><span class="theme-option"><svg aria-hidden="true"><use href="#i-sun"></use></svg><span data-text="lightTheme">Light</span></span></label>
+    <label><input type="radio" name="theme" value="dark"><span class="theme-option"><svg aria-hidden="true"><use href="#i-moon"></use></svg><span data-text="darkTheme">Dark</span></span></label>
+  </div><p class="caption theme-note" data-text="autoThemeNote">Auto follows your device’s light or dark appearance.</p></fieldset>
+  <fieldset><legend data-text="textSize">Text size</legend><div class="choice-group size-choices">
+    <label><input type="radio" name="size" value="18"><span>18</span></label>
+    <label><input type="radio" name="size" value="20"><span>20</span></label>
+    <label><input type="radio" name="size" value="22"><span>22</span></label>
+  </div></fieldset>
+  <p class="settings-sample reading-text" data-content="principle">A word does not become what it names. “Names” is a word too.</p><p class="caption" data-text="settingsNote">Your settings are saved on this device.</p>
+  <button class="button primary dialog-done" data-close="settings-dialog" data-text="done">Done</button>
+</dialog>
+
+<dialog data-bw-shell id="navigation-dialog" aria-labelledby="navigation-title" class="navigation-dialog" data-bw-generated=""><div class="dialog-head"><h2 id="navigation-title" data-text="menu">Menu</h2><button class="icon-button" data-close="navigation-dialog" aria-label="Close"><svg><use href="#i-close"></use></svg></button></div><nav id="dialog-nav" aria-label="Beforeword sections"></nav></dialog>
+
+<dialog data-bw-shell id="help-dialog" aria-labelledby="help-title" class="help-dialog" data-bw-generated=""><div class="dialog-head"><h2 id="help-title" data-text="helpTitle">How to use this site</h2><button class="icon-button" data-close="help-dialog" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"></use></svg></button></div><div class="help-intro"><span class="brand-mark" aria-hidden="true"></span><p data-text="helpIntro">Start wherever you feel comfortable. Read and explore at your own pace.</p></div><ol class="help-steps"><li><h3 data-text="helpReadTitle">Read the statement</h3><p data-text="helpReadBody">The author introduces the questions about names, documents and rules behind beforeword.</p><a href="#story" data-text="helpReadAction">Open the statement</a></li><li><h3 data-text="helpTryTitle">Try a short example</h3><p data-text="helpTryBody">Change or erase the word “I”. The explanation beside it tells you what the example is meant to show.</p><a href="#demo" data-text="helpTryAction">Go to the example</a></li><li><h3 data-text="helpTextTitle">Explore an example response</h3><p data-text="helpTextBody">See how beforeword examines a phrase about a person’s name. Viewing the example uses no response allowance. Submit your own text in the question field.</p><a href="#example" data-text="helpTextAction">Open the example response</a></li></ol><p class="caption" data-text="helpSettings">Use Aa at the top to change the text size and appearance. EN / RU switches the language.</p><button class="button primary dialog-done" data-close="help-dialog" data-text="done">Done</button></dialog>
+
+<script defer src="/assets/ui-20261018-v8/navigation.js" data-bw-generated></script>
+<script defer src="/assets/ui-20261018-v6/content.js" data-bw-generated></script>
+<script defer src="/assets/ui-20261018-v3/interface-copy.js" data-bw-generated></script>
+<script defer src="/assets/ui-20261018-v3/site-shell.js" data-bw-generated></script>
+<script defer src="/assets/ui-20261018-v3/document-enhancements.js" data-bw-generated></script>
+</body>
+</html>

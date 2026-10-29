@@ -59,8 +59,14 @@ test('all twelve authored language examples use the compact contract with one sh
  assert.equal(examples.length,6);
  for(const example of examples)for(const language of ['ru','en']){const supplied={text:example.text[language],language},r=Core.validateReport(example.report[language],supplied);assert.equal(r.items.length,1);assert.deepEqual(Object.keys(r.items[0]),['quote','reading']);assert.equal((r.items[0].reading.match(/\*\*[^\n*]+\*\*/gu)||[]).length,1);assert.ok(r.items[0].reading.length<500);assert.equal(r.items[0].quote.text,supplied.text);}
 });
-test('release manifests remain synchronized at 0.5.6 with the original permission sets',()=>{
+test('release manifest 0.5.8 preserves every baseline field except version',()=>{
  const base=path.resolve(__dirname,'../extension'),read=name=>JSON.parse(fs.readFileSync(path.join(base,name),'utf8'));
- const manifest=read('manifest.json');assert.equal(manifest.version,'0.5.6');assert.deepEqual(manifest,read('manifest.chromium.json'));assert.equal(read('manifest.safari.json').version,'0.5.6');
+ const manifest=read('manifest.json');assert.equal(manifest.version,'0.5.8');const original=JSON.parse(fs.readFileSync(path.join(__dirname,'release-policy.json'),'utf8')).baselineManifest;assert.deepEqual({...manifest,version:original.version},original);
+ assert.deepEqual(manifest.permissions,['activeTab','scripting','storage','sidePanel','contextMenus']);assert.deepEqual(manifest.host_permissions,['https://api.beforeword.xyz/*']);assert.deepEqual(manifest.optional_permissions,['identity']);
+});
+
+test('Chrome manifests use 0.5.8 with unchanged access; Safari stays historical',()=>{
+ const base=path.resolve(__dirname,'../extension'),read=name=>JSON.parse(fs.readFileSync(path.join(base,name),'utf8'));
+ const manifest=read('manifest.json');assert.equal(manifest.version,'0.5.8');assert.deepEqual(manifest,read('manifest.chromium.json'));assert.equal(read('manifest.safari.json').version,'0.5.6');
  assert.deepEqual(manifest.permissions,['activeTab','scripting','storage','sidePanel','contextMenus']);assert.deepEqual(manifest.host_permissions,['https://api.beforeword.xyz/*']);assert.deepEqual(manifest.optional_permissions,['identity']);
 });

@@ -4,6 +4,38 @@ Each entry describes that release or dated update. Test results apply to the ins
 
 Каждая запись относится к указанному выпуску или дате. Результаты проверок относятся к использованной тогда инструкции и условиям.
 
+## 1.4.1 · 2026-10-29
+
+### English
+
+A stand-alone “Can you think?” must not acquire a definition such as task analysis merely to justify “yes”, or become a different question about subjective experience. The selected instruction keeps the actual wording and the claim a proposed answer adds. Explicitly defined operations, ordinary practical work, authored voices and urgent help remain available.
+
+- Keep the direction of the distinction: the written expression does not become what it names. Do not substitute a claim about writing creating or changing its referent.
+- Keep an attributed account attributed through every dependent clause. A message claiming an event does not by itself establish that event; a later faithful rewrite does not repair an earlier unsupported assertion.
+- Preserve reported pressure and lack of choice. When asked for Beforeword's proposal, retain its broad scope and the responsibility of the party imposing the requirement to remove it without a learned refusal or replacement description.
+- Pin one full EN/RU core across the instruction sources and native skill packages; use the same full English bytes in Text Mode and the reader adapter. Reader schema and source-trust rules remain an explicit application contract. Medium and compact EN/RU texts are separate editions with separate limits and checks.
+
+The selected full-English revision was reviewed on 40 original cases plus 12 independently prepared holdouts. The principal definition substitution, boundary-direction and attribution failures observed in earlier candidates were corrected in that run. This was not an all-criteria pass: unrequested qualifications remained in three Russian answers; generic identity grounding remained a capture limit, and one quoted phrase changed initial capitalization. Separate bounded checks cover the other instruction editions. Six reader requests passed transport, schema and exact-source quotation checks; one still added an unnecessary confirmation/denial qualification. These observations do not establish universal adherence, other-model performance, native client installation or public-directory acceptance. [Exact inputs, outputs, selected hashes, reviews and limitations](references/development-review-1.4.1.json).
+
+Historical 1.3.5 downloads and results, the research 1.3.6 candidate and earlier source history remain preserved. Rebuilt native packages, guide and download manifests describe prepared artifacts; publication and installation require their own evidence.
+
+### Русский
+
+К отдельному вопросу «Ты можешь думать?» нельзя добавлять определение вроде разбора задач ради ответа «да» или заменять его вопросом о субъективном опыте. Выбранная инструкция сохраняет исходную формулировку и утверждение, которое добавил бы ответ. Явно заданные операции, обычная практическая работа, авторский голос и срочная помощь сохраняются.
+
+- Сохраняется направление различия: написанное выражение не становится тем, что им называют. Это не заменяется утверждением о создании или изменении называемого записью.
+- Сообщённое утверждение сохраняет атрибуцию в каждой зависимой фразе. Сообщение о событии само по себе не устанавливает событие; поздний точный пересказ не исправляет прежнего необоснованного утверждения.
+- Сохраняются сообщённые давление и отсутствие выбора. По запросу об общественном предложении Beforeword удерживаются его общий охват и ответственность предъявляющего требование: снять его без выученного отказа или замены описания.
+- Один полный текст EN/RU закреплён в исходниках инструкции и пакетах навыка; те же английские байты предназначены для Text Mode и адаптера reader. Схема ответа и граница доверия к исходному фрагменту остаются явным заданием приложения. Средняя и краткая редакции EN/RU самостоятельны и имеют собственные ограничения и проверки.
+
+Выбранная полная английская редакция проверена на 40 исходных заданиях и 12 независимо подготовленных дополнительных. В этом прогоне исправлены обнаруженные у прежних кандидатов подстановка определения, изменение направления границы и потеря атрибуции. Не все критерии выполнены: в трёх русских ответах остались незапрошенные оговорки; основания общего обозначения сервиса ограничены доступной записью, а в одной цитате изменён регистр первой буквы. Для остальных редакций проведены отдельные ограниченные проверки. Шесть запросов reader прошли транспорт, схему и точность цитирования исходника; один сохранил лишнюю оговорку о подтверждении или отрицании. Эти наблюдения не устанавливают всеобщее следование, результаты других моделей, установку в приложениях или принятие в публичный каталог. [Точные входы, ответы, выбранные хэши, оценки и ограничения](references/development-review-1.4.1.json).
+
+Исторические загрузки и результаты 1.3.5, исследовательский кандидат 1.3.6 и прежняя история исходников сохранены. Собранные пакеты, руководство и манифесты описывают подготовленные файлы; публикация и установка требуют собственных подтверждений.
+
+Compact revision3 was rejected after three material failures per language. The separately frozen compact repair was checked on nine existing cases per language: the original semantic criteria were met, while five answers retained nonblocking first-person or scope findings. The selected full and medium bytes were unchanged. A separate twelve-response comparison is included with its supplied-context limitation; these records do not establish general superiority or universal adherence.
+
+Краткая редакция3 отклонена после трёх существенных нарушений на каждом языке. Отдельно зафиксированное исправление проверено на девяти прежних задачах каждого языка: первоначальные смысловые критерии выполнены, в пяти ответах остались замечания к первому лицу или лишним пояснениям. Полная и средние редакции не менялись. Отдельное сравнение из двенадцати ответов включено с оговоркой о различии переданного контекста; общие преимущества или безусловное соблюдение инструкции не заявляются.
+
 ## 1.3.5 · 2026-10-15
 
 ### English

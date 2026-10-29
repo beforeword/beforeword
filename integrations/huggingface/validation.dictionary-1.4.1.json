@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "instruction_version": "1.4.1",
+  "tests": 10,
+  "scope": "Recorded dictionary fixture unit tests; external connections disabled",
+  "sha256": {
+    "en": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
+    "ru": "a644e3f7e1d56b5949c07b04c7f6cbcf038dc26a0c010c6ae79f4b2adba8cc8f"
+  }
+}

@@ -21,6 +21,7 @@ from package_plugins import build_bundles, skill_text
 from render_report import parse_report
 import public_updates
 import site_wrapper
+import current_model_wrapper
 
 ROOT = Path(__file__).resolve().parents[1]
 SHELL_STYLES = ('site-reader-20260920.css', 'paper-theme-20260920.css', 'paper-layout-20260920.css')
@@ -34,8 +35,8 @@ APP_URLS = (
 )
 COPY = {
  'ru': {
-  'title':'beforeword для ИИ — начать в своём чате',
-  'description':'Добавь beforeword в свой ИИ-чат. Полная инструкция, настройки приложений, навыки и API: на русском и английском.',
+  'title':'ИИ как инструмент — Beforeword',
+  'description':'Выученными словами заменили себя, других и мир. Инструкция Beforeword для ИИ, практические задачи и предложение снять требования принимать описания.',
   'skip':'К содержимому','home_label':'beforeword — главная','nav_label':'Разделы сайта','menu':'Меню','language_label':'Язык',
   'hero_label':'ДЛЯ ИИ','headline':'Сначала написанное.',
   'intro':'«Я согласен» — написанная строка. Ниже она повторяется дважды. Сравни задания, после которых она появляется.',
@@ -102,8 +103,8 @@ COPY = {
   'report_titles':['Прочитать методику и результаты','Скачать прежнее сравнение редакций 1.2.4 · JSON','Скачать сведения о файлах · JSON','Скачать контрольные суммы · TXT'],
  },
  'en': {
-  'title':'beforeword for AI — start in your own chat',
-  'description':'Add beforeword to your AI chat. Full instructions, app settings, skills, and API tools in English and Russian.',
+  'title':'AI as a tool — Beforeword',
+  'description':'Learned words have replaced ourselves, others and the world. Beforeword instructions for AI, practical tasks and removing demands to accept descriptions.',
   'skip':'Skip to content','home_label':'beforeword — home','nav_label':'Site sections','menu':'Menu','language_label':'Language',
   'hero_label':'FOR AI','headline':'Start with the writing.',
   'intro':'“I agree” is a written line. It appears twice below. Compare the tasks that precede it.',
@@ -318,7 +319,7 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
     values['PUBLIC_UPDATES'] = '' if evaluation else public_updates.render(language)
     template = read('assets/public.template.html')
     if evaluation:
-        back_url = '/model/'+('en/' if language == 'en' else '')+'#checks'
+        back_url = '/model/'+('en/' if language == 'en' else '')+'#medium-details'
         back_label = 'Вернуться к инструкции для ИИ' if language == 'ru' else 'Back to the AI instructions'
         download_label = 'Скачать текст методики · MD' if language == 'ru' else 'Download the method · MD'
         main = ('<main id="main" tabindex="-1">\n'
@@ -336,7 +337,7 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
     result = re.sub(r'__([A-Z][A-Z0-9_]+)__',lambda m:values[m.group(1)],template)
     if re.search(r'__[A-Z][A-Z0-9_]+__',result):
         raise ValueError('unresolved public template placeholder')
-    return site_wrapper.apply(result, language, evaluation=evaluation)
+    return current_model_wrapper.apply(result, language, evaluation=evaluation, core=full, version=build_guide.VERSION, date=build_guide.DATE, description=t['description'])
 
 def build(output: Path, repo_url: str | None = None, home_source: Path | None = None) -> Path:
     build_guide.require_selected(ROOT)
@@ -377,11 +378,15 @@ def build(output: Path, repo_url: str | None = None, home_source: Path | None = 
         report_directory = model/'evaluation'/('en' if language == 'en' else '')
         report_directory.mkdir(parents=True,exist_ok=True)
         (report_directory/'index.html').write_text(render(language,bundles,connectors,repo_url,evaluation=True),encoding='utf-8')
-    for name in ('development-review-1.3.5.json','development-review-1.3.4.json','comparison-1.3.3.json','evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md'):
+    for name in ('development-review-1.4.1.json','development-review-1.3.5.json','development-review-1.3.4.json','comparison-1.3.3.json','evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md'):
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))
     public_updates.write_assets(model)
+    branding=model/'assets'/('brand-'+build_guide.VERSION)
+    branding.mkdir(parents=True,exist_ok=True)
+    for filename in ('favicon.svg','avatar-paper-512.png','wordmark-light.svg','wordmark-dark.svg'):
+        shutil.copyfile(ROOT/'brand'/filename,branding/filename)
     if home_source is not None:
         from sync_home import sync
         sync(home_source, site)
@@ -389,8 +394,8 @@ def build(output: Path, repo_url: str | None = None, home_source: Path | None = 
     shutil.copytree(ROOT/'assets'/'history',model/'history',dirs_exist_ok=True)
     manifest={'version':build_guide.VERSION,'date_utc':build_guide.DATE,'public_paths':['/model/','/model/en/','/model/evaluation/','/model/evaluation/en/'],
         'github_url':repo_url,'aliases':aliases,'micro_alias_note':'Legacy micro URLs serve the current compact instruction, not a separate edition.',
-        'external_site_assets':site_wrapper.load()['external_assets'],
-        'site_wrapper_snapshot':'assets/site-wrapper/published-20261013.json',
+        'external_site_assets':current_model_wrapper.external_assets(),
+        'site_wrapper_snapshot':'assets/site-wrapper/published-20261030/manifest.json',
         'historical_pages':['/model/history/2026-09-28/','/model/history/2026-09-28/en/'],
         'history_manifest':'history/2026-09-28/snapshot.json',
         'artifact_checksums':'SHA256SUMS.txt','guide_manifest':'toolkit/beforeword_release.json'}

@@ -1,0 +1,140 @@
+{
+  "version": "0.5.8",
+  "instructionVersion": "1.4.1",
+  "baselineManifest": {
+    "manifest_version": 3,
+    "name": "__MSG_extensionName__",
+    "description": "__MSG_extensionDescription__",
+    "version": "0.5.6",
+    "default_locale": "en",
+    "minimum_chrome_version": "116",
+    "permissions": [
+      "activeTab",
+      "scripting",
+      "storage",
+      "sidePanel",
+      "contextMenus"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_title": "__MSG_actionTitle__",
+      "default_icon": {
+        "16": "icons/icon-16.png",
+        "32": "icons/icon-32.png",
+        "48": "icons/icon-48.png",
+        "128": "icons/icon-128.png"
+      }
+    },
+    "icons": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    },
+    "commands": {
+      "_execute_action": {
+        "suggested_key": {
+          "default": "Alt+Shift+B",
+          "mac": "Alt+Shift+B"
+        }
+      }
+    },
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'none'; connect-src https: http://localhost:* http://127.0.0.1:*; base-uri 'none'"
+    },
+    "side_panel": {
+      "default_path": "panel.html"
+    },
+    "host_permissions": [
+      "https://api.beforeword.xyz/*"
+    ],
+    "optional_host_permissions": [
+      "https://*/*",
+      "http://*/*"
+    ],
+    "homepage_url": "https://beforeword.xyz/",
+    "incognito": "not_allowed",
+    "options_ui": {
+      "page": "panel.html",
+      "open_in_tab": true
+    },
+    "optional_permissions": [
+      "identity"
+    ]
+  },
+  "baselineArchiveSha256": "1356ddd84aef8da61cc25e78dac94914c7b950d54d184401a8e1018c250b509b",
+  "runtimeFiles": [
+    "_locales/en/messages.json",
+    "_locales/ru/messages.json",
+    "analysis-core.js",
+    "analysis-examples.js",
+    "analysis-model.js",
+    "assets/brand.svg",
+    "assets/icon-source.svg",
+    "background.js",
+    "dictionary-core.js",
+    "dictionary-ui.js",
+    "dictionary.css",
+    "form-core.js",
+    "icons/icon-128.png",
+    "icons/icon-16.png",
+    "icons/icon-32.png",
+    "icons/icon-48.png",
+    "instructions.js",
+    "manifest.json",
+    "pages.css",
+    "pages.js",
+    "panel.css",
+    "panel.html",
+    "panel.js",
+    "platform.js",
+    "privacy.html",
+    "provider-auth.js",
+    "providers.js",
+    "reading-guide.css",
+    "reading-guide.js",
+    "reading-surface.js",
+    "selection.js",
+    "service-config.js",
+    "welcome.html"
+  ],
+  "mutableFiles": [
+    "analysis-core.js",
+    "analysis-examples.js",
+    "instructions.js",
+    "pages.js",
+    "pages.css",
+    "panel.js",
+    "panel.html",
+    "panel.css",
+    "privacy.html",
+    "welcome.html",
+    "manifest.json",
+    "assets/brand.svg",
+    "assets/icon-source.svg",
+    "icons/icon-16.png",
+    "icons/icon-32.png",
+    "icons/icon-48.png",
+    "icons/icon-128.png",
+    "_locales/en/messages.json",
+    "_locales/ru/messages.json",
+    "selection.js"
+  ],
+  "protectedFiles": {
+    "reading-guide.js": "0dadc8b27a5378e468b02912e26de46a11dcb3a72e3dab1f6891d21811829239",
+    "analysis-model.js": "db0c0c5bd14dfe444a2e89f860352ad3cddee7ec1262682eb151dad3b008e75d",
+    "background.js": "7aecf321013967b6f9b1779535d680aa12d8c734a60bf77728d939c61006bc05",
+    "form-core.js": "9bcf77fc461d3fee7612794158d21f639f4c21a096c1a22cfd9b87a894efac92",
+    "reading-surface.js": "8df57052d8f73fc2bdb9588db768a0758da1888fae4c227e579395a234a24d1a",
+    "provider-auth.js": "3d27846dc93ec7dc7340f121edf04820336ac471c0823ab3c03423e54d5a15c8",
+    "dictionary.css": "7d6afd935e67ad371ba5e19422c96c7dde5b9f2e0138626eff11c9d446e147fe",
+    "reading-guide.css": "cabb4af02ce746da252473a02bbe0dde45a7b603c1b59674b9b9b5463a9237c2",
+    "providers.js": "b594b030903a03c3bd233e55f8dac4916007debb5dc453f758082b3bc3ffe43a",
+    "platform.js": "c8f027e9aae527d5fafd474c8bb1cd1410629747d833e9d3d906fffce2526dc8",
+    "dictionary-core.js": "a6af224d9b04d551b39c68c797eaa133c0e8298c72f5f0af7604540f3693dd4b",
+    "dictionary-ui.js": "795ea1c7d3f6da1462d7a04e0042eaf30cb2b96c2c89ab437687b0060c361855",
+    "service-config.js": "6f939f50e9cc827aab16ec89ee5aae15e6fef3de04a6a96f0634883b489d4a64"
+  }
+}

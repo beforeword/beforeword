@@ -1,12 +1,12 @@
 {
   "name": "beforeword",
-  "version": "1.3.5",
-  "description": "Examine written forms and added readings; stop where an explanation would present writing as what it names.",
+  "version": "1.4.1",
+  "description": "Examine learned words about oneself, others and the world. Preserve the wording and show what a reading adds, including the explanation itself.",
   "author": {
     "name": "beforeword",
     "url": "https://beforeword.xyz"
   },
-  "homepage": "https://beforeword.xyz/model/en/",
+  "homepage": "https://beforeword.xyz/en/",
   "repository": "https://github.com/beforeword/beforeword",
   "keywords": [
     "beforeword",

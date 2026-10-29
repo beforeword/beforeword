@@ -29,9 +29,34 @@ def build(source):
         path = source / name
         if path.is_symlink() or any(p.is_symlink() for p in path.parents):
             raise ValueError('Symlink source refused: ' + name)
-        entries[name] = path.read_bytes()
+        before = path.stat()
+        data = path.read_bytes()
+        after = path.stat()
+        if not data or len(data) != before.st_size or (before.st_size, before.st_mtime_ns, before.st_ino) != (after.st_size, after.st_mtime_ns, after.st_ino):
+            raise ValueError('Incomplete or changing source refused: ' + name)
+        entries[name] = data
+    policy = json.loads((ROOT / 'tools/release-policy.json').read_text())
+    if set(entries) != set(policy['runtimeFiles']):
+        raise ValueError('Runtime file allowlist changed')
+    for name, expected in policy['protectedFiles'].items():
+        if digest(entries[name]) != expected:
+            raise ValueError('Protected runtime changed: ' + name)
+    selection_guard = json.loads((ROOT / 'tools/selection-brand-guard.json').read_text())
+    if not selection_guard['reversalVerified'] or digest(entries['selection.js']) != selection_guard['candidateSha256']:
+        raise ValueError('Selection changed beyond reviewed branding')
+    pin = json.loads((ROOT / 'release-pin.json').read_text())
+    prefix = "'use strict';\nglobalThis.BeforewordInstructions = Object.freeze({version:'1.4.1',core:"
+    wrapped = entries['instructions.js'].decode('utf-8')
+    if not wrapped.startswith(prefix) or not wrapped.endswith("});\n"):
+        raise ValueError('Unexpected instruction wrapper')
+    core = json.loads(wrapped[len(prefix):-4]).encode('utf-8')
+    if pin['version'] != '1.4.1' or digest(core) != pin['sha256'] or len(core) != pin['bytes']:
+        raise ValueError('Complete core differs from approved pin')
     manifest = json.loads(entries['manifest.json'])
-    if manifest['manifest_version'] != 3 or manifest['version'] != '0.5.6':
+    comparison = dict(manifest, version=policy['baselineManifest']['version'])
+    if comparison != policy['baselineManifest']:
+        raise ValueError('Manifest field changed beyond release version')
+    if manifest['manifest_version'] != 3 or manifest['version'] != '0.5.8':
         raise ValueError('Unexpected release manifest')
     if set(manifest['permissions']) != {'activeTab', 'scripting', 'storage', 'sidePanel', 'contextMenus'}:
         raise ValueError('Review changed permissions before packaging')
@@ -44,7 +69,7 @@ def build(source):
     out = io.BytesIO()
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for name, data in sorted(entries.items()):
-            info = zipfile.ZipInfo(name, (2026, 10, 15, 0, 0, 0))
+            info = zipfile.ZipInfo(name, (2026, 10, 30, 0, 0, 0))
             info.create_system = 3
             info.external_attr = (stat.S_IFREG | 0o644) << 16
             info.compress_type = zipfile.ZIP_DEFLATED
@@ -64,10 +89,10 @@ def main():
     if raw != build(args.source.resolve())[0]:
         raise ValueError('Non-deterministic build')
     args.output.mkdir(parents=True, exist_ok=True)
-    name = 'beforeword-0.5.6-chrome.zip'
+    name = 'beforeword-0.5.8-chrome.zip'
     (args.output / name).write_bytes(raw)
-    report = {'version': '0.5.6', 'file': name, 'sha256': digest(raw), 'bytes': len(raw),
-              'files': members, 'reproducible': True, 'storeSubmitted': False}
+    report = {'version': '0.5.8', 'file': name, 'sha256': digest(raw), 'bytes': len(raw),
+              'files': members, 'instruction': json.loads((ROOT / 'release-pin.json').read_text()), 'reproducible': True, 'storeSubmitted': False, 'installedTested': False, 'installedExtensionProviderTested': False}
     (args.output / 'chrome-manifest.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps({k: v for k, v in report.items() if k != 'files'}))
 

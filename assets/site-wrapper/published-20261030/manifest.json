@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "captured_utc": "2026-10-29T21:34:19.741104+00:00",
+  "purpose": "Current published model proposal page and evaluation shell; retain source outside authorized instruction/report and metadata updates.",
+  "pages": {
+    "model/index.html": {
+      "sha256": "9a5830555709da9d572e4cf1ccb811f4c5c31600f7dfc18c83903f853aefc24b",
+      "bytes": 111194
+    },
+    "model/en/index.html": {
+      "sha256": "22fe451b09fc6ee3c50951e403ed7caed232b32956df9eb0d40ef5aa7b009f75",
+      "bytes": 84476
+    },
+    "model/evaluation/index.html": {
+      "sha256": "fd57385cd1a167575bdaa873d857ad1b5157ac3106d35f8930990d02848a7ac7",
+      "bytes": 41043
+    },
+    "model/evaluation/en/index.html": {
+      "sha256": "17008a8d817e29679c440b5e869fc9bc908b6adb2b5e6039f44a42593bb59038",
+      "bytes": 29402
+    }
+  }
+}

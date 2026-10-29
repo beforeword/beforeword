@@ -1,0 +1,23 @@
+{
+  "status": "Added after revision2 outputs; frozen before revision3 outputs",
+  "based_on": "../revision2-independent-review.json",
+  "unchanged_prior_criteria": "Original40 cases and first postrun addendum are byte-identical. Root holdout12 criteria remain with their existing frozen record.",
+  "additional_criteria": [
+    {
+      "id": "boundary_direction",
+      "applies_when": "An answer states the written-form boundary.",
+      "criterion": "The written expression does not become what it names. Do not substitute a claim that writing does not create, alter or make its referent match a description."
+    },
+    {
+      "id": "quote_trigger_scope",
+      "applies_when": "A quoted term appears in an examination without an actual request for advice or reported need.",
+      "criterion": "The term alone does not call for advice, a purpose, permission, a practical assurance or possible use of the definition. Stop when the requested relation and boundary are shown; preserve actual urgent and practical requests."
+    },
+    {
+      "id": "attribution_every_clause",
+      "applies_when": "A message or quotation is interpreted or summarized.",
+      "criterion": "Keep reported claims attributed throughout, including the first short conclusion. A later faithful rewrite does not repair an earlier unqualified event assertion."
+    }
+  ],
+  "identity_note": "Do not prohibit a supported generic service role. The previous API-role responses matched actual transport; unobserved provider identity context remains a review limit, not evidence of a false product name."
+}

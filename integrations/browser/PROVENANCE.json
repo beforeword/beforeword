@@ -1,7 +1,7 @@
 {
   "kind": "verified recovered extension source",
   "sourceVersion": "0.5.5",
-  "intendedVersion": "0.5.6",
+  "intendedVersion": "0.5.8",
   "source": "Browser source recovered from the 0.5.5 release, matched to its reconstructed Chrome ZIP, then revised for 0.5.6. This file records the baseline rather than certifying final release content.",
   "chromeZipSHA256": "560d56e1b59c92602d1ada8a92ee6fdccf0f6338aabfa5c3872e53de9018c096",
   "canonicalGitRepositoryConfirmed": true,
@@ -183,5 +183,16 @@
     }
   ],
   "repository": "https://github.com/beforeword/beforeword",
-  "location": "integrations/browser"
+  "location": "integrations/browser",
+  "currentRelease": {
+    "version": "0.5.8",
+    "coreVersion": "1.4.1",
+    "coreSha256": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
+    "chromeZipSha256": "a3b33786d3e9a9cbd72ce1233948a4c736f4b199fbf85e0b2c1032ea27aa2495",
+    "runtimeFileCount": 33,
+    "basis": "Exact approved runtime and deterministic builder, synchronized byte-for-byte. Baseline history above retained.",
+    "nativeInstallationVerified": false,
+    "storeSubmissionVerified": false
+  },
+  "baselineIntendedVersion": "0.5.6"
 }

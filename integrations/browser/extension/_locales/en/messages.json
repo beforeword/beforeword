@@ -3,7 +3,7 @@
     "message": "beforeword — BETA"
   },
   "extensionDescription": {
-    "message": "An exact excerpt with a short proposed reading beside it. The writing remains writing."
+    "message": "An exact excerpt beside the added explanation. A word does not become what it names."
   },
   "actionTitle": {
     "message": "Open selected text in beforeword"

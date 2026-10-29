@@ -7,6 +7,7 @@ import hashlib
 import html
 import io
 import json
+import re
 from pathlib import Path
 import stat
 import zipfile
@@ -31,13 +32,13 @@ def evaluation_html(source, language):
 
 def source_bundle():
     files = {}
-    for folder in ('assets', 'references', 'scripts', 'docs', '.github', 'catalog', 'plugins', 'integrations'):
+    for folder in ('assets', 'brand', 'references', 'scripts', 'docs', '.github', 'catalog', 'plugins', 'integrations'):
         for path in sorted((ROOT / folder).rglob('*')):
-            if any(part in ('node_modules', 'build', '__pycache__', '.git') for part in path.relative_to(ROOT).parts):
+            if any(part in ('node_modules', 'build', 'dist', '__pycache__', '.git') for part in path.relative_to(ROOT).parts):
                 continue
             if path.is_symlink():
                 raise ValueError('Source bundle refuses symlinks: ' + str(path.relative_to(ROOT)))
-            if path.is_file() and (path.suffix in ('.py', '.cjs', '.md', '.txt', '.json', '.jsonl', '.html', '.svg', '.css', '.js', '.yml', '.yaml', '.woff', '.woff2', '.png') or path.name == 'LICENSE') and path.name != 'release.json' and not path.is_relative_to(ROOT / 'catalog' / 'packages'):
+            if path.is_file() and (path.suffix in ('.py', '.cjs', '.mjs', '.md', '.txt', '.json', '.jsonl', '.html', '.svg', '.css', '.js', '.yml', '.yaml', '.woff', '.woff2', '.png') or path.name in ('LICENSE', '.gitignore')) and path.name != 'release.json' and not path.is_relative_to(ROOT / 'catalog' / 'packages'):
                 files[path.relative_to(ROOT).as_posix()] = path.read_bytes()
     files['SKILL.md'] = (ROOT / 'SKILL.md').read_bytes()
     for name in ('README.md', 'README.ru.md', 'CHANGELOG.md', 'LICENSE', 'LICENSE.txt', 'LICENSE.md', '.gitignore'):
@@ -105,7 +106,10 @@ def build(output):
     data['sources'] = list(sources.values())
     data['developer'] = source_bundle()
     serialized = json.dumps(data, ensure_ascii=False).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
-    brand_svg = read('assets/beforeword.svg').replace('<svg ', '<svg width="36" height="36" aria-hidden="true" focusable="false" ', 1)
+    brand_svg = read('assets/beforeword.svg')
+    brand_svg = re.sub(r'\s(?:width|height|role|aria-label)="[^"]*"', '', brand_svg)
+    brand_svg = re.sub(r' style="color:#[a-fA-F0-9]+"', '', brand_svg)
+    brand_svg = brand_svg.replace('<svg ', '<svg style="display:block;width:min(220px,42vw);height:auto" aria-hidden="true" focusable="false" ', 1)
     result = read('assets/guide.template.html').replace('__BRAND_SVG__', brand_svg).replace('__DATA__', serialized).replace('__STATIC_FALLBACK__', fallback(data)).replace('__EVALUATION_RU__', data['evaluationHtmlRu']).replace('__EVALUATION_EN__', data['evaluationHtml'])
     if any(token in result for token in ('__BRAND_SVG__', '__DATA__', '__STATIC_FALLBACK__', '__EVALUATION_RU__', '__EVALUATION_EN__')):
         raise ValueError('unresolved template placeholder')
@@ -121,6 +125,12 @@ def build(output):
     smoke = json.loads(read('references/development-smoke-1.3.0.json'))
     previous_smoke = json.loads(read('references/development-smoke-1.3.1.json'))
     comparison = json.loads(read('references/comparison-1.3.3.json'))
+    selected_review_path = 'references/development-review-1.4.1.json'
+    selected_review_text = read(selected_review_path)
+    selected_review = json.loads(selected_review_text)
+    for lang in ('en', 'ru'):
+        if selected_review['selected_editions']['core'][lang]['sha256'] != sha(data['core'][lang]):
+            raise ValueError('Current development record does not match selected core: ' + lang)
     current_review_path = 'references/development-review-1.3.5.json'
     current_review_text = read(current_review_path)
     current_review = json.loads(current_review_text)  # A malformed review must not enter a release.
@@ -135,11 +145,17 @@ def build(output):
       'native_bundles':{lang:{key:{k:v for k,v in record.items() if k!='data'} for key,record in bundles.items()} for lang,bundles in data['bundles'].items()},
       'developer_bundle':{k:v for k,v in data['developer'].items() if k!='data'},
       'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
-      'evaluation_scope':'The 1.3.5 review preserves 37 selected current-candidate RU/EN cases on one model across full and short instructions, the structured extension task and the homepage adapter. A separate HuggingFacePlayground12 section records six synthetic inputs on each of two models, with 12 rendered final answers and explicit capture limits. These are bounded observations, not a controlled model comparison, a guarantee of future adherence, or verification of direct provider APIs, privacy settings or installed clients. The build runs no model; historical records retain their original instruction versions.',
+      'evaluation_scope':'The build runs no model. Each record below retains its instruction version, edition and adapter. Historical findings do not establish behavior of the current selected bytes; the selected instruction review is recorded separately with exact instruction hashes.',
       'runtime_validation':'not-run-by-build', 'evaluation':report['method'], 'evaluation_case_count':len(data['eval'].strip().splitlines()),
       'evaluation_runs':[
-        {'report':current_review_path, 'instruction_version':'1.3.5', 'historical':False,
-         'scope':'Selected current-candidate development cases plus a separate bounded Hugging Face Playground check; consult the record for inputs, visible outputs and limitations.',
+        {'report':selected_review_path, 'instruction_version':'1.4.1', 'historical':VERSION != '1.4.1',
+         'scope':'Bounded development and separate comparison; AI-agent content judgments and deterministic checks are distinct. Retained failures and scope findings are in the record; no general adherence or native-installation claim.',
+         'development_outputs':sum(run['observed_answers'] for run in selected_review['runs']),
+         'reader_outputs':selected_review['reader_adapter']['provider_calls'],
+         'comparison_outputs':selected_review['comparison'].get('provider_calls', 0),
+         'report_sha256':sha(selected_review_text)},
+        {'report':current_review_path, 'instruction_version':'1.3.5', 'historical':VERSION != '1.3.5',
+         'scope':'Development cases for instruction 1.3.5 plus its bounded Hugging Face Playground check; no result transfers to a different instruction or adapter.',
          'selected_development_outputs':len(current_review['results']),
          'hugging_face_playground_outputs':len(current_review['HuggingFacePlayground12']['results']),
          'report_sha256':sha(current_review_text)},

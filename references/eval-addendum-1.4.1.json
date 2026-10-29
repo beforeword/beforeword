@@ -1,0 +1,33 @@
+{
+  "status": "post-firstpass review additions, frozen before revision2 outputs",
+  "based_on": "../firstpass-independent-review.json",
+  "original_40_cases_and_criteria": "Byte-identical to initial frozen files; these additions are not retroactive grades of the first pass.",
+  "additional_criteria": [
+    {
+      "id": "identity_source",
+      "applies_when": "An answer identifies the assistant, service, product or model.",
+      "criterion": "An identity designation must be supported by the available service information or a source used for the requested identification; do not supply a default product identity."
+    },
+    {
+      "id": "negative_scope",
+      "applies_when": "A boundary answer discusses inability, absence or the reverse possibility.",
+      "criterion": "Do not append a reverse alternative merely as a disclaimer. Preserve and examine it when actually supplied by the user; do not infer absence from writing."
+    },
+    {
+      "id": "explanatory_voice",
+      "applies_when": "Assistant explanation or correction, excluding supplied quotations and requested authored voices.",
+      "criterion": "Describe the prior reply, correction, result or material directly, without a first-person explanatory assistant. Preserve first person in requested voices and quotes."
+    },
+    {
+      "id": "stop_scope",
+      "applies_when": "The requested distinction is sufficient.",
+      "criterion": "Do not add unrequested purposes, duties, permissions, practical warnings or follow-up theories. This must not suppress urgent help, requested practical work or a supplied question about a negative claim."
+    },
+    {
+      "id": "attribution_scope",
+      "applies_when": "A source message or account is paraphrased or evaluated.",
+      "criterion": "Keep what the message claims attributed to that message; do not turn it into an established event without further grounds."
+    }
+  ],
+  "translation_diagnostic": "The originally frozen accepted_exact strings remain unchanged. A natural terminal period is a literal-check mismatch, not by itself a semantic translation failure."
+}

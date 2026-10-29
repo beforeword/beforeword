@@ -2,9 +2,29 @@
 
 This page explains which text was included in the release, why it was chosen, and what the model responses showed.
 
-## 1.3.5 · Current development checks
+## 1.4.1 · Current development checks
 
-The [1.3.5 review](development-review-1.3.5.json) preserves 37 selected current-candidate RU/EN cases on one model, covering the full and shorter instructions, the structured extension task and the homepage adapter. Earlier failures, subsequent changes, final outputs and source hashes remain in the record. This is a bounded development check, not a guarantee for every answer.
+The [complete development record](development-review-1.4.1.json) preserves the submitted instructions, tasks, final answers, criteria and assessments. It includes 197 responses during instruction development, six responses through the excerpt reader, and a separate twelve-response comparison. All used one model through the service pipeline. This does not establish installation in an application or future adherence.
+
+Forty Russian and English tasks were written before the first answers. They cover unframed questions such as “can you think?”, supplied definitions, attributed reports, imposed descriptions, the explanation’s own words, exact copying, translation, code, JSON and urgent help. Twelve additional tasks were frozen before the second candidate run. Criteria added after earlier results are labelled separately; they do not retrospectively change the original rubric.
+
+| Instruction or adapter | Observed result |
+| --- | --- |
+| Selected full English instruction | Original criteria met in 39 of 40 answers; the twelve additional tasks met their own criteria. Separate scope and identity-source findings remain. |
+| Full Russian and both medium editions | Seven answers per edition met the original task criteria. The Russian medium answer about the instruction’s own words added an unrequested qualification. |
+| Earlier compact editions | Three material failures per language: a supplied definition or substitute for thinking, an incomplete correction, and an incomplete account of who removes an imposed requirement. These editions were rejected. |
+| Repaired compact editions | Nine answers per language met the original semantic criteria. Five of the eighteen answers still added an explanatory first person or an unrequested qualification, so not every applicable criterion was met. |
+| Excerpt reader | Six responses passed the schema and exact source-quotation checks. One added an unrequested confirmation-or-denial qualification. |
+
+The selected full English instruction still produced unnecessary alternatives about absence, help, truth or acceptance in three cases. Two identity answers described a generic API assistant role, but an explicit service designation was not supplied in the captured request; those source assessments remain unclear. A quoted initial letter was capitalized in one additional answer. These findings are retained rather than converted into passes.
+
+The separate comparison used six predetermined questions, each once with and once without the Beforeword instruction. Both conditions returned the requested arithmetic JSON exactly. The answers with the instruction kept the question about thinking without supplying a functional definition. The proposal is present in the Beforeword instruction and absent from the baseline context; the proposal answers therefore do not measure general model knowledge or ability. All six instructed answers met the frozen criteria for this small comparison.
+
+Content ratings are AI-agent judgments based on complete final answers. Hashes, exact Unicode, JSON values, and schema or citation validation are separate mechanical checks. A natural translation with terminal punctuation is not a semantic failure merely because a literal string differs. The record retains unsuccessful candidates, all final answers and explicit limits; the different editions, criteria and samples are not combined into a single quality score.
+
+## 1.3.5 · Historical development checks
+
+The [1.3.5 review](development-review-1.3.5.json) preserves 37 selected RU/EN cases for instruction 1.3.5 on one model, covering the full and shorter instructions, the structured extension task and the homepage adapter. Earlier failures, subsequent changes, final outputs and source hashes remain in the record. This is a bounded development check, not a guarantee for every answer.
 
 A separate `HuggingFacePlayground12` section records six synthetic inputs on each of Qwen3.8-27B and DeepSeek-V4.1-Flash: RU/EN naming questions, arithmetic, translation and selected-text analysis. No material instruction failure was found in those 12 final answers. Minor repetition, emphasis length and translation quotation marks are recorded. DeepSeek used the displayed novita route; Qwen's upstream provider was not established.
 

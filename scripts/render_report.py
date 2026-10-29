@@ -9,6 +9,7 @@ import html
 import re
 
 REPORT_ASSETS = frozenset({
+    'development-review-1.4.1.json',
     'development-review-1.3.5.json',
     'development-review-1.3.4.json',
     'comparison-1.3.3.json', 'eval-cases.jsonl', 'evaluation-results.json', 'validation-2026-10-02.json',

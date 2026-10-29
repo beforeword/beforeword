@@ -15,3 +15,6 @@
 @media(prefers-color-scheme:dark){.secondary-action{border-color:#666e5b}.secondary-action:hover{background:#2d3227}.release-status{border-color:#a9b09f}}
 .access-note{font-size:16px;line-height:1.65;max-width:780px;margin:28px 0 0;padding-top:22px;border-top:1px solid #cfcec7}
 @media(prefers-color-scheme:dark){.access-note{border-color:#43473d}}
+
+/* Approved whole wordmark, inherited ink; no legacy symbol. */
+.brand .brand-wordmark,.wordmark .brand-wordmark{display:block;width:132px;height:auto;max-width:100%;flex-shrink:0;color:inherit}.brand,.wordmark{gap:0}

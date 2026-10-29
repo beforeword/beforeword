@@ -2,9 +2,9 @@
 
 This additive release keeps `/api/session`, `/api/analyze`, `/health`, all existing environment configuration and the existing SQLite allowance. It adds ordinary question answering with the complete instructions in `extension/instructions.js`. It does not use the analysis JSON schema. The instruction text is sent to the selected model; this does not establish that every generated answer follows it.
 
-## Explicit test candidate (not a new stable release)
+## Historical explicit test candidate
 
-The default remains the complete 1.3.5 extension instruction described above. For a separate test process, `BEFOREWORD_ANSWER_PROFILE=candidate-1.3.6` selects the complete 1.3.6 core plus a product-default supplement. Unknown values fail startup; the client cannot select this value. Candidate answers and capabilities expose `instructionProfile` metadata, not a compliance claim. Exact returned text is never filtered.
+The stable default now uses the complete 1.4.1 extension instruction described above. The following 1.3.6 profile remains a historical explicit experiment. For a separate test process, `BEFOREWORD_ANSWER_PROFILE=candidate-1.3.6` selects the complete 1.3.6 core plus a product-default supplement. Unknown values fail startup; the client cannot select this value. Candidate answers and capabilities expose `instructionProfile` metadata, not a compliance claim. Exact returned text is never filtered.
 
 [Mapping of all six proposal items, mechanical checks, review limits and rollback](../../../evaluations/answer-pilot/README.md). The candidate artifacts must be deployed explicitly; a repository change is not a live-site update. Existing model selection, secrets, quota policy and durable no-full-text-storage behavior remain unchanged. A repeated UUID under a different profile conflicts rather than triggering another call.
 

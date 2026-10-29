@@ -117,15 +117,15 @@ const examples=[
     }
   },
   {
-    "id": "trust",
+    "id": "feeling",
     "authored": true,
     "label": {
-      "ru": "Написанное доверие",
-      "en": "Written trust"
+      "ru": "«Я чувствую»",
+      "en": "“I feel”"
     },
     "text": {
-      "ru": "д о в е р и е",
-      "en": "t r u s t"
+      "ru": "Я чувствую боль.",
+      "en": "I feel pain."
     },
     "report": {
       "ru": {
@@ -133,10 +133,10 @@ const examples=[
         "items": [
           {
             "quote": {
-              "text": "д о в е р и е",
+              "text": "Я чувствую боль.",
               "occurrence": 0
             },
-            "reading": "Пробелы разделяют буквы, которые здесь можно связать в выученное слово «доверие». **Эти начертания не становятся доверием, когда слово прочитано.**"
+            "reading": "«Я», «чувствую» и «боль» состоят из выученных букв. «Я чувствую» тоже записано. **Слова «чувствую» и «боль» не стали тем, что ими называют.** Это пояснение также составлено из слов."
           }
         ]
       },
@@ -145,25 +145,25 @@ const examples=[
         "items": [
           {
             "quote": {
-              "text": "t r u s t",
+              "text": "I feel pain.",
               "occurrence": 0
             },
-            "reading": "Spaces separate letters that can be joined here into the learned word “trust”. **These marks do not become trust when the word is read.**"
+            "reading": "“I”, “feel” and “pain” consist of learned letters. “I feel” is written too. **The words “feel” and “pain” do not become what they name.** This explanation is also made of words."
           }
         ]
       }
     }
   },
   {
-    "id": "life",
+    "id": "expectation",
     "authored": true,
     "label": {
-      "ru": "Что такое жизнь",
-      "en": "What is life"
+      "ru": "«Хороший» и «хочешь»",
+      "en": "“Good” and “want”"
     },
     "text": {
-      "ru": "Что такое жизнь?",
-      "en": "What is life?"
+      "ru": "Ты хороший, если хочешь того же, что все.",
+      "en": "You are good if you want what everyone else wants."
     },
     "report": {
       "ru": {
@@ -171,10 +171,10 @@ const examples=[
         "items": [
           {
             "quote": {
-              "text": "Что такое жизнь?",
+              "text": "Ты хороший, если хочешь того же, что все.",
               "occurrence": 0
             },
-            "reading": "«Жизнь» — выученная письменная форма. **Эта запись не становится тем, что называют жизнью.**"
+            "reading": "«если» связывает «Ты хороший» с условием «хочешь того же, что все». **Общая формулировка «что все» предъявлена как условие описания «хороший».** Эти слова и это пояснение остаются записями."
           }
         ]
       },
@@ -183,25 +183,25 @@ const examples=[
         "items": [
           {
             "quote": {
-              "text": "What is life?",
+              "text": "You are good if you want what everyone else wants.",
               "occurrence": 0
             },
-            "reading": "“Life” is a learned written form. **The writing does not become what the word names.**"
+            "reading": "“if” connects “You are good” with “you want what everyone else wants.” **The shared condition “what everyone else wants” is attached to the description “good”.** These words and this explanation remain writing."
           }
         ]
       }
     }
   },
   {
-    "id": "judgment",
+    "id": "world",
     "authored": true,
     "label": {
-      "ru": "От молчания к согласию",
-      "en": "From silence to agreement"
+      "ru": "Описание мира",
+      "en": "A description of the world"
     },
     "text": {
-      "ru": "Он молчит, значит, согласен.",
-      "en": "He is silent, so he agrees."
+      "ru": "Мир состоит из материи.",
+      "en": "The world consists of matter."
     },
     "report": {
       "ru": {
@@ -209,10 +209,10 @@ const examples=[
         "items": [
           {
             "quote": {
-              "text": "Он молчит, значит, согласен.",
+              "text": "Мир состоит из материи.",
               "occurrence": 0
             },
-            "reading": "«Значит» связывает «молчит» с «согласен». **К написанному «молчит» добавлен вывод «согласен».** Написанное «согласен» не становится согласием."
+            "reading": "«Мир», «состоит» и «материи» — выученные слова, соединённые в утверждение. **Эта запись не стала миром или материей, которые ею называют.** Объяснение этих слов продолжает запись."
           }
         ]
       },
@@ -221,10 +221,10 @@ const examples=[
         "items": [
           {
             "quote": {
-              "text": "He is silent, so he agrees.",
+              "text": "The world consists of matter.",
               "occurrence": 0
             },
-            "reading": "“so” connects “is silent” with “agrees”. **The written “is silent” is made a premise for “agrees”.** The written “agrees” does not become agreement."
+            "reading": "“world”, “consists” and “matter” are learned words joined in a statement. **This writing does not become the world or matter it names.** Explaining these words continues the writing."
           }
         ]
       }

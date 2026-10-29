@@ -16,9 +16,9 @@ const artifact = () => JSON.parse(buildCandidate());
 const envelope = content => new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { content } }] }),
   { headers: { 'Content-Type': 'application/json' } });
 
-test('stable RU/EN prompts remain byte-for-byte identical to main 26a8b817', () => {
-  const hashes = { en: '7383aa14f1aa43707465ad1c8bdad760e0efcc6b3035d625693e1e13f5ac6ed4',
-    ru: 'de2eb5d7bfbcf2e790c00b3ddd2253ad020a5d205d1c0998cf8de4dede5ecbe8' };
+test('stable RU/EN prompts contain the approved full 1.4.1 core with pinned request bytes', () => {
+  const hashes = { en: '822d77db50d09dc6d924b364332a507cf076c4edc236f1b92324710bccdb8eb6',
+    ru: '76e0f0adb92f2fdd5950ae89daa1eae8a50352b3a97f624bf3eb6eedba596a22' };
   for (const language of ['en', 'ru']) {
     const a = buildAnswerRequest(input(language), configuration);
     const b = buildAnswerRequest(input(language), { ...configuration, answerProfile: 'stable' });
@@ -74,7 +74,7 @@ test('candidate selection leaves the stable extension core and version untouched
   const stable = globalThis.BeforewordInstructions;
   resolveAnswerProfile('candidate-1.3.6');
   assert.equal(globalThis.BeforewordInstructions, stable);
-  assert.equal(stable.version, '1.3.5');
+  assert.equal(stable.version, '1.4.1');
   assert.equal(resolveAnswerProfile().core, stable.core);
 });
 

@@ -1,0 +1,50 @@
+{
+  "version": "1.4.1",
+  "candidate_revision": 3,
+  "source_freeze_sha256": "a1ff140c4f126b114fd220cd794a4c783bb04db034d118d1375a9a9fed7504c4",
+  "scope": "Exact instruction-source bytes only; selected full/medium revision3 and compact-only revision4. Separate model reviews retain failures and limits.",
+  "editions": {
+    "core": {
+      "en": {
+        "sha256": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
+        "bytes": 11976,
+        "characters": 11853
+      },
+      "ru": {
+        "sha256": "a644e3f7e1d56b5949c07b04c7f6cbcf038dc26a0c010c6ae79f4b2adba8cc8f",
+        "bytes": 21072,
+        "characters": 11502
+      }
+    },
+    "medium": {
+      "en": {
+        "sha256": "0adabb2e717f98ef89043425cb0fccaa8e1132b726ce20a7f99cf0c2e4d3ae56",
+        "bytes": 5027,
+        "characters": 4976
+      },
+      "ru": {
+        "sha256": "fa20478e7a3a0b4cd0f352ebf998de0d85e8bcfb0128fac9ca7bac49f9fd9b10",
+        "bytes": 9142,
+        "characters": 4994
+      }
+    },
+    "compact": {
+      "en": {
+        "sha256": "041b158af0b8e5204967d3dc955329989cc628bb33e0fa35b95ef00ef700d905",
+        "bytes": 1499,
+        "characters": 1491
+      },
+      "ru": {
+        "sha256": "47a08cea107cd8d64ab6614d9304b59a8f897f6143ac81eedb7ae5890cce27b6",
+        "bytes": 2557,
+        "characters": 1416
+      }
+    }
+  },
+  "edition_revisions": {
+    "core": 3,
+    "medium": 3,
+    "compact": 4
+  },
+  "compact_source_freeze_sha256": "598efea592bf4ce06e7bab0c2df0d7ff37e704bae7869c95fe3dff5b0c2fe428"
+}

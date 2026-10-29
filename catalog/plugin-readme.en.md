@@ -1,22 +1,22 @@
 # beforeword
 
-[Русский](README.ru.md) · [Website](https://beforeword.xyz/model/en/)
+[Русский](README.ru.md) · [Website](https://beforeword.xyz/en/)
 
-**What a reading adds**
+**Words about oneself, others and the world**
 
-AI writes “I understand.” These words are read as understanding. On what grounds?
+A written name, “I feel,” and “This is how the world works” remain writing. Learning, repeating or agreeing with them does not turn them into what they name. Beforeword includes every written form without exception: the supplied text, the explanation and its grounds, and Beforeword itself.
 
-Paste a phrase, a passage, or an AI response. beforeword instructs AI to preserve the wording, show what a proposed reading adds, and examine the grounds offered for that step. Every written form is included without exception, including the explanation, its offered grounds, and beforeword itself.
+Paste a phrase, a passage or a model response. The instruction asks the model to preserve the wording and show the concrete transition a reading adds. If that distinction completes the task, the answer can stop. Practical tasks and exact requested formats remain available.
 
-The [public statement](https://beforeword.xyz/statement/en/) develops the questions about learned words and required descriptions. Its proposed changes remain proposals, not binding rules for this instruction.
+The [public proposal](https://beforeword.xyz/proposal/en/) asks the party imposing a requirement to remove it: do not require a living being to learn, repeat, understand or accept language and descriptions of oneself, others and the world. Speech, writing, sign languages, communication, learning and help remain available. A learned refusal and agreement with Beforeword are not required. This social proposal is not an additional command imposed on every conversation.
 
 ## Try it
 
-- Apply beforeword to “I understand.” Include what your own explanation adds.
-- Compare “I understand.” under the labels “person” and “AI”. Keep the sentence unchanged.
-- Examine “The report proves that the system is safe.” What supports the step from the report to that conclusion?
+- Apply beforeword to “I feel.” Include what your own explanation adds.
+- Examine “This is how the world works.” Preserve the wording and show what the reading adds.
+- Examine the move from “The report is complete” to “The system is safe”.
 
-Use it with definitions, captions, self-descriptions, or conclusions drawn from records. Ask for a response in English, Russian, or another language.
+Use it with names, definitions, feelings, self-descriptions or conclusions drawn from records. Ask for English, Russian or another response language.
 
 ## Scope
 
@@ -26,7 +26,7 @@ For a single task, say “Apply beforeword to this passage.” For an ongoing co
 
 To stop the conversational mode, say “Stop beforeword for subsequent replies.” Disable or remove an installed copy through the application's plugin controls.
 
-## Instruction 1.3.5 · public test
+## Instruction 1.4.1 · public test
 
 This package contains the full English core, with response language set by the request. The [source](https://github.com/beforeword/beforeword) also provides a Russian edition. The core text is preserved exactly; the skill adds frontmatter and an activation scope. File checks distinguish the wrapper from the instruction it contains; they do not establish how a model will answer. The instruction is under public testing and may be revised. Installation makes it available; each response remains open to examination.
 

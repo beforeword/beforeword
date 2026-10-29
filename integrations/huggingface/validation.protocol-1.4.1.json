@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "scope": "MCP HTTP protocol, exact instruction delivery and dictionary contract; no model behavior tested",
+  "dictionary_source": "local recorded Wikimedia responses",
+  "instruction_version": "1.4.1",
+  "client_environment": {
+    "python": "3.12.2",
+    "gradio": "6.29.1",
+    "mcp": "1.30.0"
+  },
+  "server_reported": {
+    "name": "beforeword · MCP",
+    "version": "1.30.0"
+  },
+  "protocol_version": "2025-11-25",
+  "tools": [
+    "lookup_dictionary_entry",
+    "get_beforeword_instruction"
+  ],
+  "prompt": "beforeword",
+  "resource_template": "beforeword://instruction/{language}",
+  "exact_retrievals": 7,
+  "invalid_language_checks": 6,
+  "dictionary_lookups": 2,
+  "invalid_dictionary_checks": 6,
+  "extra_argument_behavior": "rejected",
+  "sha256": {
+    "en": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
+    "ru": "a644e3f7e1d56b5949c07b04c7f6cbcf038dc26a0c010c6ae79f4b2adba8cc8f"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "version": "1.4.1",
+  "status": "passed",
+  "core_sha256": {
+    "en": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
+    "ru": "a644e3f7e1d56b5949c07b04c7f6cbcf038dc26a0c010c6ae79f4b2adba8cc8f"
+  },
+  "contract_sha256": "7a96be22ee1f12df52761f907d0f15c22829ec7e9d9454a46b31df51be841bc7",
+  "remote_mutations": false,
+  "scope": "Local unit and loopback MCP protocol validation with recorded dictionary fixtures; no model or hosted deployment test",
+  "validated_at_utc": "2026-10-29T21:45:14.569274+00:00",
+  "source_files": {
+    "LICENSE.instruction-en.txt": "68884273ea3f9546fb710f2c1f2035a7d5b23f94c1d0458e94513f97bc9de4ef",
+    "PRIVACY.md": "13dec9f71bbfdc964aba9e79a30455475b0a7a7b2b670b6e4afaf64f22d426af",
+    "README.md": "01bae76b1bf42238891bd71218a222d2dbd7ddc89ec47ef090799341d396df23",
+    "app.py": "83c77dd76057c83f97f1f9fe967a01d089bc109b1f93619f854043eac0e06a9b",
+    "brand-dark.svg": "51478fed22195afcf2efa9b3d62449ccb62c8b8d697c2dc23e1d6f427daa2a5a",
+    "brand-light.svg": "a01aa6dbfc290d9a1ea5c95f73cc8022064d428938ae510427905ad36d1fde46",
+    "dictionary-fixture-contract.json": "dd12b9d348006451356e03135b636674ea4ecad505c503cabe2bd49a837ca5b5",
+    "dictionary.py": "9861d9a0efa312d0f88e27a1297f9f10e26bcfa79a9c713a43084c27c0962c69",
+    "fixtures/README.md": "5a51f189c87a1a0fb70a50edbd85f61db4fe04328160ee44e138cfc15667872f",
+    "fixtures/en-I.json": "9bed26dfc9d1a9a558f29e7a13f8cce6a09ad7e5cbb1b4b650d4b41f62058296",
+    "fixtures/en-bank.json": "15e6b9b110738fef5483dbdb96a2832d20fab3e92704cf03d2ad59f816a68423",
+    "fixtures/en-dogs.json": "bd28c39779357e0625a9329ce5a668308e2afae9be8ad19262685167937ba030",
+    "fixtures/en-if.json": "d0bd47e2b90816f76877206e784c064d9857ef2af235126d4788fd59fb274064",
+    "fixtures/ru-если.json": "a1e21637e5e1b919323b1b5b84e0af6089683ea67ade6db70213c70c9f275953",
+    "fixtures/ru-жизни.json": "91289110b4c3a0ea88912ae176c0ec8987b960131dcb3f0e3cd39c53a294de10",
+    "fixtures/ru-словами.json": "797c1bb54d869bc9040bdb0d8b90ae3306558e22c0ab77136e25976c2ae005ec",
+    "fixtures/ru-условие.json": "877fa7a49d40f5213b907960367541195aa77e8bba4c2835986b366e73974895",
+    "fixtures/ru-я.json": "7b2de1f24798b6124cd3c0744f467e0081c216d981f4daa35546950948d3886f",
+    "instruction.en.txt": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
+    "instruction.ru.txt": "a644e3f7e1d56b5949c07b04c7f6cbcf038dc26a0c010c6ae79f4b2adba8cc8f",
+    "instructions.json": "373501ac61fe5c9d8ad385454f675a3626b24bfc1a94c6b3e343c9f8f3b3765f",
+    "requirements.txt": "bf02607e88feb851c674a0e0383070a353a9e34003fb92db42df571739c3b911",
+    "test_dictionary.py": "87cfbfee226fb97a9b24f3f186566228c24a228796f3ea0d5e6d3b0139e61300",
+    "test_protocol.py": "1e993e994397b6fd9d216eb85e31824fd010a1641f57a9be979ea41a26cf6f72",
+    "validation.dictionary.live.json": "c8b895a0072ccc87c0e1062cc8084256a08908c3e98eee8a6ef9fed2910933cc",
+    "validation.hosted.json": "f30d4529af518166ed63c317e5c70df8d474a132e594c005b3c5fc25385ec864",
+    "validation.json": "f3a97c921c4a0e8f72c887c6a7b5fd4c3e6b3169f8aa6174a8d9f9504fc6bdc6"
+  },
+  "historical_validation_preserved": {
+    "validation.json": "f3a97c921c4a0e8f72c887c6a7b5fd4c3e6b3169f8aa6174a8d9f9504fc6bdc6",
+    "validation.hosted.json": "f30d4529af518166ed63c317e5c70df8d474a132e594c005b3c5fc25385ec864",
+    "validation.dictionary.live.json": "c8b895a0072ccc87c0e1062cc8084256a08908c3e98eee8a6ef9fed2910933cc"
+  },
+  "dictionary": {
+    "ok": true,
+    "instruction_version": "1.4.1",
+    "tests": 10,
+    "scope": "Recorded dictionary fixture unit tests; external connections disabled",
+    "sha256": {
+      "en": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
+      "ru": "a644e3f7e1d56b5949c07b04c7f6cbcf038dc26a0c010c6ae79f4b2adba8cc8f"
+    }
+  },
+  "protocol": {
+    "ok": true,
+    "scope": "MCP HTTP protocol, exact instruction delivery and dictionary contract; no model behavior tested",
+    "dictionary_source": "local recorded Wikimedia responses",
+    "instruction_version": "1.4.1",
+    "client_environment": {
+      "python": "3.12.2",
+      "gradio": "6.29.1",
+      "mcp": "1.30.0"
+    },
+    "server_reported": {
+      "name": "beforeword · MCP",
+      "version": "1.30.0"
+    },
+    "protocol_version": "2025-11-25",
+    "tools": [
+      "lookup_dictionary_entry",
+      "get_beforeword_instruction"
+    ],
+    "prompt": "beforeword",
+    "resource_template": "beforeword://instruction/{language}",
+    "exact_retrievals": 7,
+    "invalid_language_checks": 6,
+    "dictionary_lookups": 2,
+    "invalid_dictionary_checks": 6,
+    "extra_argument_behavior": "rejected",
+    "sha256": {
+      "en": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
+      "ru": "a644e3f7e1d56b5949c07b04c7f6cbcf038dc26a0c010c6ae79f4b2adba8cc8f"
+    }
+  },
+  "network": "Loopback only; external socket connections denied by test-only sitecustomize"
+}

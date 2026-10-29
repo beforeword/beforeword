@@ -60,7 +60,7 @@ test('the prepared walkthrough shows one complete phrase and one compact reading
 
 test('the current-site first screen starts with an editable source and six direct examples, with no automatic walkthrough',async()=>{
  const f=await harness();assert.equal(f.one('#editor').open,true);assert.equal(f.one('#editor').hidden,false);assert.equal(f.one('#analysis-actions').hidden,false);assert.equal(f.one('#panel-guide').open,undefined);assert.equal(f.document.querySelector('.bw-guide'),null);assert.equal(f.document.querySelectorAll('#example-buttons button').length,6);assert.equal(f.one('#record-column').nextElementSibling.id,'analysis-section');assert.equal(f.calls.length,0);
- await f.click('[data-example="trust"]');assert.equal(f.calls.length,0);assert.equal(f.one('#record-output').textContent,'t r u s t');assert.equal(f.one('.quote-button').textContent,'t r u s t');assert.match(f.one('#analysis-origin').textContent,/Prepared example/);
+ await f.click('[data-example="feeling"]');assert.equal(f.calls.length,0);assert.equal(f.one('#record-output').textContent,'I feel pain.');assert.equal(f.one('.quote-button').textContent,'I feel pain.');assert.match(f.one('#analysis-origin').textContent,/Constructed example/);
 });
 test('source and explicit action precede the result after completion; editing is a separate reversible action',async()=>{
  const f=await harness();await f.submit('Exact source.');assert.equal(f.one('#record-details').nextElementSibling.id,'analysis-actions');assert.equal(f.one('#record-details').open,true);assert.equal(f.one('#editor').hidden,true);assert.equal(f.one('#record-column').nextElementSibling.id,'analysis-section');await f.click('#edit-source');assert.equal(f.one('#editor').hidden,false);assert.equal(f.one('#source').value,'Exact source.');assert.equal(f.calls.length,1);
@@ -90,7 +90,7 @@ test('menu navigation and controls are labelled in the selected interface langua
 });
 
 test('the first screen states the written-form boundary with one short continuation in RU and EN',async()=>{
- for(const [language,title,purpose]of [['ru','Написанное слово не становится тем, что им называют.','Даже когда мы умеем его читать.'],['en','A written word does not become what it names.','Even when we have learned to read it.']]){
+ for(const [language,title,purpose]of [['ru','Слово не становится тем, что называет.','Сохраните исходник. Сопоставьте его с добавленным пояснением. «Называет» здесь тоже слово.'],['en','A word does not become what it names.','Keep the source. Compare it with the added explanation. “Names” is a word here too.']]){
   const f=await harness({language});assert.equal(f.one('#title').textContent,title);assert.equal(f.one('.purpose').textContent,purpose);assert.equal(f.calls.length,0);
  }
 });

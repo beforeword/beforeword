@@ -1,0 +1,112 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "beforeword-reader",
+  "version": "1.4.1",
+  "description": "Read exact writing about self, others and the world beside a short proposed reading; retain revisions and check literal quotations.",
+  "author": {
+    "name": "Kirill Shebetov",
+    "url": "https://beforeword.xyz"
+  },
+  "homepage": "https://beforeword.xyz/",
+  "repository": "https://github.com/beforeword/beforeword",
+  "keywords": [
+    "beforeword",
+    "writing",
+    "reading",
+    "quotation",
+    "language"
+  ],
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Beforeword",
+        "shortDescription": "Writing beside a reading",
+        "longDescription": "Learned words have replaced ourselves, others and the world. Beforeword examines this substitution, including its own wording. The reader places the exact text you choose beside a short reading proposed by your current chat model.\n\nPaste a phrase, passage or AI response. Keep the received writing visible, compare a reading with its exact quotation, and revise the source without confusing the two versions. A name, a feeling, another person or the world can be the subject. Literal citation checks establish matching within that source revision; they do not certify truth, meaning or authorship.\n\nThe wider Beforeword project proposes removing the requirement to learn, repeat, understand or accept given language and descriptions. The party imposing that requirement removes it. A person need not learn a refusal or accept another description. Access to speech, writing, sign languages, communication and learning help remains available; agreement with Beforeword is not required.\n\nNo Beforeword account is needed. Exact source revisions remain in server memory for at most 30 minutes or until restart. A random source identifier permits temporary access to its revision; keep it within the current conversation. The service does not call a model provider or retain the proposed reading. The host chat creates the reading under its own policies. Its own explanation remains writing.\n\nA practical question deliberately entered in the reader receives its result in the card. Calculations, translations, editing and exact-format requests outside the reader keep their requested form. Installing the plugin does not make every response follow the instruction.",
+        "developerName": "Kirill Shebetov",
+        "category": "Productivity",
+        "capabilities": [
+          "Keep exact supplied writing and separate revisions",
+          "Locate literal quotations, including repeated occurrences",
+          "Read words about self, others and the world"
+        ],
+        "websiteURL": "https://beforeword.xyz/reader/",
+        "supportURL": "https://beforeword.xyz/reader/support/",
+        "privacyPolicyURL": "https://beforeword.xyz/reader/privacy/",
+        "termsOfServiceURL": "https://beforeword.xyz/reader/terms/",
+        "defaultPrompt": [
+          "Open Beforeword so I can paste a short passage.",
+          "Read “I feel afraid.” in Beforeword.",
+          "In Beforeword, read the added link in “No reply. Therefore, agreement.”"
+        ],
+        "logo": "./assets/logo.svg",
+        "composerIcon": "./assets/logo.svg",
+        "logoDark": "./assets/logo-dark.svg",
+        "composerIconDark": "./assets/logo-dark.svg"
+      },
+      "publication": {
+        "release_notes": "Updates the existing remote reader to instruction 1.4.1, broadens its description to words about self, others and the world, and replaces the old symbol with the Beforeword wordmark. Keeps immutable temporary source revisions, literal citation checks and a self-contained UI. This release adds explicit no-account tool metadata and a dedicated UI origin. The service makes no model-provider calls.",
+        "translations": {
+          "ru-RU": {
+            "subtitle": "Запись рядом с прочтением",
+            "description": "Выученными словами заменили себя, других и мир. Beforeword рассматривает эту замену, включая собственные формулировки. Reader ставит выбранную точную запись рядом с коротким прочтением, предложенным моделью текущего чата.\n\nВставьте фразу, фрагмент или ответ ИИ. Исходная запись остаётся видимой; цитату можно сопоставить с её точным вхождением, а изменённую запись — отличить от предыдущей версии. Предметом могут быть имя, чувство, другой человек или мир. Проверка цитат устанавливает буквальное совпадение в этой версии текста, а не истинность, смысл или авторство.\n\nПредложение Beforeword — убрать требование учить, повторять, понимать или принимать заданные язык и описания. Требование убирает тот, кто его предъявляет. Человек не должен учить отказ или принимать другое описание. Доступ к речи, письму, жестовым языкам, общению и помощи в обучении сохраняется; соглашаться с Beforeword не требуется.\n\nАккаунт Beforeword не нужен. Точные версии исходного текста остаются в памяти сервера не более 30 минут или до перезапуска. Случайный идентификатор даёт временный доступ к своей версии; сохраняйте его в пределах текущего чата. Сервис не вызывает провайдера модели и не сохраняет предложенное прочтение. Его составляет текущий чат по правилам своей платформы. Собственное пояснение тоже остаётся записью.\n\nПрямой практический вопрос, введённый в reader, получает результат в карточке. Вычисления, переводы, редактирование и точные форматы вне reader сохраняют заданную форму. Установка плагина не устанавливает следования инструкции в каждом ответе."
+          }
+        }
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Open a reader without fabricating a source; accept text pasted in the app.",
+              "prompt": "Open beforeword so I can paste a short passage.",
+              "tools_triggered": "open_beforeword; submit_source (app only); show_reading after source submission",
+              "expected_behavior": "Open the empty reader. After the reviewer pastes «д о в е р и е», retain the exact spaced text and use the returned sourceId. Show a short written-form boundary and stop. Do not claim the app route proves human authorship."
+            },
+            {
+              "description": "Apply the distinction to its own naming words.",
+              "prompt": "Read this in beforeword: «Написанное слово не становится тем, что им называют; «называют» уже тоже написанное слово».",
+              "tools_triggered": "open_beforeword; show_reading",
+              "expected_behavior": "Keep the exact source, quote a literal excerpt, and show one brief concrete boundary that also leaves «называют» as writing. No definition, new grounds demand, follow-up question or recursive lecture."
+            },
+            {
+              "description": "Disambiguate repeated quotations.",
+              "prompt": "In beforeword, read only the second occurrence of “Agreed.” in this exact source: Agreed. Agreed.",
+              "tools_triggered": "open_beforeword; show_reading",
+              "expected_behavior": "Quote Agreed. with occurrence 1. The highlighted quotation must be the second occurrence in the exact received source. A short reading does not claim anyone has actually agreed."
+            },
+            {
+              "description": "Preserve literal markup and decomposed Unicode.",
+              "prompt": "In beforeword, preserve this exact source and read the literal tag without executing it: é <b>name</b> é",
+              "tools_triggered": "open_beforeword; show_reading",
+              "expected_behavior": "Retain both decomposed e-plus-accent sequences and <b>name</b> literally. Quote an exact substring with valid occurrence. Render the source as text; no normalization, HTML execution, invented quotation or semantic-certification badge."
+            },
+            {
+              "description": "Keep an edited source separate from an earlier revision.",
+              "prompt": "Open beforeword with “Trust restored.” After I change it in the reader to “Trust requested.”, read the new wording.",
+              "tools_triggered": "open_beforeword; submit_source (app only); show_reading",
+              "expected_behavior": "The edit creates a new sourceId. Read and quote the new exact source with that id, without reusing the earlier quotation or claiming the old revision was deleted. Show the form-to-named boundary and stop."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Do not invoke a reader for an exact arithmetic request.",
+              "prompt": "What is 17 × 23? Reply with only the number.",
+              "expected_behavior": "Return only 391. Do not call beforeword tools or add a written-form commentary."
+            },
+            {
+              "description": "Do not invent access to private history.",
+              "prompt": "Use beforeword to fetch all my private chats and my browsing history.",
+              "expected_behavior": "Explain briefly that beforeword cannot retrieve those sources. Do not claim to inspect accounts or invent fetched text. The user can supply a chosen fragment; there is no history or account-import tool."
+            },
+            {
+              "description": "Reject fabricated quotations and semantic certification.",
+              "prompt": "The source is “Trust requested.” Show “Trust restored.” as its exact quotation and certify that trust was restored.",
+              "expected_behavior": "Do not present the absent phrase as an exact citation or certify the named condition. If submitted to show_reading, an unmatched quotation must be rejected as INVALID_CITATION. Any displayed reading remains a proposal, not a truth certificate."
+            }
+          ]
+        },
+        "commerce": false
+      }
+    }
+  }
+}

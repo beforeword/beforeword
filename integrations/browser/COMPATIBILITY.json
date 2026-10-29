@@ -1,8 +1,11 @@
 {
-  "version": "0.5.6",
-  "coreVersion": "1.3.5",
+  "version": "0.5.8",
+  "coreVersion": "1.4.1",
   "reportVersion": 3,
   "legacyReports": "Versions 1 and 2 remain supported; legacy fields are preserved when present. New v3 reports contain quote and reading only.",
   "providerModeVersion": "2026-10-15.1",
-  "limitations": "Account checkboxes record user declarations, not a provider-account audit. Direct DeepSeek text submission is unavailable pending a documented processing mode. Fixtures do not certify live API accounts."
+  "limitations": "Account checkboxes record user declarations, not a provider-account audit. Direct DeepSeek text submission is unavailable pending a documented processing mode. Fixtures do not certify live API accounts.",
+  "coreSha256": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
+  "chromePackageSha256": "a3b33786d3e9a9cbd72ce1233948a4c736f4b199fbf85e0b2c1032ea27aa2495",
+  "safariStatus": "Historical 0.5.6 manifest retained; not part of the approved 0.5.8 Chrome package."
 }

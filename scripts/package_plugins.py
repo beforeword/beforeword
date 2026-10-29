@@ -27,8 +27,8 @@ GEMINI_DOCS = "https://support.google.com/gemini/answer/17094296?hl=en"
 MISTRAL_DOCS = "https://docs.mistral.ai/vibe/work/skills"
 
 DESCRIPTIONS = {
-    "ru": "Сохранять исходную запись и отличать её письменную форму от добавленных прочтений и утверждений. Применять по явному запросу beforeword или для разбора этой границы в тексте либо ответе.",
-    "en": "Preserve supplied wording and distinguish its written form from added readings and claims. Use for explicit beforeword requests or requests to inspect this boundary in a text or response.",
+    "ru": "Разбирать выученные слова и описания себя, других и мира: сохранять формулировки, отличать добавленные прочтения и включать само пояснение. Применять по явному запросу beforeword или для разбора этой границы в тексте либо ответе.",
+    "en": "Examine learned words and descriptions of oneself, others and the world: preserve wording, distinguish added readings and include the explanation itself. Use for explicit beforeword requests or requests to inspect this boundary in a text or response.",
 }
 SCOPES = {
     "ru": "Применяй beforeword к запрошенной задаче. Установка делает навык доступным; это не настройка всего аккаунта. Продолжай режим между сообщениями только по запросу и пока эти инструкции доступны. Соблюдай иерархию инструкций среды, явно заданные пользователем область действия, язык и формат ответа.",
@@ -74,7 +74,9 @@ RU
 
 Язык инструкции в этом архиве: {language.upper()}. Установи одну языковую редакцию; одинаковое имя не предназначено для двух параллельных установок. Язык ответа можно задать в запросе.
 
-Навык сохраняет исходный текст, отделяет добавленное прочтением и применяет ту же границу к собственному ответу. Он вызывается для задачи и не меняет все разговоры аккаунта. Для более широкого действия задавай область явно: «Применяй beforeword в этом разговоре». Для разового разбора: «Примени beforeword к фразе „Я понимаю“». Просьба «Отключи режим beforeword для следующих ответов» меняет запрос; доступность установленного навыка регулируется настройками приложения.
+Навык применяется к выученным словам и описаниям себя, других и мира: просит сохранять исходный текст, отделять добавленное прочтением и включать собственное пояснение в то же различие. Он вызывается для задачи и не меняет все разговоры аккаунта. Для более широкого действия задавай область явно: «Применяй beforeword в этом разговоре». Для разового разбора: «Примени beforeword к фразе „Я понимаю“». Просьба «Отключи режим beforeword для следующих ответов» меняет запрос; доступность установленного навыка регулируется настройками приложения.
+
+Общественное предложение Beforeword обращено к предъявляющему требование: не требовать от живого существа учить, повторять, понимать или принимать язык и описания себя, других и мира. Общение, речь, письмо, жестовые языки, обучение и помощь остаются доступны; выученный отказ или согласие с Beforeword не требуются. Это не дополнительная команда для каждого разговора. Полное предложение: https://beforeword.xyz/proposal/
 
 После подключения начни новый разговор и выполни пример. Сохрани ввод и ответ: наличие названия beforeword само по себе не показывает качество разбора. При проблеме запиши приложение, его версию, способ установки и полный текст ошибки. Пакет содержит только инструкции и файлы настройки, без сервера, ключей, фоновых действий и телеметрии.
 
@@ -82,7 +84,9 @@ EN
 
 Instruction language in this archive: {language.upper()}. Install one language edition; the shared name is not intended for two parallel installations. Request any response language explicitly.
 
-The skill preserves the supplied text, separates added readings, and applies the same boundary to its own response. It is invoked for a task and does not change every conversation in an account. To request broader scope, say “Apply beforeword in this conversation.” For one task: “Apply beforeword to the phrase ‘I understand.’” The request “Turn off beforeword mode for subsequent replies” changes the requested scope; application settings control whether the installed skill remains available.
+The skill applies to learned words and descriptions of oneself, others and the world: it asks the model to preserve supplied text, distinguish added readings, and include its own explanation in the same distinction. It is invoked for a task and does not change every conversation in an account. To request broader scope, say “Apply beforeword in this conversation.” For one task: “Apply beforeword to the phrase ‘I understand.’” The request “Turn off beforeword mode for subsequent replies” changes the requested scope; application settings control whether the installed skill remains available.
+
+Beforeword's public proposal asks the party imposing a requirement to remove it: do not require a living being to learn, repeat, understand or accept language and descriptions of oneself, others and the world. Communication, speech, writing, sign languages, learning and help remain available; no learned refusal or agreement with Beforeword is required. This is not an additional command for every conversation. Full proposal: https://beforeword.xyz/proposal/en/
 
 After setup, start a new conversation and try the example. Keep the input and output: the name beforeword appearing in a response does not establish the quality of its analysis. For troubleshooting, record the app, version, installation method, and complete error. The package contains only instructions and configuration files, with no server, keys, background actions, or telemetry.
 """
