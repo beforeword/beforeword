@@ -214,7 +214,7 @@
           "scope": {
             "html_page_count": 6,
             "pages": "Russian and English model, text-mode and method pages",
-            "checksum_file": "model/SHA256SUMS",
+            "checksum_file": "model/SHA256SUMS.txt",
             "exact_patch_records": 22,
             "replacement_occurrences": 46,
             "read_only_guards": 151
