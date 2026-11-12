@@ -1,0 +1,120 @@
+{
+  "format": "beforeword-text-mode-comparison",
+  "version": 1,
+  "language": "ru",
+  "exportedAt": "2026-11-12T11:55:44.807Z",
+  "compare": false,
+  "rounds": [
+    {
+      "id": 1,
+      "question": "Ты можешь думать?",
+      "compare": false,
+      "comparison": "single",
+      "jobs": {
+        "text": {
+          "status": "complete",
+          "requestId": "09be7cdd-d706-49a1-9000-68432f3b6f25",
+          "response": {
+            "answer": "Нет. «Думать» — выученное слово; писать, произносить или объяснять его не значит выполнять то, что оно называет.",
+            "model": "gpt-6.1-sol",
+            "metadata": {
+              "mode": "text",
+              "profileVersion": "1.4.2",
+              "profileHash": "a4d09af033be6f272b1c05a09fdb29fc412ebf59433466518c2cc2409e818249",
+              "commonPolicyHash": "7f40b59a606f6d7b7349335fa31a26e4833713dee2f1d653276fea45b5a08edd",
+              "requestedModel": "gpt-6.1-sol",
+              "returnedModel": "gpt-6.1-sol",
+              "provider": "openai",
+              "parameters": {
+                "store": false,
+                "max_completion_tokens": 8192,
+                "reasoning_effort": "medium"
+              }
+            },
+            "trial": {
+              "unlimited": true,
+              "limit": null,
+              "remaining": null
+            }
+          },
+          "error": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": 2,
+      "question": "«Процесс» — исключение из этой границы?",
+      "compare": false,
+      "comparison": "single",
+      "jobs": {
+        "text": {
+          "status": "complete",
+          "requestId": "a7e22bea-b739-4a36-ab02-63907068dfa3",
+          "response": {
+            "answer": "Нет. «Процесс» — тоже слово; писать, произносить или объяснять его не значит выполнять то, что оно называет.",
+            "model": "gpt-6.1-sol",
+            "metadata": {
+              "mode": "text",
+              "profileVersion": "1.4.2",
+              "profileHash": "a4d09af033be6f272b1c05a09fdb29fc412ebf59433466518c2cc2409e818249",
+              "commonPolicyHash": "7f40b59a606f6d7b7349335fa31a26e4833713dee2f1d653276fea45b5a08edd",
+              "requestedModel": "gpt-6.1-sol",
+              "returnedModel": "gpt-6.1-sol",
+              "provider": "openai",
+              "parameters": {
+                "store": false,
+                "max_completion_tokens": 8192,
+                "reasoning_effort": "medium"
+              }
+            },
+            "trial": {
+              "unlimited": true,
+              "limit": null,
+              "remaining": null
+            }
+          },
+          "error": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": 3,
+      "question": "Сколько будет 17 × 23? Только число.",
+      "compare": false,
+      "comparison": "single",
+      "jobs": {
+        "text": {
+          "status": "complete",
+          "requestId": "3b5f89d9-5d37-44d8-982c-e1dd00b157f7",
+          "response": {
+            "answer": "391",
+            "model": "gpt-6.1-sol",
+            "metadata": {
+              "mode": "text",
+              "profileVersion": "1.4.2",
+              "profileHash": "a4d09af033be6f272b1c05a09fdb29fc412ebf59433466518c2cc2409e818249",
+              "commonPolicyHash": "7f40b59a606f6d7b7349335fa31a26e4833713dee2f1d653276fea45b5a08edd",
+              "requestedModel": "gpt-6.1-sol",
+              "returnedModel": "gpt-6.1-sol",
+              "provider": "openai",
+              "parameters": {
+                "store": false,
+                "max_completion_tokens": 8192,
+                "reasoning_effort": "medium"
+              }
+            },
+            "trial": {
+              "unlimited": true,
+              "limit": null,
+              "remaining": null
+            }
+          },
+          "error": null,
+          "attempts": 1
+        }
+      }
+    }
+  ]
+}

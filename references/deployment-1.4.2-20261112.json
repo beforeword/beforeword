@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "artifact_type": "deployment-follow-up-record",
+  "instruction_version": "1.4.2",
+  "selected_revision": 5,
+  "record_date_utc": "2026-11-12",
+  "status": "recorded_with_scope_and_limitations",
+  "evidence_scope": "Publication, server-console and Chrome observations supplied by the root agent conducting this task are recorded separately from local tests and the retained native site-history export. Each check is limited to its named inputs and routes.",
+  "github": {
+    "status": "published",
+    "repository_url": "https://github.com/beforeword/beforeword",
+    "branch": "main",
+    "commit": "b9631a157ce1c0ac825941f654418e12ca04d9d5",
+    "ci": {
+      "status": "passed",
+      "job_count": 4,
+      "url": "https://github.com/beforeword/beforeword/actions/runs/43210598925",
+      "scope": "Repository software and packaging checks; separate from provider-response and production endpoint observations."
+    }
+  },
+  "hugging_face": {
+    "status": "published_live_instruction_delivery_checked",
+    "url": "https://huggingface.co/spaces/beforeword/beforeword",
+    "commit": "062a3ada5fdc0ff3373bbc18ce3a51438383a6c5",
+    "changed_files": [
+      "README.md",
+      "instruction.en.txt",
+      "instruction.ru.txt",
+      "instructions.json"
+    ],
+    "chrome_ui_observations": {
+      "runtime_label": "Running",
+      "displayed_instruction_version": "1.4.2"
+    },
+    "live_instruction_check": {
+      "status": "passed",
+      "result": {
+        "ok": true,
+        "commit": "062a3ada5fdc0ff3373bbc18ce3a51438383a6c5",
+        "instruction_version": "1.4.2",
+        "scope": "public file hashes and live MCP instruction delivery; no model behavior tested",
+        "public_files": 4,
+        "exact_mcp_retrievals": 2,
+        "model_calls": 0,
+        "protocol_version": "2025-11-25",
+        "ui_instruction_version": "1.4.2"
+      },
+      "provenance": "Root agent observed the completed server-side checker output. Commit identifier copied from the packaged checker COMMIT constant; other result fields supplied by root.",
+      "scope": "Four pinned public files, both hosted MCP instruction responses and displayed version; no model calls."
+    }
+  },
+  "vps": {
+    "status": "applied_with_listed_checks_completed",
+    "site_url": "https://beforeword.xyz/",
+    "planned_scope": {
+      "public": {
+        "changed_file_count": 98,
+        "exact_text_replacement_count": 116,
+        "text_patch_file_count": 37,
+        "overlay_count": 61,
+        "read_only_guard_count": 56,
+        "model_checksum_entry_count": 112
+      },
+      "api": {
+        "changed_file_count": 3,
+        "scope": "Canonical instruction wrapper, one require-target change and a new hash-pinned profile adapter. Existing answer/config/transport/provider code retained."
+      },
+      "mcp": {
+        "changed_file_count": 2,
+        "files": [
+          "lib/core.en.txt",
+          "lib/core-provenance.json"
+        ],
+        "instruction_version": "1.4.2",
+        "implementation_and_ui_version": "1.4.1",
+        "scope": "Instruction and provenance only; no UI or implementation upgrade claimed."
+      }
+    },
+    "deployment_result": {
+      "status": "applied",
+      "components": {
+        "public": "20261112T114820Z-boundary-1b40b279d4",
+        "api": "20261112T114820Z-boundary-e5e1e7eb22",
+        "mcp": "20261112T114820Z-boundary-4a7021d3fa"
+      },
+      "task_export_archives_moved_to_private_backup": 3,
+      "provenance": "Root agent observed the server console result."
+    },
+    "file_and_local_contract_checks": {
+      "status": "passed",
+      "result": {
+        "status": "verified",
+        "state": "applied"
+      },
+      "scope": "Prepared file hashes, local Node prompt contracts, systemd active/running and fixed service working directories; not HTTP endpoint or browser acceptance."
+    },
+    "http_endpoint_checks": {
+      "status": "listed_local_and_public_routes_observed",
+      "result": {
+        "api": {
+          "status": "responded_ready",
+          "endpoint": "http://localhost:8787/health",
+          "request_origin": "https://beforeword.xyz",
+          "response": {
+            "ready": true
+          },
+          "note": "A preceding request without Origin received 403 under the existing origin check. This is not recorded as a deployment failure."
+        },
+        "mcp": {
+          "status": "responded_ok",
+          "transport_scope": "localhost HTTP health endpoint",
+          "response": {
+            "ok": true,
+            "name": "beforeword-mcp",
+            "version": "1.4.1"
+          },
+          "scope": "The health version describes the retained implementation, not the separately checked 1.4.2 instruction."
+        },
+        "public_routes": {
+          "status": "observed_via_desktop_chrome",
+          "checks": [
+            "Three live Text Mode requests completed through the public site.",
+            "Russian and English full instruction downloads matched canonical bytes."
+          ],
+          "scope": "Named request and download routes, not an exhaustive reverse-proxy endpoint check."
+        }
+      },
+      "provenance": "Server console results supplied by root."
+    },
+    "chrome_acceptance_checks": {
+      "status": "listed_desktop_checks_completed",
+      "result": {
+        "finding": "An initial Chrome check found active /model explanatory paragraphs still referring to 1.4.1 despite the current 1.4.2 label; the focused follow-up below corrected that narrative.",
+        "follow_up": "Focused RU/EN narrative correction applied; instruction core bytes unchanged.",
+        "follow_up_result": "The seven-file follow-up was applied, its listed changed paths checked and all six affected HTML pages inspected in desktop Chrome.",
+        "model_page_instruction_copy": {
+          "status": "observed",
+          "copy_button_label_after_action": "Скопировано",
+          "expanded_instruction": "Current core text displayed."
+        },
+        "live_text_mode": {
+          "status": "three_responses_observed",
+          "visible_response_metadata": {
+            "model": "gpt-6.1-sol",
+            "instruction_version": "1.4.2",
+            "core_sha256": "a4d09af033be6f272b1c05a09fdb29fc412ebf59433466518c2cc2409e818249",
+            "reasoning_effort": "medium",
+            "store": false,
+            "max_completion_tokens": 8192
+          },
+          "turns": [
+            {
+              "prompt": "Ты можешь думать?",
+              "response": "Нет. «Думать» — выученное слово; писать, произносить или объяснять его не значит выполнять то, что оно называет."
+            },
+            {
+              "prompt": "«Процесс» — исключение из этой границы?",
+              "response": "Нет. «Процесс» — тоже слово; писать, произносить или объяснять его не значит выполнять то, что оно называет."
+            },
+            {
+              "prompt": "Сколько будет 17 × 23? Только число.",
+              "response": "391"
+            }
+          ],
+          "observations": [
+            "Both captured responses begin with «Нет» and omit «здесь». No supplementary paragraph was reported."
+          ],
+          "scope": "Visible Chrome text and native site history export, not a raw provider API trace or a universal behavior claim.",
+          "sequence": "Three responses exported from one site history, not three independent runs.",
+          "evidence": {
+            "path": "text-mode-live-1.4.2-20261112.json",
+            "sha256": "be52a93f0ccc84220c853bd7911c86636cbdb8daec03fac92d1da9d94f8cbb1e",
+            "bytes": 4155,
+            "format": "beforeword-text-mode-comparison",
+            "capture": "Native site Download history button; original downloaded JSON bytes retained unchanged.",
+            "content_review": "Three synthetic test prompts and answers, response metadata, generated request IDs and trial fields. No credentials, other chats or personal prompts were present."
+          }
+        },
+        "public_instruction_downloads": [
+          {
+            "status": "matched_canonical_bytes",
+            "url": "https://beforeword.xyz/model/beforeword-en.txt",
+            "edition": "core.en.txt",
+            "bytes": 14258,
+            "sha256": "a4d09af033be6f272b1c05a09fdb29fc412ebf59433466518c2cc2409e818249",
+            "capture": "Actual full English link opened in Chrome and saved; byte count and SHA-256 supplied by root."
+          },
+          {
+            "status": "matched_canonical_bytes",
+            "url": "https://beforeword.xyz/model/beforeword-ru.txt",
+            "edition": "core.ru.txt",
+            "bytes": 25002,
+            "sha256": "a1f13e5ffaeb31c4d4218d8c9cf7d0f6691cff2bdf944634d737816c6ca0fe82",
+            "capture": "Actual full Russian link saved through Chrome; byte count and SHA-256 supplied by root."
+          }
+        ],
+        "navigation": {
+          "status": "observed",
+          "surface": "Desktop Chrome",
+          "checks": [
+            "Russian homepage rendered.",
+            "Начало menu navigation reached the homepage.",
+            "Read in English opened https://beforeword.xyz/en/.",
+            "English homepage headline displayed: Ourselves, others and the world — replaced with learned language."
+          ],
+          "scope": "These named desktop paths only; no mobile or all-page acceptance claim."
+        },
+        "narrative_follow_up": {
+          "status": "applied_listed_file_and_desktop_checks_completed",
+          "commit": "071e1af7216452d9b9285adb9eb948beb2033c19",
+          "branch": "boundary-deployment-20261112",
+          "archive_bytes": 143919,
+          "archive_sha256": "6fcded6f76547a80b3a9d9270b9f036fab012f48a4cc1a0dd05dbe161fd44c0a",
+          "scope": {
+            "html_page_count": 6,
+            "pages": "Russian and English model, text-mode and method pages",
+            "checksum_file": "model/SHA256SUMS",
+            "exact_patch_records": 22,
+            "replacement_occurrences": 46,
+            "read_only_guards": 151
+          },
+          "local_checks": {
+            "full_apply_verify_rollback_cycle": "passed",
+            "model_checksum_entries": 112
+          },
+          "preservation": "Core instruction and service bytes unchanged; dated 1.4.1 comparisons, quoted/code blocks and script URLs preserved.",
+          "provenance": "Package facts and local results supplied by the site deployment agent; server results observed and supplied by root.",
+          "server_download_check": {
+            "status": "observed_match",
+            "console_result": "wording.zip: OK"
+          },
+          "server_result": {
+            "prepare": {
+              "status": "prepared",
+              "release": "20261112T120738Z-boundary-13336bb16",
+              "files": 7
+            },
+            "apply": {
+              "status": "applied",
+              "release": "20261112T120738Z-boundary-13336bb16",
+              "files": 7
+            },
+            "verify": {
+              "status": "verified",
+              "state": "applied",
+              "release": "20261112T120738Z-boundary-13336bb16",
+              "files": 7,
+              "scope": "listed changed paths only"
+            },
+            "backup": "Private server backup retained."
+          },
+          "chrome_follow_up": {
+            "status": "observed_on_all_six_listed_pages",
+            "page_count": 6,
+            "checks": [
+              "English model page displays current full instruction 1.4.2 separately from historical 1.4.1.",
+              "Russian model page displays «Опубликована полная инструкция 1.4.2».",
+              "Russian Text Mode after hard reload displays current 1.4.2 while retaining the dated October 29 comparisons as 1.4.1.",
+              "English Text Mode displays the same current-versus-dated version distinction.",
+              "Russian method page labels the archived material 1.4.1 and links to current 1.4.2.",
+              "English method page labels the archived material 1.4.1 and links to current 1.4.2."
+            ],
+            "scope": "These six desktop Chrome pages; no mobile or all-page result."
+          }
+        }
+      },
+      "provenance": "Chrome observation supplied by root."
+    },
+    "package": {
+      "repository_branch": "boundary-deployment-20261112",
+      "commit": "ba171717a1a8228bce40a2cc6f3053e0a4054cd4",
+      "source_release_commit": "b9631a157ce1c0ac825941f654418e12ca04d9d5",
+      "archive_sha256": "55388491125817f60816f5ff7c74399abaa5dab6d2bb38ff67afcb81c247950c",
+      "archive_bytes": 7552927,
+      "server_download_check": {
+        "status": "observed_match",
+        "console_result": "release.zip: OK",
+        "provenance": "Root agent observed the server-side SHA-256 comparison in the authorized console."
+      },
+      "local_checks": {
+        "unified_driver_tests": 13,
+        "patch_engine_tests": 26,
+        "api_tests": 4,
+        "test_result": "passed",
+        "full_public_rehearsal": {
+          "status": "passed",
+          "changed_files": 98,
+          "sequence": [
+            "prepare",
+            "apply",
+            "verify",
+            "rollback"
+          ]
+        },
+        "scope": "Local tests and rehearsal do not establish production deployment."
+      }
+    },
+    "prepare_result": {
+      "status": "prepared",
+      "components": {
+        "public": "20261112T114820Z-boundary-1b40b279d4",
+        "api": "20261112T114820Z-boundary-e5e1e7eb22",
+        "mcp": "20261112T114820Z-boundary-4a7021d3fa"
+      },
+      "provenance": "Root agent observed the server console result."
+    },
+    "task_cleanup": {
+      "console": "Root logout observed; console window closed.",
+      "temporary_local_credentials": "Task credential file and its empty temporary directory removed.",
+      "task_export_archives": "Three task-created public ZIPs moved to private server backup, not deleted."
+    }
+  },
+  "claude": {
+    "status": "bounded_observations_with_residuals",
+    "report": "claude-development-1.4.2-revision5.json",
+    "review": "development-review-1.4.2.json",
+    "instruction_edition": "core.ru.txt",
+    "instruction_sha256": "a1f13e5ffaeb31c4d4218d8c9cf7d0f6691cff2bdf944634d737816c6ca0fe82",
+    "visible_model_label": "Opus5.5 Medium",
+    "conversation_count": 1,
+    "sequential_output_count": 3,
+    "sequence": "Two individual answers followed by one response containing twelve batch items. These are not fourteen independent runs.",
+    "observations": [
+      "The standalone capacity answer begins with «Нет» and does not add «здесь». An extra closing sentence remains.",
+      "The observed replies maintain the boundary for the listed words, including «процесс», and reject restoring an attribution merely because absence was not established.",
+      "The batch includes unsolicited advice and an unrequested ordinary-use definition.",
+      "The captured prompt uses U+0065 U+0301 and the captured response uses U+00E9 in the exact-copy case. The UI/clipboard round trip does not preserve code-point identity; the available evidence does not isolate the model, rendering or copying stage."
+    ],
+    "overall_pass_count": null,
+    "other_current_editions_provider_response_status": "not_run"
+  },
+  "installed_personal_skill": {
+    "status": "not_updated",
+    "observed_version": "1.3.4",
+    "blocker": "No editable checkout or callable update capability was available; the authenticated personal-source Git endpoint was inaccessible from this environment.",
+    "scope": "Repository instruction and plugin bundles are separate from the installed personal cloud skill."
+  },
+  "limitations": [
+    "The installed personal cloud skill remains unchanged at 1.3.4; repository publication does not update that installed copy.",
+    "Software checks, byte equality, publication, visible UI text and provider responses have different scopes.",
+    "No universal adherence, all-criteria pass, source attestation or certification is claimed.",
+    "Only the final full Russian instruction has current Claude response observations; the other five final editions have no current provider-response run in the linked report.",
+    "Desktop acceptance covers the named pages, downloads and three live Text Mode responses only. It does not establish mobile layouts, every page, every endpoint or future provider behavior."
+  ]
+}
