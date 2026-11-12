@@ -6,7 +6,7 @@ const {webcrypto}=require('node:crypto'),{parseHTML}=require('linkedom');
 const base=path.resolve(__dirname,'../extension'),read=name=>fs.readFileSync(path.join(base,name),'utf8');
 const prefsKey='beforewordModelPreferencesV1',keyKey='beforewordCustomKeyV1',fixtureKey='fixture-key-not-real';
 const flush=async()=>{for(let i=0;i<12;i++)await new Promise(resolve=>setImmediate(resolve));};
-const until=async condition=>{for(let i=0;i<1000&&!condition();i++)await new Promise(resolve=>setImmediate(resolve));assert.ok(condition(),'UI operation completed');};
+const until=async(condition,diagnostic=()=> 'UI operation completed')=>{const deadline=Date.now()+5000;while(!condition()&&Date.now()<deadline)await new Promise(resolve=>setTimeout(resolve,5));assert.ok(condition(),diagnostic());};
 async function harness({language='en',saved=null,key=null,selection=null}={}){
  const {document,window:dom}=parseHTML(read('panel.html'));let focused=null;
  Object.defineProperty(document,'activeElement',{get:()=>focused});dom.HTMLElement.prototype.focus=function(){focused=this;};dom.HTMLElement.prototype.scrollIntoView=function(){};
@@ -30,7 +30,9 @@ async function harness({language='en',saved=null,key=null,selection=null}={}){
  const checks=()=>[...document.querySelectorAll('[name=privacy-requirement]')];
  const open=()=>click('#settings');
  const configure=async(provider='openai')=>{await open();await input('#model-mode','custom');await input('#model-provider',provider);await input('#model-name','fixture-model');await input('#model-key',fixtureKey);};
- return {document,sandbox,state,one,click,input,check,checks,submit,open,configure,run:code=>vm.runInContext(code,sandbox)};
+ // Privacy checks use real async WebCrypto. Event-loop ticks are not a completion signal.
+ const analyze=async()=>{const diagnostic=()=>`Analysis did not settle: requests=${state.requests.length}; status=${one('#analysis-status').textContent}; sendNotice=${one('#send-notice').textContent}`;await until(()=>!one('#analyze').disabled,diagnostic);await click('#analyze');await until(()=>one('#analysis-spinner').hasAttribute('hidden'),diagnostic);};
+ return {document,sandbox,state,one,click,input,check,checks,submit,open,configure,analyze,run:code=>vm.runInContext(code,sandbox)};
 }
 test('new custom account shows concrete processing checks unchecked, preserving provider choices',async()=>{
  const f=await harness();await f.configure();assert.equal(f.one('#model-provider').options.length,9);assert.equal(f.checks().length,1);assert.equal(Boolean(f.checks()[0].checked),false);assert.match(f.one('#provider-privacy-summary').textContent,/not zero retention/);assert.match(f.checks()[0].parentElement.textContent,/sharing API inputs/);assert.equal(f.state.requests.length,0);
@@ -38,7 +40,7 @@ test('new custom account shows concrete processing checks unchecked, preserving 
 });
 test('reviewed checks can be saved, then a manually requested analysis reaches the provider',async()=>{
  const f=await harness();await f.configure();for(const item of f.checks())await f.check(item);await f.submit();assert.equal((await f.run('BeforewordAnalysisModel.getStatus()')).configured,true);assert.equal(f.checks()[0].checked,true);assert.match(f.one('#provider-privacy-status').textContent,/not independently verified/);assert.equal(f.state.requests.length,0);
- await f.click('#close-settings');await f.input('#source','The writing.');await f.click('#analyze');assert.equal(f.state.requests.length,1);assert.equal(f.one('.reading-step strong').textContent,'remains writing');
+ await f.click('#close-settings');await f.input('#source','The writing.');await f.analyze();assert.equal(f.state.requests.length,1);assert.equal(f.one('.reading-step strong').textContent,'remains writing');
 });
 test('old saved key cannot silently send; explicit analysis opens the review without sending text',async()=>{
  const saved={mode:'custom',provider:'openai',protocol:'openai',endpoint:'https://api.openai.com/v1/chat/completions',model:'fixture-model'};
@@ -68,6 +70,6 @@ test('toolbar, context-menu capture and legacy inline selection intents only dis
  for(const intent of [false,true]){
   const selection={text:'The writing.',origin:'https://source.example',...(intent?{analysisIntent:{id:'legacy-routing-intent',windowId:1,sourceTabId:2}}:{})};const f=await harness({selection});
   assert.equal(f.one('#record-output').textContent,selection.text);assert.equal(f.one('#record-details').open,true);assert.equal(f.state.requests.length,0);assert.equal(f.one('#analysis-spinner').hasAttribute('hidden'),true);
-  await f.configure();for(const item of f.checks())await f.check(item);await f.submit();await f.click('#close-settings');assert.equal(f.state.requests.length,0);await f.click('#analyze');assert.equal(f.state.requests.length,1);assert.equal(f.one('.quote-button').textContent,selection.text);
+  await f.configure();for(const item of f.checks())await f.check(item);await f.submit();await f.click('#close-settings');assert.equal(f.state.requests.length,0);await f.analyze();assert.equal(f.state.requests.length,1);assert.equal(f.one('.quote-button').textContent,selection.text);
  }
 });

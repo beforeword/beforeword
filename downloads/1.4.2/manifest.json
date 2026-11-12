@@ -183,7 +183,7 @@
     "integrations/browser/tools/test-answer-profile.cjs": "e181119078083ab30674457907edbfe1f902b2f5bc1fd0f67f303e7aa496a6ca",
     "integrations/browser/tools/test-home-answer.cjs": "310ad3a8b3f77a676068beaec5a0e97c1bcb162eb3ba350644a05d373cb57744",
     "integrations/browser/tools/test-panel-compact.cjs": "d557b0aadae7502bb45bfbdbee6c1278b3919f9af7a8f607f11c8168e4918ada",
-    "integrations/browser/tools/test-panel-privacy.cjs": "9ba82b7426151268a4e59bffe8dc2204e99d04bf0c176f7ff3196a7142ad1b27",
+    "integrations/browser/tools/test-panel-privacy.cjs": "d89bf1883559c34a2ae5ed92843324bc34bce457ba77317604d191d59dd060ac",
     "integrations/browser/tools/test-provider-privacy.cjs": "4b8546dcb3c3d82dfd115bf3d20fab589ee42d92c96f99337da99048f6185f81",
     "integrations/browser/tools/test-release.cjs": "be531cc7d8581b8cc8dde747bdb253540b1c8ad38e486ca10f75d64ed2dd1aa7",
     "integrations/huggingface/LICENSE.instruction-en.txt": "68884273ea3f9546fb710f2c1f2035a7d5b23f94c1d0458e94513f97bc9de4ef",
@@ -345,8 +345,8 @@
       "bytes": 9120
     },
     "beforeword_AI_1.4.2.html": {
-      "sha256": "22f4dbf121f73f4254c63b18703f01136dcd8a9ee6877cc2b3a95285ca6759e3",
-      "bytes": 5271071
+      "sha256": "db0778157a135b6396e466fea249cdbf77fa44c2df560f2bae48bfad1edf98f0",
+      "bytes": 5271319
     },
     "beforeword_claude_plugin_EN_1.4.2.zip": {
       "sha256": "82d8f18e3f0a12df3aac87857161f68378c27c27a961bbdbe4871c5cd979bfe7",
@@ -389,8 +389,8 @@
       "bytes": 10198
     },
     "beforeword_toolkit_1.4.2.zip": {
-      "sha256": "711b50cfd8d50b6d72993f27b1dc07c061d8e301b71d521f60fc56e232183cee",
-      "bytes": 3455867
+      "sha256": "3677307544c685fd2e5a9152d0dc4736f424e7cc8f1639f19005c7b1f744532d",
+      "bytes": 3456054
     }
   }
 }
