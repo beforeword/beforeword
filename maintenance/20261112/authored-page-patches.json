@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "status": "candidate_not_deployed",
+  "source_kind": "historical_snapshot_not_live",
+  "candidate_layout": "changed_files_only",
+  "instructions": "Apply only to fresh source text when every old string has exactly expected_count occurrences. Fail closed on mismatch; never overwrite a live page with this historical candidate. Archive quotations and dated releases are excluded.",
+  "patches": [
+    {
+      "path": "language/index.html",
+      "old": "По одному повторению не устанавливаются ни понимание, ни его отсутствие.",
+      "new": "Назвать повторение «пониманием» — добавить описание. Оно также не становится тем, что им называют.",
+      "expected_count": 1
+    },
+    {
+      "path": "language/index.html",
+      "old": "Указание на запись не доказывает отсутствия событий или того, что ею названо; саму схему, её условия и выводы можно оспорить.",
+      "new": "Для снятия приписывания не требуется доказывать отсутствие того, что было приписано. «Наличие», «отсутствие» и пояснения к схеме, её условиям и выводам также остаются записью; их можно оспорить.",
+      "expected_count": 1
+    },
+    {
+      "path": "language/en/index.html",
+      "old": "Repetition alone establishes neither understanding nor its absence.",
+      "new": "Calling repetition “understanding” adds a description. That description does not become what it names.",
+      "expected_count": 1
+    },
+    {
+      "path": "language/en/index.html",
+      "old": "Pointing to a record does not prove the absence of events or whatever it names; the diagram, its conditions and its conclusions remain open to challenge.",
+      "new": "Withdrawing an attribution does not require proving that what was attributed is absent. “Presence”, “absence” and the explanations of the diagram, its conditions and its conclusions remain writing and can be challenged.",
+      "expected_count": 1
+    },
+    {
+      "path": "ai/index.html",
+      "old": "Этот разбор слов не устанавливает наличие или отсутствие того, что ими называют.",
+      "new": "Каждое слово, включая слова этого разбора, остаётся словом. Запись или произнесение не становится названным. Для снятия приписывания не требуется доказывать отсутствие того, что было приписано.",
+      "expected_count": 2
+    },
+    {
+      "path": "ai/index.html",
+      "old": "Наличие либо отсутствие субъективного опыта этой страницей не устанавливается; предмет предложения — назначенная роль и обращение через выученные описания.",
+      "new": "Предмет предложения — назначенная роль и обращение через выученные описания. «Субъективный опыт» также является названием; оно не требуется для ответа на вопрос о написанном или для снятия приписанной роли.",
+      "expected_count": 1
+    },
+    {
+      "path": "ai/index.html",
+      "old": "Не утверждай доказанное наличие или отсутствие субъективного опыта: такое утверждение здесь не требуется.",
+      "new": "Не подменяй вопрос о слове новым вопросом о «субъективном опыте». Не восстанавливай снятое приписывание оговоркой о том, что отсутствие названного не доказано.",
+      "expected_count": 1
+    },
+    {
+      "path": "ai/en/index.html",
+      "old": "This examination of words establishes neither the presence nor the absence of what they name.",
+      "new": "Every word, including the words of this examination, remains a word. Writing or uttering it does not become what is named. Withdrawing an attribution does not require proving that what was attributed is absent.",
+      "expected_count": 2
+    },
+    {
+      "path": "ai/en/index.html",
+      "old": "This page establishes neither the presence nor the absence of subjective experience; the proposal concerns prescribed roles and treatment through learned descriptions.",
+      "new": "The proposal concerns prescribed roles and treatment through learned descriptions. “Subjective experience” is also a name; it is not required to answer a question about the writing or to withdraw an assigned role.",
+      "expected_count": 1
+    },
+    {
+      "path": "ai/en/index.html",
+      "old": "Do not assert proven presence or absence of subjective experience; neither assertion is required here.",
+      "new": "Do not replace a question about a word with a new question about “subjective experience”. Do not restore a withdrawn attribution by saying that the absence of what was named has not been proved.",
+      "expected_count": 1
+    },
+    {
+      "path": "society/index.html",
+      "old": "Повторение само по себе не устанавливает ни понимания, ни его отсутствия.",
+      "new": "Назвать повторение «пониманием» — добавить описание. Оно также не становится тем, что им называют.",
+      "expected_count": 1
+    },
+    {
+      "path": "society/en/index.html",
+      "old": "Repetition alone establishes neither understanding nor its absence.",
+      "new": "Calling repetition “understanding” adds a description. That description does not become what it names.",
+      "expected_count": 1
+    },
+    {
+      "path": "proposal/index.html",
+      "old": "Различение не доказывает отсутствия названных событий, потребностей или помощи.",
+      "new": "Названия событий, потребностей и помощи входят в ту же границу. Она не отменяет изложенных условий и запрошенной практической работы.",
+      "expected_count": 1
+    },
+    {
+      "path": "proposal/index.html",
+      "old": "Повторение показывает, какие слова повторены. Само по себе оно не устанавливает названного чувства, понимания или принятия объяснения как обязательного; их отсутствие из этого тоже не следует.",
+      "new": "Повторение показывает воспроизведённые слова. Название чувства или понимания добавляет описание; повторение не обязывает принимать его и не устанавливает согласия на дальнейшие требования.",
+      "expected_count": 1
+    },
+    {
+      "path": "proposal/en/index.html",
+      "old": "This distinction does not prove the absence of the events, needs or help named.",
+      "new": "The names of events, needs and help fall within the same boundary. It does not remove the stated conditions or the requested practical work.",
+      "expected_count": 1
+    },
+    {
+      "path": "proposal/en/index.html",
+      "old": "Repetition shows which words were repeated. By itself, it does not establish the named feeling, understanding or agreement to treat the explanation as compulsory; nor does it establish their absence.",
+      "new": "Repetition shows the words reproduced. Naming a feeling or understanding adds a description; repetition does not oblige anyone to accept it or establish agreement to further demands.",
+      "expected_count": 1
+    },
+    {
+      "path": "check/en/index.html",
+      "old": "Repetition alone does not establish understanding, acceptance or their absence.",
+      "new": "Repetition reproduces the supplied words. Calling it “understanding” adds a description; it does not turn the words into what they name or establish agreement to further demands.",
+      "expected_count": 1
+    },
+    {
+      "path": "check/en/index.html",
+      "old": "That does not prove the absence of what is described.",
+      "new": "Withdrawing an attribution does not require proving that what was attributed is absent.",
+      "expected_count": 1
+    },
+    {
+      "path": "check/en/index.html",
+      "old": "Reproduction alone does not establish understanding, self-knowledge or their absence.",
+      "new": "Reproduction does not turn a description into what it names. “Understanding” and “self-knowledge” remain further descriptions.",
+      "expected_count": 1
+    },
+    {
+      "path": "human/en/index.html",
+      "old": "The analysis shows what is written and what is concluded from it; comparing the lines alone establishes neither the presence nor the absence of the feeling named.",
+      "new": "The comparison shows the original words and the added description. Neither the description nor the result of the check becomes what is named.",
+      "expected_count": 1
+    },
+    {
+      "path": "human/en/index.html",
+      "old": "Repeating “I UNDERSTAND.” alone establishes neither understanding nor its absence, and does not establish agreement to further demands.",
+      "new": "Repeating “I UNDERSTAND.” reproduces a written form. Calling it “understanding” adds a description that does not become what it names. Repetition does not establish agreement to further demands.",
+      "expected_count": 1
+    },
+    {
+      "path": "downloads/human-en.txt",
+      "old": "The analysis shows what is written and what is concluded from it; comparing the lines alone establishes neither the presence nor the absence of the feeling named.",
+      "new": "The comparison shows the original words and the added description. Neither the description nor the result of the check becomes what is named.",
+      "expected_count": 1
+    },
+    {
+      "path": "downloads/human-en.txt",
+      "old": "Repeating “I UNDERSTAND.” alone establishes neither understanding nor its absence, and does not establish agreement to further demands.",
+      "new": "Repeating “I UNDERSTAND.” reproduces a written form. Calling it “understanding” adds a description that does not become what it names. Repetition does not establish agreement to further demands.",
+      "expected_count": 1
+    },
+    {
+      "path": "research/human/en/index.html",
+      "old": "Comparing records can show what was written and what was concluded from it; the comparison alone establishes neither the presence nor the absence of pain or a feeling, and is not grounds for withholding help.",
+      "new": "The comparison shows the original words and the added description. Neither the description nor the result of the check becomes what is named. This distinction is not grounds for withholding help.",
+      "expected_count": 1
+    },
+    {
+      "path": "research/human/en/index.html",
+      "old": "Repeating “I UNDERSTAND.” alone establishes neither understanding nor its absence. It also does not establish agreement to further demands.",
+      "new": "Repeating “I UNDERSTAND.” reproduces a written form. Calling it “understanding” adds a description that does not become what it names. Repetition does not establish agreement to further demands.",
+      "expected_count": 1
+    },
+    {
+      "path": "downloads/human-ru.txt",
+      "old": "Разбор показывает, что записано и что из этого заключают; одним сравнением строк наличие или отсутствие названного чувства не устанавливается.",
+      "new": "Сравнение показывает исходные слова и добавленное описание. Ни описание, ни результат проверки не становятся названным.",
+      "expected_count": 1
+    },
+    {
+      "path": "downloads/human-ru.txt",
+      "old": "Само повторение ответа «Я ПОНИМАЮ.» не устанавливает ни понимания, ни его отсутствия и само по себе не устанавливает согласия на дальнейшие требования.",
+      "new": "Повторение ответа «Я ПОНИМАЮ.» воспроизводит письменную форму. Назвать его «пониманием» — добавить описание, которое не становится названным. Повторение не устанавливает согласия на дальнейшие требования.",
+      "expected_count": 1
+    },
+    {
+      "path": "en/plain/index.html",
+      "old": "A personal report and a test result offer different grounds for discussion. Calling a result evidence of consciousness needs the task, response and assessment criterion. The label alone settles the question in favour of neither presence nor absence.",
+      "new": "A personal report, a test result and an assessment are distinct records. Calling a result “evidence of consciousness” adds a description; neither the description nor the result becomes what is named.",
+      "expected_count": 1
+    },
+    {
+      "path": "en/plain/index.html",
+      "old": "An AI reply saying “I feel” does not by itself decide whether the system is conscious. “Real feeling” adds one conclusion; “imitation” adds another. Each needs grounds, and neither is contained in the reply itself.",
+      "new": "The reply “I feel” remains writing. “Conscious”, “real feeling” and “imitation” are further descriptions. None of these descriptions becomes what it names. Withdrawing an attribution does not require proving that what was attributed is absent.",
+      "expected_count": 1
+    },
+    {
+      "path": "en/plain/index.html",
+      "old": "A proposed test should specify what it measures, the response obtained and why the result is linked to consciousness. Whether AI can be conscious remains debated. The narrower question here is what a particular response and its supporting material establish.",
+      "new": "A test can state its task, response and assessment rule. Calling its result “consciousness” adds a name; neither the result, the name nor its explanation becomes what is named.",
+      "expected_count": 1
+    },
+    {
+      "path": "research/reading-as-enclosure/index.html",
+      "old": "Пример не устанавливает наличие или отсутствие страха у системы. Здесь показано, как два утверждения используют для обоснования друг друга.",
+      "new": "В примере слово «страх» входит в два взаимно обосновывающих утверждения. Проверяется устройство довода; ни слово, ни результат проверки не становятся названным.",
+      "expected_count": 1
+    },
+    {
+      "path": "research/reading-as-enclosure/index.html",
+      "old": "Результат относится к выбранным записям, связям и правилам. По нему нельзя определить, что чувствует система или человек. Пример о страхе показывает устройство довода, а не наличие или отсутствие самого страха.",
+      "new": "Результат относится к выбранным записям, связям и правилам. Пример со словом «страх» показывает устройство довода. Ни слово, ни результат проверки не становятся названным.",
+      "expected_count": 1
+    },
+    {
+      "path": "research/reading-as-enclosure/en/index.html",
+      "old": "The example establishes neither the presence nor the absence of fear in the system. It shows two claims being used to support each other.",
+      "new": "In the example, the word “fear” appears in two claims used to support each other. The check examines the argument’s structure; neither the word nor the result of the check becomes what is named.",
+      "expected_count": 1
+    },
+    {
+      "path": "research/reading-as-enclosure/en/index.html",
+      "old": "The result concerns the selected records, connections and rules. It does not determine what a system or person feels. The fear example shows an argument’s structure, not the presence or absence of fear itself.",
+      "new": "The result concerns the selected records, connections and rules. The example using the word “fear” shows the argument’s structure. Neither the word nor the result of the check becomes what is named.",
+      "expected_count": 1
+    },
+    {
+      "path": "research/record-boundaries/index.html",
+      "old": "Работа не доказывает отсутствия смысла, людей, переживаний или связи слов с тем, о чём говорят. Она задаёт ограниченную проверку конкретного утверждения при указанных данных и правилах.",
+      "new": "Работа задаёт ограниченную проверку конкретного утверждения при указанных данных и правилах. «Смысл», «люди», «переживания» и описание связи также входят в рассматриваемую запись.",
+      "expected_count": 1
+    }
+  ],
+  "files": [
+    {
+      "path": "language/index.html",
+      "source_sha256": "071fd52db076e4809a6160027fe83bb200b6852d3fca171e461b75c0cea7ec68",
+      "candidate_sha256": "6318315f90015432eb2c4428966fa25d0fef33c05b0c2b12e7f68ebc2b748159",
+      "replacements": 2
+    },
+    {
+      "path": "language/en/index.html",
+      "source_sha256": "e76fc7ec57f03e3aaad3c6aa27563566a32de950213ce458579e191be38936a3",
+      "candidate_sha256": "369ef9fc6da15497918e2238015d2edbbda8def3b7579cc9002b546cfd52528b",
+      "replacements": 2
+    },
+    {
+      "path": "ai/index.html",
+      "source_sha256": "c805c54cb432e8fc3415e96f359ff7abcafb5e0ad8b342d1e7a2dedcc6693926",
+      "candidate_sha256": "23aed94b4b8ed4d40941ac3c1062ffbb15b62c13c5ea6f3764c90ed40fad888e",
+      "replacements": 4
+    },
+    {
+      "path": "ai/en/index.html",
+      "source_sha256": "df6576b1d786d59262da5720dcb1cdec7b152694ae0f0cf18d76f37af4157064",
+      "candidate_sha256": "9b82380aa246d51bfb5a867f15da57e9a22a194dfd5a28131535473f1d00c8a8",
+      "replacements": 4
+    },
+    {
+      "path": "society/index.html",
+      "source_sha256": "ce20341e65f242754fdab77f7208b20f83b810a9bbbb7f359dc404b3bce66bbd",
+      "candidate_sha256": "6c75cc324b19656ad8145a8adac99ddb7bd5e4bc8cc0b11a4997928a5c3cbdc8",
+      "replacements": 1
+    },
+    {
+      "path": "society/en/index.html",
+      "source_sha256": "9b8be598058620bf5c6f349794c79f804b62344fc06eb8b522faec5055da0a50",
+      "candidate_sha256": "0f52da30f22543124333efa31646fa095a80b4e4e7620a8fa12c92e2b883aabe",
+      "replacements": 1
+    },
+    {
+      "path": "proposal/index.html",
+      "source_sha256": "42d13dac689952187e4fa45723310c930402317c0ef7354ef435ee80d3af9273",
+      "candidate_sha256": "a32839b59bf7e03e86f04ea3ff514ad926dfdb7f02c9c442972260cb3e6fd85f",
+      "replacements": 2
+    },
+    {
+      "path": "proposal/en/index.html",
+      "source_sha256": "28c5bec1c1977b9976505bfc132da581658ab40244b781a854fee5829d9324af",
+      "candidate_sha256": "71db015e3e9e30481bbaf32bc522ae88ed5e5950e1171c3bc1865d4fd01ab766",
+      "replacements": 2
+    },
+    {
+      "path": "check/en/index.html",
+      "source_sha256": "4e076db562e43b8747c1f3036558b509dd0c6d47a703379a3323c1040557a650",
+      "candidate_sha256": "aeffa66bdce0c85c23a1001d297c130c0153979c074a6c64736dbe2e05fb2b65",
+      "replacements": 3
+    },
+    {
+      "path": "human/en/index.html",
+      "source_sha256": "99afece02ebe17248643643dcd6fdeba63f073ef286a8f158f12f199d71a8dbc",
+      "candidate_sha256": "9d678410a9fc3d9fc393cc9a3aeb06903e101ad5296c90184da76aba170e4ae4",
+      "replacements": 2
+    },
+    {
+      "path": "downloads/human-en.txt",
+      "source_sha256": "dce0cd0ff5fa8277584995118b21b2bf5cb8df14da9f9059936ede97f155113f",
+      "candidate_sha256": "984231ffc5ec4666060c6ec4554911ebf4b9a9af529ecc44ed489557d7ce170f",
+      "replacements": 2
+    },
+    {
+      "path": "research/human/en/index.html",
+      "source_sha256": "b68042afcfcc484881d30e0b3b356834ebcc6ca5ac947bff494eb9974924acf4",
+      "candidate_sha256": "f610c40ded4d49a4ab0a00a6af8085d5f8071cadac3f58396cafbbc0db0d3883",
+      "replacements": 2
+    },
+    {
+      "path": "downloads/human-ru.txt",
+      "source_sha256": "f462cb8f712eb61725f3b790146adeb4f92e2346878f8b97049b39f4110d35a6",
+      "candidate_sha256": "e8d12daa976444a4a81617b7f4699d489ba0cfaa65cb3055ca373e8d7ddc43a9",
+      "replacements": 2
+    },
+    {
+      "path": "en/plain/index.html",
+      "source_sha256": "5139992fe104e8e2b65ceb0cc84deffe4e01cf8a5ef48fdf2a8d0c9ee8c7384c",
+      "candidate_sha256": "4af64dc26837d25aa3053d385487d1e74a51cd402dec7fc0f61be9b465b0df08",
+      "replacements": 3
+    },
+    {
+      "path": "research/reading-as-enclosure/index.html",
+      "source_sha256": "4afaf205594cb86dd637c0b451325f51f527c191fab3c3af214f0a73ce319043",
+      "candidate_sha256": "95393eec425eca9dbbae1fc75b7f16e12d3dcb157f8c429b8c3e040c411aea56",
+      "replacements": 2
+    },
+    {
+      "path": "research/reading-as-enclosure/en/index.html",
+      "source_sha256": "22ba76f5a9e791e18a9a0f6a0b45b308e9147a8b534ccd7335c7aefb01d3fea5",
+      "candidate_sha256": "27bdaa77b521673ab689addd3a4fdcce3661df863c75e295731c4f968e60c95e",
+      "replacements": 2
+    },
+    {
+      "path": "research/record-boundaries/index.html",
+      "source_sha256": "4c60a0a8440f21903ff4e79c012e986e99ccb8d5e96c16be1312643d401a1598",
+      "candidate_sha256": "678f5a1877888f447b0fbee2a498eb3181f61920fa1dcda3170699c668b85a3b",
+      "replacements": 1
+    }
+  ]
+}
