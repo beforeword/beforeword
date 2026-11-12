@@ -1,0 +1,15 @@
+{
+  "pages": 6,
+  "files": 7,
+  "patch_records": 22,
+  "patch_occurrences": 46,
+  "pre_blocks_unchanged": true,
+  "blockquote_blocks_unchanged": true,
+  "script_urls_unchanged": true,
+  "data_ecosystem_marker_preserved": "1.4.1 is the existing CSS selector, not a current instruction claim",
+  "historical_result_labels_preserved": true,
+  "core_and_service_bytes_changed": false,
+  "local_prepare_apply_verify_rollback": "passed",
+  "readonly_guards": 151,
+  "model_checksum_entries_verified": 112
+}

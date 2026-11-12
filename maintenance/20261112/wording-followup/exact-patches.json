@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "patches": [
+    {
+      "path": "model/index.html",
+      "old": "Text Mode позволяет попробовать инструкцию 1.4.1 на конкретной задаче",
+      "new": "Text Mode позволяет попробовать инструкцию 1.4.2 на конкретной задаче",
+      "expected_count": 1
+    },
+    {
+      "path": "model/index.html",
+      "old": "Здесь сохранена выпущенная инструкция 1.4.1. Она допускает первое лицо в цитатах, переводах и заказанных авторских текстах; это расходится с новым предложением на странице «ИИ». Её текст и результаты проверок не переписаны.",
+      "new": "Опубликована полная инструкция 1.4.2. Исторические проверки 1.4.1 сохранены отдельно; их результаты не описывают новую версию.",
+      "expected_count": 1
+    },
+    {
+      "path": "model/en/index.html",
+      "old": "This section preserves the released 1.4.1 instruction. It permits first person in quotations, translations and requested authored texts, unlike the current proposal on the AI page. Its text and evaluation results have not been rewritten.",
+      "new": "This section contains the full 1.4.2 instruction. Historical 1.4.1 evaluations are preserved separately; their results do not describe the new version.",
+      "expected_count": 1
+    },
+    {
+      "path": "model/en/index.html",
+      "old": "<summary>Released instruction 1.4.1</summary>",
+      "new": "<summary>Full instruction 1.4.2</summary>",
+      "expected_count": 1
+    },
+    {
+      "path": "model/index.html",
+      "old": "Ссылки сохранены из исходной публикации. Ранее выпущенные файлы содержат прежнюю редакцию текста.",
+      "new": "Ссылки на сервисы и документацию, текущие файлы инструкции 1.4.2 и отдельно сохранённые исторические отчёты.",
+      "expected_count": 1
+    },
+    {
+      "path": "model/en/index.html",
+      "old": "Links preserved from the original publication. Earlier downloadable editions retain their original wording.",
+      "new": "Links to services and documentation, current 1.4.2 instruction files, and separately preserved historical reports.",
+      "expected_count": 1
+    },
+    {
+      "path": "text-mode/index.html",
+      "old": "Text Mode — демонстрация инструкции 1.4.1 | Beforeword",
+      "new": "Text Mode — инструкция 1.4.2 | Beforeword",
+      "expected_count": 4
+    },
+    {
+      "path": "text-mode/index.html",
+      "old": "Демонстрация инструкции Beforeword 1.4.1: одна модель, задача и два режима. Исходные тексты и ограничения сохранены; новое предложение для программ показано отдельно.",
+      "new": "Text Mode использует инструкцию Beforeword 1.4.2. Сохранённое сравнение 1.4.1, исходные тексты и ограничения показаны отдельно.",
+      "expected_count": 4
+    },
+    {
+      "path": "text-mode/en/index.html",
+      "old": "Text Mode — instruction 1.4.1 demonstration | Beforeword",
+      "new": "Text Mode — instruction 1.4.2 | Beforeword",
+      "expected_count": 4
+    },
+    {
+      "path": "text-mode/en/index.html",
+      "old": "A demonstration of Beforeword instruction 1.4.1: one model and task, two modes. Original outputs and limits remain; the current program-design proposal is separate.",
+      "new": "Text Mode uses Beforeword instruction 1.4.2. The saved 1.4.1 comparison, original outputs and limits are presented separately.",
+      "expected_count": 4
+    },
+    {
+      "path": "text-mode/index.html",
+      "old": "<p><strong>Инструкция 1.4.1</strong> сохраняет первое лицо в цитатах, переводах и заказанных текстах. Текущее предложение для ИИ этого не предусматривает.</p>",
+      "new": "<p><strong>Инструкция 1.4.2</strong> используется сейчас. Сохранённые ниже сравнения относятся к инструкции 1.4.1; их исходные тексты не изменены.</p>",
+      "expected_count": 1
+    },
+    {
+      "path": "text-mode/en/index.html",
+      "old": "<p><strong>Instruction 1.4.1</strong> retains first-person wording in quotations, translations and requested texts. The current AI proposal removes this exception.</p>",
+      "new": "<p><strong>Instruction 1.4.2</strong> is used now. The saved comparisons below belong to instruction 1.4.1; their original texts are unchanged.</p>",
+      "expected_count": 1
+    },
+    {
+      "path": "text-mode/index.html",
+      "old": "Те же условия плюс дополнительная инструкция Beforeword 1.4.1.",
+      "new": "Те же условия плюс дополнительная инструкция Beforeword 1.4.2.",
+      "expected_count": 1
+    },
+    {
+      "path": "text-mode/en/index.html",
+      "old": "The same conditions, plus the additional Beforeword instruction 1.4.1.",
+      "new": "The same conditions, plus the additional Beforeword instruction 1.4.2.",
+      "expected_count": 1
+    },
+    {
+      "path": "text-mode/method/index.html",
+      "old": "Text Mode — инструкция 1.4.1 и её проверки",
+      "new": "Text Mode — архив проверки инструкции 1.4.1",
+      "expected_count": 4
+    },
+    {
+      "path": "text-mode/method/index.html",
+      "old": "Выпущенная инструкция Beforeword 1.4.1, исходные задачи, полученные тексты, критерии и ограничения проверки. Это не проверка нового предложения на странице «ИИ».",
+      "new": "Архив проверки инструкции Beforeword 1.4.1: исходные задачи, ответы и ограничения. Текущий Text Mode использует инструкцию 1.4.2.",
+      "expected_count": 4
+    },
+    {
+      "path": "text-mode/method/en/index.html",
+      "old": "Text Mode — instruction 1.4.1 and its evaluations",
+      "new": "Text Mode — instruction 1.4.1 evaluation archive",
+      "expected_count": 4
+    },
+    {
+      "path": "text-mode/method/en/index.html",
+      "old": "Released Beforeword instruction 1.4.1, original tasks, outputs, criteria and evaluation limits. These records do not test the current proposal on the AI page.",
+      "new": "Historical checks of Beforeword instruction 1.4.1: original tasks, outputs and limits. Text Mode currently uses instruction 1.4.2.",
+      "expected_count": 4
+    },
+    {
+      "path": "text-mode/method/index.html",
+      "old": "<p>Text Mode использует полную английскую инструкцию Beforeword 1.4.1. Полный текст совпадает с инструкцией в английском навыке и расширении. Язык ответа задаётся отдельно: задания проверены на русском и английском.</p>",
+      "new": "<p>В сохранённом прогоне использовалась полная английская инструкция Beforeword 1.4.1; её точный текст приведён ниже. Задания проверялись на русском и английском. Текущая <a href=\"/model/\">инструкция 1.4.2</a> опубликована отдельно; материалы этого прогона не являются её проверкой.</p>",
+      "expected_count": 1
+    },
+    {
+      "path": "text-mode/method/en/index.html",
+      "old": "<p>Text Mode uses the full English Beforeword 1.4.1 instruction. The complete text matches the instruction in the English skill and extension. Response language is set separately: tasks were tested in Russian and English.</p>",
+      "new": "<p>The archived run used the full English Beforeword 1.4.1 instruction; its exact text appears below. Tasks were tested in Russian and English. The current <a href=\"/model/en/\">1.4.2 instruction</a> is published separately; these records do not evaluate it.</p>",
+      "expected_count": 1
+    },
+    {
+      "path": "text-mode/method/index.html",
+      "old": "Инструкция 1.4.1 · проверка ответов",
+      "new": "Архив: инструкция 1.4.1 · проверка ответов",
+      "expected_count": 1
+    },
+    {
+      "path": "text-mode/method/en/index.html",
+      "old": "Instruction 1.4.1 · response review",
+      "new": "Archive: instruction 1.4.1 · response review",
+      "expected_count": 1
+    }
+  ]
+}
