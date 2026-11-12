@@ -1,6 +1,6 @@
 {
   "name": "beforeword",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "status": "prepared-not-created",
   "availability": "Account publication eligibility has not been checked.",
   "locales": {
@@ -13,7 +13,7 @@
         "Examine the move from “The report is complete” to “The system is safe”."
       ],
       "instructionsPath": "./instructions.en.txt",
-      "instructionCharacters": 4976,
+      "instructionCharacters": 4990,
       "instructionEdition": "medium",
       "instructionSource": "assets/medium.en.txt",
       "scopeIncludedInInstructionSource": true
@@ -27,7 +27,7 @@
         "Разбери переход от «Отчёт завершён» к «Система безопасна»."
       ],
       "instructionsPath": "./instructions.ru.txt",
-      "instructionCharacters": 4994,
+      "instructionCharacters": 4989,
       "instructionEdition": "medium",
       "instructionSource": "assets/medium.ru.txt",
       "scopeIncludedInInstructionSource": true

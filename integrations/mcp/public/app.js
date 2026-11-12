@@ -1,7 +1,8 @@
+import packageMetadata from '../package.json';
 import { App } from '@modelcontextprotocol/ext-apps';
 import { mountBeforeword } from './view.js';
 
-const app = new App({name:'beforeword',version:'1.4.1'},{});
+const app = new App({name:'beforeword',version:packageMetadata.version},{});
 const view = mountBeforeword({document,bridge:{
   submit:arguments_=>app.callServerTool({name:'submit_source',arguments:arguments_},{timeout:15000}),
   message:text=>app.sendMessage({role:'user',content:[{type:'text',text}]},{timeout:15000})

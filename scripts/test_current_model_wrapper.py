@@ -11,25 +11,33 @@ class Ids(HTMLParser):
 
 class CurrentModel(unittest.TestCase):
     def apply(self,language,evaluation=False):
-        generated='<html><head><title>Selected report</title><link rel="stylesheet" href="/model/assets/public-1.4.1-7fe920efa6e1.css"></head><body><main id="main" tabindex="-1"><h1 id="title">Selected report</h1><p>Fresh report content.</p></main></body></html>'
-        return wrapper.apply(generated,language,evaluation=evaluation,core='Exact & core <value>\nЯ «текст».\n',version='1.4.1',date='2026-10-30',description='Fresh description')
+        generated='<html><head><title>Selected report</title><link rel="stylesheet" href="/model/assets/public-1.4.2-7fe920efa6e1.css"></head><body><main id="main" tabindex="-1"><h1 id="title">Selected report</h1><p>Fresh report content.</p></main></body></html>'
+        return wrapper.apply(generated,language,evaluation=evaluation,core='Exact & core <value>\nЯ «текст».\n',version='1.4.2',date='2026-11-12',description='Fresh description')
     def test_model_keeps_current_proposal_and_shell(self):
         for language in ('ru','en'):
             with self.subTest(language=language):
                 before=wrapper.load(language);after=self.apply(language)
                 # Header, rail, footer and settings dialog are exact, including
                 # current navigation, wordmark, accessibility labels and handlers.
-                for pattern in [r'<header class="site-header".*?</header>',r'<div class="rail".*?</nav></div>',r'<footer\b.*?</footer>',r'<dialog\b.*?</dialog>']:
+                for pattern in [r'<header\b[^>]*data-original-shell="header"[^>]*>.*?</header>',r'<div class="rail".*?</nav></div>',r'<footer\b.*?</footer>',r'<dialog\b.*?</dialog>']:
                     self.assertEqual(re.search(pattern,before,re.S).group(),re.search(pattern,after,re.S).group())
                 value=re.search(r'<textarea\b[^>]*id="instruction-text"[^>]*>(.*?)</textarea>',after,re.S).group(1)
                 self.assertEqual(html.unescape(value),'Exact & core <value>\nЯ «текст».\n')
-                self.assertEqual(len(re.findall(r'_(?:RU|EN)_1\.4\.1\.zip',after)),3)
+                self.assertEqual(len(re.findall(r'_(?:RU|EN)_1\.4\.2\.zip',after)),3)
                 for section in ['principle','fact-word','learning-and-acceptance','instrument','example','requirements','interfaces','risks','development-plan','plan-1','plan-2','plan-3','plan-4','plan-5','plan-6','response']:
                     pattern=r'<section\b[^>]*id="'+section+r'"[^>]*>.*?</section>'
-                    self.assertEqual(re.search(pattern,before,re.S).group(),re.search(pattern,after,re.S).group())
+                    expected=re.search(pattern,before,re.S).group()
+                    if language=='en' and section=='instrument':
+                        self.assertEqual(expected.count(wrapper.LIVE_EN_TEASER),1)
+                        expected=expected.replace(wrapper.LIVE_EN_TEASER,wrapper.LIVE_EN_TEASER.replace('1.4.1','1.4.2'))
+                    self.assertEqual(expected,re.search(pattern,after,re.S).group())
+                for label in ('s-release-version','s-release-review'):
+                    self.assertEqual(after.count('class="'+label+'"'),1)
+                self.assertEqual(re.search(r'<p class="s-lead">.*?</p>',before,re.S).group(),re.search(r'<p class="s-lead">.*?</p>',after,re.S).group())
+                self.assertEqual(re.findall(r'<body\b[^>]*>|<script\b[^>]*src=[^>]*>',before),re.findall(r'<body\b[^>]*>|<script\b[^>]*src=[^>]*>',after))
                 self.assertNotIn('/assets/book-shell-20261011',after)
-                self.assertIn('/model/assets/brand-1.4.1/favicon.svg',after)
-                self.assertIn('name="beforeword-version" content="1.4.1"',after)
+                self.assertIn('/model/assets/brand-1.4.2/favicon.svg',after)
+                self.assertIn('name="beforeword-version" content="1.4.2"',after)
                 ids=Ids();ids.feed(after);self.assertEqual(len(ids.ids),len(set(ids.ids)))
     def test_report_main_updates_and_legacy_marks_are_removed(self):
         for language in ('ru','en'):
@@ -37,7 +45,9 @@ class CurrentModel(unittest.TestCase):
             self.assertIn('Fresh report content.',after)
             self.assertNotIn('class="brand-mark"',after)
             self.assertIn('/assets/ui-20261018-v8/navigation.js',after)
-            self.assertEqual(after.count('style="width:9em;height:auto;max-width:100%"'),2)
+            self.assertEqual(re.findall(r'<script\b[^>]*src=[^>]*>',after),re.findall(r'<script\b[^>]*src=[^>]*>',before))
+            for pattern in (r'<header\b.*?</header>',r'<footer\b.*?</footer>',r'<dialog\b[^>]*id="settings-dialog"[^>]*>.*?</dialog>',r'<dialog\b[^>]*id="navigation-dialog"[^>]*>.*?</dialog>'):
+                self.assertEqual(re.findall(pattern,after,re.S),re.findall(pattern,before,re.S))
             self.assertNotIn('style="color:#eeeae0"',after)
             for tag in re.findall(r'<link\b[^>]*(?:canonical|hreflang)[^>]*>',before):self.assertIn(tag,after)
     def test_evaluation_help_matches_real_destinations(self):
@@ -47,7 +57,7 @@ class CurrentModel(unittest.TestCase):
                 self.assertNotIn('href="'+old+'"',after)
             for key,title,body,href,label in wrapper.EVALUATION_HELP[language]:
                 self.assertIn('href="'+href+'"',after)
-                self.assertIn(html.escape(title.format(version='1.4.1')),after)
+                self.assertIn(html.escape(title.format(version='1.4.2')),after)
                 self.assertNotIn('data-text="'+key+'"',after)
             # No dynamic translation hook can restore the obsolete destinations.
             self.assertNotIn('data-text="helpTryBody"',after)
@@ -67,10 +77,10 @@ class CurrentModel(unittest.TestCase):
         for language in ('ru','en'):
             after=self.apply(language,True)
             self.assertNotIn(wrapper.LEGACY_READER,after)
-            self.assertEqual(after.count(wrapper.BRANDED_READER),1)
+            self.assertEqual(after.count(wrapper.PUBLISHED_READER),1)
         self.assertNotIn(wrapper.LEGACY_READER,wrapper.external_assets())
 
     def test_invalid_generated_document_is_rejected(self):
-        with self.assertRaises(ValueError):wrapper.apply('<html></html>','ru',evaluation=False,core='x',version='1.4.1',date='2026-10-30',description='x')
+        with self.assertRaises(ValueError):wrapper.apply('<html></html>','ru',evaluation=False,core='x',version='1.4.2',date='2026-11-12',description='x')
 
 if __name__=='__main__':unittest.main()

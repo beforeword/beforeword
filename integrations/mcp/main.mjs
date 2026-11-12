@@ -6,10 +6,13 @@ try {
   const validator = await readFile(new URL('./lib/analysis-core.cjs', import.meta.url));
   if (createHash('sha256').update(validator).digest('hex') !== provenance.sha256) throw new Error('VALIDATOR_MISMATCH');
   const coreProvenance = JSON.parse(await readFile(new URL('./lib/core-provenance.json', import.meta.url), 'utf8'));
+  const packageMetadata = JSON.parse(await readFile(new URL('./package.json', import.meta.url), 'utf8'));
   const core = await readFile(new URL('./lib/core.en.txt', import.meta.url));
-  if (createHash('sha256').update(core).digest('hex') !== coreProvenance.sha256) throw new Error('CORE_MISMATCH');
+  if (coreProvenance.version !== packageMetadata.version || createHash('sha256').update(core).digest('hex') !== coreProvenance.sha256) throw new Error('CORE_MISMATCH');
   const { createHttpServer } = await import('./http.mjs');
   const html = await readFile(new URL('./dist/app.html', import.meta.url), 'utf8');
+  const uiResource = JSON.parse(await readFile(new URL('./dist/ui-resource.json', import.meta.url), 'utf8'));
+  if (uiResource.version !== packageMetadata.version || createHash('sha256').update(html).digest('hex') !== uiResource.sha256) throw new Error('UI_RESOURCE_MISMATCH');
   const port = Number(process.env.PORT || '8788');
   if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('INVALID_PORT');
   const app = createHttpServer({ html,

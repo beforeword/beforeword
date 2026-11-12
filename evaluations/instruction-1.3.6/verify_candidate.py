@@ -16,6 +16,7 @@ from pathlib import Path
 
 DEFAULT_SOURCE_ROOT = Path(__file__).resolve().parents[2]
 ROOT = "evaluations/instruction-1.3.6/"
+BASELINE_VERSION = "1.3.5"
 NAMES = (
     "core.en.txt",
     "core.ru.txt",
@@ -91,17 +92,27 @@ def check(source_root: Path | None = None, ref: str | None = None) -> dict:
         require(skill.endswith(texts[f"core.{lang}.txt"]), lang)
         require(skill.count(texts[f"core.{lang}.txt"]) == 1, lang)
 
-    # Check the original selected source has NOT been changed or silently
-    # repackaged as if this new candidate were already installed.
+    # The candidate's historical baseline stays archived at 1.3.5. A later
+    # selected release must not be mistaken for a modification of that archive.
+    baseline_manifest = json.loads(read(f"downloads/{BASELINE_VERSION}/manifest.json"))
+    require(baseline_manifest["version"] == BASELINE_VERSION, "Archived baseline version mismatch")
     pins = json.loads(read("references/release-contract.json"))
-    require(pins["version"] == "1.3.5", 'Validation failed: pins["version"] == "1.3.5"')
+    require(isinstance(pins["version"], str) and re.fullmatch(r"\d+\.\d+\.\d+", pins["version"]) is not None, "Invalid selected release version")
     require(pins["status"] == "selected", 'Validation failed: pins["status"] == "selected"')
     for lang in ("en", "ru"):
+        baseline_name = f"beforeword_core_{lang.upper()}.txt"
+        previous = read(f"downloads/{BASELINE_VERSION}/{baseline_name}")
+        baseline_hash = baseline_manifest["files"][baseline_name]["sha256"]
+        require(hashlib.sha256(previous).hexdigest() == baseline_hash, f"Archived {BASELINE_VERSION} {lang} core hash mismatch")
+        require(baseline_manifest["source_files_sha256"][f"assets/core.{lang}.txt"] == baseline_hash, f"Archived {BASELINE_VERSION} {lang} source hash mismatch")
+        require(previous.decode("utf-8") != texts[f"core.{lang}.txt"], "Candidate must remain distinct from its archived baseline")
+
+        # Current selection is checked against its own contract, not against
+        # the candidate's old baseline or an assumption about future releases.
         current = read(f"assets/core.{lang}.txt")
-        previous = read(f"downloads/1.3.5/beforeword_core_{lang.upper()}.txt")
-        require(current == previous, 'Validation failed: current == previous')
-        require(hashlib.sha256(current).hexdigest() == pins["core_sha256"][lang], 'Validation failed: hashlib.sha256(current).hexdigest() == pins["core_sha256"][lang]')
-        require(current.decode("utf-8") != texts[f"core.{lang}.txt"], 'Validation failed: current.decode("utf-8") != texts[f"core.{lang}.txt"]')
+        require(hashlib.sha256(current).hexdigest() == pins["core_sha256"][lang], f"Selected {pins['version']} {lang} core hash mismatch")
+        if pins["version"] == BASELINE_VERSION:
+            require(current == previous, "Selected baseline differs from its archive")
 
     cases = [
         json.loads(line)
@@ -159,7 +170,9 @@ def check(source_root: Path | None = None, ref: str | None = None) -> dict:
         "language_split_preserved": True,
         "case_languages": {"ru": 7, "en": 7},
         "selected_stable_release": pins["version"],
-        "stable_source_bytes_unchanged": True,
+        "selected_source_hashes_match": True,
+        "archived_baseline_release": BASELINE_VERSION,
+        "archived_baseline_hashes_match": True,
         "model_requests": 0,
         "semantic_behavior_proven": False,
         "installation_claimed": False,

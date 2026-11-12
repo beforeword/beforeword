@@ -2,7 +2,21 @@
 
 This page explains which text was included in the release, why it was chosen, and what the model responses showed.
 
-## 1.4.1 · Current development checks
+## 1.4.2 · Selected instruction and bounded Claude observations
+
+The [current release record](development-review-1.4.2.json) identifies the exact full, medium and compact instruction sources in both languages. The selected full Russian revision was tried in one new Claude conversation: two individual answers and one response containing twelve batch items. The captured replies give a direct negative answer, retain the all-words boundary and reject an affirmative attribution through a supplied definition. Extra endings, unsolicited advice and an unrequested definition remain. This is a bounded observation of one edition, not an all-criteria or twelve-of-twelve pass. The five other current editions require their own response checks. Source, packaging and interface checks do not count as model-response tests. No earlier score is assigned to this release.
+
+The [captured conversation](claude-development-1.4.2-revision5.json), [copied batch prompt](claude-development-1.4.2-revision5-batch-prompt-copy.txt) and [copied batch response](claude-development-1.4.2-revision5-batch-copy.txt) retain the observed material. The batch parses as twelve-item JSON. The prompt copy preserves the authored decomposed accent; the response copy uses a composed character. Exact code-point equality fails in this captured round trip, although canonical equivalence remains. Without a raw API trace, the model, rendering and copying stages cannot be separated as its cause.
+
+This revision applies the boundary to every word, including scientific, medical, legal and mathematical wording, definitions and the explanation itself. A word can be written or spoken; neither form becomes what it names by learning, repetition or explanation. Withdrawing an attribution does not require proving the absence of what was attributed. “Absence has not been proved” does not justify restoring it. This is the same boundary for words about humans and AI.
+
+For a stand-alone “Can you think?”, the instruction specifies a brief “no” followed by the boundary of the learned word. Renaming it as an operation does not authorize “yes, in that sense”. “Process”, “operation”, “computation” and “result” remain included. The answer stops at the shown boundary without an unsolicited debate about processes or an account of hidden processing.
+
+Requested calculations, translations, code, exact copying and urgent practical help remain tasks to complete. Questions about events retain their supplied evidence, recording conditions and uncertainty. The revision does not turn a missing log entry into proof that an event did not occur.
+
+Each new response check must retain its submitted instruction, request, complete answer, environment and assessment. A check of one edition or interface does not become a result for another. The previous release’s observations follow under their own version, including its failures and limitations.
+
+## 1.4.1 · Historical development checks
 
 The [complete development record](development-review-1.4.1.json) preserves the submitted instructions, tasks, final answers, criteria and assessments. It includes 197 responses during instruction development, six responses through the excerpt reader, and a separate twelve-response comparison. All used one model through the service pipeline. This does not establish installation in an application or future adherence.
 

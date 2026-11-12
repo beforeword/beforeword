@@ -1,6 +1,6 @@
 {
-  "version": "0.5.8",
-  "instructionVersion": "1.4.1",
+  "version": "0.5.9",
+  "instructionVersion": "1.4.2",
   "baselineManifest": {
     "manifest_version": 3,
     "name": "__MSG_extensionName__",
@@ -134,7 +134,19 @@
     "providers.js": "b594b030903a03c3bd233e55f8dac4916007debb5dc453f758082b3bc3ffe43a",
     "platform.js": "c8f027e9aae527d5fafd474c8bb1cd1410629747d833e9d3d906fffce2526dc8",
     "dictionary-core.js": "a6af224d9b04d551b39c68c797eaa133c0e8298c72f5f0af7604540f3693dd4b",
-    "dictionary-ui.js": "795ea1c7d3f6da1462d7a04e0042eaf30cb2b96c2c89ab437687b0060c361855",
+    "dictionary-ui.js": "1e0b6a352746aee78c7f435db3a8365659eac61947146dc03425259a237c1c4f",
     "service-config.js": "6f939f50e9cc827aab16ec89ee5aae15e6fef3de04a6a96f0634883b489d4a64"
-  }
+  },
+  "date_utc": "2026-11-12",
+  "reviewedChanges": [
+    {
+      "path": "dictionary-ui.js",
+      "previousSha256": "795ea1c7d3f6da1462d7a04e0042eaf30cb2b96c2c89ab437687b0060c361855",
+      "sha256": "1e0b6a352746aee78c7f435db3a8365659eac61947146dc03425259a237c1c4f",
+      "date_utc": "2026-11-12",
+      "scope": "One authored Russian dictionary fallback label; exact old and new wording below. No lookup or rendering behavior changed.",
+      "before": "После отсутствия исходного написания проверен вариант со строчными буквами.",
+      "after": "После того как исходное написание не было найдено, проверен вариант со строчными буквами."
+    }
+  ]
 }

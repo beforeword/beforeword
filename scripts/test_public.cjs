@@ -17,138 +17,214 @@ const decode = text => text.replace(/&(#x[0-9a-f]+|#\d+|amp|lt|gt|quot|#x27);/gi
   return {amp:'&',lt:'<',gt:'>',quot:'"'}[e];
 });
 
+// Read attributes independently of HTML serialization order in the captured page.
+function attrs(source) {
+  return Object.fromEntries([...source.matchAll(/([^\s=/>]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+)))?/g)]
+    .map(m=>[m[1],decode(m[2] ?? m[3] ?? m[4] ?? '')]));
+}
+function startTags(html, name) {
+  return [...html.matchAll(new RegExp('<'+name+'\\b([^<>]*)>', 'gi'))].map(m=>({raw:m[0],attrs:attrs(m[1]),index:m.index}));
+}
+function element(html, name, attribute, value) {
+  const starts=startTags(html,name).filter(tag=>tag.attrs[attribute]===value);
+  assert.equal(starts.length,1,`Exactly one ${name}[${attribute}="${value}"]`);
+  const start=starts[0].index;
+  const tags=new RegExp('</?'+name+'\\b[^>]*>','gi');
+  tags.lastIndex=start;
+  let depth=0;
+  for (let tag;(tag=tags.exec(html));) {
+    depth+=tag[0].startsWith('</')?-1:1;
+    if (depth===0) return html.slice(start,tags.lastIndex);
+  }
+  assert.fail('Unclosed element: '+name+' '+value);
+}
+function textArea(html,id) {
+  const markup=element(html,'textarea','id',id);
+  return decode(markup.slice(markup.indexOf('>')+1,markup.lastIndexOf('</textarea>')));
+}
+function externalAssets(html) {
+  return [...html.matchAll(/(?:src|href)=["'](\/assets\/[^"']+)["']/g)].map(m=>m[1]);
+}
 function checkArtifacts() {
-  const manifest = JSON.parse(read(path.join(MODEL, 'release.json')));
-  const fullPaths = [];
-  for (const lang of ['ru', 'en']) {
-    const file = path.join(MODEL, lang === 'ru' ? 'index.html' : 'en/index.html');
-    fullPaths.push(file);
-    const html = read(file);
-    const expectedPath = '/model/' + (lang === 'en' ? 'en/' : '');
-    assert.ok(html.includes(`<html lang="${lang}" class="bw-book" data-theme="light">`), 'Correct page language and published book theme');
-    assert.ok(html.includes(`rel="canonical" href="https://beforeword.xyz${expectedPath}"`), 'Canonical URL');
-    assert.ok(html.includes('hreflang="ru" href="https://beforeword.xyz/model/"'));
-    assert.ok(html.includes('hreflang="en" href="https://beforeword.xyz/model/en/"'));
-    assert.ok(html.includes(`name="beforeword-version" content="${manifest.version}"`));
-    assert.ok(html.includes('class="bw-shell bw-paper model-page"'), 'Shared paper shell is used');
-    for (const className of ['bw-site-header','bw-site-brand','bw-site-quick','bw-site-menu','bw-site-contents','bw-site-language','bw-site-footer']) {
-      assert.ok(html.includes(`class="${className}"`), 'Shared site navigation: ' + className);
+  const manifest=JSON.parse(read(path.join(MODEL,'release.json')));
+  const selected=JSON.parse(read(path.join(ROOT,'references/release-contract.json')));
+  assert.equal(manifest.version,selected.version,'Site identifies the selected instruction release');
+  assert.equal(manifest.date_utc,selected.date_utc,'Site uses the selected release date');
+  assert.equal(manifest.site_wrapper_snapshot,'assets/site-wrapper/published-20261112/manifest.json');
+  const wrapperDirectory=path.dirname(path.join(ROOT,manifest.site_wrapper_snapshot));
+  const wrapper=JSON.parse(read(path.join(ROOT,manifest.site_wrapper_snapshot)));
+  assert.equal(wrapper.schema_version,2);
+  assert.deepEqual(Object.keys(wrapper.pages).sort(),['model/en/index.html','model/evaluation/en/index.html','model/evaluation/index.html','model/index.html']);
+  const external=new Set();
+  for (const [relative,record] of Object.entries(wrapper.pages)) {
+    const bytes=fs.readFileSync(path.join(wrapperDirectory,relative));
+    assert.equal(hash(bytes),record.sha256,'Captured published wrapper is unchanged: '+relative);
+    assert.equal(bytes.length,record.bytes);
+    for (const resource of externalAssets(bytes.toString('utf8'))) external.add(resource);
+  }
+  external.delete('/assets/beforeword/beforeword-reader.js?v=0.3.1');
+  assert.deepEqual(manifest.external_site_assets,[...external].sort(),'Manifest lists all inherited root-site dependencies');
+  const guide=JSON.parse(read(path.join(MODEL,manifest.guide_manifest)));
+  const guideHtml=read(path.join(MODEL,'toolkit/beforeword_AI.html'));
+  const guideData=JSON.parse(element(guideHtml,'script','id','bundle-data').replace(/^<script[^>]*>|<\/script>$/g,''));
+  assert.equal(guide.version,manifest.version);
+  assert.equal(guide.date_utc,manifest.date_utc);
+  assert.equal(hash(fs.readFileSync(path.join(MODEL,'toolkit/beforeword_AI.html'))),guide.guide_sha256,'Standalone guide matches its manifest');
+  const renderedCopySources=[];
+  for (const lang of ['ru','en']) {
+    const relative='model/'+(lang==='en'?'en/':'')+'index.html';
+    const html=read(path.join(SITE,relative));
+    const original=read(path.join(wrapperDirectory,relative));
+    const expectedPath='/model/'+(lang==='en'?'en/':'');
+    const tags=[...html.matchAll(/<([a-z][\w:-]*)\b([^<>]*)>/gi)].map(m=>({name:m[1].toLowerCase(),attrs:attrs(m[2])}));
+    const ids=tags.map(tag=>tag.attrs.id).filter(Boolean);
+    const originalIds=[...original.matchAll(/<[a-z][\w:-]*\b[^<>]*\bid="([^"]+)"[^<>]*>/gi)].map(m=>m[1]);
+    assert.equal(new Set(ids).size,ids.length,'Unique document IDs');
+    for (const id of originalIds) assert.ok(ids.includes(id),'Current published anchor is retained: '+id);
+    assert.deepEqual(startTags(html,'html')[0].attrs,startTags(original,'html')[0].attrs,'Published language and theme attributes');
+    assert.equal(startTags(html,'html')[0].attrs.lang,lang);
+    assert.equal(startTags(html,'html')[0].attrs['data-theme'],'light');
+    assert.deepEqual(startTags(html,'body')[0].attrs,startTags(original,'body')[0].attrs,'Current route-page shell');
+    for (const [tag,part] of [['header','header'],['div','rail'],['footer','footer'],['dialog','settings']]) {
+      assert.equal(element(html,tag,'data-original-shell',part),element(original,tag,'data-original-shell',part),'Published navigation/settings preserved: '+part);
     }
-    assert.ok(html.includes('data-bw-theme-toggle hidden aria-pressed="false"'), 'Theme control remains progressive');
-    const wrapper = JSON.parse(read(path.join(ROOT, 'assets/site-wrapper/published-20261013.json')));
-    for (const resource of wrapper.external_assets) {
-      assert.equal(html.split('"'+resource+'"').length - 1, 1, 'Published root-site asset appears once: '+resource);
+    const links=startTags(html,'link');
+    const canonical=links.filter(tag=>tag.attrs.rel==='canonical');
+    assert.equal(canonical.length,1);
+    assert.equal(canonical[0].attrs.href,'https://beforeword.xyz'+expectedPath);
+    for (const [language,url] of [['ru','https://beforeword.xyz/model/'],['en','https://beforeword.xyz/model/en/'],['x-default','https://beforeword.xyz/model/en/']]) {
+      const matches=links.filter(tag=>tag.attrs.hreflang===language);
+      assert.equal(matches.length,1,'One alternate-language link: '+language);
+      assert.equal(matches[0].attrs.href,url);
     }
-    assert.ok(!html.includes('class="bw-header"'), 'The former navigation does not return');
-    assert.ok(html.includes('href="' + (lang === 'en' ? '/en/plain/' : '/plain/') + '"'), 'Plain-language footer route');
-    assert.ok(html.includes(`href="/model/toolkit/beforeword_AI.html#${lang}"`), 'Guide preserves the selected language');
-    for (const extension of ['css', 'js']) {
-      const digest = hash(fs.readFileSync(path.join(ROOT, `assets/public.${extension}`))).slice(0,12);
-      assert.ok(html.includes(`/model/assets/public-${manifest.version}-${digest}.${extension}`), 'Changed assets receive a new cache key');
+    const originalIcons=startTags(original,'link').filter(tag=>['icon','apple-touch-icon'].includes(tag.attrs.rel)).map(tag=>tag.attrs.href);
+    assert.deepEqual(externalAssets(html),externalAssets(original).filter(url=>!originalIcons.includes(url)),'Published root-site resources and their order are preserved');
+    const favicon=links.filter(tag=>tag.attrs.rel==='icon');
+    assert.equal(favicon.length,1);
+    assert.equal(favicon[0].attrs.href,`/model/assets/brand-${manifest.version}/favicon.svg`,'Selected branding has its current local alias');
+    assert.deepEqual(fs.readFileSync(path.join(MODEL,`assets/brand-${manifest.version}/favicon.svg`)),fs.readFileSync(path.join(ROOT,'brand/favicon.svg')));
+    const scripts=startTags(html,'script').filter(tag=>tag.attrs.src);
+    assert.deepEqual(scripts.map(tag=>tag.attrs.src),startTags(original,'script').filter(tag=>tag.attrs.src).map(tag=>tag.attrs.src),'Landing uses its actual captured runtime');
+    assert.ok(scripts.length>0,'Landing retains external runtime scripts');
+    assert.ok(!scripts.some(tag=>/^https?:/i.test(tag.attrs.src)),'No remote script origins');
+    assert.ok(!tags.some(tag=>Object.keys(tag.attrs).some(name=>/^on/i.test(name))),'No inline event handlers');
+    assert.ok(!/__\w+__/.test(html),'No unexpanded placeholders');
+    const metas=startTags(html,'meta');
+    const version=metas.filter(tag=>tag.attrs.name==='beforeword-version');
+    assert.equal(version.length,1);assert.equal(version[0].attrs.content,manifest.version);
+    const descriptions=['description','og:description','twitter:description'].map(name=>{
+      const found=metas.filter(tag=>(tag.attrs.name||tag.attrs.property)===name);
+      assert.equal(found.length,1,'One description field: '+name);return found[0].attrs.content;
+    });
+    assert.ok(descriptions[0]);assert.ok(descriptions.every(value=>value===descriptions[0]),'Description metadata stays aligned');
+    const graph=JSON.parse(element(html,'script','id','beforeword-seo-graph').replace(/^<script[^>]*>|<\/script>$/g,''));
+    const page=graph['@graph'].find(node=>[].concat(node['@type']).includes('WebPage'));
+    assert.ok(page);assert.equal(page.url,'https://beforeword.xyz'+expectedPath);
+    assert.equal(page.inLanguage,lang);assert.equal(page.description,descriptions[0]);assert.equal(page.dateModified,manifest.date_utc);
+    const full=read(path.join(ROOT,'assets',`core.${lang}.txt`));
+    const medium=read(path.join(ROOT,'assets',`medium.${lang}.txt`));
+    const compact=read(path.join(ROOT,'assets',`compact.${lang}.txt`));
+    assert.ok(!decode(html).includes(read(path.join(ROOT,'assets',`scope.${lang}.txt`)).trim()),'Model-facing scope commands are not appended to reader guidance');
+    assert.equal(textArea(html,'instruction-text'),full,'Main copy field preserves the exact full instruction');
+    assert.equal(startTags(html,'textarea').length,1,'Current landing contains the single published full instruction field');
+    assert.ok(Object.hasOwn(startTags(html,'textarea')[0].attrs,'readonly'),'Instruction field remains read-only');
+    assert.ok(Array.from(medium).length<=5000,'Medium edition fits its published limit');
+    assert.ok(Array.from(compact).length<=1500,'Compact edition fits its published limit');
+    assert.equal(guide.core_sha256[lang],hash(Buffer.from(full)));
+    assert.equal(guideData.core[lang],full,'Guide embeds the exact full source');
+    assert.equal(guideData.medium[lang],medium,'Guide embeds the exact medium source');
+    assert.equal(guideData.compact[lang],compact,'Guide embeds the exact compact source');
+    assert.equal(guide.medium_sha256[lang],hash(Buffer.from(medium)));
+    assert.equal(guide.medium_characters[lang],Array.from(medium).length);
+    assert.equal(guide.compact_characters[lang],Array.from(compact).length);
+    assert.equal(selected.core_sha256[lang],hash(Buffer.from(full)));
+    const instruction=element(html,'section','id','medium-details');
+    if (lang==='en') assert.equal(html.split(`Text Mode lets you try instruction ${manifest.version} on a task and compare the outputs.`).length-1,1,'Present-tense Text Mode teaser names the selected instruction once');
+    assert.ok(instruction.includes('class="s-release-version"'));
+    assert.ok(instruction.includes((lang==='ru'?'Полная инструкция · ':'Full instruction · ')+manifest.version),'Visible full-edition version');
+    const disclosure=element(instruction,'details','class','r-more');
+    const summary=disclosure.match(/<summary\b[^>]*>([\s\S]*?)<\/summary>/)?.[1];
+    assert.ok(summary&&!/<(?:button|a)\b/.test(summary),'Full instruction is readable through a native disclosure');
+    const buttons=startTags(html,'button').filter(tag=>tag.attrs['data-copy-target']);
+    assert.deepEqual(buttons.map(tag=>tag.attrs),startTags(original,'button').filter(tag=>tag.attrs['data-copy-target']).map(tag=>tag.attrs),'Published copy control is retained');
+    assert.ok(buttons.length>0);
+    for (const button of buttons) {
+      const target=button.attrs['data-copy-target'];
+      assert.ok(ids.includes(target),'Every copy button has a source');
+      assert.equal(target,'instruction-text','Published copy control selects the full edition');
+      assert.equal(textArea(html,target),full);
+      assert.ok(button.index<html.indexOf('<textarea'),'Copy control precedes the full instruction');
+      renderedCopySources.push({language:lang,target,characters:Array.from(full).length});
     }
-    assert.ok(html.includes('id="where"'), 'Existing homepage fragment preserved');
-    const firstExample = html.match(/<section id="example-prescribed-line"[^>]*>([\s\S]*?)<\/section>/)?.[1];
-    assert.ok(firstExample, 'The first reading example is present');
-    assert.ok(!/<details\b|\bhidden(?:\s|=|>)/.test(firstExample), 'The first example is openly readable without clicks');
-    assert.ok(html.indexOf('id="example-prescribed-line"') < html.indexOf('data-copy-target="instruction-text"'), 'The example precedes the instruction copy route');
-    const shownAnswers = [...firstExample.matchAll(/<pre class="same-answer">([\s\S]*?)<\/pre>/g)].map(match => decode(match[1]));
-    assert.equal(shownAnswers.length, 2, 'Both task responses are shown');
-    assert.equal(shownAnswers[0], shownAnswers[1], 'The compared responses are written identically');
-    assert.ok(!/__\w+__/.test(html), 'No unexpanded placeholders');
-    assert.ok(!/<script[^>]+src="https?:/i.test(html), 'No remote scripts');
-    assert.ok(!/\son\w+=/i.test(html), 'No inline event handlers');
-    const full = read(path.join(ROOT, 'assets', `core.${lang}.txt`));
-    assert.ok(!decode(html).includes(read(path.join(ROOT, 'assets', `scope.${lang}.txt`)).trim()), 'Model-facing scope commands are not appended to reader guidance');
-    const medium = read(path.join(ROOT, 'assets', `medium.${lang}.txt`));
-    const compact = read(path.join(ROOT, 'assets', `compact.${lang}.txt`));
-    assert.equal(decode(html.match(/<textarea id="instruction-text"[^>]*>([\s\S]*?)<\/textarea>/)[1]), full, 'Main copy field preserves full instructions');
-    assert.equal(decode(html.match(/<textarea id="medium-text"[^>]*>([\s\S]*?)<\/textarea>/)[1]), medium, '5,000-character field preserves the complete edition');
-    assert.equal(decode(html.match(/<textarea id="compact-text"[^>]*>([\s\S]*?)<\/textarea>/)[1]), compact, 'Compact field preserves instructions');
-    assert.ok(Array.from(medium).length <= 5000, 'The 5,000-character edition fits its published limit');
-    for (const [prefix, expected] of [['',full],['full-',full],['5000-',medium],['compact-',compact],['micro-',compact]]) {
-      const alias = `beforeword-${prefix}${lang}.txt`;
-      assert.equal(read(path.join(MODEL, alias)), expected, 'Legacy URL preserves current exact content');
-      assert.equal(manifest.aliases[alias].sha256, hash(Buffer.from(expected)));
+    const hrefs=startTags(html,'a').map(tag=>tag.attrs.href?.replace(/^https:\/\/beforeword\.xyz(?=\/)/,''));
+    assert.ok(hrefs.includes('/model/evaluation/'+(lang==='en'?'en/':'')),'Instruction links to its language-matched evaluation');
+    for (const [prefix,expected,edition] of [['',full,'full'],['full-',full,'full'],['5000-',medium,'medium'],['compact-',compact,'compact'],['micro-',compact,'compact']]) {
+      const alias=`beforeword-${prefix}${lang}.txt`;
+      assert.equal(read(path.join(MODEL,alias)),expected,'Instruction alias preserves exact source: '+alias);
+      assert.deepEqual(manifest.aliases[alias],{language:lang,content:edition,sha256:hash(Buffer.from(expected))});
+      if (['','5000-','compact-'].includes(prefix)) assert.ok(hrefs.includes('/model/'+alias),'Published download route: '+alias);
     }
-    assert.equal(manifest.aliases[`beforeword-5000-${lang}.txt`].content, 'medium', 'The new alias identifies its own edition');
-    assert.equal(manifest.aliases[`beforeword-micro-${lang}.txt`].content, 'compact', 'The historical micro alias still serves compact instructions');
-    for (const [detailsId, targetId, text, alias, repeated] of [
-      ['instruction-details','instruction-text',full,`beforeword-${lang}.txt`,true],
-      ['medium-details','medium-text',medium,`beforeword-5000-${lang}.txt`,true],
-      ['compact-details','compact-text',compact,`beforeword-compact-${lang}.txt`,false]
-    ]) {
-      const details = html.match(new RegExp('<details id="'+detailsId+'">([\\s\\S]*?)<\\/details>'))?.[1];
-      assert.ok(details, 'Edition can be read without JavaScript: '+detailsId);
-      const summary = details.match(/<summary>([\s\S]*?)<\/summary>/)?.[1];
-      assert.ok(summary && !/<(?:button|a)\b/.test(summary), 'Disclosure summary has no nested action: '+detailsId);
-      const length = Array.from(text).length;
-      const count = new Intl.NumberFormat(lang).format(length).replace(/\u00a0/g, '\u202f');
-      const plural = new Intl.PluralRules(lang).select(length);
-      const noun = lang==='ru' ? ({one:'знак',few:'знака',many:'знаков',other:'знака'}[plural]) : (plural==='one'?'character':'characters');
-      assert.ok(decode(summary).includes(count+' '+noun), 'Visible count uses the exact edition and the page locale: '+detailsId);
-      const action = `data-copy-target="${targetId}" data-copy-details="${detailsId}"`;
-      assert.ok(details.indexOf(action) < details.indexOf('id="'+targetId+'"'), 'Copy is beside the beginning of the text: '+detailsId);
-      if (repeated) assert.ok(details.lastIndexOf(action) > details.indexOf('</textarea>'), 'Long text has a second copy action at the end: '+detailsId);
-      assert.ok(details.includes(`href="/model/${alias}" download`), 'TXT is available beside the text: '+detailsId);
+    for (const [edition,filename] of [[full,`beforeword_core_${lang.toUpperCase()}.txt`],[medium,`beforeword_5000_${lang.toUpperCase()}.txt`],[compact,`beforeword_compact_${lang.toUpperCase()}.txt`]]) {
+      assert.equal(read(path.join(MODEL,'toolkit',filename)),edition,'Toolkit text preserves selected source');
     }
-    assert.ok(html.indexOf('data-copy-target="instruction-text"') < html.indexOf('id="instruction-text"'), 'Copy before long instructions');
-    const firstStep = html.match(/<ol class="steps"[^>]*>\s*<li>([\s\S]*?)<\/li>/)?.[1];
-    assert.ok(firstStep?.includes('data-copy-target="instruction-text"') && firstStep.includes('data-copy-target="medium-text"'), 'Quick start offers full and 5,000-character copy choices');
-    assert.ok(html.includes('<noscript>'), 'No-JavaScript copy guidance');
-    assert.equal((html.match(/class="app-settings"/g) || []).length, 9);
-    const appSettings = [...html.matchAll(/<details class="app-settings">([\s\S]*?)<\/details>/g)];
-    const connectors = JSON.parse(read(path.join(ROOT, 'references/connectors.json')));
-    for (const [index, app] of appSettings.entries()) {
-      const edition = connectors[index].recommended || 'core';
-      const copyTargets = {compact: 'compact-text', medium: 'medium-text', core: 'instruction-text'};
-      const copyDetailTargets = {compact: 'compact-details', medium: 'medium-details', core: 'instruction-details'};
-      const copyTarget = copyTargets[edition];
-      const copyDetails = copyDetailTargets[edition];
-      assert.ok(copyTarget && copyDetails, 'Known recommended instruction edition: ' + edition);
-      assert.ok(app[1].includes(`data-copy-target="${copyTarget}" data-copy-details="${copyDetails}"`), 'App setting copies its recommended instruction: ' + connectors[index].id);
-      assert.ok(!/показанную ниже инструкцию|instructions shown below/.test(app[1]), 'App steps name the instruction beside their copy action');
+    for (const [kind,record] of Object.entries(guide.native_bundles[lang])) {
+      const bytes=fs.readFileSync(path.join(MODEL,'downloads',record.name));
+      assert.equal(hash(bytes),record.sha256,'Native package matches guide metadata');
+      assert.equal(record.language,lang);assert.equal(record.version,manifest.version);
+      assert.deepEqual(bytes,Buffer.from(guideData.bundles[lang][kind].data,'base64'),'Site and standalone guide deliver identical native packages');
+      assert.ok(hrefs.includes('/model/downloads/'+record.name),'Published native-package route');
     }
-    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
-    assert.equal(new Set(ids).size, ids.length, 'Unique document IDs');
-    for (const id of ['where','compare','grounds','instruction','instruction-short','instruction-full','instruction-compact','instruction-micro','test','break']) {
-      assert.ok(ids.includes(id), 'Existing public anchor retained: ' + id);
-    }
-    assert.ok(ids.includes('comparison-20260927'), 'Historical comparison anchor retained');
-    assert.ok(!html.includes('href="/model/history/'), 'Current reader page does not promote internal dated history');
-    assert.ok(!html.includes('id="history-title"'), 'No visible archived-edition section');
-    for (const m of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
-      const target = decode(m[1]);
-      if (target.startsWith('#')) assert.ok(ids.includes(target.slice(1)), 'Local fragment target exists');
-      if (target.startsWith('/model/')) {
-        const pathname = target.split('#')[0];
-        const local = path.join(SITE, pathname.replace(/^\//, '') + (pathname.endsWith('/') ? 'index.html' : ''));
-        assert.ok(fs.existsSync(local), 'Local published link exists: ' + target);
+    for (const tag of tags) {
+      for (const attribute of ['href','src']) {
+        const target=tag.attrs[attribute];if (!target) continue;
+        if (target.startsWith('#')) assert.ok(ids.includes(target.slice(1)),'Local fragment target exists: '+target);
+        const relative=target.replace(/^https:\/\/beforeword\.xyz(?=\/)/,'');
+        if (!relative.startsWith('/model/')) continue;
+        const [pathname,fragment]=relative.split('#');
+        const local=path.join(SITE,pathname.replace(/^\//,'')+(pathname.endsWith('/')?'index.html':''));
+        assert.ok(fs.existsSync(local),'Local published link exists: '+target);
+        if (fragment&&local.endsWith('.html')) assert.ok(startTags(read(local),'[a-z][\\w:-]*').some(node=>node.attrs.id===fragment),'Linked document fragment exists: '+target);
+      }
+      for (const attribute of ['aria-controls','aria-labelledby']) {
+        for (const id of (tag.attrs[attribute]||'').split(/\s+/).filter(Boolean)) assert.ok(ids.includes(id),'Accessible control target exists: '+id);
       }
     }
-    for (const button of html.matchAll(/<button\b[^>]*data-copy-target="([^"]+)"[^>]*>/g)) {
-      assert.ok(ids.includes(button[1]), 'Every copy button has a source');
-    }
-    if (!manifest.github_url) assert.ok(!html.includes('href="https://github.com/'), 'No invented repository URL');
+    assert.ok(!html.includes('href="/model/history/'),'Current reader page does not promote dated history');
+    if (!manifest.github_url) assert.ok(!hrefs.some(href=>href?.startsWith('https://github.com/')),'No invented repository URL');
   }
-  const checksums = read(path.join(MODEL, 'SHA256SUMS.txt')).trim().split('\n');
-  for (const line of checksums) {
-    const m = line.match(/^([a-f0-9]{64})  (.+)$/);
-    assert.ok(m, 'Well-formed SHA256SUMS line');
-    assert.equal(hash(fs.readFileSync(path.join(MODEL, m[2]))), m[1], 'Checksum matches ' + m[2]);
+  assert.equal(Object.keys(manifest.aliases).length,10,'All ten instruction aliases are declared');
+  // Public.js remains packaged for other surfaces, but is not the landing runtime.
+  for (const extension of ['css','js']) {
+    const bytes=fs.readFileSync(path.join(ROOT,`assets/public.${extension}`));
+    const name=`public-${manifest.version}-${hash(bytes).slice(0,12)}.${extension}`;
+    assert.deepEqual(fs.readFileSync(path.join(MODEL,'assets',name)),bytes,'Packaged legacy public asset retains its content-addressed name');
   }
-  const zipFiles = fs.readdirSync(path.join(MODEL, 'downloads')).filter(f => f.endsWith('.zip'));
-  assert.equal(zipFiles.length, 7, 'Six native ZIPs and the source toolkit');
-  assert.equal(read(path.join(MODEL, 'reports/eval-cases.jsonl')),read(path.join(ROOT, 'references/eval-cases.jsonl')), 'Methodology links to the supplied cases');
+  const checksums=read(path.join(MODEL,'SHA256SUMS.txt')).trim().split('\n');
+  const names=[];
   for (const line of checksums) {
-    const name = line.slice(66);
-    if (!name.startsWith('assets/site-shell/') || !name.endsWith('.css')) continue;
+    const m=line.match(/^([a-f0-9]{64})  (.+)$/);assert.ok(m,'Well-formed SHA256SUMS line');
+    assert.ok(!path.isAbsolute(m[2])&&!m[2].split('/').includes('..'),'Checksum paths stay within the artifact');
+    names.push(m[2]);assert.equal(hash(fs.readFileSync(path.join(MODEL,m[2]))),m[1],'Checksum matches '+m[2]);
+  }
+  const files=[];
+  function walk(directory) {for (const item of fs.readdirSync(directory,{withFileTypes:true})) {
+    const file=path.join(directory,item.name);
+    if(item.isDirectory()) walk(file);else if(item.isFile()&&item.name!=='SHA256SUMS.txt') files.push(path.relative(MODEL,file).split(path.sep).join('/'));
+  }}
+  walk(MODEL);assert.deepEqual(names,[...new Set(files)].sort(),'Checksums cover every artifact exactly once');
+  const zipFiles=fs.readdirSync(path.join(MODEL,'downloads')).filter(file=>file.endsWith('.zip'));
+  assert.equal(zipFiles.length,7,'Six native ZIPs and the source toolkit');
+  assert.equal(hash(fs.readFileSync(path.join(MODEL,'downloads/beforeword_toolkit.zip'))),guide.developer_bundle.sha256,'Source toolkit matches guide metadata');
+  assert.deepEqual(fs.readFileSync(path.join(MODEL,'downloads/beforeword_toolkit.zip')),Buffer.from(guideData.developer.data,'base64'),'Site and standalone guide deliver the same source toolkit');
+  assert.equal(read(path.join(MODEL,'reports/eval-cases.jsonl')),read(path.join(ROOT,'references/eval-cases.jsonl')),'Methodology preserves supplied cases');
+  for (const name of names.filter(name=>name.startsWith('assets/site-shell/')&&name.endsWith('.css'))) {
     for (const match of read(path.join(MODEL,name)).matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
-      const local = path.resolve(path.dirname(path.join(MODEL,name)),match[1]);
-      assert.ok(local.startsWith(MODEL+path.sep), 'Shared CSS resources stay within the standalone section');
+      const local=path.resolve(path.dirname(path.join(MODEL,name)),match[1]);
+      assert.ok(local.startsWith(MODEL+path.sep),'Shared CSS resources stay within the standalone section');
       assert.ok(fs.existsSync(local),'Shared CSS resource exists: '+match[1]);
     }
   }
-  return {pages:fullPaths.length,checksums:checksums.length,zipFiles:zipFiles.length};
+  return {pages:2,checksums:checksums.length,zipFiles:zipFiles.length,renderedCopySources};
 }
 
 function checkNavigation() {
@@ -265,43 +341,5 @@ function checkInstructionNavigation() {
   return 5;
 }
 
-async function checkEditionCopies() {
-  let cases = 0;
-  const code = read(path.join(ROOT, 'assets/public.js'));
-  for (const lang of ['ru','en']) {
-    const html = read(path.join(MODEL,lang==='ru'?'index.html':'en/index.html'));
-    for (const [targetId,detailsId] of [['instruction-text','instruction-details'],['medium-text','medium-details'],['compact-text','compact-details']]) {
-      const exact = decode(html.match(new RegExp('<textarea id="'+targetId+'"[^>]*>([\\s\\S]*?)<\\/textarea>'))[1]);
-      for (const fallback of [false,true]) {
-        let copied, selected, focused=false;
-        const source = {tagName:'TEXTAREA',value:exact,focus(){focused=true;},select(){},setSelectionRange(start,end){selected=[start,end];},scrollIntoView(){}};
-        const disclosure = {open:false};
-        const status = {textContent:'',dataset:{copied:'copied',selected:'selected',failed:'failed'}};
-        const buttons = [...html.matchAll(/<button\b[^>]*data-copy-target="([^"]+)"[^>]*data-copy-details="([^"]+)"[^>]*>/g)]
-          .filter(match=>match[1]===targetId).map(match=>({dataset:{copyTarget:match[1],copyDetails:match[2]},addEventListener(_,fn){this.click=fn;}}));
-        assert.ok(buttons.length,'Rendered edition has copy buttons: '+targetId);
-        const document = {getElementById(id){return {[targetId]:source,[detailsId]:disclosure,'copy-status':status}[id] || null;},
-          querySelectorAll(selector){return selector==='[data-copy-target]'?buttons:[];},documentElement:{classList:{add(){}}}};
-        const navigator = fallback?{}:{clipboard:{async writeText(value){copied=value;}}};
-        const window = {location:{hash:''},addEventListener(){}};
-        vm.runInNewContext(code,{document,navigator,window,setTimeout(){return 1;},clearTimeout(){}});
-        for (const button of buttons) {
-          disclosure.open=false;selected=undefined;focused=false;
-          await button.click();
-          if (fallback) {
-            assert.equal(disclosure.open,true,'Fallback reveals the correct edition');
-            assert.deepEqual(selected,[0,exact.length],'Fallback selects the complete edition');
-            assert.ok(focused);assert.equal(status.textContent,'selected');
-          } else {
-            assert.equal(copied,exact,'Rendered copy action delivers the complete source text');
-            assert.equal(status.textContent,'copied');
-          }
-          cases++;
-        }
-      }
-    }
-  }
-  return cases;
-}
 
-(async()=>{const artifacts=checkArtifacts();const historyFiles=checkHistory();const copyCases=await checkCopy();const editionCopyCases=await checkEditionCopies();const navigationCases=checkNavigation();const instructionNavigationCases=checkInstructionNavigation();process.stdout.write(JSON.stringify({ok:true,...artifacts,historyFiles,copyCases,editionCopyCases,navigationCases,instructionNavigationCases,scope:'Static files and simulated DOM; no browser rendering'},null,2)+'\n');})().catch(error=>{console.error(error);process.exitCode=1;});
+(async()=>{const artifacts=checkArtifacts();const historyFiles=checkHistory();const copyCases=await checkCopy();const navigationCases=checkNavigation();const instructionNavigationCases=checkInstructionNavigation();process.stdout.write(JSON.stringify({ok:true,...artifacts,historyFiles,legacyRuntimeUnitCases:{copyCases,navigationCases,instructionNavigationCases},currentLandingRuntime:"External root-site scripts preserved; execution requires browser testing",scope:'Static files and simulated DOM; no browser rendering'},null,2)+'\n');})().catch(error=>{console.error(error);process.exitCode=1;});

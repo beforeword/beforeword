@@ -4,7 +4,7 @@
 
 **Words about oneself, others and the world**
 
-A written name, “I feel,” and “This is how the world works” remain writing. Learning, repeating or agreeing with them does not turn them into what they name. Beforeword includes every written form without exception: the supplied text, the explanation and its grounds, and Beforeword itself.
+A word can be written and spoken. Its writing and sound do not become what it names through learning, recognition, repetition or explanation. This applies to every word, including scientific, medical, legal and mathematical terms, definitions, evidence, “process”, “result” and Beforeword itself. Withdrawing an attribution does not require proving the absence of what was attributed; “absence has not been proved” does not restore it. The same boundary applies to words about humans and AI. Practical tasks retain their actual evidence, conditions and uncertainty.
 
 Paste a phrase, a passage or a model response. The instruction asks the model to preserve the wording and show the concrete transition a reading adds. If that distinction completes the task, the answer can stop. Practical tasks and exact requested formats remain available.
 
@@ -26,7 +26,7 @@ For a single task, say “Apply beforeword to this passage.” For an ongoing co
 
 To stop the conversational mode, say “Stop beforeword for subsequent replies.” Disable or remove an installed copy through the application's plugin controls.
 
-## Instruction 1.4.1 · public test
+## Instruction 1.4.2 · public test
 
 This package contains the full English core, with response language set by the request. The [source](https://github.com/beforeword/beforeword) also provides a Russian edition. The core text is preserved exactly; the skill adds frontmatter and an activation scope. File checks distinguish the wrapper from the instruction it contains; they do not establish how a model will answer. The instruction is under public testing and may be revised. Installation makes it available; each response remains open to examination.
 

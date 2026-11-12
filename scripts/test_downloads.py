@@ -177,7 +177,7 @@ class DownloadTests(unittest.TestCase):
                 # A user can build the downloaded source without any of this checkout's dependencies.
                 subprocess.run(["python3", "-B", str(browser / "tools/build-chrome.py"), "--output", str(output / "one")], check=True, capture_output=True)
                 subprocess.run(["python3", "-B", str(ROOT / "integrations/browser/tools/build-chrome.py"), "--output", str(output / "two")], check=True, capture_output=True)
-                filename = "beforeword-0.5.8-chrome.zip"
+                filename = f"beforeword-{manifest['version']}-chrome.zip"
                 self.assertEqual((output / "one" / filename).read_bytes(), (output / "two" / filename).read_bytes())
 
     def test_toolkit_contains_reader_build_sources_and_readme_brand_assets(self):
@@ -190,7 +190,7 @@ class DownloadTests(unittest.TestCase):
                 "integrations/mcp/http.mjs", "integrations/mcp/build-ui.mjs",
                 "integrations/mcp/lib/store.mjs", "integrations/mcp/lib/core.en.txt",
                 "integrations/mcp/package.json", "integrations/mcp/package-lock.json",
-                "integrations/mcp/tests/release141.test.mjs", "integrations/mcp/.gitignore",
+                "integrations/mcp/tests/release.test.mjs", "integrations/mcp/.gitignore",
                 "plugins/openai/beforeword-reader/plugin.json",
                 "plugins/openai/beforeword-reader/mcp.json",
                 "brand/wordmark-light.svg", "brand/wordmark-dark.svg",

@@ -12,15 +12,19 @@ if (createHash('sha256').update(validator).digest('hex') !== JSON.parse(provenan
 const core = await readFile(new URL('lib/core.en.txt', here));
 const coreProvenance = JSON.parse(await readFile(new URL('lib/core-provenance.json', here), 'utf8'));
 const canonicalCore = await readFile(new URL('../../assets/core.en.txt', here));
-if (createHash('sha256').update(core).digest('hex') !== coreProvenance.sha256 || !core.equals(canonicalCore)) throw new Error('CORE_MISMATCH');
+const release = JSON.parse(await readFile(new URL('../../references/release-contract.json', here), 'utf8'));
+const packageMetadata = JSON.parse(await readFile(new URL('package.json', here), 'utf8'));
+if (release.status !== 'selected' || coreProvenance.version !== release.version || packageMetadata.version !== release.version || coreProvenance.sha256 !== release.core_sha256.en || createHash('sha256').update(core).digest('hex') !== coreProvenance.sha256 || !core.equals(canonicalCore)) throw new Error('CORE_MISMATCH');
 const bundled = await build({ entryPoints: [fileURLToPath(new URL('public/app.js', here))], bundle: true,
   write: false, platform: 'browser', format: 'esm', target: ['es2022'], minify: true, legalComments: 'inline' });
 const js = bundled.outputFiles[0].text;
-for (const token of ['<!--APP_STYLE-->', '<!--APP_SCRIPT-->']) if (template.split(token).length !== 2) throw new Error('UI_PLACEHOLDER');
+for (const token of ['<!--APP_STYLE-->', '<!--APP_SCRIPT-->', '__VERSION__']) if (template.split(token).length !== 2) throw new Error('UI_PLACEHOLDER');
 if (/<\/style/i.test(css)) throw new Error('UI_STYLE_BOUNDARY');
 const html = template.replace('<!--APP_STYLE-->', () => `<style>${css}</style>`)
-  .replace('<!--APP_SCRIPT-->', () => `<script type="module">${js.replace(/<\/script/gi, '<\\/script')}</script>`);
+  .replace('<!--APP_SCRIPT-->', () => `<script type="module">${js.replace(/<\/script/gi, '<\\/script')}</script>`)
+  .replace('__VERSION__', packageMetadata.version);
 if (Buffer.byteLength(html) > 1024 * 1024) throw new Error('UI_TOO_LARGE');
 await mkdir(new URL('dist/', here), { recursive: true });
 await writeFile(new URL('dist/app.html', here), html);
+await writeFile(new URL('dist/ui-resource.json', here), JSON.stringify({version: packageMetadata.version, sha256: createHash('sha256').update(html).digest('hex')}, null, 2) + '\n');
 process.stdout.write(`beforeword MCP UI built: ${Buffer.byteLength(html)} bytes\n`);

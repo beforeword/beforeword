@@ -6,10 +6,13 @@ test('each request contains the complete pinned core followed only by its applic
  const pin=JSON.parse(fs.readFileSync(path.join(__dirname,'../release-pin.json'),'utf8'));
  require('../extension/instructions.js');const instruction=globalThis.BeforewordInstructions,core=require('../extension/analysis-core.js');
  assert.equal(instruction.version,pin.version);assert.equal(sha(Buffer.from(instruction.core)),pin.sha256);assert.equal(Buffer.byteLength(instruction.core),pin.bytes);
+ const contract=JSON.parse(fs.readFileSync(path.join(__dirname,'../../../references/release-contract.json'),'utf8'));
+ const canonical=fs.readFileSync(path.join(__dirname,'../../../assets/core.en.txt'));
+ assert.equal(contract.status,'selected');assert.equal(pin.version,contract.version);assert.equal(pin.sha256,contract.core_sha256.en);assert.deepEqual(Buffer.from(instruction.core),canonical);
  const source={text:'  Я чувствую.\r\n<record>&amp;</record> é е 😀  ',language:'ru'};
  for(const reportVersion of [1,2,3]){const request=core.buildRequest(source,{reportVersion});assert.ok(request.system.startsWith(instruction.core+'\n\nEXCERPT READER CONTRACT:'));assert.equal(request.system.split(instruction.core).length-1,1);assert.deepEqual(JSON.parse(request.user),source);assert.ok(request.system.endsWith(JSON.stringify(core.schemaForVersion(reportVersion))));}
 });
-test('protected runtime modules retain their exact downloadable baseline bytes',()=>{
+test('protected runtime modules retain their reviewed release pins',()=>{
  for(const [name,expected] of Object.entries(policy.protectedFiles))assert.equal(sha(read(name)),expected,name);
  const original=policy.baselineManifest,candidate=JSON.parse(read('manifest.json'));assert.equal(candidate.version,policy.version);assert.deepEqual({...candidate,version:original.version},original);
 });

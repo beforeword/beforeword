@@ -45,18 +45,23 @@ def build(source):
     if not selection_guard['reversalVerified'] or digest(entries['selection.js']) != selection_guard['candidateSha256']:
         raise ValueError('Selection changed beyond reviewed branding')
     pin = json.loads((ROOT / 'release-pin.json').read_text())
-    prefix = "'use strict';\nglobalThis.BeforewordInstructions = Object.freeze({version:'1.4.1',core:"
+    contract = json.loads((ROOT.parents[1] / 'references/release-contract.json').read_text())
+    if contract['status'] != 'selected' or pin['version'] != contract['version'] or policy['instructionVersion'] != contract['version']:
+        raise ValueError('Instruction release differs from selected release contract')
+    prefix = "'use strict';\nglobalThis.BeforewordInstructions = Object.freeze({version:'" + pin['version'] + "',core:"
     wrapped = entries['instructions.js'].decode('utf-8')
     if not wrapped.startswith(prefix) or not wrapped.endswith("});\n"):
         raise ValueError('Unexpected instruction wrapper')
     core = json.loads(wrapped[len(prefix):-4]).encode('utf-8')
-    if pin['version'] != '1.4.1' or digest(core) != pin['sha256'] or len(core) != pin['bytes']:
+    canonical = (ROOT.parents[1] / 'assets/core.en.txt').read_bytes()
+    if digest(core) != pin['sha256'] or len(core) != pin['bytes'] or core != canonical or digest(core) != contract['core_sha256']['en']:
         raise ValueError('Complete core differs from approved pin')
     manifest = json.loads(entries['manifest.json'])
     comparison = dict(manifest, version=policy['baselineManifest']['version'])
     if comparison != policy['baselineManifest']:
         raise ValueError('Manifest field changed beyond release version')
-    if manifest['manifest_version'] != 3 or manifest['version'] != '0.5.8':
+    package = json.loads((ROOT / 'package.json').read_text())
+    if manifest['manifest_version'] != 3 or manifest['version'] != policy['version'] or package['version'] != policy['version']:
         raise ValueError('Unexpected release manifest')
     if set(manifest['permissions']) != {'activeTab', 'scripting', 'storage', 'sidePanel', 'contextMenus'}:
         raise ValueError('Review changed permissions before packaging')
@@ -69,7 +74,7 @@ def build(source):
     out = io.BytesIO()
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for name, data in sorted(entries.items()):
-            info = zipfile.ZipInfo(name, (2026, 10, 30, 0, 0, 0))
+            info = zipfile.ZipInfo(name, (*map(int, policy['date_utc'].split('-')), 0, 0, 0))
             info.create_system = 3
             info.external_attr = (stat.S_IFREG | 0o644) << 16
             info.compress_type = zipfile.ZIP_DEFLATED
@@ -89,9 +94,10 @@ def main():
     if raw != build(args.source.resolve())[0]:
         raise ValueError('Non-deterministic build')
     args.output.mkdir(parents=True, exist_ok=True)
-    name = 'beforeword-0.5.8-chrome.zip'
+    policy = json.loads((ROOT / 'tools/release-policy.json').read_text())
+    name = 'beforeword-' + policy['version'] + '-chrome.zip'
     (args.output / name).write_bytes(raw)
-    report = {'version': '0.5.8', 'file': name, 'sha256': digest(raw), 'bytes': len(raw),
+    report = {'version': policy['version'], 'file': name, 'sha256': digest(raw), 'bytes': len(raw),
               'files': members, 'instruction': json.loads((ROOT / 'release-pin.json').read_text()), 'reproducible': True, 'storeSubmitted': False, 'installedTested': False, 'installedExtensionProviderTested': False}
     (args.output / 'chrome-manifest.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps({k: v for k, v in report.items() if k != 'files'}))

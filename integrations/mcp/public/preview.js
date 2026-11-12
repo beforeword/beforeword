@@ -7,7 +7,7 @@ function result(id,value){send({jsonrpc:'2.0',id,result:value});}
 function notify(method,params){send({jsonrpc:'2.0',method,params});}
 window.addEventListener('message',event=>{
   if(event.source!==frame.contentWindow||event.origin!==location.origin)return;const message=event.data;if(!message||message.jsonrpc!=='2.0')return;
-  if(message.method==='ui/initialize')return result(message.id,{protocolVersion:'2026-01-26',hostInfo:{name:'beforeword-explicit-local-preview',version:'1.4.1'},hostCapabilities:{serverTools:{},message:{text:{}}},hostContext:context()});
+  if(message.method==='ui/initialize')return result(message.id,{protocolVersion:'2026-01-26',hostInfo:{name:'beforeword-explicit-local-preview',version:'1.4.2'},hostCapabilities:{serverTools:{},message:{text:{}}},hostContext:context()});
   if(message.method==='ui/notifications/size-changed'){
     const height=message.params?.height;if(Number.isFinite(height)&&height>0)frame.style.height=Math.min(3000,Math.max(300,Math.ceil(height)))+'px';return;
   }

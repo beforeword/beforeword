@@ -1,6 +1,6 @@
 # beforeword directory reader · Privacy
 
-Applies to the 1.4.1 remote MCP reader at `https://beforeword.xyz/mcp`. Updated 30 October 2026. Earlier skills-only packages did not call this service; the Chrome extension has its own privacy notice. Contact: [mail@beforeword.xyz](mailto:mail@beforeword.xyz).
+Applies to the 1.4.2 remote MCP reader at `https://beforeword.xyz/mcp`. Updated 12 November 2026. Earlier skills-only packages did not call this service; the Chrome extension has its own privacy notice. Contact: [mail@beforeword.xyz](mailto:mail@beforeword.xyz).
 
 ## What reaches beforeword
 

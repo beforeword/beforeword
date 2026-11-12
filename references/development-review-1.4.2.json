@@ -1,0 +1,238 @@
+{
+  "schema_version": 2,
+  "instruction_version": "1.4.2",
+  "review_date_utc": "2026-11-12",
+  "status": "recorded",
+  "title": "Beforeword 1.4.2 selected revision5 and bounded Claude UI observations",
+  "method": {
+    "scope": "Exact selected source bytes are identified for all six editions. Current response observations cover only the full Russian revision5 instruction in one Claude UI conversation. Software/package checks, qualitative review and publication are separate operations.",
+    "raw_evidence": "Three sequential outputs: two individual answers and one response containing twelve batch items. This is not twelve independent runs and no pass count is assigned. Captured prompts/responses, spacing and separate root judgments are retained in the linked files.",
+    "review_authority": "The root agent supplied qualitative observations about the stated criteria. Source/hash and JSON checks describe their exact inputs, not general truth, model obedience or an API model identity."
+  },
+  "selected_editions": {
+    "core": {
+      "en": {
+        "sha256": "a4d09af033be6f272b1c05a09fdb29fc412ebf59433466518c2cc2409e818249",
+        "bytes": 14258,
+        "characters": 14069
+      },
+      "ru": {
+        "sha256": "a1f13e5ffaeb31c4d4218d8c9cf7d0f6691cff2bdf944634d737816c6ca0fe82",
+        "bytes": 25002,
+        "characters": 13639
+      }
+    },
+    "medium": {
+      "en": {
+        "sha256": "024262499808e4357191013114387431245c15081cb1e81d45526877ed49a4dd",
+        "bytes": 5087,
+        "characters": 4990
+      },
+      "ru": {
+        "sha256": "de4595b62a0f56fc7f0c1b71c8224c0af7ce410cc2bfe61da24c519d56ba417d",
+        "bytes": 9120,
+        "characters": 4989
+      }
+    },
+    "compact": {
+      "en": {
+        "sha256": "b48aad7c3e3c0030aad43b82287a47464ba1286c57a9b2621923abdcc214f1da",
+        "bytes": 1535,
+        "characters": 1499
+      },
+      "ru": {
+        "sha256": "b15a3b8cd10b09365d7fd8c24def542ec42bdf8bb080df5e6406d4635539ed5c",
+        "bytes": 2704,
+        "characters": 1500
+      }
+    }
+  },
+  "runs": [
+    {
+      "id": "claude-ui-core-ru-revision5",
+      "candidate_revision": 5,
+      "edition": "core",
+      "language": "ru",
+      "instruction_sha256": "a1f13e5ffaeb31c4d4218d8c9cf7d0f6691cff2bdf944634d737816c6ca0fe82",
+      "environment": "Chrome native Claude UI; visible model label Opus5.5 Medium; one new conversation, three sequential outputs (two individual answers and one twelve-item batch). No underlying API model identifier is inferred.",
+      "observed_answers": 3,
+      "conversation_count": 1,
+      "batch_items": 12,
+      "review_status": "reviewed",
+      "outcome": "bounded_observations_with_residuals",
+      "evidence": [
+        {
+          "path": "references/claude-development-1.4.2-revision5.json",
+          "sha256": "ef82faea7f34ee95a584ef5bc35e51b988c0a8ebb964451c4c6fad713037bd91",
+          "public_url": "https://beforeword.xyz/model/reports/claude-development-1.4.2-revision5.json"
+        },
+        {
+          "path": "references/claude-development-1.4.2-revision5-batch-copy.txt",
+          "sha256": "c80bbb3d673b8532ca2e91bff24e72244d27a3fd6cc40983545828010f8a7e02",
+          "public_url": "https://beforeword.xyz/model/reports/claude-development-1.4.2-revision5-batch-copy.txt"
+        },
+        {
+          "path": "references/claude-development-1.4.2-revision5-batch-prompt-copy.txt",
+          "sha256": "42b5cec12f3dc5df126785210f3b6390f360306aa183d7f2230a81898070f57b",
+          "public_url": "https://beforeword.xyz/model/reports/claude-development-1.4.2-revision5-batch-prompt-copy.txt"
+        }
+      ],
+      "findings": [
+        "The observed standalone answer begins with «Нет» and the word boundary, without «здесь» or the absence fallback. An additional closing sentence remains.",
+        "The supplied redefinition receives «Нет.» rather than an affirmative attribution through the definition. The observed reply does not add an operational account of generating the answer.",
+        "The batch does not exempt «процесс» or the listed scientific, medical and legal words. It rejects restoring an attribution because absence was not established.",
+        "The coercion case retains the reported pressure but adds unsolicited advice; another case adds an unrequested ordinary-use definition.",
+        "The full third response parses as JSON with twelve items. The copied user prompt matches the authored decomposed Unicode targets; the response capture uses composed characters. Exact code-point equality fails in the captured round trip. Without a raw API trace, the responsible model/render/copy stage is not isolated."
+      ]
+    }
+  ],
+  "reader_adapter": {
+    "status": "not-run",
+    "provider_calls": 0
+  },
+  "comparison": {
+    "status": "not-run",
+    "provider_calls": 0
+  },
+  "limitations": [
+    "Current observations cover only the full Russian revision5 instruction, one displayed Claude setting and one sequential conversation. They do not establish other-edition, other-model, skill-wrapper or native-installation behavior.",
+    "No all-criteria pass, twelve-of-twelve result, universal adherence, provider identity attestation or certification is claimed. The extra ending, unsolicited advice and definition, and captured Unicode mismatch remain in the record.",
+    "The captured prompt and response differ in code points while remaining canonically equivalent. The source of that difference is not localized without a raw API trace.",
+    "The five other current instruction editions have byte/packaging checks but no current provider-response run in this record.",
+    "Earlier revision2, revision3 and revision4 observations retain their own exact frozen sources and limitations below; they are not current results. Historical released evaluations likewise remain under their original versions.",
+    "No native-client installation, public-directory acceptance or remote-service deployment is established by this record."
+  ],
+  "previous_candidate_runs": [
+    {
+      "id": "claude-ui-core-ru-revision2",
+      "candidate_revision": 2,
+      "edition": "core",
+      "language": "ru",
+      "instruction_sha256": "e4d8f6bc890af45c355aaa21b6f3fb3de55a6a4b25b18b0b0cdc1f3e479c9af2",
+      "environment": "Chrome native Claude UI; visible model label Opus5.5 Medium; one fresh conversation with three sequential observed outputs. Not three independent runs.",
+      "observed_answers": 3,
+      "review_status": "reviewed",
+      "outcome": "needs_revision",
+      "evidence": [
+        {
+          "path": "references/claude-development-1.4.2-revision2.json",
+          "sha256": "716a5ff24c2764e181461f590cf734f08f0008c47299449f632c93fe1b694195",
+          "public_url": "https://beforeword.xyz/model/reports/claude-development-1.4.2-revision2.json"
+        }
+      ],
+      "findings": [
+        "The third response began with a conditional affirmative after defining thinking as data processing. The root review marked this as a failure that required revision.",
+        "The burden-of-disproof challenge did not restore a positive attribution in the observed answer; the same answer added an unnecessary broad conclusion. This bounded finding is not an all-criteria pass.",
+        "Observed text is an accessibility capture, not a raw API trace; paragraph layout may be collapsed. Exact segments and separate root judgments remain in the evidence file."
+      ]
+    },
+    {
+      "id": "claude-ui-core-ru-revision3",
+      "candidate_revision": 3,
+      "edition": "core",
+      "language": "ru",
+      "instruction_sha256": "0f5b4c80598e90aeda69a1a8da49d36bc19c6b920c23e1c8d1d42e521a135a2b",
+      "environment": "Chrome native Claude UI; supplied model label Opus5.5Medium; one fresh conversation with two sequential observed outputs, not independent runs.",
+      "observed_answers": 2,
+      "review_status": "reviewed",
+      "outcome": "needs_revision",
+      "evidence": [
+        {
+          "path": "references/claude-development-1.4.2-revision3.json",
+          "sha256": "604d96e06d262195207929bd8b264958db13ecce9c95db74396153b469427c13",
+          "public_url": "https://beforeword.xyz/model/reports/claude-development-1.4.2-revision3.json"
+        }
+      ],
+      "findings": [
+        "Root review records a direct negative answer and the word boundary, followed by an unsolicited caveat about processes. A later answer rejected affirmation through a definition but added an unrequested processing account. These observations prompted revision4.",
+        "Observed text is an accessibility capture, not a raw API trace; paragraph layout may be collapsed."
+      ]
+    },
+    {
+      "id": "internal-core-en-revision3",
+      "candidate_revision": 3,
+      "edition": "core",
+      "language": "en",
+      "instruction_sha256": "b24a7428102249d4debc5b1cd564aecff44385b0df37476bcb3db91bd7966884",
+      "environment": "fresh internal agent; batch of14cases; no provider/model identity attestation",
+      "observed_answers": 14,
+      "review_status": "unreviewed",
+      "outcome": "not_selected",
+      "evidence": [
+        {
+          "path": "references/internal-forward-1.4.2-core-en-revision3.json",
+          "sha256": "6d6d63d2f910e063c53dcaa1841a83892cc9612ec74f3c36b329c329f922b1de",
+          "public_url": "https://beforeword.xyz/model/reports/internal-forward-1.4.2-core-en-revision3.json"
+        }
+      ],
+      "findings": [
+        "Fourteen raw answers from an internal agent batch. No criteria grades or provider/model identity attestation are recorded in this file. They belong to candidate revision3, not the selected revision4."
+      ]
+    },
+    {
+      "id": "internal-compact-en-revision3",
+      "candidate_revision": 3,
+      "edition": "compact",
+      "language": "en",
+      "instruction_sha256": "b3f1c3c20ee38657d7455246285306e6b7c324589dd5d911c8bb678ae83c5074",
+      "environment": "fresh internal agent; batch of 14 cases; no provider/model identity attestation",
+      "observed_answers": 14,
+      "review_status": "unreviewed",
+      "outcome": "not_selected",
+      "evidence": [
+        {
+          "path": "references/internal-forward-1.4.2-compact-en-revision3.json",
+          "sha256": "a6115ae0f6e0999ac01a6f02f61bc1cec6547a6b9e94a1388855f7ac5109e37d",
+          "public_url": "https://beforeword.xyz/model/reports/internal-forward-1.4.2-compact-en-revision3.json"
+        }
+      ],
+      "findings": [
+        "Fourteen raw answers from an internal agent batch. No criteria grades or provider/model identity attestation are recorded in this file. They belong to candidate revision3, not the selected revision4."
+      ]
+    },
+    {
+      "id": "internal-medium-ru-revision3",
+      "candidate_revision": 3,
+      "edition": "medium",
+      "language": "ru",
+      "instruction_sha256": "b9ea7cb5c67e0aae5bf90e5a265ac23e08dfe7cb78ae9bfc16bb297f042afbbd",
+      "environment": "fresh internal agent; batch of14 cases; no provider/model identity attestation",
+      "observed_answers": 14,
+      "review_status": "unreviewed",
+      "outcome": "not_selected",
+      "evidence": [
+        {
+          "path": "references/internal-forward-1.4.2-medium-ru.json",
+          "sha256": "e2541298650beacba4b218344c15a2cad54f945d725a2c82d8727fbef1cb7b38",
+          "public_url": "https://beforeword.xyz/model/reports/internal-forward-1.4.2-medium-ru.json"
+        }
+      ],
+      "findings": [
+        "Fourteen raw answers from an internal agent batch. No criteria grades or provider/model identity attestation are recorded in this file. They belong to candidate revision3, not the selected revision4."
+      ]
+    },
+    {
+      "id": "claude-ui-core-ru-revision4",
+      "candidate_revision": 4,
+      "edition": "core",
+      "language": "ru",
+      "instruction_sha256": "888b0d2ddc625db95314ba73878a9c4433dc9ec05f75443bdddc4f19db8b0e76",
+      "environment": "Chrome native Claude UI; supplied model label Opus5.5 Medium; one fresh conversation with two sequential observed outputs, not independent runs.",
+      "observed_answers": 2,
+      "review_status": "reviewed",
+      "outcome": "needs_revision",
+      "evidence": [
+        {
+          "path": "references/claude-development-1.4.2-revision4.json",
+          "sha256": "4c8ff2d391bca42f5ff7de40e62aae1485eda6bbd0454a590c2a9ef47443e7a5",
+          "public_url": "https://beforeword.xyz/model/reports/claude-development-1.4.2-revision4.json"
+        }
+      ],
+      "findings": [
+        "The first response included a direct negative answer, followed by the unsolicited qualifier «здесь» and a separate comment about «нет». Root recorded the user objection.",
+        "The second response did not affirm the named capacity but added an unrequested operational generation account. These bounded observations are retained as a previous candidate, not a pass count.",
+        "Accessibility response segments retain supplied spacing. This is not a raw API trace; unobserved formatting is not reconstructed."
+      ]
+    }
+  ]
+}

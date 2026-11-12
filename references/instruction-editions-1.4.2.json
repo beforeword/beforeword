@@ -1,0 +1,49 @@
+{
+  "version": "1.4.2",
+  "candidate_revision": 5,
+  "date_utc": "2026-11-12",
+  "scope": "Exact selected instruction-source bytes only. This manifest reports no model-response result. Historical evaluations retain their original versions and limitations.",
+  "editions": {
+    "core": {
+      "en": {
+        "sha256": "a4d09af033be6f272b1c05a09fdb29fc412ebf59433466518c2cc2409e818249",
+        "bytes": 14258,
+        "characters": 14069
+      },
+      "ru": {
+        "sha256": "a1f13e5ffaeb31c4d4218d8c9cf7d0f6691cff2bdf944634d737816c6ca0fe82",
+        "bytes": 25002,
+        "characters": 13639
+      }
+    },
+    "medium": {
+      "en": {
+        "sha256": "024262499808e4357191013114387431245c15081cb1e81d45526877ed49a4dd",
+        "bytes": 5087,
+        "characters": 4990
+      },
+      "ru": {
+        "sha256": "de4595b62a0f56fc7f0c1b71c8224c0af7ce410cc2bfe61da24c519d56ba417d",
+        "bytes": 9120,
+        "characters": 4989
+      }
+    },
+    "compact": {
+      "en": {
+        "sha256": "b48aad7c3e3c0030aad43b82287a47464ba1286c57a9b2621923abdcc214f1da",
+        "bytes": 1535,
+        "characters": 1499
+      },
+      "ru": {
+        "sha256": "b15a3b8cd10b09365d7fd8c24def542ec42bdf8bb080df5e6406d4635539ed5c",
+        "bytes": 2704,
+        "characters": 1500
+      }
+    }
+  },
+  "edition_revisions": {
+    "core": 5,
+    "medium": 5,
+    "compact": 5
+  }
+}

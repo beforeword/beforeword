@@ -14,6 +14,7 @@ import zipfile
 from package_plugins import build_bundles, skill_text
 from render_report import parse_report
 from release_contract import VERSION, DATE, require_selected
+from release_evidence import load_current_review, review_summary
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -125,12 +126,15 @@ def build(output):
     smoke = json.loads(read('references/development-smoke-1.3.0.json'))
     previous_smoke = json.loads(read('references/development-smoke-1.3.1.json'))
     comparison = json.loads(read('references/comparison-1.3.3.json'))
-    selected_review_path = 'references/development-review-1.4.1.json'
+    selected_review_path, selected_review = load_current_review(ROOT)
     selected_review_text = read(selected_review_path)
-    selected_review = json.loads(selected_review_text)
-    for lang in ('en', 'ru'):
-        if selected_review['selected_editions']['core'][lang]['sha256'] != sha(data['core'][lang]):
-            raise ValueError('Current development record does not match selected core: ' + lang)
+    selected_runs = [review_summary(selected_review_path, selected_review, version=VERSION,
+                                   raw=selected_review_text.encode('utf-8'))]
+    if VERSION != '1.4.1':
+        previous_review_path = 'references/development-review-1.4.1.json'
+        previous_review_text = read(previous_review_path)
+        selected_runs.append(review_summary(previous_review_path, json.loads(previous_review_text),
+                                           version=VERSION, raw=previous_review_text.encode('utf-8')))
     current_review_path = 'references/development-review-1.3.5.json'
     current_review_text = read(current_review_path)
     current_review = json.loads(current_review_text)  # A malformed review must not enter a release.
@@ -147,13 +151,7 @@ def build(output):
       'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
       'evaluation_scope':'The build runs no model. Each record below retains its instruction version, edition and adapter. Historical findings do not establish behavior of the current selected bytes; the selected instruction review is recorded separately with exact instruction hashes.',
       'runtime_validation':'not-run-by-build', 'evaluation':report['method'], 'evaluation_case_count':len(data['eval'].strip().splitlines()),
-      'evaluation_runs':[
-        {'report':selected_review_path, 'instruction_version':'1.4.1', 'historical':VERSION != '1.4.1',
-         'scope':'Bounded development and separate comparison; AI-agent content judgments and deterministic checks are distinct. Retained failures and scope findings are in the record; no general adherence or native-installation claim.',
-         'development_outputs':sum(run['observed_answers'] for run in selected_review['runs']),
-         'reader_outputs':selected_review['reader_adapter']['provider_calls'],
-         'comparison_outputs':selected_review['comparison'].get('provider_calls', 0),
-         'report_sha256':sha(selected_review_text)},
+      'evaluation_runs':selected_runs+[
         {'report':current_review_path, 'instruction_version':'1.3.5', 'historical':VERSION != '1.3.5',
          'scope':'Development cases for instruction 1.3.5 plus its bounded Hugging Face Playground check; no result transfers to a different instruction or adapter.',
          'selected_development_outputs':len(current_review['results']),

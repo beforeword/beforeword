@@ -1,4 +1,4 @@
-# Beforeword reader · 1.4.1
+# Beforeword reader · 1.4.2
 
 The remote MCP reader keeps exact writing beside a proposed reading. Connects to https://beforeword.xyz/mcp using Streamable HTTP without authentication. This is distinct from the native skills-only instruction package.
 

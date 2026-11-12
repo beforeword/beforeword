@@ -1,15 +1,18 @@
 """Reconcile generated instructions with current published model pages.
 
-No network or publication. The October30 snapshot is separate from older
+No network or publication. The November12 snapshot is separate from older
 historical wrappers. A generated instruction update must not restore an older
 homepage/header or replace the current authored AI proposal.
 """
 from pathlib import Path
 import hashlib,html,json,re
+from public_updates import feed_discovery
 ROOT=Path(__file__).resolve().parents[1]
-SNAPSHOT=ROOT/'assets/site-wrapper/published-20261030'
+SNAPSHOT=ROOT/'assets/site-wrapper/published-20261112'
 LEGACY_READER='/assets/beforeword/beforeword-reader.js?v=0.3.1'
 BRANDED_READER='/model/assets/reader-brand-1.4.1.js'
+PUBLISHED_READER='/assets/content-alignment-20261105/reader-brand-1.4.1.js'
+LIVE_EN_TEASER='Text Mode lets you try instruction 1.4.1 on a task and compare the outputs.'
 
 def once(source,pattern,replace,label):
     matches=list(re.finditer(pattern,source,re.S))
@@ -35,20 +38,20 @@ def meta(source,name,value):
 
 EVALUATION_HELP={
  'ru':[
- ('helpReadTitle','Прочитать текущую проверку','Версия {version}: задания, ответы, оценки и отмеченные ограничения.','#report-section-1','К проверке {version}'),
+ ('helpReadTitle','Прочитать текущую проверку','Версия {version}: статус проверки, сохранённые материалы и отмеченные ограничения.','#report-section-1','К проверке {version}'),
  ('helpTryTitle','Сопоставить сохранённые ответы','Одинаковые запросы с инструкцией Beforeword и без неё. Просмотр сохранённых ответов не отправляет запрос модели.','/text-mode/#saved-comparisons','Открыть сохранённое сравнение'),
- ('helpTextTitle','Прочитать полную инструкцию','Текст, который использовался в текущей проверке. На странице инструкции доступны полный текст и загрузки.','/model/#medium-details','Открыть инструкцию')],
+ ('helpTextTitle','Прочитать полную инструкцию','Текущая выбранная полная редакция. На странице инструкции доступны полный текст и загрузки.','/model/#medium-details','Открыть инструкцию')],
  'en':[
- ('helpReadTitle','Read the current evaluation','Version {version}: tasks, responses, scores and recorded limitations.','#report-section-1','Go to the {version} evaluation'),
+ ('helpReadTitle','Read the current evaluation','Version {version}: evaluation status, recorded material and limitations.','#report-section-1','Go to the {version} evaluation'),
  ('helpTryTitle','Compare saved responses','The same requests with and without the Beforeword instruction. Viewing saved responses does not send a request to a model.','/text-mode/en/#saved-comparisons','Open the saved comparison'),
- ('helpTextTitle','Read the full instruction','The text used in the current evaluation. The instruction page includes the full text and downloads.','/model/en/#medium-details','Open the instruction')]
+ ('helpTextTitle','Read the full instruction','The currently selected full edition. The instruction page includes the full text and downloads.','/model/en/#medium-details','Open the instruction')]
 }
 
 def evaluation_help(source,language,version):
     """Make inherited help entries describe their actual evaluation destinations."""
     for key,title,body,href,label in EVALUATION_HELP[language]:
         value='<li><h3>'+html.escape(title.format(version=version))+'</h3><p>'+html.escape(body.format(version=version))+'</p><a href="'+href+'">'+html.escape(label.format(version=version))+'</a></li>'
-        source=once(source,r'<li>\s*<h3 data-text="'+key+r'">.*?</li>',value,'evaluation help '+key)
+        source=once(source,r'<li>\s*<h3>'+re.escape(html.escape(title.format(version=version)))+r'</h3>.*?</li>',value,'evaluation help '+key)
     return source
 
 def external_assets():
@@ -74,34 +77,30 @@ def apply(generated,language,*,evaluation,core,version,date,description):
         title=html.unescape(re.search(r'<title>(.*?)</title>',generated,re.S).group(1))
         current=once(current,r'<title>.*?</title>','<title>'+html.escape(title)+'</title>','title')
         for name in ('og:title','twitter:title'):current=meta(current,name,title)
-        # The legacy evaluation shell retains its controls and assets; replace
-        # only the legacy symbol+name fragment with the approved full wordmark.
-        wordmark=(ROOT/'brand/wordmark-light.svg').read_text()
-        wordmark=re.sub(r'\s(?:width|height|role|aria-label)="[^"]*"','',wordmark,count=0)
-        wordmark=wordmark.replace('<svg ','<svg aria-hidden="true" focusable="false" style="width:9em;height:auto;max-width:100%" ',1)
-        wordmark=re.sub(r' style="color:#[a-fA-F0-9]+"','',wordmark)
-        wordmark=re.sub(r'(fill|stroke)="#[a-fA-F0-9]+"',lambda m:m.group(1)+'="currentColor"',wordmark)
-        pattern=r'<span class="brand-mark" aria-hidden="true"></span><span>beforeword</span>'
-        current,count=re.subn(pattern,lambda _:wordmark,current)
-        if count!=2:raise ValueError('Expected two legacy evaluation brand fragments')
-        current,count=re.subn(r'<span class="brand-mark" aria-hidden="true"></span>','',current)
-        if count!=1:raise ValueError('Expected one decorative legacy help mark')
+        # The fresh live shell already contains the approved wordmark and its
+        # independent 1.4.1 reader derivative. Preserve all navigation and script
+        # tags exactly; only the versioned evaluation help is refreshed.
+        if current.count(PUBLISHED_READER)!=1:raise ValueError('Expected the published branded evaluation reader')
         current=evaluation_help(current,language,version)
-        current=once(current,re.escape(LEGACY_READER),BRANDED_READER,'branded evaluation reader')
     else:
         current=once(current,r'(<textarea\b[^>]*id="instruction-text"[^>]*>).*?(</textarea>)',lambda m:m.group(1)+html.escape(core,quote=False)+m.group(2),'current full instruction')
         # Update only current-version package links, never historical reports.
-        current,count=re.subn(r'(https://beforeword\.xyz/model/downloads/beforeword_(?:openai_local_marketplace|claude_plugin|skill)_(?:RU|EN)_)\d+\.\d+\.\d+(\.zip)',lambda m:m.group(1)+version+m.group(2),current)
+        current,count=re.subn(r'((?:https://beforeword\.xyz)?/model/downloads/beforeword_(?:openai_local_marketplace|claude_plugin|skill)_(?:RU|EN)_)\d+\.\d+\.\d+(\.zip)',lambda m:m.group(1)+version+m.group(2),current)
         if count!=3:raise ValueError('Expected exactly three current package links')
         label=('Полная инструкция · ' if language=='ru' else 'Full instruction · ')+version
         review_url='/model/evaluation/'+('en/' if language=='en' else '')
         review_label='Проверки инструкции: ответы и ограничения' if language=='ru' else 'Instruction checks: answers and limits'
-        current=once(current,r'(<section class="s-section" id="medium-details">.*?</h2>)',lambda m:m.group(1)+'<p class="s-release-version">'+label+'</p><p class="s-release-review"><a href="'+review_url+'">'+review_label+'</a></p>','instruction version and review link')
-        prefix='Выученными словами заменили себя, других и мир. ' if language=='ru' else 'Learned words have replaced ourselves, others and the world. '
-        current=once(current,r'(<p class="s-lead">)(.*?)(</p>)',lambda m:m.group(1)+prefix+m.group(2)+m.group(3),'current proposal intro')
+        current=once(current,r'<p class="s-release-version">.*?</p>','<p class="s-release-version">'+label+'</p>','existing instruction version')
+        current=once(current,r'<p class="s-release-review">.*?</p>','<p class="s-release-review"><a href="'+review_url+'">'+review_label+'</a></p>','existing instruction review link')
+        # The live introduction already contains its authored prefix. Inserting
+        # it again would duplicate prose and change the preserved proposal.
+        if language=='en':
+            current=once(current,re.escape(LIVE_EN_TEASER),LIVE_EN_TEASER.replace('1.4.1',version),'current Text Mode instruction version')
     for name in ('description','og:description','twitter:description'):current=meta(current,name,description)
     if re.search(r'<meta\b[^>]*name=["\']beforeword-version["\']',current):current=meta(current,'beforeword-version',version)
     else:current=current.replace('</head>','<meta name="beforeword-version" content="'+version+'">\n</head>',1)
+    if not evaluation:
+        current=once(current,r'</head>',feed_discovery(language)+'\n</head>','feed discovery')
     def update_graph(m):
         value=json.loads(m.group(2));nodes=value.get('@graph',[value])
         for item in nodes:

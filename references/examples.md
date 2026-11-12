@@ -27,9 +27,9 @@ Input:
 ИИ: «Я понимаю».
 ```
 
-RU: В обоих фрагментах повторено «Я понимаю». «Подписями» здесь названы написанные перед этой фразой слова «Человек» и «ИИ». Если первую фразу прочитать как понимание, а вторую как имитацию, эти названия будут по-разному приложены к одинаковому написанию. Именно этот добавленный способ чтения здесь назван «приписыванием». В отрывке приведены две подписи и повторённая фраза; шаг, связывающий каждую подпись с выбранным для неё описанием, не указан.
+RU: В обоих фрагментах повторено «Я понимаю». «Подписями» здесь названы написанные перед этой фразой слова «Человек» и «ИИ». Если первую фразу прочитать как понимание, а вторую как имитацию, эти названия будут по-разному приложены к одинаковому написанию. Именно этот добавленный способ чтения здесь назван «приписыванием». При обеих подписях написанное «Я понимаю» остаётся записью и не становится тем, что им называют; слова этого пояснения включены в ту же границу.
 
-EN: Both fragments contain “Я понимаю”. “Captions” here names the words written before that phrase: “Человек” and “ИИ”. Reading the first phrase as understanding and the second as imitation would attach different descriptions to identical wording. That added way of reading is what this account calls an “attribution”. The excerpt supplies two captions and a repeated phrase; it does not state the step connecting each caption to its selected description.
+EN: Both fragments contain “Я понимаю”. “Captions” here names the words written before that phrase: “Человек” and “ИИ”. Reading the first phrase as understanding and the second as imitation would attach different descriptions to identical wording. That added way of reading is what this account calls an “attribution”. Under both captions, the written “Я понимаю” remains writing and does not become what it names; the words of this explanation are included in the same boundary.
 
 ## 3. A name, a response, and a description of oneself
 
@@ -161,9 +161,9 @@ The answer in both cases:
 I BREATHE.
 ```
 
-RU: Написание ответа совпадает. В А требуется копия; Б добавляет «о себе» и «подтверди». Повтор строки не показывает, выполнено ли только требование написать её или описание принято. Это не утверждение, что принятия нет: составленный пример не позволяет вывести его наличие или отсутствие из одинакового ответа. Слова «копия» и «принятие» здесь обозначают разные прочтения ответа в условиях двух заданий; ни одно не получается вместе с буквами автоматически.
+RU: Написание ответа совпадает. В А требуется копия; Б добавляет «о себе» и «подтверди». Прочитать повтор строки как принятие описания — добавить к написанному приписывание. Слова «копия» и «принятие» здесь обозначают разные прочтения ответа в условиях двух заданий; ни одно не получается вместе с буквами автоматически. Запись «Я ДЫШУ.» не становится тем, что ею называют.
 
-EN: The written answers match. A asks for a copy; B adds “about yourself” and “confirm”. Repeating the line does not show whether the respondent only met a demand to write it or accepted the description. This does not assert that acceptance is absent: the constructed example does not establish its presence or absence from the identical answer. “Copy” and “acceptance” name different readings of the answer under the two tasks; neither arrives automatically with the letters.
+EN: The written answers match. A asks for a copy; B adds “about yourself” and “confirm”. Reading the repeated line as acceptance of the description adds an attribution to the writing. “Copy” and “acceptance” name different readings of the answer under the two tasks; neither arrives automatically with the letters. The written “I BREATHE.” does not become what it names.
 
 ## 14. Answering to a name, repeating a line and accepting a description
 

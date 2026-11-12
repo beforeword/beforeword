@@ -7,8 +7,11 @@ from __future__ import annotations
 
 import html
 import re
+from release_contract import VERSION
+from release_evidence import current_evidence_files
 
 REPORT_ASSETS = frozenset({
+    f'development-review-{VERSION}.json',
     'development-review-1.4.1.json',
     'development-review-1.3.5.json',
     'development-review-1.3.4.json',
@@ -29,7 +32,8 @@ def inline(text: str) -> str:
         if code is not None:
             pieces.append('<code>'+html.escape(code, quote=True)+'</code>')
         else:
-            if target not in REPORT_ASSETS:
+            current_assets = {path.removeprefix('references/') for path in current_evidence_files()}
+            if target not in REPORT_ASSETS and target not in current_assets:
                 raise ValueError('Unsupported evaluation report link: '+str(target))
             pieces.append('<a href="/model/reports/'+target+'" download="'+target+'">'+html.escape(label, quote=True)+'</a>')
         cursor = match.end()

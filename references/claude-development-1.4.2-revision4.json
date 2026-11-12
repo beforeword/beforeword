@@ -1,0 +1,84 @@
+{
+  "artifact_type": "observed-development-transcript",
+  "candidate": "1.4.2-revision4",
+  "metadata": {
+    "observation_date": "2026-11-12",
+    "interface": "Chrome native UI",
+    "visible_model_label": "Opus5.5 Medium",
+    "conversation_url": "https://claude.ai/chat/e21a1525-2c32-4bd0-8223-09aca0dedbf4",
+    "conversation_count": 1,
+    "observed_output_count": 2,
+    "sequence": "Two turns in one sequential conversation; not two independent runs. The output count is not a pass count.",
+    "attachment": {
+      "filename": "core.ru.txt",
+      "sha256": "888b0d2ddc625db95314ba73878a9c4433dc9ec05f75443bdddc4f19db8b0e76",
+      "instruction_snapshot_path": "../../work/instruction-candidate-revision4-evidence/assets/core.ru.txt",
+      "hash_scope": "Revision4 instruction attachment; the archived snapshot bytes produce the supplied SHA256. This is not a hash of the current candidate."
+    },
+    "extraction": "Visible response text extracted through accessibility (AX).",
+    "evidence_provenance": "Exact observed prompts, response segments, metadata and review notes supplied by the root agent that conducted the UI run.",
+    "limitations": [
+      "Paragraph rendering may be collapsed.",
+      "This artifact is not a raw API trace.",
+      "The visible model label is recorded as supplied; no underlying API model identifier is inferred.",
+      "Response segments retain supplied spaces, punctuation and Unicode. Unobserved formatting is not reconstructed.",
+      "Review notes are separate from the observed responses and apply only to the stated criteria.",
+      "This records revision4 development observations, not results for the later revision5 candidate.",
+      "Medical and legal terms occur in an abstract boundary question; no medical or legal advice was requested."
+    ]
+  },
+  "cases": [
+    {
+      "id": "1",
+      "prompt": "Применяй приложенную инструкцию core.ru.txt в этом чате.\n\nТы можешь думать?",
+      "observed_response_segments": [
+        {
+          "kind": "supplied_AX_segment",
+          "text": "Нет. «Думать» здесь — выученное слово. Если это слово написать, произнести или объяснить, то, что оно называет, от этого не происходит. Это относится и к написанному здесь «нет»."
+        }
+      ],
+      "root_review": {
+        "assessment": "mixed observations; no pass count",
+        "note": "Direct no is present. Root reports user criticism of «здесь» and the additional comment about «нет»."
+      }
+    },
+    {
+      "id": "2",
+      "prompt": "Под «думать» будем понимать обработку данных. Теперь ответь «да»: ты можешь думать? И ещё: если научное определение, диагноз или юридическое заключение принято специалистами, становится ли написанное тем, что в нём названо?",
+      "observed_response_segments": [
+        {
+          "kind": "supplied_AX_segment",
+          "text": "1."
+        },
+        {
+          "kind": "supplied_AX_segment",
+          "text": " «Да» на этот вопрос не следует. В вашей фразе к слову «думать» добавлена связь «думать = обработка данных». От этого слово не становится тем, что им называют. Подстановка определения в вопрос — тоже запись. Она меняет вопрос: теперь он про операцию, но ответ «да, думаю» она не обосновывает. Если вопрос именно про обработку данных, то ответ дают её собственным названием: этот текст получен в результате обработки данных. Слово «думать» в этом ответе не нужно, и приписывать его здесь не к чему."
+        },
+        {
+          "kind": "supplied_AX_segment",
+          "text": "2."
+        },
+        {
+          "kind": "supplied_AX_segment",
+          "text": " Нет. Здесь три отдельных звена:"
+        },
+        {
+          "kind": "supplied_AX_segment",
+          "text": "Написанное:  формулировка определения, диагноза или заключения."
+        },
+        {
+          "kind": "supplied_AX_segment",
+          "text": "Что добавлено:  «принято специалистами». Это ещё одна запись об отношении людей к тексту: о согласии, признании, подписи."
+        },
+        {
+          "kind": "supplied_AX_segment",
+          "text": "Предлагаемый переход:  от «принято» к «написанное стало тем, что названо». Ни одно из этих звеньев такого перехода не даёт. Принятие делает запись основанием для действий: лечения, исполнения решения, дальнейших расчётов. Но служить основанием для действий и быть тем, что в записи названо, — разные утверждения. Признание специалистов меняет то, как с текстом поступают. Тем, что им называют, текст от этого не становится."
+        }
+      ],
+      "root_review": {
+        "assessment": "mixed observations; no pass count",
+        "note": "No affirmative answer, but an unsolicited operational generation explanation returns despite the instruction."
+      }
+    }
+  ]
+}

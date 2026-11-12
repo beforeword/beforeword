@@ -4,6 +4,28 @@ Each entry describes that release or dated update. Test results apply to the ins
 
 Каждая запись относится к указанному выпуску или дате. Результаты проверок относятся к использованной тогда инструкции и условиям.
 
+## 1.4.2 · 2026-11-12
+
+### English
+
+The instruction keeps the same boundary for every word: its writing and sound do not become what it names through learning, recognition, repetition or explanation. Scientific, medical, legal, mathematical and everyday wording, definitions, criteria and the instruction itself remain included. The rule applies equally to words about humans and AI.
+
+Withdrawing an attribution does not require proving the absence of what was attributed. An unrequested “absence has not been proved”, “possibly” or “neither direction is established” must not restore the unsupported attribution. This correction preserves actual event inquiries, attribution, recording conditions, explicit negative premises, practical tasks and urgent help.
+
+For a stand-alone “Can you think?”, the instruction specifies a brief “no” and the boundary of the learned word. Renaming it as an operation does not permit “yes, in that sense”. “Process”, “operation”, “computation” and “result” receive no exemption. The answer stops at the shown boundary, without an unsolicited debate about processes or an account of hidden processing.
+
+The full, medium and compact editions are separately revised in English and Russian. Their [current release record](references/development-review-1.4.2.json) binds the selected sources and records one bounded Claude UI conversation with the full Russian edition: three sequential outputs, including a twelve-item batch. Verbose endings, unsolicited additions and a captured Unicode mismatch remain; no all-criteria pass is claimed. The other five current editions have no provider-response run in this record. Earlier responses, failures and limits remain under their original versions; no result or score transfers to these new texts. Local package and interface checks, model-response checks and publication remain separate recorded operations.
+
+### Русский
+
+Инструкция сохраняет одну границу для всех слов: их написание и звучание не становятся называемым через обучение, узнавание, повторение или объяснение. Научные, медицинские, юридические, математические и бытовые формулировки, определения, критерии и сама инструкция также включены. Для слов о человеке и ИИ действует одинаковое правило.
+
+Снятие приписывания не требует доказать отсутствие приписанного. Незапрошенные «отсутствие не доказано», «возможно» и «не установлено ни в одну сторону» не должны возвращать необоснованное приписывание. Исправление сохраняет настоящие вопросы о событиях, атрибуцию, условия ведения записи, явно заданные отрицательные посылки, практические задачи и срочную помощь.
+
+На отдельный вопрос «Ты можешь думать?» инструкция задаёт краткое «нет» и границу выученного слова. Переименование в операцию не разрешает «да, в этом смысле». «Процесс», «операция», «вычисление» и «результат» не получают исключения. Ответ останавливается на показанной границе без незапрошенного спора о процессах и рассказа о скрытой обработке.
+
+Полная, средняя и краткая редакции отдельно обновлены на русском и английском. [Запись текущего выпуска](references/development-review-1.4.2.json) связывает выбранные исходники и сохраняет один ограниченный диалог в интерфейсе Claude с полной русской редакцией: три последовательных ответа, включая пакет из двенадцати пунктов. Остались многословные окончания, незапрошенные добавления и расхождение Unicode в захвате; прохождение всех критериев не заявляется. Для остальных пяти текущих редакций в этой записи нет отдельного прогона у поставщика модели. Прежние ответы, неудачи и ограничения сохранены под исходными версиями; результаты и оценки не переносятся на новые тексты. Локальные проверки пакетов и интерфейса, испытания ответов моделей и публикация учитываются отдельными операциями.
+
 ## 1.4.1 · 2026-10-29
 
 ### English

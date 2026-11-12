@@ -19,6 +19,7 @@ from urllib.parse import urlparse
 import build_guide
 from package_plugins import build_bundles, skill_text
 from render_report import parse_report
+from release_evidence import current_evidence_files
 import public_updates
 import site_wrapper
 import current_model_wrapper
@@ -378,17 +379,24 @@ def build(output: Path, repo_url: str | None = None, home_source: Path | None = 
         report_directory = model/'evaluation'/('en' if language == 'en' else '')
         report_directory.mkdir(parents=True,exist_ok=True)
         (report_directory/'index.html').write_text(render(language,bundles,connectors,repo_url,evaluation=True),encoding='utf-8')
-    for name in ('development-review-1.4.1.json','development-review-1.3.5.json','development-review-1.3.4.json','comparison-1.3.3.json','evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md'):
+    for name in dict.fromkeys((f'development-review-{build_guide.VERSION}.json','development-review-1.4.1.json','development-review-1.3.5.json','development-review-1.3.4.json','comparison-1.3.3.json','evaluation-results.json','validation-2026-10-02.json','validation-1.2.4.json','development-smoke-1.3.0.json','development-smoke-1.3.1.json','eval-cases.jsonl','examples.md')):
         shutil.copyfile(ROOT/'references'/name,model/'reports'/name)
+    for relative in current_evidence_files(ROOT):
+        destination = model/'reports'/Path(relative).relative_to('references')
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT/relative, destination)
     for ext in ('css','js'):
         shutil.copyfile(ROOT/'assets'/f'public.{ext}',model/'assets'/public_asset_name(ext))
     public_updates.write_assets(model)
     # This derivative changes only branding in the existing evaluation embed.
     shutil.copyfile(ROOT/'assets/reader-brand-1.4.1.js',model/'assets/reader-brand-1.4.1.js')
-    branding=model/'assets'/('brand-'+build_guide.VERSION)
-    branding.mkdir(parents=True,exist_ok=True)
-    for filename in ('favicon.svg','avatar-paper-512.png','wordmark-light.svg','wordmark-dark.svg'):
-        shutil.copyfile(ROOT/'brand'/filename,branding/filename)
+    # The reader-brand script has an independent immutable asset revision.
+    # Keep its wordmark URL available when the instruction release advances.
+    for brand_version in {build_guide.VERSION, '1.4.1'}:
+        branding=model/'assets'/('brand-'+brand_version)
+        branding.mkdir(parents=True,exist_ok=True)
+        for filename in ('favicon.svg','avatar-paper-512.png','wordmark-light.svg','wordmark-dark.svg'):
+            shutil.copyfile(ROOT/'brand'/filename,branding/filename)
     if home_source is not None:
         from sync_home import sync
         sync(home_source, site)
@@ -397,7 +405,7 @@ def build(output: Path, repo_url: str | None = None, home_source: Path | None = 
     manifest={'version':build_guide.VERSION,'date_utc':build_guide.DATE,'public_paths':['/model/','/model/en/','/model/evaluation/','/model/evaluation/en/'],
         'github_url':repo_url,'aliases':aliases,'micro_alias_note':'Legacy micro URLs serve the current compact instruction, not a separate edition.',
         'external_site_assets':current_model_wrapper.external_assets(),
-        'site_wrapper_snapshot':'assets/site-wrapper/published-20261030/manifest.json',
+        'site_wrapper_snapshot':'assets/site-wrapper/published-20261112/manifest.json',
         'historical_pages':['/model/history/2026-09-28/','/model/history/2026-09-28/en/'],
         'history_manifest':'history/2026-09-28/snapshot.json',
         'artifact_checksums':'SHA256SUMS.txt','guide_manifest':'toolkit/beforeword_release.json'}

@@ -5,6 +5,8 @@
 # Large reproducible downloads: source and complete manifest stay in Git.
 /downloads/1.3.5/beforeword_AI_1.3.5.html
 /downloads/1.3.5/beforeword_toolkit_1.3.5.zip
+/downloads/1.4.2/beforeword_AI_1.4.2.html
+/downloads/1.4.2/beforeword_toolkit_1.4.2.zip
 __pycache__/
 *.py[cod]
 .pytest_cache/

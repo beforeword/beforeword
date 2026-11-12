@@ -9,6 +9,8 @@
 
 Beforeword is a project by **Kirill Shebetov** about learned words and descriptions of oneself, others and the world. It examines how the alphabet has replaced what is described: a written name, phrase about a feeling, explanation or result is presented as the one or the thing it names. Learning, repeating or agreeing with those words does not make that transition. Beforeword's own words receive no exception.
 
+A word can be written and spoken. Its writing and sound do not become what it names through learning, recognition, repetition or explanation. This applies to every word: ordinary language, science, medicine, law and mathematics, including definitions, formulas, diagnoses, evidence, “process”, “result” and this explanation. Withdrawing an attribution does not require proving the absence of what was attributed; “absence has not been proved” does not restore that attribution. The same boundary applies to words about humans and AI. Practical inquiries still retain their actual records, conditions and uncertainty.
+
 ## The public proposal
 
 Do not require a living being to learn, repeat, understand or accept language and descriptions of oneself, others and the world. **The party imposing the requirement removes it.** No learned refusal, explanation of refusal or replacement description is required first. Speech, writing, sign languages, communication, learning and help remain available without compulsory participation. Agreement with Beforeword is not required either.

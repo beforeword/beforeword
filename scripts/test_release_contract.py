@@ -12,6 +12,7 @@ from unittest.mock import patch
 import build_downloads
 import package_plugins
 from release_contract import VERSION, require_selected
+from release_evidence import describe, load_current_review, selected_editions, review_summary
 
 
 class ReleaseContractTests(unittest.TestCase):
@@ -77,6 +78,113 @@ class ReleaseContractTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "historical downloads"):
                 build_downloads.write_files(previous, {"original.txt": b"replacement"}, replace=True)
         self.assertEqual(path.read_bytes(), b"historical")
+
+    def prepare_review(self):
+        self.select()
+        for edition in ('medium', 'compact'):
+            for language in ('en', 'ru'):
+                (self.root / f'assets/{edition}.{language}.txt').write_bytes(self.cores[language])
+        self.review = {'schema_version': 2, 'instruction_version': VERSION,
+                       'status': 'pending', 'selected_editions': selected_editions(self.root), 'runs': []}
+        (self.root / f'references/instruction-editions-{VERSION}.json').write_text(json.dumps({
+            'version': VERSION, 'editions': self.review['selected_editions']}))
+        self.review_path = self.root / f'references/development-review-{VERSION}.json'
+        self.write_review()
+
+    def write_review(self):
+        self.review_path.write_text(json.dumps(self.review))
+
+    def test_pending_current_review_reports_zero_model_outputs(self):
+        self.prepare_review()
+        relative, review = load_current_review(self.root)
+        summary = review_summary(relative, review, version=VERSION, raw=self.review_path.read_bytes())
+        self.assertEqual(summary['status'], 'pending')
+        self.assertEqual(summary['development_outputs'], 0)
+        self.assertFalse(summary['historical'])
+
+    def test_changed_short_edition_cannot_reuse_current_evidence(self):
+        self.prepare_review()
+        (self.root / 'assets/compact.ru.txt').write_bytes(b'changed')
+        with self.assertRaisesRegex(ValueError, 'selected compact.ru source'):
+            load_current_review(self.root)
+
+    def test_current_edition_manifest_cannot_misreport_source_length(self):
+        self.prepare_review()
+        path = self.root / f'references/instruction-editions-{VERSION}.json'
+        manifest = json.loads(path.read_text())
+        manifest['editions']['medium']['en']['characters'] += 1
+        path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError, 'edition manifest differs'):
+            load_current_review(self.root)
+
+    def test_recorded_current_run_requires_matching_raw_evidence(self):
+        self.prepare_review()
+        evidence = self.root / 'references/raw.json'
+        evidence.write_bytes(b'{"request":"exact request","response":"exact response"}\n')
+        self.review['status'] = 'recorded'
+        self.review['runs'] = [{'id': 'bounded-run', 'edition': 'core', 'language': 'en',
+                               'instruction_sha256': self.review['selected_editions']['core']['en']['sha256'],
+                               'environment': 'local test fixture; no model call', 'observed_answers': 1,
+                               'review_status': 'unreviewed', 'evidence': [
+                                   {'path': 'references/raw.json', 'sha256': hashlib.sha256(evidence.read_bytes()).hexdigest()}]}]
+        self.write_review()
+        load_current_review(self.root)
+        evidence.write_bytes(b'changed')
+        with self.assertRaisesRegex(ValueError, 'raw evidence hash differs'):
+            load_current_review(self.root)
+
+    def test_pending_review_cannot_claim_recorded_runs(self):
+        self.prepare_review()
+        self.review['runs'] = [{'observed_answers': 10}]
+        self.write_review()
+        with self.assertRaisesRegex(ValueError, 'status and recorded runs disagree'):
+            load_current_review(self.root)
+
+    def test_pending_review_cannot_claim_reader_calls(self):
+        self.prepare_review()
+        self.review['reader_adapter'] = {'provider_calls': 1}
+        self.write_review()
+        with self.assertRaisesRegex(ValueError, 'Pending review cannot claim provider calls'):
+            load_current_review(self.root)
+
+    def test_recorded_review_cannot_omit_evidence_or_borrow_old_instruction(self):
+        self.prepare_review()
+        self.review.update(status='recorded', runs=[{
+            'id': 'run', 'edition': 'core', 'language': 'en',
+            'instruction_sha256': '0' * 64, 'environment': 'fixture',
+            'observed_answers': 1, 'review_status': 'unreviewed', 'evidence': []}])
+        self.write_review()
+        with self.assertRaisesRegex(ValueError, 'instruction hash differs'):
+            load_current_review(self.root)
+        self.review['runs'][0]['instruction_sha256'] = self.review['selected_editions']['core']['en']['sha256']
+        self.write_review()
+        with self.assertRaisesRegex(ValueError, 'needs raw evidence'):
+            load_current_review(self.root)
+
+    def test_prior_candidate_failure_does_not_become_a_current_result(self):
+        self.prepare_review()
+        frozen = {f'assets/{edition}.{language}.txt': dict(describe(b'old candidate\n'), text='old candidate\n')
+                  for edition in ('core', 'medium', 'compact') for language in ('en', 'ru')}
+        (self.root / f'references/instruction-candidates-{VERSION}.json').write_text(json.dumps({
+            'instruction_version': VERSION, 'candidates': [{'revision': 2, 'files': frozen}]}))
+        evidence = self.root / 'references/failed-candidate.json'
+        evidence.write_bytes(b'{"response":"recorded failure"}\n')
+        self.review['previous_candidate_runs'] = [{
+            'id': 'prior-failure', 'candidate_revision': 2, 'edition': 'core', 'language': 'en',
+            'instruction_sha256': frozen['assets/core.en.txt']['sha256'],
+            'environment': 'local test fixture; no model call', 'observed_answers': 1,
+            'review_status': 'reviewed', 'outcome': 'needs_revision',
+            'evidence': [{'path': 'references/failed-candidate.json',
+                          'sha256': hashlib.sha256(evidence.read_bytes()).hexdigest()}]}]
+        self.write_review()
+        relative, review = load_current_review(self.root)
+        summary = review_summary(relative, review, version=VERSION, raw=self.review_path.read_bytes())
+        self.assertEqual(summary['status'], 'pending')
+        self.assertEqual(summary['development_outputs'], 0)
+        self.assertEqual(summary['previous_candidate_outputs'], 1)
+        evidence.write_bytes(b'changed')
+        with self.assertRaisesRegex(ValueError, 'raw evidence hash differs'):
+            load_current_review(self.root)
 
 
 if __name__ == "__main__":

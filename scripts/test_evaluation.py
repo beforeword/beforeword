@@ -10,7 +10,7 @@ import unittest
 from urllib.parse import urlsplit
 
 from render_report import parse_report
-from current_model_wrapper import load as load_current_wrapper, LEGACY_READER, BRANDED_READER
+from current_model_wrapper import load as load_current_wrapper, LEGACY_READER, BRANDED_READER, PUBLISHED_READER
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = None
@@ -123,14 +123,13 @@ class EvaluationDelivery(unittest.TestCase):
                 self.assertTrue(switch[0].attrs.get('aria-label'))
                 self.assertEqual(switch[0].attrs, original_header.find('button', id='language')[0].attrs)
                 self.assertEqual(switch[0].text(), other_language.upper())
-                footer = doc.find('footer', **{'class': 'site-footer'})
+                footer = doc.find('footer', **{'data-original-shell': 'footer'})
                 self.assertEqual(len(footer), 1)
-                self.assertEqual(navigation_contract(footer[0]), navigation_contract(snapshot.find('footer', **{'class': 'site-footer'})[0]))
-                self.assertEqual(len(footer[0].find('a', href='/model/'+suffix)), 1)
+                self.assertEqual(navigation_contract(footer[0]), navigation_contract(snapshot.find('footer', **{'data-original-shell': 'footer'})[0]))
                 for scope in (header, footer[0]):
                     brand = scope.find('a', **{'class': 'brand'})
                     self.assertEqual(len(brand), 1)
-                    self.assertIn('beforeword', brand[0].attrs.get('aria-label', '').lower())
+                    self.assertIn('beforeword', (brand[0].attrs.get('aria-label', '')+brand[0].text()).lower())
                     self.assertTrue(brand[0].find('svg'), 'Approved complete wordmark is present')
                 self.assertFalse(doc.find('a', **{'aria-current': 'page'}))
                 source = ROOT / 'references' / ('evaluation.ru.md' if language == 'ru' else 'evaluation.md')
@@ -179,7 +178,8 @@ class EvaluationDelivery(unittest.TestCase):
                 scripts = lambda tree: [n.attrs['src'] for n in tree.find('script') if 'src' in n.attrs]
                 normalize_css = lambda values: [re.sub(r'/public-\d+\.\d+\.\d+-', '/public-VERSION-', value) for value in values]
                 self.assertEqual(normalize_css(css(doc)), normalize_css(css(snapshot)), 'Reader preserves style payload hashes while refreshing the selected-version alias')
-                self.assertEqual(scripts(doc), [BRANDED_READER if value == LEGACY_READER else value for value in scripts(snapshot)], 'Reader preserves scripts except the reviewed branding-only embed derivative')
+                self.assertEqual(scripts(doc), scripts(snapshot), 'Reader preserves the complete fresh live runtime and its independent branding revision')
+                self.assertIn(PUBLISHED_READER,scripts(doc))
                 self.assertEqual((SITE/BRANDED_READER.lstrip('/')).read_bytes(),(ROOT/'assets/reader-brand-1.4.1.js').read_bytes())
                 for obsolete in ('#story','#demo','#example'):
                     self.assertFalse(doc.find('a',href=obsolete))

@@ -22,8 +22,8 @@ COPY = {
         'status': 'Публичный тест',
         'scope': 'Инструкция beforeword для ИИ',
         'toggle': 'Обновления',
-        'example': 'ИИ пишет «я понимаю». Эти слова читают как понимание. На каком основании?',
-        'purpose': 'beforeword — инструкция для ИИ: показывать, что написано, что добавлено при чтении и чем обоснован этот переход. Тот же разбор применяется к ответам ИИ и к самой инструкции.',
+        'example': 'ИИ пишет «я понимаю». Эта запись не становится пониманием.',
+        'purpose': 'beforeword — инструкция для ИИ: сохранять написанное, показывать добавленное прочтение и границу между словом и называемым. Тот же разбор включает ответ ИИ и саму инструкцию.',
         'open_instructions': 'Открыть инструкцию',
         'changes': 'Что изменилось в {version}',
         'follow': 'Следить за обновлениями',
@@ -62,8 +62,8 @@ COPY = {
         'status': 'Public testing',
         'scope': 'beforeword instructions for AI',
         'toggle': 'Updates',
-        'example': 'AI writes “I understand.” These words are read as understanding. On what grounds?',
-        'purpose': 'beforeword instructs AI to show what is written, what is added when it is read, and what justifies that step. The same scrutiny applies to AI responses and to the instruction itself.',
+        'example': 'AI writes “I understand.” This writing does not become understanding.',
+        'purpose': 'beforeword instructs AI to preserve supplied writing, show the added reading and the boundary between a word and what it names. The same examination includes the AI response and the instruction itself.',
         'open_instructions': 'Open the instructions',
         'changes': 'What changed in {version}',
         'follow': 'Follow updates',
@@ -133,12 +133,18 @@ def asset_name(extension: str) -> str:
 def head(language: str) -> str:
     """Return stylesheet, script, and language-specific Atom discovery tags."""
     language = _language(language)
-    title = load()['languages'][language]['title']
     return '\n'.join((
         f'<link rel="stylesheet" href="/model/assets/{asset_name("css")}">',
         f'<script src="/model/assets/{asset_name("js")}" defer></script>',
-        f'<link rel="alternate" type="application/atom+xml" title="{escape(title, quote=True)}" href="/model/updates-{language}.atom">',
+        feed_discovery(language),
     ))
+
+
+def feed_discovery(language: str) -> str:
+    """Discover the public feed without inserting the optional disclosure UI."""
+    language = _language(language)
+    title = load()['languages'][language]['title']
+    return f'<link rel="alternate" type="application/atom+xml" title="{escape(title, quote=True)}" href="/model/updates-{language}.atom">'
 
 
 def _feedback(text: dict) -> str:
@@ -222,7 +228,7 @@ def render(language: str) -> str:
     email_url = links['email'] + '?' + urlencode({'subject': f'beforeword {version}'}, quote_via=quote)
     prompt = text['prompt'].format(url=FEED_URL, version=version)
     feed_url = BASE_URL + f'updates-{language}.atom'
-    instruction_url = '/model/' + ('en/' if language == 'en' else '') + '#instruction-details'
+    instruction_url = '/model/' + ('en/' if language == 'en' else '') + '#medium-details'
     guide_url = links['repository'].rstrip('/') + '/blob/main/docs/ai-guide.' + language + '.md'
     changes = ''.join(f'<li>{escape(change)}</li>' for change in release['changes'])
     return f'''<aside class="bw-update-shell" aria-label="{escape(text['scope'], quote=True)}">

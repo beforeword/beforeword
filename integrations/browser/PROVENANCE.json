@@ -1,7 +1,7 @@
 {
   "kind": "verified recovered extension source",
   "sourceVersion": "0.5.5",
-  "intendedVersion": "0.5.8",
+  "intendedVersion": "0.5.9",
   "source": "Browser source recovered from the 0.5.5 release, matched to its reconstructed Chrome ZIP, then revised for 0.5.6. This file records the baseline rather than certifying final release content.",
   "chromeZipSHA256": "560d56e1b59c92602d1ada8a92ee6fdccf0f6338aabfa5c3872e53de9018c096",
   "canonicalGitRepositoryConfirmed": true,
@@ -185,14 +185,26 @@
   "repository": "https://github.com/beforeword/beforeword",
   "location": "integrations/browser",
   "currentRelease": {
-    "version": "0.5.8",
-    "coreVersion": "1.4.1",
-    "coreSha256": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
-    "chromeZipSha256": "a3b33786d3e9a9cbd72ce1233948a4c736f4b199fbf85e0b2c1032ea27aa2495",
+    "version": "0.5.9",
+    "coreVersion": "1.4.2",
+    "coreSha256": "a4d09af033be6f272b1c05a09fdb29fc412ebf59433466518c2cc2409e818249",
+    "chromeZipSha256": "63a2bf61a2b76d7ce2e32d650b32cdd49d0103c8458048c12e77d3f06efbea91",
     "runtimeFileCount": 33,
-    "basis": "Exact approved runtime and deterministic builder, synchronized byte-for-byte. Baseline history above retained.",
+    "basis": "Selected instruction 1.4.2, one recorded Russian dictionary fallback-label correction, and deterministic local Chrome build. Earlier runtime provenance and 0.5.8 release retained; no deployment, native installation or store submission recorded.",
     "nativeInstallationVerified": false,
     "storeSubmissionVerified": false
   },
-  "baselineIntendedVersion": "0.5.6"
+  "baselineIntendedVersion": "0.5.6",
+  "previousReleases": [
+    {
+      "version": "0.5.8",
+      "coreVersion": "1.4.1",
+      "coreSha256": "b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2",
+      "chromeZipSha256": "a3b33786d3e9a9cbd72ce1233948a4c736f4b199fbf85e0b2c1032ea27aa2495",
+      "runtimeFileCount": 33,
+      "basis": "Exact approved runtime and deterministic builder, synchronized byte-for-byte. Baseline history above retained.",
+      "nativeInstallationVerified": false,
+      "storeSubmissionVerified": false
+    }
+  ]
 }

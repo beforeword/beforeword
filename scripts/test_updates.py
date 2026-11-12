@@ -101,14 +101,13 @@ class UpdatesDelivery(unittest.TestCase):
         updated = datetime.fromisoformat(self.data['updated'].replace('Z', '+00:00'))
         self.assertIsNotNone(updated.utcoffset(), 'Publication timestamp has an explicit timezone')
 
-    def test_shared_fragment_controls_and_static_copy(self):
-        for language, path in pages():
-            with self.subTest(page=str(path.relative_to(SITE))):
-                raw = path.read_bytes()
-                page = raw.decode('utf-8', errors='strict')
-                # Homepages retain their existing placement class. The shared
-                # update content and controls must otherwise match exactly.
-                page = page.replace('class="bw-update-shell bwh-inline-updates"', 'class="bw-update-shell"')
+    def test_optional_fragment_controls_and_static_copy(self):
+        # The current published landing uses a newer authored layout without
+        # this optional disclosure. Check its complete renderer separately;
+        # publishing feeds must not restore an obsolete page design.
+        for language in ('ru', 'en'):
+            with self.subTest(language=language):
+                page = '<!doctype html><html><head><meta charset="utf-8">' + public_updates.head(language) + '</head><body>' + public_updates.render(language) + '</body></html>'
                 self.assertNotIn('\ufffd', page)
                 doc = Document(page).root
                 self.assertTrue(doc.find('meta', charset='utf-8'))
@@ -135,10 +134,10 @@ class UpdatesDelivery(unittest.TestCase):
                 self.assertEqual(len(component.find('button')), 2)
                 instruction_link = component.find('a', **{'class': 'bw-update-instructions'})
                 self.assertEqual(len(instruction_link), 1)
-                target = '/model/' + ('en/' if language == 'en' else '') + '#instruction-details'
+                target = '/model/' + ('en/' if language == 'en' else '') + '#medium-details'
                 self.assertEqual(instruction_link[0].attrs['href'], target)
                 target_page = SITE / target.split('#')[0].lstrip('/') / 'index.html'
-                self.assertEqual(len(Document(target_page.read_text(encoding='utf-8')).root.find('details', id='instruction-details')), 1)
+                self.assertEqual(len(Document(target_page.read_text(encoding='utf-8')).root.find(id='medium-details')), 1)
                 self.assertFalse(component.find('form'), 'The component does not submit a task or user data')
                 for field_id in ('bw-update-prompt', 'bw-update-feed-url'):
                     self.assertIn('readonly', ids[field_id].attrs)
@@ -166,6 +165,10 @@ class UpdatesDelivery(unittest.TestCase):
                 self.assertEqual(status.text(), '', 'Static HTML does not claim copying or tracking succeeded')
 
     def test_asset_hashes_and_feed_discovery(self):
+        for extension in ('css', 'js'):
+            source = (ROOT / f'assets/updates.{extension}').read_bytes()
+            digest = hashlib.sha256(source).hexdigest()[:12]
+            self.assertEqual((SITE / f'model/assets/updates-{digest}.{extension}').read_bytes(), source)
         for language, path in pages():
             with self.subTest(page=str(path.relative_to(SITE))):
                 doc = Document(path.read_text(encoding='utf-8')).root
@@ -174,9 +177,9 @@ class UpdatesDelivery(unittest.TestCase):
                     digest = hashlib.sha256(source).hexdigest()[:12]
                     url = f'/model/assets/updates-{digest}.{extension}'
                     assets = doc.find(tag, **{attribute: url})
-                    self.assertEqual(len(assets), 1, 'The filename keys the asset to its content')
-                    self.assertEqual((SITE / url.lstrip('/')).read_bytes(), source)
-                    if extension == 'js':
+                    expected_count = 1 if doc.find('aside', **{'class': 'bw-update-shell'}) or doc.find('aside', **{'class': 'bw-update-shell bwh-inline-updates'}) else 0
+                    self.assertEqual(len(assets), expected_count, 'Optional disclosure assets match their actual host UI')
+                    if extension == 'js' and assets:
                         self.assertIn('defer', assets[0].attrs)
                 discovery = doc.find('link', rel='alternate', type='application/atom+xml')
                 self.assertEqual(len(discovery), 1)
@@ -201,8 +204,10 @@ class UpdatesDelivery(unittest.TestCase):
                 self.assertEqual(links['self']['href'], f'https://beforeword.xyz/model/updates-{language}.atom')
                 self.assertEqual(links['self']['type'], 'application/atom+xml')
                 self.assertEqual(links['alternate']['href'], self.data['urls'][language])
-                expected_route = 'https://beforeword.xyz/model/' + ('en/' if language == 'en' else '') + '#bw-updates'
+                expected_route = 'https://beforeword.xyz/model/' + ('en/' if language == 'en' else '') + '#medium-details'
                 self.assertEqual(self.data['urls'][language], expected_route)
+                landing = SITE / 'model' / ('en' if language == 'en' else '') / 'index.html'
+                self.assertEqual(len(Document(landing.read_text(encoding='utf-8')).root.find(id='medium-details')), 1)
                 entries = feed.findall(ATOM + 'entry')
                 self.assertEqual(len(entries), 1)
                 entry = entries[0]

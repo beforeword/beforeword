@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "captured_utc": "2026-11-12T11:15:54.159310+00:00",
+  "purpose": "Fresh live model pages; retain published shell, navigation, settings and asset references while updating selected instruction, package links, evaluation report and release metadata.",
+  "pages": {
+    "model/index.html": {
+      "sha256": "6cff11be2f3af132f839aed9452ab4e5c09a2a27af75a090878cd6de8a3aa393",
+      "bytes": 131905
+    },
+    "model/en/index.html": {
+      "sha256": "708cb63f8043d2cb211c81e02fe5abaa161ae4be031d954162a11c350cdbb2e7",
+      "bytes": 104771
+    },
+    "model/evaluation/index.html": {
+      "sha256": "2574138d4090f594f9bc83089effaa4962b21bf8aaf21a8a56ec9969093a7444",
+      "bytes": 64000
+    },
+    "model/evaluation/en/index.html": {
+      "sha256": "48be4ad1daeaca654e439e973d95d4548d1edcbc36f493c9b33290b284b744b1",
+      "bytes": 49526
+    }
+  }
+}

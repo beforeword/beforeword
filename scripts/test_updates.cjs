@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 'use strict';
-// Runs the published component in a small DOM simulation, not a browser.
+// Runs the optional disclosure renderer with the published script in a small
+// DOM simulation. The current landing publishes the feed without this UI.
 const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const vm = require('node:vm');
+const {spawnSync} = require('node:child_process');
+const ROOT = path.resolve(__dirname, '..');
 const SITE = path.resolve(process.argv[2] || 'build/site/public_html');
 const read = file => fs.readFileSync(file, 'utf8');
 const decode = text => text.replace(/&(#x[0-9a-f]+|#\d+|amp|lt|gt|quot|apos);/gi, (_, entity) => {
@@ -74,11 +77,14 @@ function parse(fragment) {
 }
 
 function page(language) {
-  const html = read(path.join(SITE, 'model', language === 'en' ? 'en/index.html' : 'index.html'));
-  const fragment = html.match(/<aside class="bw-update-shell"[\s\S]*?<\/aside>/);
-  const script = html.match(/<script src="(\/model\/assets\/updates-[a-f0-9]{12}\.js)" defer><\/script>/);
-  assert.ok(fragment && script, 'Published component and hashed script exist');
-  return {fragment:fragment[0], source:read(path.join(SITE, script[1].slice(1)))};
+  const generated = spawnSync('python3', ['-B', '-c',
+    'import json,sys;sys.path.insert(0,"scripts");import public_updates as p;print(json.dumps({"fragment":p.render(sys.argv[1]),"script":p.asset_name("js")}))', language],
+    {cwd:ROOT, encoding:'utf8'});
+  assert.equal(generated.status, 0, generated.stderr);
+  const value = JSON.parse(generated.stdout);
+  assert.match(value.fragment, /^<aside class="bw-update-shell"/);
+  assert.match(value.script, /^updates-[a-f0-9]{12}\.js$/);
+  return {fragment:value.fragment, source:read(path.join(SITE, 'model/assets', value.script))};
 }
 
 function run(language, options = {}) {
@@ -185,7 +191,7 @@ function checkNavigationAndScope() {
   let count = 0;
   for (const language of ['ru', 'en']) {
     const linked = run(language, {hash:'#bw-updates'});
-    assert.equal(linked.root.querySelector('#bw-updates').open, true, 'Incoming Atom link reveals its target');
+    assert.equal(linked.root.querySelector('#bw-updates').open, true, 'Explicit disclosure fragment reveals its target');
     assert.deepEqual(linked.root.addedClasses, ['bw-update-ready']);
     for (const node of linked.root.querySelectorAll('[class]')) assert.deepEqual(node.addedClasses, [], 'Readiness class is component-only');
     count++;
@@ -208,5 +214,5 @@ function checkNavigationAndScope() {
   const defensiveCases = await checkUnicodeAndDefensiveCases();
   const navigationCases = checkNavigationAndScope();
   process.stdout.write(JSON.stringify({ok:true, copyCases, defensiveCases, navigationCases,
-    scope:'Published scripts and simulated DOM; no browser rendering or automation creation'}, null, 2) + '\n');
+    scope:'Optional disclosure renderer, published script and simulated DOM; no current-landing UI, browser rendering or automation creation'}, null, 2) + '\n');
 })().catch(error => { console.error(error); process.exitCode = 1; });

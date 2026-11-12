@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "beforeword-reader",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Read exact writing about self, others and the world beside a short proposed reading; retain revisions and check literal quotations.",
   "author": {
     "name": "Kirill Shebetov",
@@ -45,7 +45,7 @@
         "composerIconDark": "./assets/logo-dark.svg"
       },
       "publication": {
-        "release_notes": "Updates the existing remote reader to instruction 1.4.1, broadens its description to words about self, others and the world, and replaces the old symbol with the Beforeword wordmark. Keeps immutable temporary source revisions, literal citation checks and a self-contained UI. This release adds explicit no-account tool metadata and a dedicated UI origin. The service makes no model-provider calls.",
+        "release_notes": "Updates the supplied instruction to 1.4.2: the written-form boundary includes all words and learned speech, without reopening an attribution through a demand to disprove it. Preserves practical tasks, exact quotations, temporary source revisions and the existing no-account MCP workflow. Prepared source and local checks do not establish deployment or directory acceptance.",
         "translations": {
           "ru-RU": {
             "subtitle": "Запись рядом с прочтением",

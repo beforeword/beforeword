@@ -121,3 +121,39 @@ jobs:
           path: integrations/browser/build/
           if-no-files-found: error
           retention-days: 14
+
+  mcp-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: integrations/mcp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Install pinned reader dependencies
+        run: npm ci --ignore-scripts
+      - name: Build the self-contained reader UI and exact resource metadata
+        run: npm run build
+      - name: Check reader protocol, source pins, storage and UI
+        run: npm test
+
+  huggingface-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: integrations/huggingface
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install pinned connector dependencies
+        run: python3 -m pip install -r requirements.txt
+      - name: Check dictionary fixtures
+        run: python3 -B -m unittest test_dictionary.py
+      - name: Check local protocol and exact bilingual instruction retrieval
+        run: python3 -B test_protocol.py

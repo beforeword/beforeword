@@ -6,7 +6,7 @@ import { Client, StreamableHTTPClientTransport } from '@modelcontextprotocol/cli
 import { createHttpServer } from '../http.mjs';
 import { VERSION, FULL_CORE, RESOURCE_URI } from '../server.mjs';
 
-test('1.4.1 wire contract exposes selected core, noauth, hosted widget domain and all three tools', async t => {
+test('current release wire contract exposes selected core, noauth, hosted widget domain and all three tools', async t => {
   const html = await readFile(new URL('../dist/app.html', import.meta.url), 'utf8');
   const allowedHosts = ['127.0.0.1:pending'];
   const app = createHttpServer({ html, allowedHosts });
@@ -14,12 +14,17 @@ test('1.4.1 wire contract exposes selected core, noauth, hosted widget domain an
   const authority = `127.0.0.1:${app.server.address().port}`;
   allowedHosts[0] = authority;
   t.after(() => app.close());
-  const client = new Client({ name: 'beforeword-release-check', version: '1.4.1' });
+  const client = new Client({ name: 'beforeword-release-check', version: VERSION });
   await client.connect(new StreamableHTTPClientTransport(new URL(`http://${authority}/mcp`)));
   t.after(() => client.close());
-  assert.equal(VERSION, '1.4.1');
-  assert.equal(client.getServerVersion().version, '1.4.1');
-  assert.equal(createHash('sha256').update(FULL_CORE).digest('hex'), 'b861f132d6535d26c37358cf379749d16c7b3ce1888547e0375cdc3985e5e7c2');
+  const selected = JSON.parse(await readFile(new URL('../../../references/release-contract.json', import.meta.url), 'utf8'));
+  const provenance = JSON.parse(await readFile(new URL('../lib/core-provenance.json', import.meta.url), 'utf8'));
+  assert.equal(selected.status, 'selected');
+  assert.equal(VERSION, selected.version);
+  assert.equal(provenance.version, VERSION);
+  assert.equal(provenance.sha256, selected.core_sha256.en);
+  assert.equal(createHash('sha256').update(FULL_CORE).digest('hex'), selected.core_sha256.en);
+  assert.equal(client.getServerVersion().version, VERSION);
   assert.ok(client.getInstructions().startsWith(FULL_CORE + '\n\n'));
   const { tools } = await client.listTools();
   assert.deepEqual(tools.map(tool => tool.name).sort(), ['open_beforeword', 'show_reading', 'submit_source']);
@@ -34,7 +39,7 @@ test('1.4.1 wire contract exposes selected core, noauth, hosted widget domain an
   assert.equal(tools.find(tool => tool.name === 'submit_source')._meta['openai/visibility'], 'private');
   const resource = (await client.readResource({ uri: RESOURCE_URI })).contents[0];
   assert.equal(resource.text, html);
-  assert.equal(RESOURCE_URI, `ui://beforeword/1.4.1/app-${createHash('sha256').update(html).digest('hex')}.html`);
+  assert.equal(RESOURCE_URI, `ui://beforeword/${VERSION}/app-${createHash('sha256').update(html).digest('hex')}.html`);
   for (const name of ['open_beforeword', 'show_reading']) {
     const tool = tools.find(tool => tool.name === name);
     assert.equal(tool._meta.ui.resourceUri, RESOURCE_URI);
@@ -68,7 +73,7 @@ test('anonymous source access is bearer-capability based and is not bound to a c
   allowedHosts[0] = authority;
   t.after(() => app.close());
   const connect = async name => {
-    const client = new Client({ name, version: '1.4.1' });
+    const client = new Client({ name, version: VERSION });
     await client.connect(new StreamableHTTPClientTransport(new URL(`http://${authority}/mcp`)));
     return client;
   };

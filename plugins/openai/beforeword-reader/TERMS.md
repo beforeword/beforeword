@@ -1,6 +1,6 @@
 # beforeword directory reader · Terms
 
-Applies to the 1.4.1 remote MCP reader. Updated 30 October 2026. Contact: [mail@beforeword.xyz](mailto:mail@beforeword.xyz).
+Applies to the 1.4.2 remote MCP reader. Updated 12 November 2026. Contact: [mail@beforeword.xyz](mailto:mail@beforeword.xyz).
 
 The reader keeps exact received writing alongside a short reading proposed by the host model. It checks literal quotations and their occurrences. It does not certify truth, a correct interpretation, authorship, agreement, understanding or compliance with the instruction.
 

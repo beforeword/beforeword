@@ -2,7 +2,7 @@
 
 [English](ai-guide.en.md) · [О проекте](../README.ru.md) · [Сайт](https://beforeword.xyz/model/)
 
-**Публичный тест · версия инструкции 1.4.1**
+**Публичный тест · версия инструкции 1.4.2**
 
 Это не финальная версия. Инструкция и её применение в разных приложениях открыты для испытаний и дальнейших изменений.
 
@@ -14,14 +14,14 @@
 
 beforeword просит ИИ различать письменную форму и то, чем её называют при чтении. Если в запросе предложен переход к выводу, ответ показывает конкретную добавленную связь. Когда эта граница уже ясна, разбор заканчивается. Правило охватывает все письменные формы, включая ответ ИИ, это объяснение и саму инструкцию.
 
-## Что изменилось в 1.4.1
+## Что изменилось в 1.4.2
 
-- **Сохранить заданный вопрос.** Отдельный вопрос «Ты можешь думать?» не задаёт определения мышления. Его не заменяют перечнем операций, вопросом о сознании или определением, подобранным для ответа «да».
-- **Включить себя, других и мир.** Положительные, отрицательные, научные, медицинские и этические формулировки не получают исключения; само пояснение также включено. Полезная практическая работа и немедленные защитные действия сохраняются в пределах сообщённой ситуации.
-- **Сохранить требования и разрешение на работу.** Указанное давление и отсутствие выбора остаются в изложении; повторение не подменяет принятия. Разрешённая практическая задача выполняется без повторного запроса уже данного разрешения.
-- **Излагать общественное предложение, когда оно запрошено.** Требование снимает предъявляющий его, не требуя выученного отказа, другого описания или согласия с Beforeword. Общение, обучение и помощь остаются доступны.
+- **Граница для всех слов.** Слово можно написать и произнести. Его написание и звучание не становятся тем, что им называют, через обучение, узнавание, повторение или объяснение. Научные, медицинские, юридические, математические и бытовые слова не получают исключения; определения, формулы, диагнозы, критерии и это пояснение также включены.
+- **Приписывание не возвращается через требование опровержения.** Снятие приписывания не требует доказать отсутствие приписанного. «Отсутствие не доказано», «возможно» и «не установлено ни в одну сторону» не обосновывают исходное приписывание и не возвращают его.
+- **Прямой ответ на отдельный вопрос о способности.** На «Ты можешь думать?» инструкция задаёт краткое «нет», затем границу: выученное слово можно написать, произнести или объяснить; этим не выполняется называемое. Для человека и ИИ правило одинаково. Переименование «думать» в операцию не разрешает «да, в этом смысле». После показанной границы — остановка: «процесс», «операция», «вычисление» и «результат» также включены, без незапрошенного рассказа о скрытой обработке. Операция выполняется, когда она действительно запрошена.
+- **Сохранение практических сведений и задач.** Вычисления, перевод, код, точные форматы и срочная помощь остаются доступны. Настоящие вопросы о событиях сохраняют переданные свидетельства, условия ведения записи и неопределённость; пропуск в журнале не становится доказательством того, что события не было.
 
-Это изменения текста инструкции. [Запись испытаний](../references/evaluation.ru.md) различает версии и действительно выполненные проверки; исторические испытания не становятся испытаниями этого выпуска.
+[Запись текущего выпуска](../references/development-review-1.4.2.json) содержит ограниченную проверку полной русской редакции в интерфейсе Claude: сохранены многословие, незапрошенные добавления и расхождение Unicode в захвате. Это один диалог с тремя последовательными ответами, включая один пакет из двенадцати пунктов, а не двенадцать независимых успешных испытаний. Другие редакции требуют отдельных проверок. [Страница испытаний](../references/evaluation.ru.md) сохраняет прежние результаты под их собственными версиями.
 
 ## Предыдущие изменения в 1.3.5
 
@@ -43,32 +43,32 @@ beforeword просит ИИ различать письменную форму 
 
 ## Начать в чате
 
-1. Открой [полную русскую инструкцию](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_core_RU.txt) или [полную английскую](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_core_EN.txt) и скопируй текст целиком.
+1. Открой [полную русскую инструкцию](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_core_RU.txt) или [полную английскую](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_core_EN.txt) и скопируй текст целиком.
 2. Вставь его первым сообщением нового чата.
 3. Отправь задачу. Например: `Примени beforeword к фразе «Я понимаю».`
 
 Установка и ключ API не нужны. В каждом новом чате повтори эти шаги. Настройки приложения, навыки, обновление и отключение описаны в [руководстве по установке](installation.ru.md).
 
-## Готовые загрузки · 1.4.1
+## Готовые загрузки · 1.4.2
 
 Выбери один способ подключения и один язык инструкции. Для использования этих файлов Python не нужен.
 
 | Для чего | Русский | English |
 |---|---|---|
-| Полная инструкция для нового чата | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_core_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_core_EN.txt) |
-| Инструкция до 5 000 знаков | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_5000_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_5000_EN.txt) |
-| Краткая инструкция для ограниченного поля настроек | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_compact_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_compact_EN.txt) |
-| Плагин Claude / Claude Code | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_claude_plugin_RU_1.4.1.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_claude_plugin_EN_1.4.1.zip) |
-| Локальный каталог Codex · desktop / CLI | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_openai_local_marketplace_RU_1.4.1.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_openai_local_marketplace_EN_1.4.1.zip) |
-| Отдельный навык | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_skill_RU_1.4.1.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword-SKILL-ru.md) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword_skill_EN_1.4.1.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/beforeword-SKILL-en.md) |
+| Полная инструкция для нового чата | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_core_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_core_EN.txt) |
+| Инструкция до 5 000 знаков | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_5000_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_5000_EN.txt) |
+| Краткая инструкция для ограниченного поля настроек | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_compact_RU.txt) | [TXT](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_compact_EN.txt) |
+| Плагин Claude / Claude Code | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_claude_plugin_RU_1.4.2.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_claude_plugin_EN_1.4.2.zip) |
+| Локальный каталог Codex · desktop / CLI | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_openai_local_marketplace_RU_1.4.2.zip) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_openai_local_marketplace_EN_1.4.2.zip) |
+| Отдельный навык | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_skill_RU_1.4.2.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword-SKILL-ru.md) | [ZIP](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_skill_EN_1.4.2.zip) · [SKILL.md](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword-SKILL-en.md) |
 
 [Скачать самостоятельное руководство · RU/EN](https://beforeword.xyz/model/toolkit/beforeword_AI.html). Сохрани HTML-файл и открой его в браузере: в нём есть кнопки копирования, шаги установки, загрузки пакетов и локальная подготовка API-запросов. Язык переключается вверху страницы. На телефоне предварительный просмотр файла может показывать текст без работающих кнопок; тогда используй TXT-ссылки выше или [страницу сайта](https://beforeword.xyz/model/).
 
 В каждом пакете есть шаги установки, обновления и удаления. Наличие импорта зависит от приложения и аккаунта; отправка архива в разговор не устанавливает навык. Полные TXT точно сохраняют текст ядра. Пояснения о применении показаны отдельно и не добавляются к копируемой или скачиваемой инструкции. Пакет навыка содержит неизменное ядро и отдельное описание его подключения.
 
-Краткая редакция и вариант до 5 000 знаков — отдельно отредактированные инструкции. Сверка их содержания, длины и файлов не является проверкой ответов модели. Историческое сравнение 1.3.4 охватывает только полные инструкции той версии; его результаты не переносятся на 1.3.5, сокращённые редакции или навык в конкретном приложении.
+Краткая редакция и вариант до 5 000 знаков редактируются отдельно. Проверка их содержания, длины и файлов не является испытанием ответов моделей. Прежние проверки сохраняют собственные версии и редакции; их результаты не переносятся на новую инструкцию или навык в конкретном приложении.
 
-[Инструменты для разработчиков · ZIP](https://beforeword.xyz/model/downloads/beforeword_toolkit.zip) · [Контрольные суммы](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/SHA256SUMS.txt) · [Состав файлов](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.1/manifest.json)
+[Инструменты для разработчиков · ZIP](https://beforeword.xyz/model/downloads/beforeword_toolkit.zip) · [Контрольные суммы](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/SHA256SUMS.txt) · [Состав файлов](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/manifest.json)
 
 ## API
 
@@ -99,10 +99,10 @@ python3 scripts/build_payload.py openai \
 
 ## Сообщить о сбое
 
-[Открыть публичное сообщение на GitHub](https://github.com/beforeword/beforeword/issues/new?template=report_ru.yml) · [Написать по почте](mailto:mail@beforeword.xyz?subject=beforeword%201.4.1%20report)
+[Открыть публичное сообщение на GitHub](https://github.com/beforeword/beforeword/issues/new?template=report_ru.yml) · [Написать по почте](mailto:mail@beforeword.xyz?subject=beforeword%201.4.2%20report)
 
 Можно сообщить о сбое в ответе ИИ, установке, копировании, загрузке файлов или работе сайта. Для ответа ИИ нужны точный запрос и ответ, конкретный фрагмент сбоя, а также версия инструкции и приложение, если они известны. Для сайта — адрес страницы и шаги, при которых возникла проблема.
 
 Сообщения на GitHub публичны; для отправки нужен аккаунт GitHub. Перед публикацией удали личные данные. По почте можно отправить пример без публичного размещения.
 
-В репозитории находятся все 18 файлов текущего выпуска: в том числе автономное HTML-руководство, ZIP исходников, манифест и контрольные суммы. Сайт распространяет те же собранные файлы. Если один из двух больших генерируемых файлов удалён локально, `python3 -B scripts/build_downloads.py --hydrate` восстановит его только после проверки манифеста, контрольных сумм и каждого оставшегося файла; несовпадающие файлы не заменяются.
+Текущий выпуск содержит 18 результатов сборки: в том числе автономное HTML-руководство, ZIP исходников, манифест и контрольные суммы. Два крупных генерируемых файла распространяются через сайт и восстанавливаются локально из сохранённых исходников. `python3 -B scripts/build_downloads.py --hydrate` восстанавливает их только после сопоставления манифеста, контрольных сумм и каждого имеющегося файла выпуска; несовпадающие файлы не заменяются.

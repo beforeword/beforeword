@@ -30,7 +30,7 @@ The [public proposal](https://beforeword.xyz/proposal/en/) asks the party imposi
 
 This connector supplies the reading instruction to a chosen client and retrieves dictionary writing with its source. The instruction asks a model to preserve wording and show the concrete transition added by a reading. When that distinction completes the task, the response can stop. Practical tasks and exact requested formats remain available.
 
-The source in this directory bundles the complete English and Russian instructions for **version 1.4.1**, under public testing. A deployment from these files serves that version. Updating this repository does not establish that the hosted Space has been updated; its returned instruction must be checked separately. The server does not run a model or analyze a conversation. Its dictionary tool accepts one selected word or short expression, not an entire passage.
+The source in this directory bundles the complete English and Russian instructions for **version 1.4.2**, under public testing. A deployment from these files serves that version. Updating this repository does not establish that the hosted Space has been updated; its returned instruction must be checked separately. The server does not run a model or analyze a conversation. Its dictionary tool accepts one selected word or short expression, not an entire passage.
 
 ## Connect and use
 
@@ -123,7 +123,7 @@ Beforeword рассматривает, как выученными словам�
 
 Коннектор передаёт инструкцию чтения в выбранный клиент и получает словарную запись с источником. Инструкция просит модель сохранять формулировки и показывать конкретный переход, добавленный прочтением. Если это различие завершает задачу, ответ может остановиться. Практические задачи и точные запрошенные форматы сохраняются.
 
-В этой папке подготовлены полные инструкции **версии 1.4.1** на русском и английском языке. Версия проходит публичный тест. Сервер, развёрнутый из этих файлов, выдаёт эту версию. Обновление репозитория не подтверждает обновление публичного Space: выданную им инструкцию нужно проверить отдельно. Сервер не запускает модель и не разбирает переписку. Словарный инструмент принимает выбранное слово или короткое выражение; весь фрагмент ему не нужен.
+В этой папке подготовлены полные инструкции **версии 1.4.2** на русском и английском языке. Версия проходит публичный тест. Сервер, развёрнутый из этих файлов, выдаёт эту версию. Обновление репозитория не подтверждает обновление публичного Space: выданную им инструкцию нужно проверить отдельно. Сервер не запускает модель и не разбирает переписку. Словарный инструмент принимает выбранное слово или короткое выражение; весь фрагмент ему не нужен.
 
 ## Подключение
 
