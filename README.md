@@ -1,44 +1,34 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="brand/wordmark-light.svg">
-  <img src="brand/wordmark-dark.svg" alt="beforeword" width="300">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/beforeword/beforeword/main/brand/wordmark-light.svg">
+  <img src="https://raw.githubusercontent.com/beforeword/beforeword/main/brand/wordmark-dark.svg" alt="Beforeword" width="224">
 </picture>
 
-**English** · [Русский](README.ru.md) · [Website](https://beforeword.xyz/en/)
+**English** · [Русский](https://github.com/beforeword/beforeword/blob/main/README.ru.md)
 
-**A word does not become what it names.**
+I was taught to write my name, Kirill Shebetov. I can spell it perfectly. The letters still don’t become me. I can repeat a description of another person, or check a formula that describes the world. The words and numbers never become what they describe.
 
-Beforeword is a project by **Kirill Shebetov** about learned words and descriptions of oneself, others and the world. It examines how the alphabet has replaced what is described: a written name, phrase about a feeling, explanation or result is presented as the one or the thing it names. Learning, repeating or agreeing with those words does not make that transition. Beforeword's own words receive no exception.
+**I propose lifting the requirement to accept the words and numbers we learn as who we are, who other people are or what the world is.** Whoever sets that requirement can lift it. Each of us can choose which words to learn and use, including the ones written here.
 
-A word can be written and spoken. Its writing and sound do not become what it names through learning, recognition, repetition or explanation. This applies to every word: ordinary language, science, medicine, law and mathematics, including definitions, formulas, diagnoses, evidence, “process”, “result” and this explanation. Withdrawing an attribution does not require proving the absence of what was attributed; “absence has not been proved” does not restore that attribution. The same boundary applies to words about humans and AI. Practical inquiries still retain their actual records, conditions and uncertainty.
+[Read the proposal](https://beforeword.xyz/proposal/en/) · [Explore Beforeword](https://beforeword.xyz/en/)
 
-## The public proposal
+## Films, music and research
 
-Do not require a living being to learn, repeat, understand or accept language and descriptions of oneself, others and the world. **The party imposing the requirement removes it.** No learned refusal, explanation of refusal or replacement description is required first. Speech, writing, sign languages, communication, learning and help remain available without compulsory participation. Agreement with Beforeword is not required either.
+- [Watch *Learned Words*](https://beforeword.xyz/video/learned-words/en/) — I begin with Кирилл, the six letters of my name in Russian, and я, the word for “I”.
+- [Watch the animated films](https://beforeword.xyz/animation/en/) — each film has its own introduction and a choice of English or Russian.
+- [Listen to the music](https://beforeword.xyz/music/en/) — my songs, lyrics and music videos.
+- [Explore the research](https://beforeword.xyz/research/en/) — [HUMAN](https://beforeword.xyz/research/human/en/) follows how written instructions connect descriptions of people to decisions about them.
 
-For example, an organizer removes a mandatory “Describe yourself” field and allows the application to be submitted without it. Offering a different description would leave the requirement in place. This is a constructed example. The [full proposal](https://beforeword.xyz/proposal/en/) develops the actions and scope; the distinction between a word and what it names does not by itself prove that social proposal.
+## Tools and source code
 
-## Start here
+[Text Mode](https://beforeword.xyz/text-mode/en/) lets you work with a text on the website. [Beforeword Reader](https://beforeword.xyz/reader/) places the exact passage beside a proposed reading so you can see which words each contains.
 
-1. **[Read the illustrated homepage](https://beforeword.xyz/en/)** — names, feelings, language, learning, records and the public proposal.
-2. **[Try Text Mode](https://beforeword.xyz/text-mode/en/)** — work with supplied text using the available modes and inspect the returned answer.
-3. **[Use the AI instruction](docs/ai-guide.en.md)** — full English and Russian editions, setup and downloads. The instruction asks the model to preserve wording and examine added readings, including its own explanation; practical tasks and exact requested formats remain available.
-4. **[Read HUMAN](https://beforeword.xyz/research/human/en/)** — a study of how an instruction links records, descriptions and decisions.
+- [AI instruction and installation](https://github.com/beforeword/beforeword/blob/main/docs/ai-guide.en.md) · [Claude and OpenAI packages and directory status](https://github.com/beforeword/beforeword/blob/main/catalog/README.md)
+- [Browser extension and build instructions](https://github.com/beforeword/beforeword/blob/main/integrations/browser/README.md) · [Hugging Face connector](https://github.com/beforeword/beforeword/blob/main/integrations/huggingface/README.md)
+- [Reader source and MCP tools](https://github.com/beforeword/beforeword/blob/main/integrations/mcp/README.md) · [OpenAI Reader package](https://github.com/beforeword/beforeword/tree/main/plugins/openai/beforeword-reader)
+- [Version recorded in this repository](https://github.com/beforeword/beforeword/blob/main/references/release-contract.json) · [Evaluation records](https://github.com/beforeword/beforeword/blob/main/evaluations/README.md)
 
-## Packages and integrations
+## Archive and contact
 
-- **[Claude and OpenAI](catalog/README.md)** — native instruction packages, installation routes and separately recorded directory status.
-- **[Chrome extension](integrations/browser/README.md)** — browser interface, source and build instructions. A locally built package and a published store version are recorded separately.
-- **[Hugging Face connector](integrations/huggingface/README.md)** — retrieve the exact instruction through MCP, or request a dictionary entry with its source. This connector does not run a model.
-- **[Release contract](references/release-contract.json)** — the selected source version and exact instruction hashes. [Evaluation records](evaluations/README.md) identify which version, inputs and outputs were actually checked.
+[Public statement](https://beforeword.xyz/statement/en/) · [Earlier proposal](https://github.com/beforeword/words-and-decisions) · [Correspondence archive](https://github.com/beforeword/correspondence)
 
-The AI instruction is an application of the reading procedure. The public proposal is not an additional command imposed on every conversation. Installing a package or retrieving its text does not establish how a later answer will follow it.
-
-## Further work
-
-[Research, music and source material](https://beforeword.xyz/en/#materials) · [Public statement](https://beforeword.xyz/statement/en/) · [Earlier proposal](https://github.com/beforeword/words-and-decisions) · [Correspondence archive](https://github.com/beforeword/correspondence)
-
-[Contact: mail@beforeword.xyz](mailto:mail@beforeword.xyz)
-
-## Remote reader
-
-The separate [Beforeword reader](integrations/mcp/README.md) keeps exact supplied writing beside a proposed reading and checks literal quotations in temporary source revisions. Its [OpenAI package](plugins/openai/beforeword-reader/) has the distinct identity `beforeword-reader`. It uses no Beforeword account and makes no model-provider calls; the current host produces the reading. This source and a personal installation do not establish public directory approval.
+[mail@beforeword.xyz](mailto:mail@beforeword.xyz)
