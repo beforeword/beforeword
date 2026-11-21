@@ -340,7 +340,28 @@ def render(language: str, bundles: dict, connectors: list[dict], repo_url: str |
         raise ValueError('unresolved public template placeholder')
     return current_model_wrapper.apply(result, language, evaluation=evaluation, core=full, version=build_guide.VERSION, date=build_guide.DATE, description=t['description'])
 
-def build(output: Path, repo_url: str | None = None, home_source: Path | None = None) -> Path:
+def copy_release_guide(source: Path, destination: Path) -> Path:
+    """Copy only the standalone guide outputs, after checking the supplied release."""
+    html_name = 'beforeword_AI.html'
+    manifest_name = 'beforeword_release.json'
+    files = {name: (source / name).read_bytes() for name in (html_name, manifest_name)}
+    manifest = json.loads(files[manifest_name])
+    if manifest['version'] != build_guide.VERSION or manifest['guide_sha256'] != sha(files[html_name]):
+        raise ValueError('The supplied guide does not match the selected version or its recorded checksum.')
+    for language in ('ru', 'en'):
+        for edition, asset in (('core', 'core'), ('5000', 'medium'), ('compact', 'compact')):
+            name = f'beforeword_{edition}_{language.upper()}.txt'
+            files[name] = (source / name).read_bytes()
+            if files[name] != (ROOT / 'assets' / f'{asset}.{language}.txt').read_bytes():
+                raise ValueError(f'The supplied guide has different instruction text in {name}.')
+    destination.mkdir(parents=True, exist_ok=True)
+    for name, contents in files.items():
+        (destination / name).write_bytes(contents)
+    return destination / html_name
+
+
+def build(output: Path, repo_url: str | None = None, home_source: Path | None = None,
+          guide_source: Path | None = None) -> Path:
     build_guide.require_selected(ROOT)
     output = output.resolve()
     for owned in ('assets','references','scripts','docs','.github'):
@@ -355,7 +376,8 @@ def build(output: Path, repo_url: str | None = None, home_source: Path | None = 
     downloads = model / 'downloads'
     for directory in (model,downloads,model/'en',model/'assets',model/'reports'):
         directory.mkdir(parents=True,exist_ok=True)
-    guide_path = build_guide.build(model/'toolkit')
+    toolkit = model / 'toolkit'
+    guide_path = build_guide.build(toolkit) if guide_source is None else copy_release_guide(guide_source, toolkit)
     guide_data = json.loads(re.search(r'<script id="bundle-data" type="application/json">(.*?)</script>',guide_path.read_text(encoding='utf-8'),re.S).group(1))
     (downloads/'beforeword_toolkit.zip').write_bytes(base64.b64decode(guide_data['developer']['data']))
     connectors = json.loads(read('references/connectors.json'))
@@ -422,5 +444,6 @@ if __name__ == '__main__':
     parser.add_argument('--output',required=True,type=Path)
     parser.add_argument('--github-url',type=github_url,help='Approved public repository URL; omit to hide the GitHub link.')
     parser.add_argument('--home-source',type=Path,help='Current homepage directory containing index.html and en/index.html; update their AI sections only.')
+    parser.add_argument('--guide-source',type=Path,help='Use the standalone guide directory built from the selected release snapshot.')
     args=parser.parse_args()
-    print(build(args.output,args.github_url,args.home_source))
+    print(build(args.output,args.github_url,args.home_source,args.guide_source))

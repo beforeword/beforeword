@@ -14,6 +14,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0  # Resolve the commit that published the selected release checksums.
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
@@ -39,42 +41,45 @@ jobs:
           python3 -B evaluations/multi-provider/test_checkpoint.py
           python3 -B -O evaluations/multi-provider/test_runner_contract.py
           python3 -B -O evaluations/multi-provider/test_checkpoint.py
-      - name: Build standalone guide
-        run: python3 scripts/build_guide.py --output build/toolkit
+      - name: Build standalone guide from the current checkout
+        run: python3 -B scripts/build_guide.py --output "$RUNNER_TEMP/current-guide"
       - name: Check guide behavior in a simulated DOM
-        run: node scripts/test_guide.cjs build/toolkit/beforeword_AI.html
+        run: node scripts/test_guide.cjs "$RUNNER_TEMP/current-guide/beforeword_AI.html"
       - name: Check RU and EN package contents
         run: python3 scripts/test_packages.py
       - name: Check directory packages and GPT instruction drafts
         run: |
           python3 -B catalog/build.py --check
           python3 -B catalog/check.py
-      - name: Check versioned downloads and bilingual guide links
-        id: downloads
+      - name: Rebuild and verify the published downloads from their release sources
         run: |
-          python3 -B scripts/build_downloads.py --hydrate
+          version="$(python3 -B -c 'from scripts.release_contract import VERSION; print(VERSION)')"
+          release_dir="$GITHUB_WORKSPACE/downloads/$version"
+          release_commit="$(git log -1 --format=%H -- "downloads/$version/SHA256SUMS.txt")"
+          test -n "$release_commit"
+          echo "Rebuilding release $version from $release_commit"
+          release_source="$RUNNER_TEMP/beforeword-release-source"
+          git worktree add --detach "$release_source" "$release_commit"
+
+          python3 -B "$release_source/scripts/build_downloads.py" --output "$release_dir" --hydrate
+          python3 -B "$release_source/scripts/build_downloads.py" --output "$release_dir" --check
+          python3 -B "$release_source/scripts/build_guide.py" --output build/toolkit
+          cmp "$release_dir/beforeword_AI_${version}.html" build/toolkit/beforeword_AI.html
+          (cd "$release_dir" && sha256sum --check SHA256SUMS.txt)
+
+          # The current instructions and installable packages must still match the release.
+          current_dir="$RUNNER_TEMP/current-downloads"
+          python3 -B scripts/build_downloads.py --output "$current_dir"
+          diff --brief --recursive --exclude="beforeword_toolkit_${version}.zip" \
+            --exclude="beforeword_AI_${version}.html" --exclude=manifest.json --exclude=SHA256SUMS.txt \
+            "$release_dir" "$current_dir"
           python3 -B scripts/test_downloads.py
-          python3 -B scripts/build_downloads.py --check
-      - name: Show download metadata drift without changing tracked files
-        if: failure() && steps.downloads.outcome == 'failure'
-        run: |
-          python3 -B - <<'PYCODE'
-          import difflib
-          import sys
-          sys.path.insert(0, "scripts")
-          from build_downloads import ROOT, VERSION, build_files
-          files = build_files()
-          for name in ("manifest.json", "SHA256SUMS.txt"):
-              old = (ROOT / "downloads" / VERSION / name).read_text(encoding="utf-8")
-              new = files[name].decode("utf-8")
-              print("".join(difflib.unified_diff(old.splitlines(True), new.splitlines(True),
-                    fromfile="tracked/" + name, tofile="generated/" + name)), end="")
-          PYCODE
       - name: Build site files locally
-        run: python3 scripts/build_public.py --output build/site --github-url https://github.com/beforeword/beforeword
+        run: python3 -B scripts/build_public.py --output build/site --guide-source build/toolkit --github-url https://github.com/beforeword/beforeword
       - name: Check selected core and generated adapter relationships
         run: |
           beforeword_release="$(python3 -B -c 'from scripts.release_contract import VERSION; print(VERSION)')"
+          cmp "downloads/$beforeword_release/beforeword_toolkit_${beforeword_release}.zip" build/site/public_html/model/downloads/beforeword_toolkit.zip
           python3 -B scripts/check_release_sources.py --generated --downloads "downloads/$beforeword_release" --site build/site/public_html
       - name: Check site files and simulated interactions
         run: node scripts/test_public.cjs build/site/public_html
