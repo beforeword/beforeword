@@ -1,15 +1,17 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/beforeword/beforeword/main/brand/wordmark-light.svg">
-  <img src="https://raw.githubusercontent.com/beforeword/beforeword/main/brand/wordmark-dark.svg" alt="Beforeword" width="224">
-</picture>
+<a href="https://beforeword.xyz/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/beforeword/beforeword/main/brand/site-wordmark-dark.png">
+    <img src="https://raw.githubusercontent.com/beforeword/beforeword/main/brand/site-wordmark-light.png" alt="Beforeword" width="218">
+  </picture>
+</a>
 
-[English](https://github.com/beforeword/beforeword) · **Русский**
+[English](https://github.com/beforeword) · **Русский**
 
-Меня научили писать моё имя и фамилию — Кирилл Шебетов. Я могу написать их без ошибки. От этого буквы не становятся мной. Я могу повторить чужие слова о другом человеке или проверить формулу, которой описали мир. Слова и числа остаются словами и числами.
+Меня научили писать «Кирилл Шебетов». Я могу написать своё имя без ошибки. От этого буквы на странице не становятся мной. Я могу повторить чужие слова о другом человеке или проверить формулу, которой описали мир. Слова и числа не становятся тем, что ими описали.
 
 **Я предлагаю снять требование принимать выученные слова и числа за себя, за других или за сам мир.** Снять это требование может тот, кто его предъявляет. Каждый решает сам, какие слова учить и какими пользоваться. Это относится и к словам, написанным здесь.
 
-[Прочитать предложение](https://beforeword.xyz/proposal/) · [Открыть сайт Beforeword](https://beforeword.xyz/)
+[Прочитать предложение](https://beforeword.xyz/proposal/) · [Главная Beforeword](https://beforeword.xyz/) · [Взять инструкцию для ИИ](https://beforeword.xyz/model/#medium-details)
 
 ## Фильмы, музыка и исследования
 
@@ -18,17 +20,21 @@
 - [Послушать музыку](https://beforeword.xyz/music/) — мои песни, тексты и клипы.
 - [Открыть исследования](https://beforeword.xyz/research/) — в работе [«ЧЕЛОВЕК»](https://beforeword.xyz/research/human/) разобрано, как письменные инструкции связывают описание человека с решением о нём.
 
-## Инструменты и исходный код
+## Как использовать Beforeword с ИИ
 
-В [Text Mode](https://beforeword.xyz/text-mode/) можно работать с текстом прямо на сайте. [Beforeword Reader (на английском)](https://beforeword.xyz/reader/) показывает исходный отрывок рядом с предложенным прочтением. Их можно сравнить слово в слово.
+Инструкция предлагает модели различать слова, которые вы ей дали, и прочтение, которое она сама к ним добавила. Это относится и к собственным ответам модели. [Скопировать инструкцию или выбрать редакцию на сайте](https://beforeword.xyz/model/#medium-details) · [Прочитать полный русский текст на GitHub](https://github.com/beforeword/beforeword/blob/main/assets/core.ru.txt).
 
-- [Инструкция для ИИ и установка](https://github.com/beforeword/beforeword/blob/main/docs/ai-guide.ru.md) · [Пакеты для Claude и OpenAI и их статус в каталогах](https://github.com/beforeword/beforeword/blob/main/catalog/README.ru.md)
+## Инструменты для чтения и исходный код
+
+В [Text Mode](https://beforeword.xyz/text-mode/) можно дать одной модели одно и то же задание и сравнить два ответа — с инструкцией Beforeword и без неё. [Beforeword Reader (на английском)](https://beforeword.xyz/reader/) показывает исходный отрывок рядом с предложенным прочтением. Их можно сравнить слово в слово.
+
+- [Как установить инструкцию для ИИ](https://github.com/beforeword/beforeword/blob/main/docs/ai-guide.ru.md) · [Пакеты для Claude и OpenAI и их статус в каталогах](https://github.com/beforeword/beforeword/blob/main/catalog/README.ru.md)
 - [Расширение для браузера и инструкции по сборке](https://github.com/beforeword/beforeword/blob/main/integrations/browser/README.md) · [Подключение к Hugging Face](https://github.com/beforeword/beforeword/blob/main/integrations/huggingface/README.md)
 - [Исходный код Reader и инструменты MCP](https://github.com/beforeword/beforeword/blob/main/integrations/mcp/README.md) · [Пакет Reader для OpenAI](https://github.com/beforeword/beforeword/tree/main/plugins/openai/beforeword-reader)
 - [Версия в этом репозитории](https://github.com/beforeword/beforeword/blob/main/references/release-contract.json) · [Результаты проверок](https://github.com/beforeword/beforeword/blob/main/evaluations/README.ru.md)
 
 ## Архив и связь
 
-[Публичное заявление](https://beforeword.xyz/statement/) · [Ранняя версия предложения](https://github.com/beforeword/words-and-decisions) · [Архив писем](https://github.com/beforeword/correspondence)
+[Публичное заявление](https://beforeword.xyz/statement/) · [Исследование «Слова о себе и решения по записям»](https://github.com/beforeword/words-and-decisions/blob/main/README.ru.md) · [Архив писем](https://github.com/beforeword/correspondence/blob/main/README.ru.md)
 
 [mail@beforeword.xyz](mailto:mail@beforeword.xyz)

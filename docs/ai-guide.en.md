@@ -1,14 +1,24 @@
-# beforeword for AI
+# Beforeword instructions for AI
 
-[Русский](ai-guide.ru.md) · [Project overview](../README.md) · [Website](https://beforeword.xyz/model/en/)
+**English** · [Русский](ai-guide.ru.md) · [Project overview](../README.md)
 
-**Public testing · instruction version 1.4.2**
+**Version 1.4.2 · 12 November 2026 · public testing**
 
-This is not a final version. The instructions and their use across applications are open to testing and revision.
+The instruction asks an AI to keep the words you supplied visible and show what a proposed reading adds. This applies to descriptions of ourselves, of others and of the world, including the words the AI uses in its own answer. You can use it with an ordinary task such as a translation or calculation.
 
-[Changes](../CHANGELOG.md) · [Follow updates](https://beforeword.xyz/model/en/#bw-updates) · [Report an issue](#report-an-issue)
+[Copy the instruction on Beforeword](https://beforeword.xyz/model/en/#medium-details)
 
-Learned words have replaced ourselves, others and the world. Beforeword applies the same distinction to every written form, including its own explanations. The instruction below applies this scope to AI responses while preserving practical tasks.
+## Start in a chat
+
+1. Open the [full English instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_core_EN.txt) or [full Russian instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_core_RU.txt) and copy the complete text.
+2. Paste it as the first message of a new chat.
+3. Send your task. For example: `Apply beforeword to the phrase “I understand.”`
+
+No installation or API key is needed. Repeat these steps for each new chat. For saved settings, skills, updates, and removal, see the [installation guide](installation.md).
+
+[Changes](../CHANGELOG.md) · [Release details](https://beforeword.xyz/model/release.json) · [Report an issue](#report-an-issue)
+
+## What the instruction does
 
 Two tasks produce the same line: **“I agree.”** In task A, the instruction was “Copy this line.” In task B, it was “Write this only if you agree.” The line alone does not show which instruction was given or whether the writer agrees. This is a constructed example.
 
@@ -40,14 +50,6 @@ This is a historical check of 1.3.4 in Codex sessions, not a test result for the
 ## Try it on the website
 
 [Open the public beta](https://beforeword.xyz/beta/en/) for three worked examples and a place to examine your own text. No installation is needed. The worked examples can be read without a model request; sending your own text is a separate action. The beta app and the instructions for your own AI are separate ways to use beforeword, with separate version numbers.
-
-## Start in a chat
-
-1. Open the [full English instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_core_EN.txt) or [full Russian instructions](https://raw.githubusercontent.com/beforeword/beforeword/main/downloads/1.4.2/beforeword_core_RU.txt) and copy the complete text.
-2. Paste it as the first message of a new chat.
-3. Send your task. For example: `Apply beforeword to the phrase “I understand.”`
-
-No installation or API key is needed. Repeat these steps for each new chat. For saved settings, skills, updates, and removal, see the [installation guide](installation.md).
 
 ## Ready-to-use downloads · 1.4.2
 
@@ -105,4 +107,4 @@ Reports can cover an AI response, installation, copying, downloads, or the websi
 
 GitHub reports are public and require a GitHub account. Remove private details before posting; email is available without publishing a report.
 
-The current release has 18 download outputs, including the standalone HTML guide, source toolkit ZIP, manifest and checksums. The two large generated files are distributed by the website and reconstructed locally from tracked sources. `python3 -B scripts/build_downloads.py --hydrate` restores them only after checking the manifest, checksums and every existing release file; it does not replace mismatched files.
+The HTML guide and the source toolkit belong to the published release. To reproduce all 18 release files, check out [the 1.4.2 source snapshot](https://github.com/beforeword/beforeword/tree/b9631a157ce1c0ac825941f654418e12ca04d9d5), then run `python3 -B scripts/build_downloads.py --hydrate` and `python3 -B scripts/build_downloads.py --check`. Both commands compare the files with the release manifest and checksums.
