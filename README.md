@@ -7,11 +7,21 @@
 
 **English** · [Русский](https://github.com/beforeword/beforeword/blob/main/README.ru.md)
 
-I was taught to write “Kirill Shebetov.” I can spell my name correctly. The letters on the page still don’t become me. I can repeat a description of someone else, or check a formula about the world. Those words and numbers never become what they describe.
+I learned to write “Kirill Shebetov.” At a counter I can check every letter of my name against my passport. Later, alone, I ask myself, “Who am I?” and reach for the same page. I checked the spelling. I decided those letters could answer for me. I can give a description that same authority over someone else, or over what I see in the world.
 
 **I propose lifting the requirement to accept the words and numbers we learn as who we are, who other people are or what the world is.** Whoever sets that requirement can lift it. Each of us can choose which words to learn and use, including the ones written here.
 
 [Read the proposal](https://beforeword.xyz/proposal/en/) · [Beforeword homepage](https://beforeword.xyz/en/) · [Get the AI instruction](https://beforeword.xyz/model/en/#medium-details)
+
+## Illustrated book
+
+**[Who Said I Had to Be These Words?](https://beforeword.xyz/book/en/)**
+
+An adult copies **3400** from a scale onto a card. The baby is still on the scale. Years later I can point to the card and say, “That’s what I weighed.” What changes when I point to the same number and say, “That’s who I am”?
+
+<a href="https://beforeword.xyz/book/en/"><img src="https://raw.githubusercontent.com/beforeword/beforeword/main/assets/book/beforeword-en.jpg" width="420" alt="A baby lies on a scale reading 3400. A ruler reaches 51 at the heel. An adult copies both numbers onto a card."></a>
+
+[Read in English](https://beforeword.xyz/book/en/) · [Download the English PDF](https://beforeword.xyz/book/beforeword-en.pdf)
 
 ## Films, music and research
 
